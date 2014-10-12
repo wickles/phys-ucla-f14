@@ -1,0 +1,405 @@
+\input{../header.tex}
+
+
+
+\begin{document}
+
+\textit{Read Chapters 1 and Sections 2.1-2.3}
+
+\section{Galaxy Dynamics}
+Since there are so many stars, can treat the system either as a fluid
+or as a system of particles. We may want to consider it as a particle
+if we want to account for star-interactions or as a fluid to consider
+its bulk motion. We will have a distribution function which is a
+function of position, velocity and time. We typically normalize this
+such that it is normalized to unity when integrated over phase space
+\begin{equation}
+\int f(\v{x},\v{v},\v{t}) d^3\v{x} d^3\v{v} = 1
+\end{equation}
+The mean free path should be small in comparison to the macroscopic
+length scales if we're assuming that it's a fluid in the
+\textbf{continuum approximation}. Quantities such as the density and
+velocity are continuous and they are independent parameters. 
+
+
+We have three regimes that we can deal with if we abandon the fluid
+approximatiosn
+\begin{itemize}
+\item Lumpy
+\item Smooth - fluid approximation
+\item In-between - globular clusters
+\end{itemize}
+Any system that we want to describe, we can do it any of these three
+ways but we have to pick which one. 
+
+\section{Defining Basic Parameters}
+
+We have two particles at two positions $\v{x_1}$ and $\v{x_2}$ We'll
+define the difference between them $\v{x_{12}}$. The gravitational
+acceleration between them is given by $\v{\ddot{r}} = \frac{G
+  m_2}{|\v{x_{12}}|^3} \v{x_{12}}$
+
+\begin{equation}
+\v{\ddot{x_1}} = \sum_{j\ne 1} \frac{G
+  m_j}{|\v{x_{ji}}|^3} \v{x_{ji}}
+\end{equation}
+WE can express this in terms of a potential
+\begin{equation}
+\v{\ddot{x_i}} = \pd{\Phi}{x_i} = -\grad\Phi
+\end{equation}
+Now let's define the gravitational potential
+\begin{equation}
+W = -\frac{1}{2} \sum_i \sum_{j\ne i} \frac{Gm_1 m_j}{|x_{ij}|} =
+\frac{1}{2} \sum_i m_i \Phi (x_i)
+\end{equation}
+We can rewrite this in terms of a typical radius $r_h$
+\begin{equation}
+W = -\alpha \frac{GM^2}{r_h}
+\end{equation}
+Kinetic energy is just
+\begin{equation}
+T = \frac{1}{2} \sum_j m_j |\dot{x_j}|^2
+\end{equation}
+In an isolated system
+\begin{equation}
+E = T + W = constant
+\end{equation}
+\subsection{Virial Theorem} 
+Let's take the moment of inertia of the system which is defined as
+\begin{equation}
+I = \sum_i m_i |x_i^2|
+\end{equation}
+Right now we are concerned with the second derivative of the moment of
+inertia and subsituting in our previous expresion for $\v{\ddot{x_i}}$
+\begin{equation}
+\ddot{I} = 2\sum_i (m_i |\vec{v_i}|^2 + 2m_i \v{\ddot{x_i}} - \v{x_i} )
+= 4T + 2 \sum_i m_i \v{x_i} ( \sum_{j\ne1} \frac{G m_j(\v{x_j} -
+  \v{x_j})}{|\v{x_j} - \v{x_j}|})
+\end{equation}
+\begin{equation}
+\sum_i \sum_{j\ne i} G m_i m_j \frac{\v{x_j} \cdot (\v{x_j} -
+  \v{x_i})}{|\v{x_j} - \v{x_i}|^3} = \sum_j \sum_{i\ne j} G m_i m_j
+\frac{x_j \cdot (\vec{x_i} - x_j)} {|\v{x_i} - \v{x_j}|^3}
+\end{equation}
+These are equivalent, meaning that they are equal to half of the sum,
+which is
+\begin{equation}
+\frac{1}{2} G m_i m_j \sum_i \sum{j\ne i} (\v{x_i} - \v{x_j})(\v{x_j} - \v{x_i})
+/ (|\v{x_i} - \v{x_j}|^3)
+\end{equation}
+Taking out the minsu sign we get our expression for W
+\begin{equation}
+W = -\frac{1}{2} \sum_i \sum_{j\ne i} \frac{Gm_1 m_j}{|x_{ij}|} 
+\end{equation}
+So oerall
+\begin{equation}
+\ddot{I} = 4T + 2W
+\end{equation}
+\begin{equation}
+2T + W = 0
+\end{equation}
+Note that this only occurs if the system is in a
+bound isolated system in equilibrium. The overal energy of the system
+is T + W, we can say for any gravitational system
+\begin{equation}
+E = W / 2
+\end{equation}
+This is most used to estimate the masses of things. 
+
+\section{Continuum}
+We expressed the previous sections in terms of sums, but now we want
+to take out the particle-partical interactions and put it in terms of
+$\rho(\v{x})$ 
+Now our potential is defined as
+\begin{equation}
+\Phi(\v{x}) = -G \int \frac{\rho(\v{x'})}{|\v{x} - \v{x'}|} d^3x'
+\end{equation}
+We can use Gauss's therem to state
+\begin{equation}
+\int \grad \Phi \v{d^2s} = 4\pi G M_{enclose}
+\end{equation}
+We can then use the divergence theorem
+\begin{equation}
+\int \nabla^2 \Phi \v{d^3x} = \int \grad \Phi \cdot d^2\v{s}
+\end{equation}
+What we get then is that the integral of the divergence over the
+volume:
+\begin{equation}
+\int \nabla^2 \Phi d^3\v{x} = 4\pi G \int \rho(\v{x'}) d^3\v{x'}
+\end{equation}
+We then end up with Poissons equation because we can drop the integral
+\begin{equation}
+\nabla^2 \Phi = 4\pi G \rho
+\end{equation}
+This is an important equation that we'll come back to. Also in the
+continuum approximation, we have an expression for the gravitational
+potential W which is analogous to our previous definition in terms of
+the summation
+\begin{equation} 
+W = \frac{1}{2} \int \rho(\v{x'}) \Phi(\v{x'}) d^3\v{x}
+\end{equation}
+With these results, we can start applying it to simple situations. The
+simplest one is a spherical potential. 
+
+
+\section{Spherical potential}
+We can use the spherical symmetry to make two claims. A body inside a
+spherical shell of matter does not experience any force from outside
+of the shell. OUtisde of the shell, the force is the same as a point
+mass all at the center. This is due to Gauss' theorem. The
+contribution at a distance of r of an infinitesimal shell of thickess $dr$ at distance r'
+\begin{equation}
+\delta \Phi = - \frac{G M_{shell}}{r} = - \frac{4\pi G r'^2
+  \rho(r')}{r}
+\end{equation}
+if r is less than r' then there is no force, but there is still a
+potential, but it is a constant. We can choose what that constant is
+so that we have a meaningful potential. We choose it such that the
+contribution of the potential is continuous at the boundary. So to do
+that, we can choose that the contribution is 
+\begin{equation}
+\frac{-G M_{shell}}{r'} = - \frac{4\pi G r'^2 \rho(r') dr'}{r'}
+\end{equation}
+That is independent of our location r.
+
+In total, we now combine those two where the first term is for the
+interior protion
+\begin{equation}
+\phi(r) = -G\left[ \frac{1}{r} \int^r_0 r\pi \rho(r') dr' +
+    \int_r^{\infty} 4\pi \rho(r') r' dr' \right]
+\end{equation}
+The interior's potential is not zero, but the derivative is zero
+
+Dark matter tends to aggregate in a spherical halo, so we will use
+this formalism for a first order approximation for the potential of
+what a galaxy is doing.
+
+\section{Velocity}
+One of the key observables in a galaxy or in any dynamical system are
+velocities which helps us see what is happening but also how it
+evolves. We use the velocity of the galaxy to measure the mass of the
+galaxy. The circular velocity is 
+\begin{equation}
+\frac{v_c^2}{r} = \frac{GM(r)}{r^2}
+\end{equation}
+\begin{equation}
+v_c^2 = \frac{GM(r)}{r} = -rF(r) = r(\grad{\Phi})
+\end{equation}
+The other velocity that is an important determinant of the evolution
+of a system is the escape velocity which is defined in terms of how
+much energy it takes for a particle to reach infinity (i.e. where E =
+0) from where it
+starts off. That makes it easy that we can write it from conservation
+of energy
+\begin{equation}
+\frac{mv_e^2}{2} + m\Phi(r) = 0
+\end{equation}
+\begin{equation}
+v_e^2 = -2\Phi(r)
+\end{equation}
+\subsubsection{Homogeneous Sphere}
+Let's look at some examples of spherical systems and see what their
+potentials are and how the systems might effect the behavior or
+particles. The simplest is a homogeneous sphere. 
+\begin{equation}
+\phi = const
+\end{equation}
+\begin{equation}
+M_{enc} = \int_0^r 4\pi r'^2 \rho dr' = \frac{4}{3} \pi r^3 \rho
+\end{equation}
+The total force is 
+\begin{equation}
+F(r) = - \frac{GM(r)}{r^2} = - \frac{4\pi G\rho}{3} r
+\end{equation}
+This is the differential equation for a harmonic oscillator. The core
+of a cluster can be approximated as such. Meaning
+\begin{equation}
+\ddot{r} = -\omega^2r
+\end{equation}
+We get an equation for
+\begin{equation}
+\omega^2 = \frac{4\pi G}{3} \rho
+\end{equation}
+The period of this oscillation is
+\begin{equation}
+P = \frac{2\pi}{\omega}  = \sqrt{\frac{3\pi}{G\rho}}
+\end{equation}
+Each star has an oscillation. THe question now arises, if we have a
+Keplerian orbit, the period of the rotation is equal to the period of
+the oscillation. Are these the same? No, see homework
+
+\section{Dynamical Time}
+At this point we have this timescale of a period. Let's define an
+important timescale that we encounter, which is the \textbf{dynamical time} of
+a system. It is defined as 
+\begin{equation}
+t_{dyn} = (\frac{3\pi}{16 G\rho}) = P/4
+\end{equation}
+This is not dependent on our system
+We can say in general
+\begin{equation}
+t \sim (G\rho)^{1/2} 
+\end{equation}
+THis corresponds to the time between the peak and the middle of an
+oscillation, or the average to the furthest it'll go. This dynamical
+time is the time that any given system or a particle within a stellar
+system will do something dramatic like cross the system. It is related
+intimately with the free-fall time. 
+
+\subsubsection{Back to Homogeneous Sphere}
+If the radius of the homogeneous sphere b is interior to our radius
+(i.e. we're outside of the sphere) then it acts as a point mass
+\begin{equation}
+\Phi_{r <b} = -\frac{GM_{tot}}{r}
+\end{equation}
+If radius is less than B. The potential needs to be written in two terms
+of to describe the potential, the first of which is r dependent and
+the other which is r' dependent
+\begin{equation}
+- G \left[ \frac{1}{r} \frac{4\pi\rho r^3}{3} + \int^b_3 4\pi\rho r'dr'\right]
+\end{equation}
+Which can be written as 
+\begin{equation}
+-\frac{GM_{tot}}{b} \left[ \frac{r^2}{b^2} + \frac{3}{2} ( 1 -
+  \frac{r^2}{b^2})\right] = - \frac{GM_{tot}}{b} \left[ \frac{3}{2} -
+  \frac{r^2}{2b^2}\right]
+\end{equation}
+Now is this continuous at r=b. Yes, it's a quick check. Our choice of
+constants was appropriate to ensure that the potential is
+continuous. 
+
+\subsubsection{Singular Isothermal Sphere}
+Means that the energy distribution and so
+\begin{equation}
+\rho = \rho_0 \left(\frac{r_0}{r}\right)^2
+\end{equation}
+Characteristics of the isothermal sphere will not b e derived
+\begin{equation}
+M(r) = \int_0^r 4\pi r^2 dr \rho(r) = M_0 \frac{r}{r_0}
+\end{equation}
+In this case
+\begin{equation}
+M_0 = 4\pi \rho_0 r_0^3
+\end{equation}
+\begin{equation}
+v_c^2 = \frac{GM(r)}{r} = const = \frac{GM_0}{r_0}
+\end{equation}
+This implies that the circulal velocity is a cosntant with radius. so it has a flat rotation curvce. This tells us that the isothermal sphere is a good approximation for a galaxy.
+
+\begin{equation}
+\Phi(r) = -G[\frac{1}{r} \int_0^r 4\pi \rho(r') r'^2 dr + \int^\infty_r 4\pi \rho(r') r'^2 dr']
+\end{equation}
+THis is not an appropriate way to treat the isothermal sphere as the integral will not covnerge. It is more useful to look at differences in potential
+\begin{equation}
+\Phi(r) - \Phi(r_0) = -G\int_0^r \frac{M(r')}{r'^2} dr = \frac{GM_0}{r_0} \int_{r_0}^r \frac{dr'}{r'} = v_c^2 \ln(r/r_0)
+\end{equation}
+
+\subsection{Plummer Model}
+We're going to now start wiht a potential and try to work back to a density distribution. We know the potential for a point mass 
+\begin{equation}
+\Phi(r) = -\frac{GM}{r}
+\end{equation}
+Now let's generalize that
+\begin{equation}
+\Phi(r) = -\frac{GM}{\sqrt{r^2 + b^2}}
+\end{equation}
+This makes it so that the potential converges at r = 0. B is some scale radius which tells us where the model goes from being roughly constant to looking like the point mass. We get the density distribution by invoking Poisson's equation
+\begin{equation}
+\nabla^2\Phi = 4\phi G\rho
+\end{equation}
+In spherical coordinates
+\begin{equation}
+\frac{1}{r^2} \d{}{r} ( r^2 \d{\Phi}{r})
+\end{equation}
+The result is 
+\begin{equation}
+4\pi G\rho = \frac{3GMb^2}{(r^2 + b^2)^{3/2}}
+\end{equation}
+\begin{equation}
+\rho(r) = \frac{3M/4\pi b^3}{(1+r^2/b^2)^{5/2}}
+\end{equation}
+As r goes to zero we get a constant density distrubtion
+\begin{equation}
+\frac{3M}{4\pi b^3}
+\end{equation}
+and r goes to infinity
+\begin{equation}
+\rho \sim r^{-5}
+\end{equation}
+This is nice because the density falls off 
+However, orbits cannot be described analytically in this model. A different model for this is the isochrone potential. 
+\begin{equation}
+\Phi(r) = -\frac{GM}{b + \sqrt{b^2+r^2}}
+\end{equation}
+
+
+\section{Two-power density model}
+\begin{equation}
+\rho(r) = \frac{\rho_0}{(r/1)^{\alpha} ( 1 + r/a)^{\beta-\alpha}}
+\end{equation}
+
+Look up Dehnen models, Herquist model, Jaffe model, NFW
+
+
+\subsection{Defionitions}
+\subsubsection{Integrals of motion}
+Function 
+\begin{equation}
+I(\v{x}, \v{v}) = I(\v{x_0}, \v{v_0}) 
+\end{equation}
+Inviariant along the orbit of a particle. For energy conservation, it means that energy is an integral of motion. This is different from a constant of motion
+\subsubsection{Constant of motion}
+\begin{equation}
+C(\v{x},\v{v}, t) = C(\v{x_o}, \v{v_0},t)
+\end{equation}
+An example is that if we know the equations of motion we can determine at some specific time $t_0$ what the position must or will be in the future. So the three space cooordinates and three velocity coordinates are related to constants of motion that are determined by the constraints determined of the constants of motion. We are more interested in the integrals of motion
+
+\section{Various Integrals of Motion}
+For these purposes let us assume that the potential is static or invariant
+\subsection{Energy}
+Let's consider the dot product between
+\begin{equation}
+\dot{r} \cdot \ddot{r} = -\dot{r} \cdot \grad \Phi
+\end{equation}
+\begin{equation}
+\d{}{t} (\frac{1}{2} |\dot{r}|^2) = \d{\Phi(r)}{t}
+\end{equation}
+Oops.
+
+
+\subsection{Energy}
+Assume spherically symmetric
+\begin{equation}
+\Phi = \Phi(r)
+\end{equation}
+\begin{equation}
+\ddot{r} = F(r) \hat{r}
+\end{equation}
+\begin{equation}
+\v{r}\times \v{F} = 0 = \v{r} \times \v{\ddot{r}}
+\end{equation}
+\begin{equation}
+\d{}{t} (\v{r} \v{\dot{r}}) = 0
+\end{equation}
+So we get three conservations
+\begin{equation}
+\v{L} = \v{r}\times \v{v}
+\end{equation}
+
+Lessing this to axisymmetric, we know that the symmetry that we can work with is the azimuthal angle $\phi$.
+\begin{equation}
+\pd{\Phi}{\phi} = 0
+\end{equation}
+Means that phi is conserved
+
+\section{Fuckballsacks}
+
+\begin{equation}
+\v{r} = r\hat{r}
+\end{equation}
+Unit vector shit
+See classical notes. 
+
+
+
+\end{document}
