@@ -1,0 +1,155 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../../header.tex}
+
+\title{Phys 221A -- Quantum Mechanics -- Lec02}
+\author{UCLA, Fall 2014}
+\date{\formatdate{08}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Introduction}
+
+Preliminary notes
+\begin{itemize}
+\item TA (Shahriar) office hours changed: Wednesday 3-4 PM in Knudsen 3-111.
+\end{itemize}
+
+\subsection{More on Hilbert spaces}
+
+From now on we will be living in Hilbert space $G$ with vectors, for example $\psi$ or $\phi$. Recall that in the bra-ket notation we have $\psi = | \psi \rangle$ in the Hilbert space, a ``ket''. The inner product is given by
+\begin{equation}
+\begin{matrix}
+G \times G & \rightarrow & \mathbb{C} \\
+\ket{\phi}, \ket{\psi} & \mapsto & \braket{\phi}{\psi}. 
+\end{matrix}
+\end{equation}
+We write elements in the dual space as $\bra{\psi}$, a ``bra''. This is a linear map taking $G \rightarrow \mathbb{C}$ and mapping $\ket{\phi} \mapsto \braket{\psi}{\phi}$. 
+
+Consider an operator $O : G \rightarrow G$ mapping $\ket{\psi} \mapsto O \ket{\psi}$. For example, $O = \ket{\phi} \bra{\psi}$ for some $\phi, \psi \in G$. Then 
+\begin{equation}
+O \ket{\xi} = (\ket{\phi} \bra{\psi}) \ket{\xi} = \ket{\phi} \braket{\psi}{\xi}.
+\end{equation}
+Given operators $A, B, C$ we have 
+\begin{equation}
+(AB) \ket{\psi} = A (B \ket{\psi}), \qquad ABC = A(BC) = (AB)C.
+\end{equation}
+Recall the closure relation
+\begin{equation}
+1 = \sum_i \ket{\alpha_i} \bra{\alpha_i}
+\end{equation}
+where $\set{ \ket{\alpha_i} }$ forms an orthonormal basis (so $\braket{\alpha_i}{\alpha_j} = \delta_{ij}$).
+
+Given an operator $O$, we have that $O$ is linear iff 
+\begin{equation}
+O (c_1 \ket{\psi_1} + c_2 \ket{\psi_2}) = c_1 O \ket{\psi_1} + c_2 O \ket{\psi_2}
+\end{equation}
+for all $c_i \in \mathbb{C}$, $\ket{\psi_i} \in G$. The operator $O^\dagger$ is the Hermitian conjugate or adjoint of $O$ iff 
+\begin{equation}
+\braket{\psi}{O\phi} = \braket{O^\dagger \psi}{\phi}
+\end{equation}
+for all $\psi, \phi \in G$. If $O^\dagger$ is the adjoint then $(O^\dagger)^\dagger = O$ and furthermore $\braket{O\phi}{\psi} = \braket{\phi}{O^\dagger \psi}$. 
+
+If $O^\dagger = O$ then $O$ is Hermitian or self-adjoint. If $UU^\dagger = 1$ (i.e. $U^\dagger = U^{-1}$) then $U$ is called unitary. Note that we have 
+\begin{equation}
+\bra{O\psi} = \bra{\psi} O^\dagger,
+\end{equation}
+or in other words
+\begin{equation}
+\braket{O\psi}{\phi} = \bra{\psi} O^\dagger \ket{\phi} = \braket{\psi}{O^\dagger \phi}.
+\end{equation}
+
+A physical observable, i.e. a dynamical variable, must be represented by a linear operator $O$. Given a physical state $\psi$, where $\braket{\psi}{\psi} = 1$, the ``expectation value'' of $O$ in the state $\ket{\psi}$ is given by
+\begin{equation}
+\avg{O} = \braket{\psi}{O\psi}.
+\end{equation}
+Note that if $O$ is Hermitian, i.e. $O = O^\dagger$, then $\avg{O} \in \mathbb{R}$ for any $\psi$. 
+
+
+\subsection{Representation in a basis}
+
+In an orthonormal basis $\ket{\alpha_i}$ we have 
+\begin{equation}
+\ket{\psi} = \sum_i \ket{\alpha_i} \braket{\alpha_i}{\psi} = \sum_i c_i \ket{\alpha_i} 
+\end{equation}
+so we can write
+\begin{align}
+O \ket{\psi} &= O \sum_i c_i \ket{\alpha_i} = \sum_i c_i O \ket{\alpha_i} \\
+	&= \sum_{ij} c_i \ket{\alpha_j} \bra{\alpha_j} O \ket{\alpha_i}.
+\end{align}
+Thus we can write $O\ket{\psi}$ in the basis as $\sum_j b_j \ket{\alpha_j}$ where $b_j = \sum_i O_{ji} c_i$ and
+\begin{equation}
+O_{ij} = \bra{\alpha_i} O \ket{\alpha_j}
+\end{equation}
+is called the matrix element. 
+
+There is a one-to-one map from vectors $\psi$ to column vectors $\v{c} = (c_1, \dots, c_n)^\top$ (where $n = \opname{dim} G$) such that $\psi = \sum_i c_i \ket{\alpha_i}$, as well as a map from operators $O$ to $n \times n$ matrices $\hat{O} = (O_{ij})$. Thus we can write $G \cong \mathbb{C}^n$ (note that $n$ is not necessarily finite). Note that given a vector $\phi$ represented by $\v{b}$, we can write $\braket{\phi}{\psi} = \v{b}^\dagger \cdot \v{c}$. Furthermore if $\ket{\phi} = O \ket{\psi}$ then $\v{b} = \hat{O} \v{c}$. 
+
+A Hermitian operator $O$ corresponds to a Hermitian matrix $\hat{O}$, and similarly a unitary operator $U$ corresponds to a unitary matrix $\hat{U}$. Thus given Hermitian $O$ and unitary $U$ we have $O_{ij} = O_{ji}^*$ and $\hat{U} \hat{U}^\dagger = \hat{1}$. Given two orthonormal bases $\set{ \ket{\alpha_i} }$ and $\set{ \ket{\alpha'_i} }$ we can always write $\hat{O}' = \hat{U}^\dagger \hat{O} \hat{U}$ where $U_{ij} = \braket{\alpha_i}{\alpha_j'}$ and happens to be unitary. We can show this last statement:
+\begin{equation}
+(\hat{U} \hat{U}^\dagger)_{ij} = \sum_k U_{ik} U_{jk}^* = \sum_k \braket{\alpha_i}{\alpha'_k} \braket{\alpha'_k}{\alpha_j} = \braket{\alpha_i}{\alpha_j} = \delta_{ij}.
+\end{equation}
+
+A little more on operators. We define
+\begin{align}
+[A,B] &= AB - BA, \qquad \text{the commutator, and} \\
+\set{ A,B } &= AB + BA, \qquad \text{the anti-commutator}.
+\end{align}
+Then we have
+\begin{align}
+AB &= \frac{1}{2} [A,B] + \frac{1}{2} \set{A,B} \\
+	&= BA = -\frac{1}{2} [A,B] + \frac{1}{2} \set{A,B}
+\end{align}
+Notice that $\set{A,B}$ is Hermitian and $[A,B]$ is anti-Hermitian ($O^\dagger = -O$). Furthermore, if $A$ and $B$ are Hermitian then 
+\begin{equation}
+(AB)^\dagger = B^\dagger A^\dagger = BA \neq AB.
+\end{equation}
+Finally we can split any operator $O$ into a Hermitian part $\zeta_+$ and an anti-Hermitian part $\zeta_-$:
+\begin{equation}
+O = \frac{1}{2} (\zeta_+ + \zeta_i), \quad \zeta_+ = O + O^\dagger, \quad \zeta_- = O - O^\dagger.
+\end{equation}
+
+
+\subsection{Onward to physics}
+
+The eigenvectors of a Hermitian operator yield a complete orthonormal basis. If $A$ and $B$ are Hermitian operators and $[A,B] = 0$ then the operators yield a complete set of simultaneous eigenvectors (which form an orthonormal basis). When this happens we call $A, B$ compatible observables. 
+
+In the hydrogen atom we have quantum numbers:
+\begin{itemize}
+\item principle quantum number $n = 1, 2, \dots$ where $E \sim -1/n^2$, eigenvalues of the Hamiltonian $H$,
+\item angular momentum quantum number $\ell = 0, 1, \dots, n-1$, eigenvalues of $L^2$,
+\item magnetic quantum number $m = -\ell, \dots, \ell$, eigenvalues of $L_z$,
+\item spin quantum number $s = \pm 1/2$, eigenvalues of $S_z$. 
+\end{itemize}
+We can show that 
+\begin{equation}
+[H, L^2] = [L^2, L_z] = [H, L_z] = 0
+\end{equation}
+so that $H, L^2, L_z$, and $S_z$ are compatible observables uniquely identified by their quantum numbers $(n,\ell,m,s)$. 
+
+Generally, a complete set of compatible observables whose eigenvalues, or quantum numbers, uniquely label their common eigenvectors (resolving all degeneracies). Thus each $\ket{\alpha_i}$ in the corresponding orthonormal basis is labelled by the set of quantum numbers. Typically this complete set is provided by $H$ and corresponding symmetry generators. 
+
+
+
+
+
+
+
+\begin{comment}
+\begin{figure}
+\centering
+\includegraphics{3a.pdf}
+\caption{Half the diagrams for photon-photon scattering.}
+\label{fig:3a}
+\end{figure}
+\end{comment}
+
+
+
+\end{document}

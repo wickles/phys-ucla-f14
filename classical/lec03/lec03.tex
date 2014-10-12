@@ -1,0 +1,221 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../../header.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec03}
+\author{UCLA, Fall 2014}
+\date{\formatdate{09}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Lagrangian formalism}
+
+The Lagrangian formalism has some advantages over the Newtonian formulation:
+\begin{itemize}
+\item Looks the same in all coordinate systems
+\item Conservation laws are manifestly evident
+\item Constraints are simpler to deal with (normal forces, string tensions, etc.)
+\item Lagrange equations can be derived from an action principle. This is great because all fundamental laws of physics can be formulated this way (general relativity, Maxwell theory, standard model). 
+\item Lagrangians and actions are the starting point for the path integral formulation of quantum mechanics.
+\item Leads us to Hamiltonian formulation!
+\end{itemize}
+
+
+\subsection{Action principle}
+
+What is the action principle (or Hamilton's principle, the principle of least action)? Start with a system of generalized coordinates $q_i(t)$ and generalized velocities $\dot{q}_i(t)$, $i = 1, \dots N$. The Lagrangian is assumed to be a function $L(q_i, \dot{q}_i, t)$. Then the action is defined as a functional
+\begin{equation}
+S[q_i(t)] = \int_{t_1}^{t_2} dt L(q_i, \dot{q}_i, t)
+\end{equation}
+taking for its argument the path $q_i(t)$ with fixed boundary conditions $q_i(t) = q_i^\text{initial}$ and $q_i(t_2)^\text{final}$. (Recall that a functional $F[q(t)]$ maps a function to a real number.) 
+
+The action principle (the ``principle of least action'') says that the physical path is given by an extremum of the action:
+\begin{equation}
+\text{Euler-Lagrange:}	\qquad	\frac{\delta S[q]}{\delta q_i(t)} = 0, \quad i = 1, \dots, N. 
+\end{equation}
+What does this mean? Will need to familiarize ourselves with variational calculus and functional derivatives. 
+
+For simplicity let's consider a single coordinate $q(t)$ with initial and final points $q_1, q_2$. Then we have an action
+\begin{equation}
+S[q(t)] = \int dt L(q, \dot q, t).
+\end{equation}
+Recall the ordinary derivative is given by
+\begin{equation}
+\frac{df}{dx} = \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon) - f(x)}{\epsilon} = \lim_{\epsilon \rightarrow 0} \frac{\epsilon \delta f + \bigo(\epsilon^2)}{\epsilon} = \delta f
+\end{equation}
+We consider an infinitesimal variation of $q(t)$,
+\begin{equation}
+\tilde{q}(t) = q(t) + \delta q(t) = q(t) + \epsilon h(t) + \bigo(\epsilon^2)
+\end{equation}
+where $h(t)$ is an arbitrary function with $h(t_1) = h(t_2) = 0$ so that initial and final values of $q$ are fixed and the variation vanishes at the end points: $\delta q(t_1) = \delta q(t_2) = 0$. 
+
+In the variation of the action we only consider terms to order $\epsilon$,
+\begin{align}
+\delta S &= S[q+\delta q] - S[q] \\
+	&= \int_{t_1}^{t_2} L(q(t) + \epsilon h(t), \dot{q}(t) + \epsilon \dot{h}(t), t) - \int_{t_1}^{t_2} dt L(q(t), \dot{q}(t), t) \\
+	&= \epsilon \int_{t_1}^{t_2} dt \left\{ \frac{\pd L}{\pd q} h(t) + \frac{\pd L}{\pd \dot q} \right\} + \bigo(\epsilon^2),
+\end{align}
+and integrating the second term by parts we find
+\begin{equation}
+\delta S = \epsilon \int_{t_1}^{t_2} \left\{ \frac{\pd L}{\pd q} h - (\frac{d}{dt} \frac{\pd L}{\pd \dot{q}}) h + \frac{d}{dt} (\frac{\pd L}{\pd \dot{q}} h) \right\} + \bigo(\epsilon^2).
+\end{equation}
+The third term is a total derivative with vanishing boundary conditions so vanishes when integrated, so we're left with
+\begin{equation}
+\delta S = \epsilon \int_{t_1}^{t_2} dt \left\{ \frac{\pd L}{\pd q} - \frac{d}{dt} \frac{\pd L}{\pd \dot{q}} \right\} h(t) + \bigo(\epsilon^2).
+\end{equation}
+The action is an extremum if $\delta S = 0$, it's still an integral but the function $h(t)$ is arbitrary. Thus we are left with the Euler-Lagrange equations,
+\begin{equation}
+\delta S = 0	\qquad \iff \qquad \frac{\pd L}{\pd q} - \frac{d}{dt} \frac{\pd L}{\pd \dot{q}} = 0.
+\end{equation}
+Note that the extremum is not always a minimum of the action (as the name ``least action principle'' implies). For long trajectories we can find paths that are in fact saddle points of the action. However, it will in fact never be a maximum. This is because we can always take a longer path which increases the action. 
+
+Some comments:
+\begin{enumerate}
+\item We can easily generalize to more than one coordinate. Taking variations $\delta q_i = q_i + \epsilon h_i(t)$ we have
+\begin{equation}
+\delta S = \epsilon \int dt \sum_i \left( \frac{\pd L}{\pd q_i} - \frac{d}{dt} \frac{\pd L}{\pd \dot{q}_i} \right) h_i (t) + \bigo(\epsilon^2).
+\end{equation}
+Since we can just set all $h_j = 0$ for $j \neq i$ we just find the Euler-Lagrange equation applies for each variable,
+\begin{equation}
+\frac{\pd L}{\pd q_i} - \frac{d}{dt} \frac{\pd L}{\dot{q}_i} = 0, \quad i = 1, \dots, N.
+\end{equation}
+
+\item Newton's equation are of course reproduced for conservative forces by choosing $L = T - V$, so for a single particle $L = (1/2)m\dot{x}^2 - V(x)$. Then the Euler-Lagrange equation just reproduces newton's equations
+\begin{equation}
+-m\ddot{x} - \frac{\pd V}{\pd x} = 0,
+\end{equation}
+which is 3 dimensions would is $m \ddot{\v{x}} = -\v{\nabla}V(\v{x})$. Similarly for $N$ particles we would have $m_i \ddot{\v{x}}_i = -\v{\nabla}_i V(\v{x})$. 
+
+\item One big advantage of the Euler-Lagrange equations is that they take the same form in any coordinate system. To show this, consider a change of coordinates $q_i \rightarrow r_j$ which is a diffeomorphism, in other words a map
+\begin{equation}
+r_j = r_j(q_1, \dots, q_N, t), \qquad j = 1, \dots, N
+\end{equation}
+which is differentiable and has a differentiable inverse. (For example, take $q_i$ to be cartesian coordinates $x, y, z$ and $r_j$ to be spherical coordinates $r, \theta, \phi$.) Then we have the Jacobian $J\indices{_j^i} = \frac{\pd r_j}{\pd q_i}$ which has full rank ($\det J \neq 0$). Note that the Lagrangian should of course be independent of coordinates if it is just the difference $T-V$ between kinetic and potential energy. We can write this as
+\begin{equation}
+L'(r_j, \dot{r}_j, t) = L(q_i(r_j, \dot{r}_j), \dot{q}_i(r_j, \dot{r}_j), t),
+\end{equation}
+thus we have 
+\begin{equation}
+S = \int dt L(q_i, \dot{q}_i, t) = \int dt L'(r_j, \dot{r}_j, t).
+\end{equation}
+Therefore the condition that the variation $\delta S$ vanishes is entirely geometric so the Euler-Lagrange equations must take the same form $r_j$ coordinates,
+\begin{equation}
+\frac{\pd L'}{\pd r_j} - \frac{d}{dt} \frac{\pd L'}{\pd \dot{r}_j} = 0.
+\end{equation}
+
+We can check this on the level of the Euler-Lagrange equations themselves. Notice that we have by change of coordinates
+\begin{equation}
+\frac{\pd L}{\pd q_i} - \frac{d}{dt} \frac{\pd L}{\pd \dot{q}_i} = \sum_j \frac{\pd r_j}{\pd q_i} ( \frac{\pd L'}{\pd r_j} - \frac{d}{dt} \frac{\pd L'}{\pd \dot{r}_j} ).
+\end{equation}
+Writing the term on the right in parentheses as $v_j$ this is just a matrix equation $J\indices{_i^j}v_j = 0$ which since $J$ has full rank implies that $v_j = 0$. 
+
+[He works it out in coordinates a bit more but it's unnecessary given the linear algebraic treatment is enough.]
+\end{enumerate}
+
+Now, depending on the coordinate the Euler-Lagrange equation might look simpler or more complicated. For example, for a free particle in 3D we have $L = T = (1/2)m \dot{\v{x}}^2$ with EL $\implies \ddot{x}_i = 0$. On the other hand, in spherical coordinates
+\begin{equation}
+L = \frac{1}{2} m (\dot{r}^2 + r^2 \dot{\theta}^2 + r^2\sin^2\theta \dot{\phi}^2 )
+\end{equation}
+and the EL equations give us 
+\begin{align}
+0 &= r \dot{\theta}^2 + r\sin^2\theta \dot{\phi}^2 \\
+0 &= \frac{d}{dt} (r^2 \sin^2\theta \dot{\phi}^2) \\
+0 &= r^2 \sin\theta \cos\theta \dot{\phi}^2 - \frac{d}{dt} (r^2 \dot\theta)
+\end{align}
+which look much worse to work with. The challenge is to find coordinates which make $L$ as simple as possible!
+
+Note also that the derivation allowed for explicitly time dependent coordinate transformations. This implies that the EL equations also have the same form in non-inertial coordinate systems. Some examples:
+\begin{enumerate}
+\item \textbf{Constant acceleration}
+\begin{align}
+x &= x' \\
+y &= y' \\
+z &= z' + \frac{1}{2} a t^2
+\end{align}
+for the free particles gives us
+\begin{align}
+L &= \frac{1}{2} m (\dot{x}^2 + \dot{y}^2 + \dot{z}^2) \\
+L' &= \frac{1}{2} m \left[ \dot{x}'^2 + \dot{y}'^2 + (\dot{z}' + at)^2 \right] \\
+	&= \frac{1}{2} m (\dot{x}'^2 + \dot{y}'^2 + \dot{z}'^2) + mat \cdot \dot{z}' + \frac{1}{2} mat^2.
+\end{align}
+That last term does not depend on coordinates. Then EL equations give
+\begin{equation}
+\ddot{x} = 0, \quad \ddot{y} = 0, \quad \ddot{z} + ma = 0
+\end{equation}
+which is the same as the equations for a constant gravitational field (this is the equivalence principle). 
+
+\item \textbf{Rotating frame}
+\begin{align}
+x &= x' \cos \omega t + y' \sin \omega t \\
+y &= y' \cos \omega t - x' \sin \omega t \\
+z &= z',
+\end{align}
+gives us
+\begin{align}
+\dot{x} &= \dot{x}' \cos\omega t - \omega x' \sin \omega t + \dot{y}' \sin \omega t + \omega y' \cos \omega t \\
+\dot{y} &= \dot{y}' \cos \omega t - y' \omega \sin \omega t - \dot{x}' \sin \omega t - x' \omega \cos \omega t \\
+\dot{z} &= \dot{z}'.
+\end{align}
+Then our Lagrangian is given by
+\begin{align}
+L &= \frac{1}{2} m (\dot{x}^2 + \dot{y}^2 + \dot{z}^2) \\
+	&= \frac{1}{2} m \left[ (\dot{x}' + \omega y')^2 + (\dot{y}' - \omega x')^2 + \dot{z}'^2 \right] \\
+	&= \frac{1}{2} m (\dot{\v{x}}' - \v{\omega} \times \v{x}')^2
+\end{align}
+where $\v{\omega} = (0, 0, \omega)^\top$. We find that the EL equations give us
+\begin{equation}
+\ddot{\v{x}} - 2 \v{\omega} \times \dot{\v{x}} + \v{\omega} \times \v{\omega} \times \v{x} = 0
+\end{equation}
+where we recognize the second term as the Coriolis force and the third term as the centrifugal force. We got this from:
+\begin{align}
+\frac{\pd L}{\pd \v{x}} &= \frac{\pd}{\pd \v{x}} \left( -m \v{x} \cdot (\v{\omega} \times \v{x}) + (m/2) (\v{\omega} \times \v{x})^2 \right) \\
+	&= -m \dot{\v{x}} \times \v{\omega} - m (\v{\omega} \times \v{\omega} \times \v{x})
+\end{align}
+where the first term is obtained by:
+\begin{align}
+\frac{\pd}{\pd x_m} \dot{\v{x}} \cdot (\v{\omega} \times \v{x}) &= \dot{x}_i \varepsilon_{ijk} \omega_j \delta_{km} \\
+	&= \dot{x}_i \omega_j \varepsilon_{ijm} \\
+	&= \dot{\v{x}} \times \v{\omega}.
+\end{align}
+
+\end{enumerate}
+
+
+
+\section{A little more on variational calculus and functional derivatives}
+
+Before, we had  the statement $\delta S / \delta q_i(t) = 0$ as the analog of $df / dx_i = 0$ for extrema. How is this equality defined? For the ordinary derivative we can write $df = f' dx$. For the functional derivative, we have
+\begin{align}
+\frac{\pd S[q(t) + \epsilon h(t)]}{\pd \epsilon} \Big|_{\epsilon = 0} &= \epsilon \int dt \left( \frac{\pd L}{\pd q} - \frac{d}{dt} \frac{\pd L}{\pd \dot{q}} \right) h(t) \\
+	&= \epsilon \int dt \frac{\delta S}{\delta q(t)} h(t)
+\end{align}
+where $\delta q(t) = \epsilon h(t)$. Then we can write
+\begin{equation}
+\delta S = \int dt \frac{\delta S}{\delta q(t)} \delta q(t).
+\end{equation}
+Note the integral! This actually looks different than the ordinary derivative. 
+
+Most rules for derivatives (product, chain, etc) apply with this definition of the functional derivative. Another quick way to define the functional derivative in general is:
+\begin{equation}
+\frac{\delta S[q]}{\delta q(t')} = \lim_{\epsilon \rightarrow 0} \frac{S[q(t) + \epsilon \delta(t-t')] - \delta q(t)}{\epsilon}.
+\end{equation}
+For $S = \int dt L(q, \dot q, t)$ this gives us
+\begin{align}
+\frac{\delta S[q]}{\delta q} &= \lim_{\epsilon \rightarrow 0} \frac{1}{\epsilon} \int dt \left[ L(q(t) + \epsilon \delta(t-t'), \dot{q}(t) + \epsilon \frac{d}{dt} \delta(t-t'), t) - L(q(t), \dot{q}(t), t) \right] \\
+	&= \lim_{\epsilon \rightarrow 0} \frac{1}{\epsilon} \int dt \left[ \cancel{L(q, \dot q, t)} + \epsilon \frac{\pd L}{\pd q} \delta(t-t') + \epsilon \frac{\pd L}{\pd \dot{q}} \frac{d}{dt} \delta(t-t') - \cancel{L(q, \dot q, t)} + \bigo(\epsilon^2) \right] \\
+	&= \int dt \left[ \frac{\pd L}{\pd q} - \frac{d}{dt} \frac{\pd L}{\pd \dot{q}} \right] \delta(t-t') \\
+	&= \frac{\pd L}{\pd q} - \frac{d}{dt} \frac{\pd L}{\pd \dot{q}}.
+\end{align}
+
+
+
+
+
+
+\end{document}

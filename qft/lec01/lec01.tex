@@ -1,0 +1,162 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../../header.tex}
+
+\title{Phys 230A -- QFT -- Lec01}
+\author{UCLA, Fall 2014}
+\date{\formatdate{06}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Introduction}
+
+Professor: Per Kraus. TA: Ashwin
+
+Main books for course
+\begin{itemize}
+\item Peskin \& Schroeder
+\item Srednicki
+\item There's also Schwartz, which is less formal and more conceptual
+\item There's also Zee, which is more fun and casual and conceptual
+\item And of course Weinberg volumes I, II, III
+\item Other books to check out: Ryder, Ramond
+\end{itemize}
+
+
+\subsection{Why QFT?}
+
+In non-relativistic QM, you have a fixed number of particles. Given $n$ particles, we have the wavefunction $\psi(x_1, x_2, \dots, x_n, t)$ with the Schroedinger equation $H\psi = i\hbar (\pd \psi / \pd t)$ and the probability density $|\psi|^2$. This treatment is not necessarily non-relativistic, in fact it could be relativistic if given the proper Hamiltonian. 
+
+However, non-relativistic QM cannot treat particle creation/annihilation e.g. pair production. This is because we need an infinite number of degrees of freedom. We must introduce a field $\phi(x^\mu)$, which provides a degree of freedom per spacetime point. But we can have fields and particles classically, so how is this different? Classically, they are distinct; in QFT, particles are the quanta of the fields. What exactly does this mean? We will see that particles are localized eigenstates of the Hamiltonian with a definite mass and momentum. 
+
+
+\subsection{Quantization of free scalar field}
+
+We will use the metric convention $\eta_{\mu\nu} = (+,-,-,-)$ and units $\hbar = c = 1$. Start with a classical variable: $\phi(x^\mu)$. We want a Lorentz invariant equation of motion for $\phi$. Denote a Lorentz transform $x^\mu \rightarrow x'^\mu = \Lambda\indices{^\mu_\nu} x^\nu$. It preserves the dot product: $\eta_{\mu\nu} x'^\mu x'^\nu = \eta_{\mu\nu} x^\mu x^\nu$, thus $\eta_{\mu\nu} \Lambda\indices{^\mu_\alpha} \Lambda\indices{^\nu_\beta} = \eta_{\alpha\beta}$.
+
+We can show that $\eta_{\mu\nu} \Lambda\indices{^\mu_\alpha} \Lambda\indices{^\nu_\beta} = \eta_{\alpha\beta}$, or in other words $\Lambda^\top \eta \Lambda = \eta$. Furthermore, $\Lambda^{-1} = \eta \Lambda^\top \eta$, so 
+\begin{equation}
+(\Lambda^{-1})\indices{^\mu_\nu} = \eta^{\mu\alpha} \Lambda\indices{^\beta_\alpha} \eta_{\beta\nu} = \Lambda\indices{_\nu^\mu}.
+\end{equation}
+Then we find
+\begin{equation}
+\frac{\pd}{\pd x'^\mu} = \frac{\pd x^\nu}{\pd x'^\mu} \frac{\pd}{\pd x^\nu} = (\Lambda^{-1})\indices{^\nu_\mu} \frac{\pd}{\pd x^\nu} = \Lambda\indices{_\mu^\nu} \frac{\pd}{\pd x^\nu}
+\end{equation}
+and thus
+\begin{equation}
+\eta^{\mu\nu} \frac{\pd}{\pd x'^\mu} \frac{\pd}{\pd x'^\nu} = \eta^{\mu\nu} \frac{\pd}{\pd x^\mu} \frac{\pd}{\pd x^\nu}
+\end{equation}
+
+Now we can define the Lorentz invariant D'Alembertian operator: $\Box = \pd^\mu \pd_\mu$. We can also write down the Klein-Gordon equation
+\begin{equation}
+\Box \phi(x) + m^2 \phi(x) = 0.
+\end{equation}
+It IS Lorentz invariant --- if $\phi(x^\mu)$ is a solution, then so is $\phi'(x^\mu) = \phi(\Lambda\indices{^\mu_\nu} x^\nu)$. Is this the most general equation? It is the most general Lorentz invariant, \underline{scalar}, \underline{linear}, and with at most \underline{two derivatives}. Why isn't there another term like $\alpha \Box^2 \phi$? Theoretically it could be there but in real life the higher coefficients are very small. 
+
+We can do some dimensional analysis in mass units: $[m] = 1$, $[m^2] = 2$, $[\pd / \pd x] = 1$ (recall Compton wavelength has units $[\hbar/mc] = -1$), and $[\Box] = 2$. Notice that in our higher order derivative version of the KG equation, we would have $[\alpha] = -2$. Since the deviations are not seen in experiments, we must have $\alpha \sim \Lambda^{-2}$ where $\Lambda$ is the UV cutoff, which is some very large energy in modern theories and so the terms are highly suppressed. 
+
+
+\subsection{Variational principles, functional derivatives}
+
+Consider a Newtonian particle: $m\ddot{x} = -dV/dx$. Then the action is given by $S = \int_{t_1}^{t_2} dt L(x, \dot{x})$ where $L = (1/2)m\dot{x}^2 - V(x)$. The action principle of course says that Newton's 2nd law holds iff $\delta S / \delta x(t) = 0$ subject to $x(t_1) = x_1$, $x(t_2) = x_2$. 
+
+Let's talk about the functional derivative. A \textit{function} $f(x_1, \dots, x_n)$ maps $n$ numbers to a number. A \textit{functional} maps a function with some boundary conditions to a number. Examples:
+\begin{equation}
+F[x(t)] = \int_{t_1}^{t_2} dt x^2(t), \qquad \text{or } \int_{t_1}^{t_2} dt (\frac{dx}{dt})^2, \qquad \text{or } x(t_3).
+\end{equation}
+A \textit{functional derivative} measures the change $\delta F$ in $F$ under change of the function $x(t) \rightarrow x(t) + \delta x(t)$, where $\delta x(t) \ll 1$. With an ordinary function we have
+\begin{equation}
+f(x+\delta x) = f(x) + \frac{df}{dx} \delta x + \frac{1}{2} \frac{d^2 f}{dx^2} \delta x^2 + \dots
+\end{equation}
+whereas with a functional we have 
+\begin{equation}
+F[x+\delta x] = F[x] + \int dt \frac{\delta F}{\delta x(t)} \delta x(t) + \frac{1}{2} \int dt_1 dt_2 \frac{\delta^2 F}{\delta x(t_1) \delta x(t_2)} \delta x(t_1) \delta x(t_2) + \dots.
+\end{equation}
+Take for example 
+\begin{equation}
+F[x] = \int_{t_1}^{t_2} dt x(t)^2.
+\end{equation}
+We have
+\begin{align}
+F[x+\delta x] &= \int_{t_1}^{t_2} dt [x+\delta x]^2 \\
+	&= \int_{t_1}^{t_2} dt [x^2 + 2x \delta x + \delta x^2]
+\end{align}
+so that, picking out the appropriate expressions from the expansion, we have
+\begin{equation}
+\frac{\delta F}{\delta x(t)} = 2x(t), \qquad \frac{\delta^2 F}{\delta x(t) \delta x(t')} = 2\delta(t-t')
+\end{equation}
+since
+\begin{equation}
+\int_{t_1}^{t_2} dt \delta x(t)^2 = \int_{t_1}^{t_2} dt dt' \delta(t-t') \delta x(t) \delta x(t').
+\end{equation}
+
+Question: 
+\begin{equation}
+\text{Does} \quad \frac{\delta x(t)}{\delta x(t')} = \delta(t-t') \quad ?
+\end{equation}
+Well, using $x(t) = \int_{t_1}^{t_2} dt' \delta(t-t') x(t')$ we have $\delta x(t) = \int_{t_1}^{t_2} dt' \delta(t-t') \delta x(t')$ so the answer is yes. 
+
+Next example: $F[x(t)] = \int_{t_1}^{t_2} dt (dx/dt)^2$ with boundary conditions $x(t_i) = x_i$ and $\delta x(t_i) = 0$ for $i=1,2$. We have
+\begin{equation}
+F[x + \delta x] = F[x] - \int_{t_1}^{t_2} dt 2 \frac{d^2 x}{dt^2} \delta x + 2 \frac{dx}{dt} \delta x \Big|_{t_1}^{t_2}
+\end{equation}
+so $\delta F / \delta x(t) = -2 d^2 x / dt^2$. 
+
+We can also write equations like
+\begin{equation}
+\delta F[x] = \int dt \frac{\delta F}{\delta x} \delta x.
+\end{equation}
+Recall we can write the ordinary derivative like
+\begin{equation}
+\frac{df}{dx} = \lim_{\epsilon \rightarrow 0} \frac{f(x + \epsilon) - f(x)}{\epsilon},
+\end{equation}
+we can also write something like this for functional derivatives
+\begin{equation}
+\int dt \frac{\delta F}{\delta x(t)} y(t) = \lim_{\epsilon \rightarrow 0} \frac{F[x+\epsilon y] - F[x]}{\epsilon} = \frac{d}{d\epsilon} F[x+\epsilon y] \Big|_{\epsilon=0}.
+\end{equation}
+
+Going back to Newton's equations, writing $F[x] = \int dt V(x(t))$ we have $\delta F / \delta x(t) = V'(x(t))$. Then 
+\begin{equation}
+S[x] = \int_{t_1}^{t_2} dt [\frac{1}{2} m\dot{x}^2 - V(x)]
+\end{equation}
+has  the functional derivative
+\begin{equation}
+\frac{\delta S}{\delta x(t)} = -m\ddot{x}(t) - V'(x(t))
+\end{equation}
+which vanishes when $m\ddot{x} = -V'(x)$ as desired. 
+
+Next let's take a spacetime field $\phi(x^\mu)$ and vary the functional
+\begin{equation}
+S[\phi] = \int_R d^4 x [\frac{1}{2} \pd^\mu \phi \pd_\mu \phi - V(\phi)], \qquad \phi \Big|_{\pd R} = \text{fixed}
+\end{equation}
+where $R$ is some spacetime region. Then
+\begin{align}
+\delta S &= \int_R d^4x [\pd^\mu \phi \pd_\mu \delta\phi - V'(\phi) \delta\phi] \\
+	&= \int_R d^4x [-\pd_\mu \pd^\mu \phi - V'(\phi)] \delta\phi
+\end{align}
+and we see that $\delta S / \delta\phi$, the part of the integrand multiplying $\delta\phi$, which must be zero, gives us the KG equation. In other words, we have KG iff $\delta S / \delta\phi = 0$. 
+
+The action is written $S = \int d^4x \mathcal{L}(\phi, \pd_\mu \phi)$, so the Lagrangian density $\mathcal{L}$ for KG is $\mathcal{L} = (1/2)(\pd^\mu \phi \pd_\mu \phi - m^2 \phi^2)$.
+
+
+
+
+
+
+\begin{comment}
+\begin{figure}
+\centering
+\includegraphics{3a.pdf}
+\caption{Half the diagrams for photon-photon scattering.}
+\label{fig:3a}
+\end{figure}
+\end{comment}
+
+
+
+\end{document}

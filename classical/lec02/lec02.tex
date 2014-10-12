@@ -1,0 +1,73 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../../header.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec02}
+\author{UCLA, Fall 2014}
+\date{\formatdate{07}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Introduction}
+
+A couple of general comments about Newton's laws. 
+
+\subsection{Something funny about Lorentz force and magnetic fields}
+
+Consider the Lorentz force between two charged particles, given by $\v{F}_{12} = q \v{v}_1 \times \v{B}_2$. Consider particle 1 to lie on the positive $y$ axis with velocity in the positive $y$ direction and particle 2 to lie on the positive $z$ axis with velocity in the positive $x$ axis. Then we find that $\v{F}_{12} \neq 0$ points in the positive $x$ direction yet $\v{F}_{21} = 0$. 
+
+What's going on here? Is this a case of violation of angular momentum conservation? No, in fact the EM field itself carries angular momentum. 
+
+
+\subsection{Virial Theorem (useful in stat. mech)}
+
+Take some function $f$ and write the time average
+\begin{equation}
+\avg{f} = \lim_{T \rightarrow \infty} \frac{1}{T} \int_{t_0}^{t_0 + T} f(t) dt.
+\end{equation}
+Note that there is no dependence on $t_0$ for a bounded quantity,
+\begin{equation}
+\frac{\pd}{\pd t_0} \avg{f_0} = \lim_{T \rightarrow \infty} \frac{f(t_0 + T) - f(t_0)}{T} = 0
+\end{equation}
+which vanishes because the numerator in the limit is bounded. 
+
+Next, we hope to obtain an expression for $\avg{T}$ for conservative forces. Notice that 
+\begin{equation}
+\sum_i m_i \ddot{\v{x}}_i \cdot \v{x} = \sum_i \v{F}_i \cdot \v{x}_i,
+\end{equation}
+which we can rewrite as 
+\begin{equation}
+\frac{d}{dt} \left( \sum_i m_i \dot{\v{x}}_i \cdot \v{x} \right) - \underbrace{\sum_i m_i \dot{\v{x}}_i^2}_{2T} = - \sum_i \v{\nabla}_i V \cdot \v{x}_i.
+\end{equation}
+If the motion is bounded then the derivative goes away when we average, so averaging over time we find
+\begin{equation}
+2 \avg{T} = \avg{ \sum_i \v{\nabla}_i V \cdot \v{x}_i }.
+\end{equation}
+This is the Virial theorem. It is especially useful if $V$ is homogeneous, i.e. 
+\begin{equation}
+V(\lambda \v{x}_1, \dots \lambda \v{x}_n) = \lambda^k V(\v{x}_1, \dots, \v{x}_n)
+\end{equation}
+for some constant $k$ and any value of $\lambda$. Taking the derivative of this equation w.r.t. $\lambda$ we have
+\begin{equation}
+\sum_i \v{\nabla}_i V(\lambda \v{x}_1, \dots, \lambda \v{x}_n) \cdot \v{x}_i = k \lambda^{k-1} V(\v{x}_1, \dots, \v{x}_n)
+\end{equation}
+and setting $\lambda = 1$ we find $\sum_i \v{\nabla} V \cdot \v{x}_i = k V$. Thus the Virial theorem for a homogeneous potential gives us
+\begin{equation}
+2 \avg{T} = k \avg{V}.
+\end{equation}
+
+
+[incomplete]
+
+
+
+
+
+
+\end{document}

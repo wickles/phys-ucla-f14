@@ -1,0 +1,108 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../../header.tex}
+
+
+\title{Math 217 -- Geometry and Physics -- Lec03}
+\author{UCLA, Fall 2014}
+\date{\formatdate{08}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Stuff}
+
+Seminal paper: Witten --- Supersymmetry and Morse Theory (J. Diff. Geometry, 1982)
+
+\subsection{Chern conjecture}
+
+Let's go over the Chern conjecture from last time. If $M = M^{2n}$ is a compact closed manifold, then
+\begin{equation}
+\chi(M) = \int_M \varepsilon(TM).
+\end{equation}
+Given the metric $g$ on $TM$, we have the Levi-Civita connection $\nabla^g$. Then we have $R^{\nabla^g} = (\nabla^g)^2$ where $R$ is skew-symmetric, and $\abs{Pf(R^{\nabla^g})} = \varepsilon(TM) \in H^{2n}(M)$. [not this this is right, it was fast and messy on the board.] If $R^{\nabla^g} = 0$ then $\chi(M)= 0$ where $\chi(M) = \sum_{i=0}^{2n} (-1)^i b_i$, $b_i = \opname{dim}_\mathbb{R} H^i (M)$
+
+The Chern conjecture is based on that. Conjecture: If $M^{2n}$ is an affine flat closed compact manifold, then $\chi(M) = 0$. Let's define what affine flat means. Write $M = \cup_{\alpha \in I} U_\alpha$. Then it is affine flat $\iff$ $\varphi_\beta \circ \varphi_\alpha^{-1}(x_\alpha) = A_{\alpha\beta} x_\alpha + B_{\alpha\beta}$ where $A_{\alpha\beta}, B_{\alpha\beta}$ are constant matrices $\iff$ there exists an affine connection $\nabla : \Gamma(TM) \rightarrow \Gamma(T^* M \otimes TM)$ where $\nabla(fs) = f \nabla s + f \nabla s$. 
+
+The Chern conjecture is known in 2 dimensions (the torus). Not sure if known in any other dimensions. (See Sullivan-Kostant-Milnor for special cases.) 
+
+
+\subsection{Poincare duality}
+
+Says that $H^p \cong H^{n-p}$. Exercise (Bott-Tu):
+\begin{enumerate}
+\item $M = \mathbb{R}^n$. 
+\begin{equation}
+	H^k (\mathbb{R}^n) = 
+	\begin{cases}
+	0, & k = 0, \\
+	\mathbb{R}, & k \neq 0
+	\end{cases}
+	\qquad
+	H_c^k (\mathbb{R}^n) = 
+	\begin{cases}
+	0, & k \neq n \\
+	\mathbb{R}, & k = n.
+	\end{cases}
+\end{equation}
+
+\item $M = \cup_{\alpha \in I} U_\alpha$. 
+\end{enumerate}
+
+We write $[\Delta] \in H_p (M, \mathbb{R}) \cong H^{n-p}(M, \mathbb{R})$ where $\Delta \subseteq M$ is a $p$-cycle in $M$. Then we can write 
+\begin{align}
+\int_\Delta \omega : H_\text{dR}^p(M) &\rightarrow \mathbb{R} \\
+[\omega] &\mapsto \int_\Delta \omega
+\end{align}
+for a $p$-form $\omega$. Write $\Delta = \sum_i a_i \underbrace{\Delta_i}_{=\varphi_i(\tilde{\Delta}_i)}$ where $\tilde{\Delta}_i \subseteq [\text{something}] \overset{\varphi_i}{\longrightarrow} M$
+
+[missed a LOT here on whatever crap he was talking about]
+
+
+\subsection{Lie groups}
+
+Definition: A Lie group $G$ is a smooth manifold with a group structure in the following sense:
+\begin{enumerate}
+\item Multiplication $G \times G \rightarrow G$ taking $(g, g') \mapsto gg'$, and
+\item Inverse $G \rightarrow G$ taking $g \mapsto g^{-1}$
+\end{enumerate}
+Examples: $\mathbb{C}, \mathbb{C}, \mathbb{Q}, \mathbb{Q}_p, \dots$
+
+Write $M_n(K) = \text{$n \times n$ matrices with entries in $K$}$. The group with elements $g = (a_{ij})_{n \times n} \in GL_n(\mathbb{R})$ with $\det g \neq 0$ is called the general linear group. Any subgroup submanifold is also a Lie group. 
+
+Definition: A Lie subgroup $H$ of $G$ is a subgroup which is also a submanifold. If $H = \mathbb{R}$ then $i : \mathbb{R} \rightarrow G$ defines a one-parameter subgroup. 
+
+Examples: $SL_n(\mathbb{R}), O_n(\mathbb{R}), SO_n(\mathbb{R}), U_n, SU_n$
+
+Definition: A Lie group homomorphism $\psi : G \rightarrow G'$ is a map satisfying $\psi(gg') = \psi(g) \psi(g')$. If $\psi$ is a diffeomorphism then it is called an isomorphism. 
+
+Furthermore, define
+\begin{itemize}
+\item $R_g : G \rightarrow G$ mapping $R_g (g') = g' g$ for all $g' \in G$
+\item $L_g : G \rightarrow G$ mapping $L_g (g') = g g'$ for all $g' in G$.
+\end{itemize}
+
+Definition: A vector field $X$ on $G$ is left invariant if $L_g X = X$ 
+
+
+
+
+
+
+\begin{comment}
+\begin{figure}
+\centering
+\includegraphics{3a.pdf}
+\caption{Half the diagrams for photon-photon scattering.}
+\label{fig:3a}
+\end{figure}
+\end{comment}
+
+
+
+\end{document}

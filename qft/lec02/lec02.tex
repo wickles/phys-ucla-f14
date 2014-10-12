@@ -1,0 +1,251 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../../header.tex}
+
+\title{Phys 230A -- QFT -- Lec02}
+\author{UCLA, Fall 2014}
+\date{\formatdate{08}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{More on scalar fields}
+
+Take our action
+\begin{equation}
+S = \int d^4 x \mathcal{L}(\phi, \pd_\mu \phi)
+\end{equation}
+then the variation $\delta S = 0$ of the action implies the Euler-Lagrange equation 
+\begin{equation}
+\pd_\mu \frac{\pd \mathcal{L}}{\pd(\pd_\mu \phi)} - \frac{\pd \mathcal{L}}{\pd \phi} = 0.
+\end{equation}
+For free scalar field we have the Lagrangian
+\begin{equation}
+\mathcal{L} = \frac{1}{2}(\pd_\mu \phi \pd^\mu \phi - m^2 \phi^2)
+\end{equation}
+giving the KG equation $\box \phi + m^2 \phi = 0$. 
+
+\subsection{Canonical (Hamiltonian) formulation}
+
+The canonical momentum is given by $\Pi_\phi = \pd \mathcal{L} / \pd \dot\phi$. The Hamiltonian is given by the integral of the Hamiltonian density, 
+\begin{equation}
+H = \int d^3 x \mathcal{H}(\phi, \nabla\phi, \Pi_\phi).
+\end{equation}
+The Hamiltonian density is given by $\mathcal{H} = \Pi_\phi \dot\phi - \mathcal{L}$ where $\dot\phi = \dot\phi(\phi, \Pi_\phi)$. More fully written as functions we have
+\begin{equation}
+\mathcal{H} (\phi, \nabla \phi, \Pi_\phi) = \Pi_\phi \dot\phi(\phi, \Pi_\phi) - \mathcal{L}(\phi, \nabla\phi, \dot\phi(\phi, \Pi_\phi)).
+\end{equation}
+Of course we have Hamilton's equations 
+\begin{equation}
+\dot\phi = \frac{\delta H}{\delta \Pi_\phi}, \qquad \dot{\Pi}_\phi = - \frac{\delta H}{\delta \phi}
+\end{equation}
+Let's check equivalence to Euler-Lagrange. We have
+\begin{equation}
+\frac{\delta H}{\delta \Pi_\phi} = \dot\phi + \Pi_\phi \frac{\pd \dot\phi}{\pd \Pi_\phi} - \frac{\pd \mathcal{L}}{\pd \dot\phi} \frac{\pd \dot\phi}{\pd \Pi_\phi} = \dot\phi
+\end{equation}
+where the second and third terms cancel by definitions. Furthermore, we find
+\begin{equation}
+\frac{\delta H}{\delta \phi} = \Pi_\phi \frac{\pd \dot\phi}{\pd \phi} - \frac{\pd \mathcal{L}}{\pd \phi} - \frac{\pd \mathcal{L}}{\pd \dot\phi} \frac{\pd \dot\phi}{\pd \phi} - \int \frac{\pd \mathcal{L}}{\pd(\pd_i \phi)} \frac{\delta (\pd_i \phi)}{\delta \phi} d^3 x
+\end{equation}
+and we see that the first and third terms cancel and we can rewrite the last term as 
+\begin{equation}
++ \int \pd_i \frac{\pd \mathcal{L}}{\pd(\pd_i\phi)} \frac{\delta \phi}{\delta \phi} d^3 x = \pd_i \frac{\delta \mathcal{L}}{\pd(\pd_i \phi)}
+\end{equation}
+which is just $-\dot{\Pi}_\phi$. So we see the equivalence of Hamiltonian and Lagrangian mechanics in this formalism:
+\begin{align}
+0 &= \dot{\Pi}_\phi + \frac{\delta H}{\delta \phi} \\
+	&= \dot{\Pi}_\phi - \frac{\pd \mathcal{L}}{\pd \phi} + \pd_i \frac{\pd \mathcal{L}}{\pd (\pd_i \phi)} \\
+	&= \frac{\pd}{\pd t} (\frac{\pd \mathcal{L}}{\pd \dot\phi}) + \pd_i \frac{\pd \mathcal{L}}{\pd (\pd_i \phi)} - \frac{\delta \mathcal{L}}{\pd \phi} \\
+	&= \pd_\mu \frac{\pd \mathcal{L}}{\pd(\pd_\mu \phi)} - \frac{\pd \mathcal{L}}{\pd \phi}.
+\end{align}
+
+Now if we have the action
+\begin{equation}
+S = \int d^4 x (\frac{1}{2} \pd_\mu \phi \pd^\mu \phi - V(\phi))
+\end{equation}
+we can write the Hamiltonian
+\begin{equation}
+H = \int d^3x (\frac{1}{2} \Pi_\phi^2 + \frac{1}{2} \nabla\phi \cdot \nabla \phi + V(\phi)).
+\end{equation}
+Then we can write the variation
+\begin{align}
+\delta H(\phi, \Pi_\phi) &= \int d^3x (\frac{\delta H}{\delta \phi} \delta \phi + \frac{\delta H}{\delta \Pi_\phi} \delta Pi_\phi) \\
+	&= \int d^3x (\frac{\delta H}{\delta \phi} \dot\phi + \frac{\delta H}{\delta \Pi_\phi} \dot{\Pi}_\phi) dt
+\end{align}
+and thus
+\begin{align}
+\frac{dH}{dt} &= \int d^3x (\frac{\delta H}{\delta \phi} \dot\phi + \frac{\delta H}{\delta \Pi_\phi} \dot{\Pi}_\phi) \\
+	&= -\dot{\Pi}_\phi \dot\phi + \dot\phi \dot{\Pi}_\phi \\
+	&= 0.
+\end{align}
+
+
+\subsection{Canonical quantization}
+
+In QM, we start with a canonical pair $(p,q)$ and impose the commutation relation $[q(t), p(t)] = i$. Then the time derivatives are given by 
+\begin{equation}
+\dot{q}(t) = i[H, q(t)], \qquad \dot{p}(t) = i[H, p(t)]
+\end{equation}
+in fact this works for any observable. 
+
+For the simple harmonic oscillation, we have
+\begin{equation}
+S = \int dt (\frac{1}{2} m \dot{q}^2 - \frac{1}{2} m \omega^2 q^2)
+\end{equation}
+so that
+\begin{equation}
+p = \frac{\pd L}{\pd \dot q} = m \dot q, \qquad H = p \dot q - L = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 q^2.
+\end{equation}
+Then we have
+\begin{equation}
+\dot q = i[H, q] = p/m, \qquad \dot p = i[H, p] = -m \omega^2 q
+\end{equation}
+We will be working in the Heisenberg picture where the operators evolve in time rather than the Schroedinger picture where the wavefunctions evolve in time. So we will have coordinate $\psi = \psi(q)$, $p(0) = -i \pd / \pd q$. In QFT will have $\psi[\phi]$.
+
+We also have of course the ladder operators
+\begin{align}
+a &= \frac{ip}{\sqrt{2m\omega}} + \sqrt{m \omega / 2} q \\
+a^\dagger &= -\frac{ip}{\sqrt{2m\omega}} + \sqrt{m\omega / 2} q
+\end{align}
+where $[a, a^\dagger] = 1$. We write the Hamiltonian
+\begin{equation}
+H = \frac{1}{2} \omega (a^\dagger a + a a^\dagger) = (a^\dagger a + \frac{1}{2}) \omega.
+\end{equation}
+So we have ground state $a\ket{0} = 0$ with $H\ket{0} = \frac{1}{2} \omega \ket{0}$. The excited states are written 
+\begin{align}
+\ket{n} &= N (a^\dagger)^n \ket{0} \\
+H \ket{n} &= (n+1/2) \omega \ket{n}.
+\end{align}
+Furthermore we have $\dot{a} = i[H, a] = -i \omega a$ so that
+\begin{equation}
+a(t) = a(0) e^{-i\omega t}, \qquad a^\dagger(t) = a^\dagger(0) e^{i \omega t}.
+\end{equation}
+Finally note that we can write
+\begin{align}
+q(t) &= \frac{1}{\sqrt{2m \omega}} (a(t) + a^\dagger(t)) \\
+	&= \frac{1}{\sqrt{2m \omega}} (a(0) e^{-i\omega t} + a^\dagger(0) e^{i\omega t}).
+\end{align}
+So we can now port this all over to scalar fields where $q \rightarrow \phi$ and $p \rightarrow \Pi_\phi$. 
+
+
+\subsection{Quantizing the scalar field}
+
+Given the action 
+\begin{equation}
+S = \int d^4x (\frac{1}{2} (\pd \phi)^2 - \frac{1}{2} m^2 \phi^2)
+\end{equation}
+we have $\Pi_\phi = \pd \mathcal{L} / \pd \dot\phi = \dot\phi$. Then the hamiltonian is written
+\begin{equation}
+\int d^3x (\frac{1}{2} \Pi_\phi^2 + \frac{1}{2} (\nabla \phi)^2 + \frac{1}{2} m^2 \phi^2)
+\end{equation}
+and we impose the commutation relation 
+\begin{equation}
+[\phi(\v{x},t), \Pi_\phi(\v{y},t)] = i \delta^3 (\v{x} - \v{y}).
+\end{equation}
+(A key idea to note is that the Hamiltonian is manifestly unitary but not Lorentz invariant, while the Lagrangian is manifestly Lorentz invariant but not unitary.) 
+
+Now we can compute 
+\begin{equation}
+\dot\phi = i[H, \phi], \quad \text{and} \quad \dot{\Pi}_\phi = i[H, \Pi_\phi].
+\end{equation}
+We see that the first equation reproduces $\dot\phi = \Pi_\phi$. For the second equation, we have
+\begin{align}
+\dot{\Pi}_\phi &= i \int d^3 y [\frac{1}{2} (\nabla \phi(y))^2 + \frac{1}{2} m^2 \phi^2(\v{y}, t), \Pi_\phi (\v{x},t) ] \\
+	&= i \int d^3y \left\{ \nabla \phi(\v{y}) \cdot \nabla_y [ \phi(\v{y},t), \Pi_\phi(\v{x},t)] + m^2 \phi(\v{y},t) [\phi(\v{y},t), \Pi_\phi(\v{x},t)] \right\} \\
+	&= - \int d^3y \left\{ \nabla \phi(\v{y}, t) \cdot \nabla_y \delta^3 (\v{y} - \v{x}) + m^2 \phi(\v{y},t) \delta^3(\v{y} - \v{x}) \right\} \\
+	&= \nabla^2 \phi(\v{x},t) - m^2 \phi(\v{x},t).
+\end{align}
+Notice that since $\dot{\Pi}_\phi = \ddot\phi$, this just reproduces the KG equation for a free field, $\Box \phi + m^2 \phi = 0$. 
+
+
+\subsection{Mode expansion}
+
+First we'll do a spatial Fourier expansion. 
+\begin{equation}
+\phi(\v{x},t) = \int \frac{d^3p}{(2\pi)^3} e^{i \v{p} \cdot \v{x}} \tilde\phi (\v{p}, t).
+\end{equation}
+We can rewrite the KG equation in momentum space
+\begin{equation}
+\ddot{\tilde \phi} (\v{p}, t) + (\v{p}^2 + m^2) \tilde{\phi} (\v{p},t) = 0
+\end{equation}
+which has solutions
+\begin{equation}
+\tilde{\phi}(\v{p}, t) = \tilde\phi (\v p, 0) e^{\pm i \omega_p t}, \qquad \omega_p = \sqrt{\v{p}^2 + m^2}.
+\end{equation}
+Thus we can write $\phi$ in spatial coordinates
+\begin{equation}
+\phi(\v x, t) = \int \frac{d^3p}{(2\pi)^3} \frac{1}{\sqrt{2 \omega_p}} \left( a_{\v{p}} e^{-i \omega_p t + i \v{p} \cdot \v{x}} + a_p^\dagger e^{i \omega_p t - i \v{p} \cdot \v{x}} \right).
+\end{equation}
+Notice that this is a real field: $\phi^\dagger = \phi$. Then we have
+\begin{equation}
+\Pi_\phi = \dot\phi = - \int \frac{d^3p}{(2\pi)^3} i \sqrt{\omega_p/2} \left( a_{\v{p}} e^{-i \omega_p t + i \v{p} \cdot \v{x}} - a_p^\dagger e^{i \omega_p t - i \v{p} \cdot \v{x}} \right). 
+\end{equation}
+Now we want to know, what is $[a_{\v{p}}, a_{\v{p}'}^\dagger]$ ? We have
+\begin{align}
+a_{\v{p}} &= \int d^3 x e^{-i \v{p} \cdot \v{x}} \left( \sqrt{\omega_p / 2} \phi(\v{x}, 0) + \frac{i}{\sqrt{2 \omega_p}} \Pi_\phi (\v{x}, 0) \right) \\
+a_{\v{p}}^\dagger &= \int d^3 x e^{+i \v{p} \cdot \v{x}} \left( \sqrt{\omega_p / 2} \Pi_\phi(\v{x}, 0) - \frac{i}{\sqrt{2 \omega_p}} \phi (\v{x}, 0) \right). 
+\end{align}
+Then we have the commutator
+\begin{align}
+[a_{\v{p}}, a_{\v{p}'}^\dagger] &= - \int d^3x d^3x' e^{-i\v{p} \cdot \v{x} + i\v{p}' \cdot \v{x}'} \frac{i}{2} \left( [\phi(\v{x},0), \Pi_\phi(\v{x}', 0)] + [\phi(\v{x},0), \Pi_\phi(\v{x}, 0)] \right) \\
+	&= \int d^3x e^{-i(\v{p} - \v{p}') \cdot \v{x}} \\
+	&= (2\pi)^3 \delta^3 (\v{p} - \v{p}').
+\end{align}
+and of course $[a_{\v{p}}, a_{\v{p}'}] = [a_{\v{p}}^\dagger, a_{\v{p}'}^\dagger] = 0$. 
+
+As an exercise, show:
+\begin{equation}
+H = \int \frac{d^3p}{(2\pi)^3} \omega_{\v{p}} ( a_{\v{p}}^\dagger a_{\v{p}} + \frac{1}{2} \underbrace{[a_{\v{p}}, a_{\v{p}}^\dagger]}_\text{$(2\pi)^3 \delta^3(0) = \infty$ ???} )
+\end{equation}
+
+
+\subsection{Spectrum}
+
+In the vacuum, $a_{\v p} \ket{0} = 0$ for all $\v{p}$ so $H \ket{0} = 0 \ket{0}$. But we have
+\begin{equation}
+H a_{\v{p}}^\dagger \ket{0} = [H, a_{\v{p}}^\dagger] \ket{0} = \omega_{\v{p}} a_{\v{p}}^\dagger \ket{0}
+\end{equation}
+where again $\omega_{\v p} = \sqrt{ \v{p}^2 + m^2}$. This is what we really mean when we say that particle are the quanta of the fields in QFT. Furthermore, we find
+\begin{equation}
+\ket{\v{p}, \v{p}'} = a_{\v p}^\dagger a_{\v{p}'}^\dagger \ket{0} = \ket{\v{p}', \v{p}}
+\end{equation}
+so we find that scalar fields obey Bose statistics. We also have
+\begin{equation}
+H \ket{\v{p}, \v{p}'} = (\omega_{\v p} + \omega_{\v{p}'}) \ket{\v{p}, \v{p}'}.
+\end{equation}
+A general state can be written
+\begin{equation}
+\ket{\psi} = \ket{0} + \int \frac{d^3p}{(2\pi)^3} f_1(\v p) a_{\v p}^\dagger \ket{0} + \int \frac{d^3p d^3p'}{(2\pi^3)(2\pi)^3} f_2(\v p, \v p') a_{\v p}^\dagger a_{\v p'}^\dagger \ket{0}.
+\end{equation}
+This is referred to as Fock space. 
+
+What is the energy of states in the CM frame $\v{p}_\text{tot} = 0$? 
+\begin{itemize}
+\item in vacuum: $E = 0$
+\item 1 particle: $E = m$
+\item 2 identical particles: $E = 2\sqrt{\v{p}^2 + m^2}$
+\end{itemize}
+Gapped vs. gapless? $E < E_gap = m$ trivial. nontrivial IR dynamics? [???]
+
+
+
+
+
+
+
+\begin{comment}
+\begin{figure}
+\centering
+\includegraphics{3a.pdf}
+\caption{Half the diagrams for photon-photon scattering.}
+\label{fig:3a}
+\end{figure}
+\end{comment}
+
+
+
+\end{document}

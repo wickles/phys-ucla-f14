@@ -1,0 +1,229 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../../header.tex}
+
+\title{Phys 231A -- Math Methods -- Lec01}
+\author{UCLA, Fall 2014}
+\date{\formatdate{02}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Introduction}
+\begin{itemize}
+\item Get access to the CCLE website - homework + solutions posted there
+\item Grades 55\% Final 30\% midterm and 15\% homework
+\item Takehome midterm and final
+\item Homework: Tuesday, homework assigned, due the following Tuesday
+\item Office Hours on Monday 6PM 
+\item Grader: Nathaniel Moore 
+\item MT: November 6 due next Thursday
+\end{itemize}
+
+
+\section{Functions}
+Read Appendix 1.1 for additional requirements for vector spaces
+
+Function of the class: Learn to treat a function, which can be
+represented by some graph over some domain, as a point on a space. We
+want to think of spaces where each point is a function and learn how
+to do operations over this space. This is a mode of thinking which is
+essential for QFT and in engineering. It's an advanced way to think
+about both fundamental as well as applied physics. 
+
+We now have to define a measure in this space. What does it mean to
+have a distance between one function and another? We need to have some
+intuition in our model. The model which we're going to have in mind is
+linear algebra. We'll use vector calculus as a model in which we set
+up our way of learning about functions as a point in space. In vector
+calculus we have a vector with
+\begin{equation}
+\v{x} =  x_1, ..., x_n
+\end{equation}
+OUr function space is going to be a vector space where we associate
+this space with the set of all real numbers. We're going to allow for
+vector addition such that the addition of any vectors is in V
+\begin{equation}
+\v{x_1} + \v{x_2} \in V
+\end{equation}
+given $\v{x_1}$ and $\v{x_2}$ are in V
+We additionally have scalar multiplication, same as above. 
+\begin{equation}
+\lambda \v{x} \in V
+\end{equation}
+
+
+\section{The Metric}
+For this vector space to have a use we need a metric to measure
+distances. The norm of $|\v{x} - \v{y}|$ is the distance between x
+and y.
+
+We've already learned the Euclidian metric, in which the components
+are added in quadrature. If we have both a vector space and metric
+then this is termed a \textbf{normed} vector space. 
+
+\section{Inner Product}
+The inner product is defined as the projection of a vector onto another. For each pair of vectors we're going to map each pair of vectors to a complex number
+$V \times V \rightarrow C$
+
+The formal conditions for our norm:
+\begin{equation}
+| \v{x} | \ge 0
+\end{equation}
+\begin{equation}
+\text{if } |\v{x}| = 0 \text{ then } \v{x} = 0
+\end{equation}
+Triangle inequality
+\begin{equation}
+| \v{x} + \v{y} | \le | \v{x} |  + | \v{y} | 
+\end{equation}
+This is a direct consequence of us using a Euclidean space - shortest distance is a straight line
+
+Our formal conditions for our norm. 
+\begin{equation}
+\avg{ \v{x}, \v{y} }
+\end{equation}
+is a complex number. $\avg{ \v{x}, \v{y} }$ is the complex conjugate of $\avg{ \v{x}, \v{y} }$
+It is linear in the second term.
+\begin{equation}
+\avg{\v{x}, \v{x}}^{1/2} = |\v{x}| 
+\end{equation}
+Connection between an inner product and the norm. 
+
+\section{Function Space}
+See Chapter 2
+\subsection{Example 1}
+\begin{equation}
+F[a,b]
+\end{equation}
+is the set of all functions on the interval a to be, all of the way to
+draw lines fro a to b. $F[a,b]$ is an infinite dimensional vector
+space. Adding and scalar multiplication of functions results in
+another function in between a and b. 
+
+\subsection{Example 2}
+\begin{equation}
+C^2 [a, b]
+\end{equation}
+All real functions that have n derivatives. For example, 
+\begin{equation}
+f(x) = |x|
+\end{equation}
+is in $C^1$ because its derivative is a step function. However it is not
+in $C^2$ because the derivative is undefined at $x=0$. ???? \textit{Define
+function?}
+ 
+\subsection{Example 3} 
+\begin{equation}
+C^\infty [a,b]
+\end{equation}
+functions that have all derivates. If $x_0$ in [a,b] then can define 
+\begin{equation} 
+f(x) = \sum^\infty_0 \frac{f^n(x_0)}{n!} (x - x_0)^2
+\end{equation}
+Does not need to converge
+\subsection{Example 4}
+If in $C^\infty[a,b]$ all Taylor expansions converge then $C^\omega$ is
+is the sapce of analytic functions
+
+\section{Metric in Function Space}
+How close is $\psi_n(x)$ to $\psi(x)$
+
+We can measure 
+\begin{equation}
+\| f \|_2 = \left[ \int^b_a f^2(x) dx \right]^{1/2}
+\end{equation}
+This is essentially summing the Euclidean distance in each point
+
+Lebesgue:
+\begin{equation}
+L_2[a,b]
+\end{equation}
+Measure of the ``sine'' of $f(x)$
+This is not the only choice of a metric, we can also pick
+\begin{equation}
+L_p[a,b] = \left[ \int^b_a f^p (x) dx \right]^{1/p}
+\end{equation}
+If we have a function which at $x_0$ deviates from the continuous function (delta function at the point). In most applications if we have this point, we'll discard this point.  Why do we do this? If we use the Lebesgue measure to measure the distance between the fucked up function with the extra point and the continuous function without the shit then they are equivalent. We are forced to equate or treat as equivalent two functions that differ as a \textbf{finite set} of points. 
+
+The Lebesgue norm satisfied all conditions for the norm. See book for proof.
+
+In most functions we'll be using the Lebesgue measure. What are some other choices though? I spaced out. 
+Sup measure? 
+$\sup$ is the smallest number larger than any $f(x)$ in $[a,b]$
+If $\sup |f_n(x) - f(x)| = 0$ then for all $x$ in $[a,b]$
+Uniform convergence? 
+
+\textit{Diversion}
+Pointwise convergence 
+\begin{equation}
+\lim_{n\rightarrow \infty} f_n(x) = f(x) \quad \forall x \in [a,b]
+\end{equation}
+Are these two convergences equivalent? Let's look at a counter example $D=[0,1)$ of $D$. $f_n(x) = x^n$
+\begin{equation}
+\lim_{n\rightarrow \infty} f_n(x) = 0
+\end{equation}
+
+However, the 
+\begin{equation}
+\sup | x^n - 0 | = 1
+\end{equation}
+With the Lebesgue measure we cannot expect to find pointwise deviations as we can with these measures
+
+
+\section{Completeness}
+Suppose we have a normed vector space $V$ of functions $\| f \|$. Sequence of function $f_1, f_2, \dots , f_n$
+
+It is a Cauchy sequence if for any $\epsilon > 0$ you can find an integer $N(\epsilon)$ such that $\| f_m - f_n \| < \epsilon$ for $m,n > N$. We're going to call a normed vector space of functions complete if every Cauchy sequence converges to a point in the space. Another name for this is \textbf{Banach Space}. 
+
+\section{Hilbert Space}
+A Hilbert space is a Banach Space with an inner product. An inner product again is a mapping from a function space into the complex numbers. Thsi obeys all conditions for an inner product space. This gives rise to an important inequality
+\begin{equation}
+| \avg{f,g} | \leq \| f \| + \| g \|
+\end{equation} 
+This is the Cauchy-Schwartz Inequality. 
+
+\section{Operators}
+Suppose we have a $n$-dimensional vector space $V$ and a vector space $W$ with $m$ dimensions. An operator is simply a mapping between $V$ and $W$. An operator can also be written as a matrix $A_{ij}$ which is a $m$ by $n$ matrix.
+
+\begin{comment}
+
+\begin{equation}
+A_{n\times n} 
+\end{equation}
+is real and symmetric
+\begin{equation}
+F(x) = \frac{1}{2} \v{x} A \v{x} 
+\end{equation}
+This is a mapping from V to real numbers. What is the extremum of $F(\v{x})$ with respect to $\v{x}$ for $|\v{x}| = 1$. Take the gradient, but this will not constrain our thing ot the unit sphere. We need to use a lagrange multiplier
+\v{\nabla}_x {F(x) - \lambda |\v{x}|^2 }= 0
+
+Chain rule it
+\begin{equation}
+\d{(\v{x}A\v{x})}{x_i} = A \v{x} + \v{x} A = 2A\v{x}
+\end{equation}
+\begin{equation}
+\d{|\v{x}^2|} = 2x
+\end{equation}
+
+\begin{equation} 
+\d{}{x_1} (x_1^2 + x_2^2 + x_3^2) = 2x_1
+\end{equation}
+Now set our constraint
+\begin{equation}
+2A\v{x} - 2\lambda \v{x} = 0
+\end{equation}
+Extrema if 
+\begin{equation}
+A\v{x} = \lambda \v{x}
+\end{equation}
+Eigenvalue equations. woo
+
+\end{comment}
+
+\end{document}

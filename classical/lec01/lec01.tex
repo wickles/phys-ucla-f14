@@ -1,0 +1,283 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../../header.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec01}
+\author{UCLA, Fall 2014}
+\date{\formatdate{02}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Introduction}
+
+Lecture will be Tuesday -- Thursday
+\begin{itemize}
+\item Ask questions! I will try to make this as interactive as possible
+\item I post scans of my notes before class
+\end{itemize}
+
+\paragraph{Homework}
+\begin{itemize}
+\item Problem solving is the most important part of learning
+\item Invest serious amount of time in solving the problem yourself
+\item It's okay to discuss problems with other students but I would advise on trying to solve them yourself first
+\end{itemize}
+
+\paragraph{Exams}
+\begin{itemize}
+\item Checks and gives feedback on your understanding
+\item Preparation for comps
+\end{itemize}
+
+\paragraph{Help}
+\begin{itemize}
+\item During lecture
+\item Office hours
+\item TA office hours
+\item email
+\item your peers
+\end{itemize}
+
+\paragraph{Goal of course}
+\begin{itemize}
+\item Review of basic undergraduate mechanics
+\item A more mathematically sophisticated look at Lagrangian and Hamiltonian mechanics
+\item Provide conceptual underpinning for stat mech and QM
+\item Solving more complicated problems
+\end{itemize}
+
+[Need to fix: Time of midterm, time for office hours]
+
+\paragraph{Topics}
+\begin{itemize}
+\item Review of Newtonian mechanics
+\item \textbf{Lagrangian mechanics}
+\item small oscillations
+\item \textbf{Hamiltonian mechanics}
+\item Rigid bodies
+\item \textbf{Relativistic mechanics}
+\item Fluid mechanics
+\item Integrability and chaos
+\end{itemize}
+
+
+\section{Review of Newtonian mechanics}
+
+Newtonian mechanics is an idealization.
+\begin{enumerate}
+\item Newtonian dynamics deals with \underline{point like} masses $m_1, \dots, m_N$. Their positions are given by vectors $\v{x}_i (t)$ in Euclidean space $\reals^3$ (as functions of time)
+\item One defines a special class of coordinate systems, so-called inertial frames of reference, in which Newton's laws take the same form. 
+
+The Galilean principle of relativity is that two inertial frames of references are related by 
+	\begin{enumerate}
+	\item Translation of the origin in $\reals^3 \times \reals$
+	\begin{equation}
+	\v{x} \rightarrow \v{x} + \v{x}_0, \qquad t \rightarrow t + t_0
+	\end{equation}
+	\item Rotation (time independent)
+	\begin{equation}
+	\v{x} \rightarrow R \v{x}, \qquad R \in SO(3)
+	\end{equation}
+	\item Galilean boost --- relates 2 frames of reference which move with relative constant velocity
+	\begin{equation}
+	\v{x}' = \v{x} + \v{v} t, \qquad t' = t.
+	\end{equation}
+	\end{enumerate}
+	Note that these three operations form a group, the so called Galilean group (which happens to be the Poincare group from special relativity in the limit $c \rightarrow \infty$. Principle of relativity says that physical laws take the same form in all inertial frames.) Note also that this is a 10 dimensional group!
+
+\item Newton's force law
+\begin{itemize}
+\item Point particles are acted upon by other point particles
+\item The motion of point particles in the future is determined by the knowledge of the position and velocity of all particles at a fixed time $t$ (not acceleration $a$, or jerk, snap, crackle, or pop). 
+\item Define the momentum $\v{p} = m\dot{\v{x}}$. (Note that the definition of $\v{p}$ holds in all frames, but needs to be modified in relativistc mechanics.) The theory is defined by the system of ordinary differential equations:
+\begin{equation}
+\dot{\v{p}}_i = \v{F}_i(\v{x}_j, \dot{\v{x}}_j, t).
+\end{equation}
+This is a system of $3N$ 2nd order differential equations. We also need $2 \times 3N$ initial conditions $\v{x}_i (t_0)$, $\dot{\v{x}}_i (t_0)$. 
+\item Newton's 3rd law (action and reaction): If $m_1$ exerts a force $\v{F}_{21}$ on $m_2$ then $m_2$ exerts a force $\v{F}_{12} = -\v{F}_{21}$ on $m_1$. 
+\item Newton's law of gravity: point masses $m_1$ and $m_2$ exert a gravitational force
+\begin{equation}
+\v{F}_{12} = - G_N m_1 m_2 \frac{\v{x}_1 - \v{x}_2}{\abs{\v{x}_1 - \v{x}_2}^3}
+\end{equation}
+where $G_N \approx \unit{6.673 \times 10^{-11}}{\meter^3 \per (\kilo\gram \cdot \second^3)}$ is the Newtonian gravitational constant. 
+\end{itemize}
+
+\end{enumerate}
+
+
+\paragraph{Comments}
+\begin{itemize}
+\item Forces are instantaneous ($c \rightarrow \infty$) --- idealization not true for E\&M, relativity. 
+\item In classical mechanics $\v{x}$ and $\v{p}$ can both be measured to arbitrary precision ($\hbar \rightarrow 0$) --- not true in QM.
+\end{itemize}
+
+\paragraph{Applications}
+\begin{itemize}
+\item Consequences of Newton's laws
+\item Conservative forces
+\item Important examples of physical systems
+	\begin{enumerate}
+	\item Harmonic oscillator
+	\item motion in central potential
+	\item particle in electromagnetic field
+	\end{enumerate}
+\end{itemize}
+
+
+\section{Some simple consequences of Newton's laws}
+
+(Should all be familiar from undergraduate.)
+
+
+\subsection{Work and kinetic energy}
+\begin{itemize}
+\item For a single particle trajectory along path $C_{12}$ going from points $1 \rightarrow 2$ subject to force $\v{F}$, the work is given by
+\begin{align}
+W_{12} &= \int_{C_{12}} \v{F} \cdot d\v{x} \\
+	&= \int_{C_{12}} m \dot{\v{v}} \cdot \frac{d\v{x}}{dt} dt \\
+	&= \int_{C_{12}} m \dot{\v{v}} \cdot \v{v} dt \\
+	&= \int_{C_{12}} \frac{d}{dt} \left( \frac{1}{2} m\v{v}^2 \right) dt \\
+	&= T_2 - T_1
+\end{align}
+where $T = \frac{1}{2} m \v{v}^2$ is the kinetic energy. 
+\item For $N$ particle system: same expression, just have
+\begin{equation}
+W_{12} = \sum_i \int \v{F}_i \cdot d\v{x}_i, \qquad T = \sum_i \frac{1}{2} m_i \v{v}_i^2
+\end{equation}
+\end{itemize}
+
+
+\subsection{Conservative Forces \& energy conservation}
+
+\begin{itemize}
+\item For dissipative forces like friction $\v{F} = -k \v{v}$ the work $W_{12}$ depends on the path $C_{12}$. For a longer path $C_{12}'$ the work will be larger, $W_{12}' > W_{12}$.
+\item For a \underline{conservative force} the work only depends on the initial and final points. So a conservative force should not explicitly depend on time. 
+\end{itemize}
+
+For the time being, let's assume that $\v{F}$ is independent of $\v{v}$. Take two distinct paths $C$ and $C' \neq C$ from point 1 to point 2. If $W_{12} = W_{12}'$ then $W_{12} - W_{12}' = 0$ so we have
+\begin{equation}
+\oint_C \v{F}(\v{x}) \cdot d\v{x} = 0
+\end{equation}
+where $C$ is the closed path $C - C'$. In other words, work along a closed path is zero. Using Stoke's theorem we have
+\begin{equation}
+\oint_C \v{F}(\v{x}) \cdot d\v{x} = \int_D (\v{\nabla} \times \v{F}) \cdot d^2 \v{S}
+\end{equation}
+for any surface $D$ with boundary $\pd D = C$, so that we have $\v{\nabla} \times \v{F} = 0$. Thus for an $\v{F}$ with a simply connected domain, we have 
+\begin{equation}
+\v{\nabla} \times \v{F} = 0 \quad \text{for all $\v{x}$} \quad \implies \quad \v{F} = - \v{\nabla} V.
+\end{equation}
+Furthermore, we find
+\begin{equation}
+W_{12} = \int_{C_{12}} \v{F} \cdot d\v{x} = - \int_{C_{12}} d\v{x} \cdot \v{\nabla} V = -(V_2 - V_1)
+\end{equation}
+thus we have finally
+\begin{equation}
+T_2 - T_1 = -(V_2 - V_1) \qquad \text{or} \qquad T_1 + V_1 = T_2 + V_2
+\end{equation}
+so the total energy $E = T + V$ is conserved. 
+
+Note that we excluded velocity dependent forces (like friction) since they are generally non-conservative. Any important exception is the Lorentz force $\v{F} = e \v{v} \times \v{B}$. Since $\v{F} \perp \v{v} = d\v{x} / dt$, the work done by the Lorentz force is zero so the force is conservative. However it seems that the potential is zero --- one has to generalize to a velocity dependent potential, so we have
+\begin{equation}
+U = e \phi - e \v{v} \times \v{A} \quad \text{and} \quad \v{F} = -\v{\nabla}_{\v{x}} U - \frac{d}{dt} \v{\nabla}_{\dot{\v{x}}} U.
+\end{equation}
+(See D'Hoker for a more details discussion.) 
+
+
+\section{System of Particles}
+
+Consider a system of $N$ particles with mass $m_i$. We have Newton's equation for each particle, $m_i \ddot{\v{x}}_i = \v{F}_i$, where the forces $\v{F}_i = \v{F}_i (\v{x}_1, \dots, \v{x}_N)$ are functions of the positions (and possibly the velocities). We can again split the forces into interparticle and external forces,
+\begin{equation}
+\v{F}_i = \sum_{j \neq i} \v{F}_{ij} + \v{F}_i^\text{ext}.
+\end{equation}
+We define the center of mass
+\begin{equation}
+\v{X} = \frac{1}{M} \sum_i m_i \v{x}_i, \qquad M = \sum_i m_i.
+\end{equation}
+Then Newton's equation for the center of mass is given by
+\begin{align}
+M \ddot{\v{X}} &= \sum_i m_i \ddot{\v{x}}_i = \sum_i \v{F}_i = \sum_i \v{F}_i^\text{ext} + \sum_i \sum_{j \neq i} \v{F}_{ij} \\
+	&= \sum_i \v{F}_i^\text{ext} + \frac{1}{2} \sum_i \sum_{j < i} (\v{F}_{ij} + \v{F}_{ji}) \\
+	&= 0
+\end{align}
+where the last equality comes from Newton's 3rd law. 
+
+For an isolated (or closed) system we have $\sum_i \v{F}_i^\text{ext} = 0$. Then the center of mass behaves like a free particle,
+\begin{equation}
+\v{X}(t) = \frac{\v{P}}{M} t + \v{X}(0), \qquad \v{P} = \sum_i \v{p}_i.
+\end{equation}
+This gives us 3 conserved quantities,
+\begin{equation}
+\v{X}(0) = \v{X}(t) - \frac{\v{P}}{M} t.
+\end{equation}
+Similarly we can show that the total momentum
+\begin{equation}
+\v{P}_\text{tot} = \sum_i \v{p}_i
+\end{equation}
+is conserved, giving us 3 more conserved quantities, and the total angular momentum
+\begin{equation}
+\v{L}_\text{tot} = \sum_i \v{x}_i \times \v{p}_i
+\end{equation}
+is conserved, giving yet 3 more conserved quantities. 
+
+
+\subsection{Work and energy}
+
+Notice that if we write $\v{\widetilde{x}}_i = \v{x}_i - \v{X}$, the total kinetic energy is given by
+\begin{equation}
+T = \sum_i \frac{1}{2} m \v{x}_i^2 = \frac{1}{2} \sum_i m_i \dot{\v{\widetilde{x}}}_i^2 + \frac{1}{2} M \dot{\v{X}}^2.
+\end{equation}
+The work energy theorem works as before,
+\begin{equation}
+T_2 - T_1 = \sum_i \int \v{F}_i \cdot d\v{x}_i.
+\label{eq:work-energy}
+\end{equation}
+For conservative forces we have
+\begin{equation}
+\v{F}_i^\text{ext} = - \v{\nabla}_i V^\text{ext}.
+\end{equation}
+The contribution to the RHS of \eqref{eq:work-energy} from external forces is given by
+\begin{equation}
+\sum_i V_{i,(1)}^\text{ext} - \sum_i V_{i,(2)}^\text{ext}.
+\end{equation}
+Internal forces contribute to the RHS too. We have 
+\begin{equation}
+\v{F}_{ij} = -\v{\nabla}_i V_{ij}.
+\end{equation}
+If $V_{ij}$ is of the form $V_{ij} = V_{ij} (\abs{\v{x}_i - \v{x}_j})$ then we find
+\begin{equation}
+\v{F}_{ij} = - \frac{\v{x}_i - \v{x}_j}{\abs{\v{x}_i - \v{x}_j}} V'_{ij} (\abs{\v{x}_i - \v{x}_j})
+\end{equation}
+and hence $\v{F}_{ij} = -\v{F}_{ji}$, as expected from Newton's third law, and we also know that the force is in the direction of ${x}_i - \v{x}_j$. Then we find that the interparticle contribution to the RHS of \eqref{eq:work-energy} is given by
+\begin{align}
+\sum_i \sum_{j \neq i} \int \v{F}_i \cdot d\v{x}_i &= - \sum_i \sum_{j \neq i} \int \v{\nabla}_i V_{ij} \cdot d\v{x}_i \\
+	&= -\frac{1}{2} \sum_i \sum_{j \neq i} \int \v{\nabla}_i V_{ij} \cdot (d\v{x}_i - d\v{x}_j) \\
+	&= -\frac{1}{2} \sum_i \sum_{j \neq i} \int \v{\nabla}_i V_{ij} \cdot d\v{r}_{ij} \\
+	&= - \sum_i \left( -\frac{1}{2} \sum_{j \neq i} V_{ij}^{(2)} - \frac{1}{2} \sum_{j \neq i} V_{ij}^{(1)} \right).
+\end{align}
+Thus combining the kinetic and potential terms for initial and final states we find the total energy
+\begin{equation}
+E = T + \sum_i V_i^\text{ext} + \frac{1}{2} \sum_i \sum_{j \neq i} V_{ij}
+\end{equation}
+is yet another conserved quantity. 
+
+We have found a lot of conserved quantities for isolated systems:
+\begin{itemize}
+\item 3 for the total momentum $\v{P}_\text{tot}$, 
+\item 3 for the total angular momentum $\v{L}_\text{tot}$,
+\item 1 for the total energy $E$,
+\item 3 for $\v{X} - (\v{P} / M) t$,
+\end{itemize}
+giving us a total of \textit{10 conserved quantities}. This is no accident: remember that the Galilean group has 10 dimensions --- this is the essence of Noether's theorem!
+
+
+
+
+
+
+\end{document}

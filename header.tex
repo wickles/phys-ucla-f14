@@ -1,0 +1,88 @@
+% standard packages
+\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{amsmath} % for nice math commands and environments
+
+% font packages
+\usepackage{amssymb} % for \mathbb, \mathfrak fonts
+\usepackage{mathrsfs} % for \mathscr font
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it} % defines \mathpzc for Zapf Chancery (standard postscript) font
+
+% other packages
+\usepackage{datetime} % allows easy formatting of dates, e.g. \formatdate{dd}{mm}{yyyy}
+\usepackage{caption} % makes figure captions better, more configurable
+\usepackage[squaren]{SIunits} % for nice units formatting e.g. \unit{50}{\kilo\gram}
+\usepackage{cancel} % for crossing out terms with \cancel
+\usepackage{verbatim} % for verbatim and comment environments
+\usepackage{tensor} % for \indices e.g. M\indices{^a_b^{cd}_e}, and \tensor e.g. \tensor[^a_b^c_d]{M}{^a_b^c_d}
+\usepackage{feynmp-auto} % for Feynman diagrams. 
+\usepackage{pgfplots} % for plotting in tikzpicture environment
+
+% new commands
+\newcommand{\fslash}[1]{#1\!\!\!/} % feynman slash
+\newcommand{\opname}[1]{\operatorname{#1}} % custom operator names
+\newcommand{\pd}{\partial} % partial differential shortcut
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac kets
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac bras
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right| 
+	\left. #2 \vphantom{#1} \right>} % for Dirac brackets
+
+\let\vaccent=\v % rename builtin command \v{} to \vaccent{}
+%\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
+\renewcommand{\v}[1]{\ensuremath{\boldsymbol{\mathbf{#1}}}} % for vectors
+%\newcommand{\gv}[1]{\ensurmath{\mbox{\boldmath$ #1 $}}} % for vectors of Greek letters
+\newcommand{\uv}[1]{\ensuremath{\boldsymbol{\mathbf{\widehat{#1}}}}} % for unit vectors
+\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value ||x||
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert} % for norm ||v||
+\newcommand{\avg}[1]{\left< #1 \right>} % for average <x>
+\newcommand{\inner}[2]{\left< #1, #2 \right>} % for inner product <x,y>
+\newcommand{\set}[1]{ \left\{ #1 \right\} } % for sets {a,b,c,...}
+
+% shortcuts
+\newcommand{\reals}{\mathbb{R}} % real numbers
+\newcommand{\complexes}{\mathbb{C}} % complex numbers
+\newcommand{\nats}{\mathbb{N}} % natural numbers
+\newcommand{\irrats}{\mathbb{Q}} % irrationals
+\newcommand{\quats}{\mathbb{H}} % quaternions (a la Hamilton)
+\newcommand{\euclids}{\mathbb{E}} % Euclidean space
+\newcommand{\bigo}{\mathcal{O}} % big O notation
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%
+% some templates for various things
+\begin{comment}
+
+% template for figures
+\begin{figure}
+\centering
+\includegraphics{myfile.png}
+\caption{This is a caption}
+\label{fig:myfigure}
+\end{figure}
+
+% template for Feynman diagrams using feynmf/feynmp
+\begin{fmfgraph*}(40,25)
+\fmfleft{em,ep}
+\fmf{fermion}{em,Zee,ep}
+\fmf{photon,label=$Z$}{Zee,Zff}
+\fmf{fermion}{fb,Zff,f}
+\fmfright{fb,f}
+\fmfdot{Zee,Zff}
+\end{fmfgraph*}
+
+% template for drawing plots with pgfplot
+\pgfplotsset{compat=1.3,compat/path replacement=1.5.1}
+\begin{tikzpicture}
+\begin{axis}[
+extra x ticks={-2,2},
+extra y ticks={-2,2},
+extra tick style={grid=major}]
+\addplot {x};
+\draw (axis cs:0,0) circle[radius=2];
+\end{axis}
+\end{tikzpicture}
+
+\end{comment}
+%%%%%%%%%%%%%%%%%%%

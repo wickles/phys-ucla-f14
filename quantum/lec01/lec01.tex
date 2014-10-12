@@ -1,0 +1,131 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../../header.tex}
+
+
+\title{Phys 221A -- Quantum Mechanics -- Lec01}
+\author{UCLA, Fall 2014}
+\date{\formatdate{06}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Introduction}
+
+Basic info
+\begin{itemize}
+\item Professor: Yaroslav Tserkovnyak, condensed matter (experimentalist?). Email: yaroslav@physics.ucla.edu. Office hours: Thursday 11-12, Knudsen 6-137C. No midterm. Grade: 35\% HW, 65\% final. Homeworks will be assigned Wednesdays, due Wednesday the next week. 
+\item TA: Shahriar, office hours Tuesday 1-2 at Knudsen 3-111. 
+\end{itemize}
+
+What the course is \textbf{not}:
+\begin{itemize}
+\item Will not motivate QM. You should have motivation by now.
+\item Will not be overly mathematically rigorous. Only need a certain level of physical rigor. 
+\item Will not give historical or philosophical perspective. 
+\end{itemize}
+
+What the course will cover:
+\begin{enumerate}
+\item Intro
+\begin{enumerate}
+\item Hilbert spaces
+\item Quantum numbers
+\item \underline{Uncertainty principle}
+\item Correspondence principle --- establishes link between QM and classical mechanics
+\end{enumerate}
+\item Quantum dynamics
+\begin{enumerate}
+\item Schroedinger vs Heisenberg picture
+\item Feynman path integrals --- establishes connection with principle of least action, Lagrangian mechanics
+\item Gauge transformations --- establishes connection with E\&M
+\end{enumerate}
+\item Rotations
+\begin{enumerate}
+\item Spin and orbital angular momentum
+\item Addition of angular momentum
+\item Bell inequalities --- relatively recent. Show that there are measurements that prove classical description is incomplete. 
+\end{enumerate}
+\end{enumerate}
+
+221B will cover symmetries, approximations, scattering theory. 221C will cover applications with many (identical) particles and fundamentals needed for quantum field theory. 
+
+
+\subsection{Hilbert spaces}
+
+A Hilbert space $G$ is a complete inner product space. One example is Euclidean space $\mathbb{E}^n$, that is, $\mathbb{R}^n$ with the standard inner product $\braket{x}{y} = \v{x} \cdot \v{y} = \sum_{i=1}^n x_i y_i$. Of course $\mathbb{R}^n$ itself is a vector space. We will define what completeness means later. 
+
+We should define the inner product. The inner product $\braket{x}{y}$ between vectors $x$ and $y$ in $G$ is a complex number such that: 
+\begin{enumerate}
+\item $\braket{x}{y} = \braket{y}{x}^*$,
+\item Linearity: $\braket{x}{\alpha_1 y_1 + \alpha_2 y_2} = \alpha_1 \braket{x}{y_1} + \alpha_2 \braket{x}{y_2}$ for any scalars $\alpha_1, \alpha_2 \in \mathbb{C}$, and
+\item Positivity: $\braket{x}{x} \geq 0$ with equality iff $x = 0$.
+\end{enumerate}
+
+Define the distance 
+\begin{equation}
+d(x, y) = d(y, x) = \norm{x - y} = \sqrt{\braket{x - y}{x - y}}.
+\end{equation}
+Need to prove this is a good distance function. In particular, we need the triangle inequality: $d(x, z) \leq d(x, y) + d(y, z)$. Mathematicians would call this a metric space. Can prove the triangle inequality with the Cauchy-Schwartz inequality:
+\begin{equation}
+\abs{\braket{x}{y}} \leq \norm{x} \cdot \norm{y}.
+\end{equation}
+We can prove this as follows. Define 
+\begin{equation}
+z = x - y \frac{\braket{y}{x}}{\braket{y}{y}},
+\end{equation}
+then 
+\begin{equation}
+x = z + y \frac{\braket{y}{x}}{\braket{y}{y}}
+\end{equation}
+so $\norm{x}^2 = \norm{z}^2 + \norm{y}^2 (\dots)^2$ by Pythagorean theorem, thus
+\begin{equation}
+\norm{x}^2 \norm{y}^2 = \norm{z}^2 \norm{y}^2 + \abs{\braket{y}{x}}^2
+\end{equation}
+and we see equality occurs iff $z = 0$ i.e. $x \parallel y$
+
+Now we can define completeness of a metric space $G$. Define a Cauchy sequence $x_i \in G$, $i = 1,2,\dots$ as a sequence such that for any $\delta > 0$ there exists an integer $N > 0$ so that $\norm{x_n - x_m} < \delta$ for all $m, n > N$. The space $G$ is complete if every Cauchy sequence converges. Good, now we've defined a Hilbert space. 
+
+Now, the universe itself is a Hilbert space. Or rather, physical realizations of the universe are elements of a Hilbert space. A quantum mechanical state $\psi$ is represented by a vector in a Hilbert space. We will be interested in the preparation, measurement, and evolution of this state. 
+
+As $\psi(t)$ evolves, it must remain in $G$. Furthermore, the physical state $\psi$ must be properly normalized: $\braket{\psi}{\psi} = 1$ at all times. Dirac's bracket notation provides us with a good way of dealing with elements of the Hilbert space and the dual space. 
+\begin{itemize}
+\item $\ket{\psi} \in G$ is the ket, the representation in the Hilbert space
+\item $\bra{\psi} \in G$ is the bra, the representation in the dual space. The bra is a linear map $\bra{\psi} : G \rightarrow \mathbb{C}$ mapping kets $\ket{\phi} \mapsto \braket{\psi}{\phi}$. 
+\end{itemize}
+For each Hilbert space $G$ there is a dual (Hilbert) space $G^*$. Bras, the elements of $G^*$, are defined by their action on the kets in $G$. Note that we have
+\begin{equation}
+\braket{c_1 \psi_1 + c_2 \psi_2}{\phi} = c_1^* \braket{\psi_1}{\phi} + c_2^* \braket{\psi_2}{\phi},
+\end{equation}
+so that
+\begin{equation}
+\bra{c_1 \psi_1 + c_2 \psi_2} = c_1^* \bra{\psi_1} + c_2^* \bra{\psi_2}. 
+\end{equation}
+
+A Hilbert space can be spanned by an orthonormal basis $\ket{\alpha_i}$, $i = 1,2, \dots$, i.e. $\braket{\alpha_i}{\alpha_j} = \delta_{ij}$. We can find an orthonormal basis via the Gram-Schmidt method as follows. Suppose we have a complete set of linearly independent states $\ket{u_i}$. Define a normal vector $e_1 = u_1 / \norm{u_1}$. Next define $v_2 = u_2 - P_{e_1}(u_2)$ where we use the projection operator $P_e(v) = \ket{e} \braket{e}{v}$, and finally $e_2 = v_2 / \norm{v_2}$. We can see that $e_1$ and $e_2$ form an orthonormal set so we continue this process ad infinitum to obtain the full orthonormal basis, i.e. $v_{i+1} = u_{i+1} - P_{e_i}(u_{i+1})$ and $e_{i+1} = v_{i+1} / \norm{v_{i+1}}$ for all $i > 1$. 
+
+Any state $\psi$ can be written in the basis: $\ket{\psi} = \sum_i c_i \ket{\alpha_i}$. Note that the coefficients can be obtained by taking the inner product with the corresponding orthonormal basis vector: $\braket{\alpha_i}{\psi} = \sum_j c_j \delta_{ij} = c_i$. Since $c_i = \braket{\alpha_i}{\psi}$, we can write $\ket{\psi} = \sum_i \ket{\alpha_i} \braket{\alpha_i}{\psi}$, thus we find
+\begin{equation}
+\sum_i \ket{\alpha_i} \bra{\alpha_i} = 1.
+\end{equation}
+We call this the closure relation. 
+
+
+
+\begin{comment}
+\begin{figure}
+\centering
+\includegraphics{3a.pdf}
+\caption{Half the diagrams for photon-photon scattering.}
+\label{fig:3a}
+\end{figure}
+\end{comment}
+
+
+
+\end{document}
