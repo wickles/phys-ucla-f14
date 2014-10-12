@@ -1,8 +1,19 @@
-\input{../header.tex}
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
 
+\input{../../header.tex}
 
+\title{Astro 270 -- Astrophysical Dynamics -- Lec01-02}
+\author{UCLA, Fall 2014}
+\date{\formatdate{02}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+%\date{\formatdate{07}{10}{2014}} 
 
 \begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
 
 \textit{Read Chapters 1 and Sections 2.1-2.3}
 
@@ -45,7 +56,7 @@ acceleration between them is given by $\v{\ddot{r}} = \frac{G
 \end{equation}
 WE can express this in terms of a potential
 \begin{equation}
-\v{\ddot{x_i}} = \pd{\Phi}{x_i} = -\grad\Phi
+\v{\ddot{x_i}} = \frac{\pd \Phi}{\pd x_i} = -\v{\nabla} \Phi
 \end{equation}
 Now let's define the gravitational potential
 \begin{equation}
@@ -116,11 +127,11 @@ Now our potential is defined as
 \end{equation}
 We can use Gauss's therem to state
 \begin{equation}
-\int \grad \Phi \v{d^2s} = 4\pi G M_{enclose}
+\int \v{\nabla} \Phi \v{d^2s} = 4\pi G M_{enclose}
 \end{equation}
 We can then use the divergence theorem
 \begin{equation}
-\int \nabla^2 \Phi \v{d^3x} = \int \grad \Phi \cdot d^2\v{s}
+\int \nabla^2 \Phi \v{d^3x} = \int \v{\nabla} \Phi \cdot d^2\v{s}
 \end{equation}
 What we get then is that the integral of the divergence over the
 volume:
@@ -183,7 +194,7 @@ galaxy. The circular velocity is
 \frac{v_c^2}{r} = \frac{GM(r)}{r^2}
 \end{equation}
 \begin{equation}
-v_c^2 = \frac{GM(r)}{r} = -rF(r) = r(\grad{\Phi})
+v_c^2 = \frac{GM(r)}{r} = -rF(r) = r(\v{\nabla}{\Phi})
 \end{equation}
 The other velocity that is an important determinant of the evolution
 of a system is the escape velocity which is defined in terms of how
@@ -309,7 +320,7 @@ This makes it so that the potential converges at r = 0. B is some scale radius w
 \end{equation}
 In spherical coordinates
 \begin{equation}
-\frac{1}{r^2} \d{}{r} ( r^2 \d{\Phi}{r})
+\frac{1}{r^2} \frac{d}{dr} ( r^2 \frac{d\Phi}{dr})
 \end{equation}
 The result is 
 \begin{equation}
@@ -359,10 +370,10 @@ For these purposes let us assume that the potential is static or invariant
 \subsection{Energy}
 Let's consider the dot product between
 \begin{equation}
-\dot{r} \cdot \ddot{r} = -\dot{r} \cdot \grad \Phi
+\dot{r} \cdot \ddot{r} = -\dot{r} \cdot \v{\nabla} \Phi
 \end{equation}
 \begin{equation}
-\d{}{t} (\frac{1}{2} |\dot{r}|^2) = \d{\Phi(r)}{t}
+\frac{d}{dt} (\frac{1}{2} |\dot{r}|^2) = \frac{d\Phi(r)}{dt}
 \end{equation}
 Oops.
 
@@ -373,13 +384,13 @@ Assume spherically symmetric
 \Phi = \Phi(r)
 \end{equation}
 \begin{equation}
-\ddot{r} = F(r) \hat{r}
+\ddot{r} = F(r) \uv{r}
 \end{equation}
 \begin{equation}
 \v{r}\times \v{F} = 0 = \v{r} \times \v{\ddot{r}}
 \end{equation}
 \begin{equation}
-\d{}{t} (\v{r} \v{\dot{r}}) = 0
+\frac{d}{dt} (\v{r} \v{\dot{r}}) = 0
 \end{equation}
 So we get three conservations
 \begin{equation}
@@ -388,14 +399,14 @@ So we get three conservations
 
 Lessing this to axisymmetric, we know that the symmetry that we can work with is the azimuthal angle $\phi$.
 \begin{equation}
-\pd{\Phi}{\phi} = 0
+\frac{\pd \Phi}{\pd \phi} = 0
 \end{equation}
 Means that phi is conserved
 
 \section{Fuckballsacks}
 
 \begin{equation}
-\v{r} = r\hat{r}
+\v{r} = r\uv{r}
 \end{equation}
 Unit vector shit
 See classical notes. 
