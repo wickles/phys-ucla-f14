@@ -1,1 +1,1 @@
-This repository contains notes for the graduate physics courses at UCLA for the 2014-2015 school year. I encourage other students in these classes to contribute whenever possible. 
+This repository contains notes for graduate physics courses at UCLA for the 2014-2015 school year. Students in these classes are encouraged to contribute if possible. 

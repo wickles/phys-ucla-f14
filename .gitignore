@@ -24,4 +24,4 @@
 *.synctex.gz
 
 # Ignore generated PDF files (binary files should not be version controlled)
-lec*.pdf
+lec*.pdf 
