@@ -1,0 +1,144 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header.tex}
+
+\title{Phys 221A -- Quantum Mechanics -- Lec03}
+\author{UCLA, Fall 2014}
+\date{\formatdate{13}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Introduction}
+
+Any theory we consider will have a complete set of compatible observables which we call an operator basis. That is, given operators $\set{A, B, C, \dots}$, we will have 
+\begin{equation}
+0 = [A,B] = [A,C] = [B,C] = \dots.
+\end{equation}
+These operators will have associated quantum numbers $\set{\alpha, \beta, \gamma, \dots}$ such that a subset of them is in one-to-one correspondence with a basis vectors in the associated orthonormal basis. Typically these operators will be the Hamiltonian $H$ along with symmetry generators. 
+
+\subsection{Examples}
+
+\subsubsection{Particle in a centro-symmetric potential}
+
+In this system the Hamiltonian is given by
+\begin{equation}
+H = \frac{\v{p}^2}{2m} + V(\abs{\v{r}}) + H_\text{so}
+\end{equation}
+where $H_\text{so} \propto \v{L} \cdot \v{S}$. Here the Hilbert space is $L_2$. If we neglect spin-orbit coupling the operator basis is given by $\set{H_0, L^2, L_z, S_z}$. Otherwise we will need to use the total angular momentum $\v{J}$, which gives us operators $\set{H, J^2, J_z, L^2}$. 
+
+\subsubsection{Free particle}
+
+Here the Hamiltonian is given by $H = \v{p}^2 / 2m$. This is the minimal Hamiltonian, and its operator basis is given by $\set{p_x, p_y, p_z, S_z}$. Notice that $H \propto p_x^2 + p_y^2 + p_z^2$. 
+
+\subsubsection{Harmonic oscillator in 3D}
+
+Here the Hamiltonian is given by
+\begin{equation}
+H = \frac{\v{p}^2}{2m} + \frac{1}{2} k \v{x}^2
+\end{equation}
+and the operator basis is given by $\set{H, S_z}$. 
+
+
+\subsection{More on operators and shit}
+
+Consider a Hermitian operator $O = O^\dagger$ and normal vector $\ket{\psi} \in G$, so $\braket{\psi}{\psi} = 1$. Then the expectation value of $O$ in the state $\psi$ is 
+\begin{equation}
+\avg{O}_\psi = \bra{\psi} O \ket{\psi}.
+\end{equation}
+Define the corresponding \textit{deviation operator} $\Delta_O$ as
+\begin{equation}
+\Delta_O = O - \avg{O}_\psi.
+\end{equation}
+Then the quantity $\avg{ (\Delta_O)^2 }_\psi$ characterizes quantum fluctuations of $O$ in the state $\psi$. Note of course that the operator $(\Delta_O)^2$ is Hermitian. 
+
+
+\subsection{Generalized uncertainty principle}
+
+The generalized uncertainty principle states that, given any $\psi \in G$ and two self-adjoint operators $A,B$, we have 
+\begin{equation}
+\avg{ (\Delta_A)^2 }_\psi \avg{ (\Delta_B)^2 }_\psi \geq \frac{1}{4} \abs{ \avg{ [A,B] }_\psi }^2.
+\end{equation}
+Let's prove this. Consider the states $\ket{\alpha} = \Delta_A \ket{\psi}$, $\ket{\beta} = \Delta_B \ket{\psi}$. Then the Cauchy inequality tells us that
+\begin{equation}
+\braket{\alpha}{\alpha} \braket{\beta}{\beta} \geq \abs{\braket{\alpha}{\beta}}^2
+\end{equation}
+so that we have
+\begin{equation}
+\avg{(\Delta_A)^2}_\psi \avg{(\Delta_B)^2}_\psi \geq \abs{\avg{\Delta_A \Delta_B}_\psi }^2.
+\end{equation}
+We can decompose 
+\begin{equation}
+\Delta_A \Delta_B = \underbrace{\frac{1}{2} \{ \Delta_A, \Delta_B \}}_\text{Hermitian} + \underbrace{\frac{1}{2} [\Delta_A, \Delta_B]}_\text{anti-Hermitian}
+\end{equation}
+and find that
+\begin{equation}
+\avg{\Delta_A \Delta_B} = \underbrace{\frac{1}{2} \avg{ \{ \Delta_A, \Delta_B \} }}_\text{real} + \underbrace{\frac{1}{2} \avg{ [\Delta_A, \Delta_B] } }_\text{imaginary}.
+\end{equation}
+Thus from the inequality before we have
+\begin{align}
+\avg{(\Delta_A)^2} \avg{(\Delta_B)^2} &\geq \abs{\avg{\Delta_A \Delta_B} }^2 \\
+	&\geq \frac{1}{4} \abs{ \avg{ \{ \Delta_A, \Delta_B \} }}^2 + \frac{1}{4} \abs{ \avg{ [\Delta_A, \Delta_B] } }^2 \\
+	&\geq \frac{1}{4} \abs{ \avg{ [\Delta_A, \Delta_B] } }^2. 
+\end{align}
+We drop the anti-commutator term because it turns out to not be very important. 
+
+
+\subsection{Copenhagen interpretation}
+
+Given a (pure) quantum state $\ket{\psi} \in G$ normalized $\braket{\psi}{\psi} = 1$, we can measure a dynamical variable $A = A^\dagger$ with eigenstates $\ket{\alpha_i}$ and eigenvalues $a_i$. If $\ket{\psi} = \sum_i c_i \ket{\alpha_i}$ then the measurement apparatus yields a measurement $a_i$ with probability $P_i = \abs{c_i}^2$ and the physical state ``collapses'' to the state $\ket{\alpha_i}$. 
+
+After measurement we are left with a mixed state. After ``infinitely'' many measurements we find the density matrix 
+\begin{equation}
+\rho = \sum_i P_i \ket{\alpha_i} \bra{\alpha_i}
+\end{equation}
+where $\sum_i P_i = 1$ since $\braket{\psi}{\psi} = 1$. More generally the density matrix is given by
+\begin{equation}
+\rho = \sum_i P_i \ket{\psi_i} \bra{\psi_i}.
+\end{equation}
+For any operator $O$ that is evaluated over all possible outcomes we have
+\begin{equation}
+\avg{O} = \sum_i P_i \avg{O}_{\alpha_i} = \opname{tr} (O\rho).
+\end{equation}
+
+For an operator $A$ define the trace
+\begin{equation}
+\opname{tr} A = \sum_i \bra{\alpha_i} A \ket{\alpha_i}
+\end{equation}
+where $\set{\ket{\alpha_i}}$ is an orthonormal basis. It's independent of basis: given another orthonormal basis $\set{\beta_i}$ we have
+\begin{align}
+\opname{tr} A &= \sum_i \bra{\alpha_i} A \ket{\alpha_i} \\
+	&= \sum_{ij} \braket{\beta_j}{\alpha_i} \bra{\alpha_i} A \ket{\beta_j} \\
+	&= \sum_j \bra{\beta_j} A \ket{\beta_j}.
+\end{align}
+
+The trace blah blah blah [blah blah]
+
+Averaging over outcomes we have
+\begin{align}
+\sum_i P_i a_i &= \avg{A}_\psi = \opname{tr} (A\rho) \\
+\sum_i P_i (a_i - \avg{A})^2 &= \avg{(\Delta_A)^2}_\psi = \opname{tr} (\Delta_A^2 \rho).
+\end{align}
+
+The density matrix is just represents the projection operator combined with the statistical outcomes of measurements. 
+
+If we measure $A$ in state $\ket{\psi}$, we get the density matrix
+\begin{equation}
+\rho = \sum_i P_i \ket{\alpha_i} \bra{\alpha_i}.
+\end{equation}
+If we measure $B$ relative to the outcomes of $A$ we get
+\begin{equation}
+\avg{B} = \opname{tr} (B\rho), \qquad \avg{(\Delta_B)^2} = \opname{tr} (\Delta_B^2 \rho).
+\end{equation}
+
+[He rambled a bit more here about some stuff but I stopped paying attention.]
+
+
+
+
+\end{document}

@@ -10,6 +10,7 @@
 % other packages
 \usepackage{datetime} % allows easy formatting of dates, e.g. \formatdate{dd}{mm}{yyyy}
 \usepackage{caption} % makes figure captions better, more configurable
+\usepackage{enumitem} % allows for custom labels on enumerated lists, e.g. \begin{enumerate}[label=\textbf{(\alph*)}]
 \usepackage[squaren]{SIunits} % for nice units formatting e.g. \unit{50}{\kilo\gram}
 \usepackage{cancel} % for crossing out terms with \cancel
 \usepackage{verbatim} % for verbatim and comment environments
@@ -18,26 +19,36 @@
 \usepackage{pgfplots} % for plotting in tikzpicture environment
 
 % new commands
-\newcommand{\fslash}[1]{#1\!\!\!/} % feynman slash
+\newcommand{\beg}{\begin} % a few letters less for beginning environments
+\newenvironment{eqn}{\begin{equation}}{\end{equation}} % a lot fewer letter for equation environment
+
+% notational commands
 \newcommand{\opname}[1]{\operatorname{#1}} % custom operator names
+\newcommand{\fslash}[1]{#1\!\!\!/} % feynman slash
 \newcommand{\pd}{\partial} % partial differential shortcut
 \newcommand{\ket}[1]{\left| #1 \right>} % for Dirac kets
 \newcommand{\bra}[1]{\left< #1 \right|} % for Dirac bras
 \newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right| 
 	\left. #2 \vphantom{#1} \right>} % for Dirac brackets
-
+%\let\underdot=\d % rename builtin command \d{} to \underdot{}
+%\renewcommand{\d}[2]{\frac{d #1}{d #2}} % for derivatives
+%\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % for partial derivatives
+%\newcommand{\fd}[2]{\frac{\delta #1}{\delta #2}} % for functional derivatives
 \let\vaccent=\v % rename builtin command \v{} to \vaccent{}
 %\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
 \renewcommand{\v}[1]{\ensuremath{\boldsymbol{\mathbf{#1}}}} % for vectors
 %\newcommand{\gv}[1]{\ensurmath{\mbox{\boldmath$ #1 $}}} % for vectors of Greek letters
 \newcommand{\uv}[1]{\ensuremath{\boldsymbol{\mathbf{\widehat{#1}}}}} % for unit vectors
 \newcommand{\abs}[1]{\left| #1 \right|} % for absolute value ||x||
+%\newcommand{\mag}{\abs} % magnitude, just another name for \abs
 \newcommand{\norm}[1]{\left\Vert #1 \right\Vert} % for norm ||v||
 \newcommand{\avg}[1]{\left< #1 \right>} % for average <x>
 \newcommand{\inner}[2]{\left< #1, #2 \right>} % for inner product <x,y>
 \newcommand{\set}[1]{ \left\{ #1 \right\} } % for sets {a,b,c,...}
+\newcommand{\tr}{\opname{tr}} % for trace
+\newcommand{\Tr}{\opname{Tr}} % for Trace
 
-% shortcuts
+% notational shortcuts
 \newcommand{\reals}{\mathbb{R}} % real numbers
 \newcommand{\complexes}{\mathbb{C}} % complex numbers
 \newcommand{\nats}{\mathbb{N}} % natural numbers
@@ -45,6 +56,8 @@
 \newcommand{\quats}{\mathbb{H}} % quaternions (a la Hamilton)
 \newcommand{\euclids}{\mathbb{E}} % Euclidean space
 \newcommand{\bigo}{\mathcal{O}} % big O notation
+\newcommand{\Lag}{\mathcal{L}} % fancy Lagrangian
+\newcommand{\Ham}{\mathcal{H}} % fancy Hamiltonian
 
 
 

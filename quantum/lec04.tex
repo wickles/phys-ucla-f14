@@ -1,0 +1,214 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec04}
+\author{UCLA, Fall 2014}
+\date{\formatdate{15}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Continuous variables}
+
+It's possible to choose an orthonormal basis $\set{\ket{\xi}}$ such that 
+\begin{equation}
+\braket{\xi}{\xi'} = \delta(\xi - \xi').
+\end{equation}
+Then for any $\ket{\psi} \in G$ we have
+\begin{equation}
+\ket{\psi} = \int d\xi ~ c_\xi \ket{\xi}.
+\end{equation}
+This immediately implies the closure relation
+\begin{equation}
+\int d\xi \ket{\xi} \bra{\xi} = 1,
+\end{equation}
+and furthermore we have
+\begin{equation}
+\braket{\xi'}{\psi} = \int d\xi c_\xi \braket{\xi'}{\xi} = c_{\xi'}.
+\end{equation}
+We can check the closure relation:
+\begin{equation}
+\int d\xi \ket{\xi} \braket{\xi}{\psi} = \int d\xi ~ c_\xi \ket{\xi} = \ket{\psi},
+\end{equation}
+which is what we wanted.
+
+Now, given an operator $O$, we can write $O(\xi, \xi') = \bra{\xi} O \ket{\xi'}$. If we have $O\ket{\psi} = \ket{\psi'}$ and 
+\begin{equation}
+\int d\xi ~ c_\xi \ket{\xi}, \qquad \int d\xi ~ b_\xi \ket{\xi},
+\end{equation}
+then we have
+\begin{eqn}
+b_\xi = \int d\xi' ~ O(\xi, \xi') c_{\xi'}.
+\end{eqn}
+
+In the position representation we have $\xi \rightarrow \v{r}$ in $n$-dimensional space. So
+\begin{eqn}
+\ket{\psi} \rightarrow c_{\v{r}} = \braket{\v{r}}{\psi} \equiv \psi(\v{r})
+\end{eqn}
+or we can write
+\begin{eqn}
+\ket{\psi} = \int d^3r ~ \psi(\v{r}) \ket{\v{r}}.
+\end{eqn}
+In the momentum representation we would have
+\begin{eqn}
+\ket{\psi} = \int d^3p ~ \psi(\v{p}) \ket{\v{p}}.
+\end{eqn}
+Then if we measure the position, the probability density is given by $\abs{\psi(\v{r})}^2$ and the probability to find the particle in a given volume $dV$ is given by $\abs{\psi(\v{r})}^2 dV$. This of course assumes normalization,
+\begin{eqn}
+\int d^3r \abs{\psi(\v{r})}^2 = 1, \qquad \text{or} \qquad \braket{\psi}{\psi} = 1.
+\end{eqn}
+
+
+\section{Spinless particle in 1D space}
+
+Classically we would have the Lagrangian $\mathcal{L}(x, \dot{x}, t)$. Quantum mechanically, we will have a Hilbert space $L_2$ over $c$-valued function $f(x)$. That is, functions in the space have the property
+\begin{eqn}
+\int dx \abs{f(x)}^2 < \infty,
+\end{eqn}
+with inner product given by
+\begin{eqn}
+\braket{f}{g} = \int dx f^*(x) g(x).
+\end{eqn}
+Physical states will be normalized in this space,
+\begin{eqn}
+\braket{\psi}{\psi} = 1, \qquad \text{or} \qquad \int dx \abs{\psi(x)}^2 = 1.
+\end{eqn}
+
+Let's look at some operators in this space. We find that $x$ is a Hermitian operator:
+\begin{eqn}
+\int dx (x f(x))^* g(x) \int dx f^*(x) (x g(x)).
+\end{eqn}
+We find that $d/dx$ is anti-Hermitian:
+\begin{eqn}
+\int dx (\frac{d}{dx} f(x))^* g(x) = \int dx f^*(x) (-\frac{d}{dx}) g(x)
+\end{eqn}
+so that $(d/dx)^\dagger = -d/dx$ and $i d/dx$ is Hermitian. 
+
+We will, for now, \textit{define} the linear momentum: $p = -i \hbar d/dx$. Later we will see that this reduces to the classical momentum. Furthermore, the momentum part of the Hamiltonian will typically be given by
+\begin{eqn}
+H = \frac{p^2}{2m} = -\frac{\hbar}{2m} \partial_x^2.
+\end{eqn}
+In general $H(\v{r},\v{p})$ will be the same in classical and quantum mechanics. 
+
+We also have the commutation relation
+\begin{eqn}
+[x,p] = i\hbar. 
+\end{eqn}
+This gives us the Heisenberg uncertainy principle,
+\begin{eqn}
+\avg{(\Delta x)^2} \avg{(\Delta p)^2} \geq \hbar^2 / 4.
+\end{eqn}
+A Gaussian wave packet will take the form
+\begin{eqn}
+\psi(x) = \frac{1}{\pi^{1/4} \sqrt{d}} ~ e^{ikx - x^2 / 2d}
+\end{eqn}
+for all $k, d \in \reals$ such that $d > 0$. Gaussian wave packets minimize the uncertainty,
+\begin{eqn}
+\avg{(\Delta x)^2} \avg{(\Delta p)^2} = \hbar^2 / 4.
+\end{eqn}
+
+In the position representation we might have an equation
+\begin{eqn}
+x g_y(x) = y g_y(x) 
+\end{eqn}
+for any fixed $y \in \reals$. Then $y$ is the eigenvalue of $x$ and $g_y(x)$ is the eigenfunction of $x$, and we have
+\begin{eqn}
+g_y(x) = \delta(x-y) \equiv \ket{y}
+\end{eqn}
+and 
+\begin{eqn}
+\braket{y}{y'} = \int dx \delta(x-y) \delta(x-y') = \delta(y-y').
+\end{eqn}
+
+Next we have the eigenvalue equation
+\begin{eqn}
+(-i \hbar \frac{d}{dx}) \ket{f_p} = p \ket{f_p}.
+\end{eqn}
+The eigenstate will be given by 
+\begin{eqn}
+f_p (x) = e^{ipx / \hbar} / \sqrt{2\pi \hbar}
+\end{eqn}
+where we can write a wavelength $\lambda = 2 \pi \hbar / p$ which is just the de Broglie wavelength. Furthermore we have
+\begin{eqn}
+\braket{f_p}{f_{p'}} = \int dx \frac{1}{2\pi \hbar} e^{i(p-p') x / \hbar} = \delta(p - p').
+\end{eqn}
+Recall that we can write
+\begin{eqn}
+\delta(k) = \int \frac{dx}{2\pi} e^{ikx}.
+\end{eqn}
+
+We can write down a translation operator in $L_2$,
+\begin{eqn}
+U(a) = e^{-a \partial_x} = 1 - a \partial_x + (a/2) \partial_x^2 + \dots
+\end{eqn}
+which acts on functions by translating the position by a constant,
+\begin{eqn}
+U(a) f(x) = f(x-a).
+\end{eqn}
+We can write 
+\begin{eqn}
+\partial_a U(a) \Big|_{a \rightarrow 0} = -\partial_x
+\end{eqn}
+so we say that $\partial_x$ is the \textit{generator} of translations. Up to a constant, we can say that the momentum $p$ is the generator of translation,
+\begin{eqn}
+p = i \hbar \partial_a U(a) \Big|_{a \rightarrow 0}.
+\end{eqn}
+
+
+\section{Quantum Dynamics}
+
+Temporal evolution will take us from $\ket{\psi(0)} \mapsto \ket{\psi(t)}$. We will consider $t=0$ the present, $t<0$ the past, and $t>0$ the future, and denote the present state $\ket{\psi(0)} = \ket{\psi}$. We will be able to write time evolution as an operator
+\begin{eqn}
+\ket{\psi} \mapsto \ket{\psi(t)} \equiv U(t) \ket{\psi}.
+\end{eqn}
+Because the state should be physical and thus normalized at all times, we have
+\begin{eqn}
+1 = \braket{U(t) \psi}{U(t) \psi} = \bra{\psi} U^\dagger U \ket{\psi}
+\end{eqn}
+so $U(t)$ is a unitary operator. 
+
+Finally, we can write the Schroedinger equation,
+\begin{eqn}
+i \hbar \frac{d}{dt} \ket{\psi(t)} = H(t) \ket{\psi(t)}
+\end{eqn}
+for any physical state $\ket{\psi}$, where $H(t)$ is a Hermitian operator called the Hamiltonian (aka the energy operator). We can rewrite this as
+\begin{eqn}
+\left[ i \hbar \frac{d}{dt} U(t) \right] \ket{\psi} = \left[ H(t) U(t) \right] \ket{psi},
+\end{eqn}
+which is true for any $\ket{\psi}$, so we can write the Schroedinger equation instead as an equation for $U(t)$,
+\begin{eqn}
+i \hbar \frac{d}{dt} U(t) = H(t) U(t), \quad \text{where} \quad U(0) = 1.
+\end{eqn}
+We can solve this pretty easily -- consider the differential equation
+\begin{eqn}
+\frac{d}{dt} f(t) = h(t) f(t).
+\end{eqn}
+We can solve this by rewriting
+\begin{eqn}
+df / f = h ~ dt
+\end{eqn}
+which has solution 
+\begin{eqn}
+\log(f(t) / f(0)) = \int_0^t h(t') dt'.
+\end{eqn}
+Thus applying this to the equation for $U(t)$ we find the time evolution operator,
+\begin{eqn}
+U(t) = \exp \left( -\frac{i}{\hbar} \int_0^t H(t') dt' \right). 
+\end{eqn}
+
+
+
+
+
+
+
+
+
+\end{document}

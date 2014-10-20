@@ -1,0 +1,56 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header.tex}
+
+
+\title{Math 217 -- Geometry and Physics -- Lec05}
+\author{UCLA, Fall 2014}
+\date{\formatdate{13}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{More stuff}
+
+\subsection{Remark on Thom isomorphisms from Algebraic Topology}
+
+Given a vector bundle $E^{n+r} \overset{\pi}{\longrightarrow} M^n = \cup_\alpha U_\alpha$ where we map between $E \leftrightarrow \set{U_\alpha, g_{\alpha\beta}}$. Here $g_{\alpha\beta}$ is the map between the images of the functions
+\begin{align}
+\psi_\alpha &; \pi^{-1}(U_\alpha) \widetilde{\rightarrow} U_\alpha \times \reals^r, \quad \text{and} \\
+\psi_\beta &; \pi^{-1}(U_\beta) \widetilde{\rightarrow} U_\beta \times \reals^r.
+\end{align}
+Then there is a map
+\begin{equation}
+\begin{matrix}
+H^* (M) & \tilde{\longrightarrow} & H_{CU}^{*+r} (E) \\
+[\omega] & \mapsto & \Phi(E) \wedge [\pi^* \omega]
+\end{matrix}
+\end{equation}
+where $\Phi(E)$ is the Thom class of $E$. 
+
+\textbf{Fact}: For any section $s : M \rightarrow E$ we have $s^* \Phi(E) \in H^r (M)$ is the Euler class $e(E)$ of $E$. 
+
+This holds for any cohomology theory.
+
+\subsection{Thom isomorphism gives a way to define the push-forward}
+
+Consider a smooth map $f : X \rightarrow Y$. Then given the immersion $i : X \hookrightarrow \reals^N (\hookrightarrow S^N)$ we have the immersion $X \overset{(f,i)}{\hookrightarrow} Y \times S^N$. Then we have $r = \opname{rank} N = \opname{codim} X$ and we can define the push-forward in any (generalized) cohomology theory
+\begin{equation}
+H^*(X) \overset{\text{Thom}}{\longrightarrow} H_{CU}^{*+r}(N_X / (Y \times S^N)) \overset{\text{inclusion}}{\longrightarrow} H^{*+r}(Y \times S^N)
+\end{equation}
+and the first and last parts map to $H^*(Y)$ by $f_*$ and $\pi_*$ (integration along $S^N$) respectively. 
+
+[talked more Riemann-Roch, Chern-Weil, Atiyah-Hirzebruch RR, Maurer-Cartan form]
+
+
+
+
+
+
+
+\end{document}
