@@ -1,0 +1,125 @@
+% declare document class and geometry
+%\documentclass[12pt]{article} % use larger type; default would be 10pt
+%\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../plaheader.tex}
+
+\title{Astro 270 -- Astrophysical Dynamics -- Lec01-02}
+\author{UCLA, Fall 2014}
+%\date{\formatdate{02}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+%\date{\formatdate{07}{10}{2014}} 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+\section{Mestel Disk}
+Defined in terms of the surface mass density
+\begin{equation}
+\Sigma(R) = \Sigma_0 \left(\frac{R_0}{R}\right)
+\end{equation}
+\begin{equation}
+M(r) = \int_0^R 2\pi R' dR' \Sigma_0 \left(\frac{R_0}{R}\right) = 2\pi \Sigma_0 R_0R
+\end{equation}
+Use Poisson's equation
+\begin{equation} 
+\nabla^2 \Phi = 0
+\end{equation}
+everywhere but at z = 0
+\begin{equation}
+\frac{1}{R} \pd{}{R} \left(R \pd{\Phi}{R}\right) + \pdd{\Phi}{z} = 0
+\end{equation}
+The potential can be written as um two um product um of two functions um we're assuming this is of course incorrectly um that it is separable in two fucntions so when put this um formulation of phi into this um equation we end up with uh the equation that 1/r um I have to write my Rs carefully because I''m using two this is uh script R and this is um capital R and so um we have the following 
+
+Can't write my capital Rs if I''m writing it as a script R. Um so since this is equal to zero we'll um bring this to teh other size of the equation and um end up with the function 
+
+\begin{equation}
+\Phi (R,z) = R(r) Z(z)
+\end{equation}
+\begin{equation}
+\frac{1}{Rr} \d{}{R} (R \d{r}{R}) = -\frac{1}{Z} \dd{Z}{z}
+\end{equation}
+Each side must equal a constant $-k^2$
+\begin{equation}
+\dd{Z}{z} - k^2Z = 0
+\end{equation}
+\begin{equation}
+Z = \alpha e^{\pm z}
+\end{equation}
+We choose the minus sign so it converges
+\begin{equation}
+\frac{1}{R} \d{}{R} (R \d{r}{R}) + k^2R=0
+\end{equation}
+
+By doing a substitution $u = kR$ we find that our function r goes as the zeroeth order bessel functions
+\begin{equation}
+\Phi(R,z) = e^{-kz} J_0(kR)
+\end{equation}
+We have a discontinuity in the derivative of the phi at z=0. Let's look at Gauss' law again
+
+\begin{equation}
+\sigma_k(R) = -\frac{k J_0(kR)}{2\pi G}
+\end{equation}
+We still need coefficients such that the surface mass density will yeild ourioriginal density
+
+\begin{equation}
+\Sigma(R) = \int_0^{\infty} S(k) \sigma_k(R) dk = -\frac{1}{2\pi G}\int_0^{\infty} kdk S(k)J_0(kR)
+\end{equation}
+WELL WHAT WHOOPIDY FUCKIN DO ITS A FT. Actually more than a Henkel function. We can invert it to find the coefficients
+\begin{equation}
+S(k) = -2\pi G \int_0^{\infty} J_0(kR) \Sigma(R) RdR
+\end{equation}
+Plug in our Mestel disk
+\begin{equation}
+S(k) = -2\pi G \Sigma_0 R_0 \int_0^{\infty} J_0(kR)  dR = -2\pi G \Sigma_0 R_0 /k
+\end{equation}
+\begin{equation}
+\Phi = \int_0^{\infty} S(k) \Phi_k (R, z)dk
+\end{equation}
+\subsection{Circular Orbit in Z=0 Plane}
+\begin{equation}
+v_c^2(R) = R\d{\Phi}{R}
+\end{equation}
+\begin{equation}
+\d{J_0(x)}{x} = -J_1(R)
+\end{equation}
+\begin{equation}
+v^2_c(R) = -R\int S(k) J_1(kR)kdk
+\end{equation}
+\begin{equation}
+v^2_c(R) = -2\pi G \Sigma_0 R_0R\int S(k) J_1(kR)kdk = -\frac{2\pi G \Sigma_0 R_0R}{R}
+\end{equation}
+\begin{equation}
+v_c^2 = 2\pi G \Sigma_0R_0
+\end{equation}
+
+
+\section{Orbits in Axisymmetric}
+We have our integrals of motion $E, L_z$. We can define an effective potential again
+\begin{equation}
+\Phi_{eff} = \Phi + \frac{\L_z^2}{2R^2}
+\end{equation}
+\begin{equation}
+E = \frac{1}{2} (\dot{R}^2 + R\dot{\phi}^2 + \dot{z}^2) + \Phi = \frac{1}{2} (\dot{R}^2 + \dot{z}^2 + \Phi_{eff}
+\end{equation}
+This means taht the orbit is restricted to the portions of the R-Z plane where $E\ge \Phi_{eff}$
+
+$R_z$ plane is the meridianal plane. We can limit our phase space to $R, z, \dot{R}, \dot{z}$ plane
+\begin{equation}
+\ddot{R} = -\pd{\Phi_{eff}}{R} 
+\end{equation}
+\begin{equation}
+\ddot{z} = -\pd{\Phi_{eff}}{z}
+\end{equation}
+When 
+\begin{equation}
+E = \Phi_{eff}
+\end{equation}
+Then the velocities are zero. 
+
+
+THis leads to epicicylic orbits. See homework problem 1e on classical. Do the Taylor expansion thing. 
+
+
+\end{document}
