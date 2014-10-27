@@ -1,0 +1,62 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec07}
+\author{UCLA, Fall 2014}
+\date{\formatdate{21}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Lagrange points}
+
+
+
+
+\section{Parametric resonance}
+
+
+
+\section{Legendre transform (for Hamiltonian mechanics)}
+
+Given a function $f(x)$, we say that it is convex if $f''(x) > 0$. If it is, then we will have a Legendre transform
+\begin{eqn}
+\mathcal{L} : f(x) \mapsto (\mathcal{L}f)(p)
+\end{eqn}
+taking $f(x)$ from position space to a function $(\mathcal{L}f)(p)$ in momentum space. Define
+\begin{eqn}
+F(p,x) = px - f(x),
+\end{eqn}
+which we picture as the difference between a line of slope $p$ and the convex function $f(x)$. Then the Legendre transformed function is defined as
+\begin{eqn}
+(\mathcal{L}f)(p) = \sup_{x \in \reals} F(p,x). 
+\end{eqn}
+Put another way, given $p$ there exists some $x(p)$ which maximizes $F(p,x)$, i.e.
+\begin{eqn}
+\eval[3]{\pd{F}{x}(p,x)}_{x = x(p)} = 0,
+\end{eqn}
+Then we have 
+\begin{eqn}
+\mathcal{L}f(p) = F(p,x(p)).
+\end{eqn}
+
+[missed examples here: $f(x) = ax^2$ and $f(x) = x^a / a$]
+
+An important property of Legendre transforms is that they are \textit{involutions}, that is the Legendre transform squares to the identity. In other words,
+\begin{eqn}
+\mathcal{L}^2 f(x) = \mathcal{L}(\mathcal{L}f)(x) = f(x).
+\end{eqn}
+Another useful property is \textit{Young's inequality},
+\begin{eqn}
+px - f(x) \leq \mathcal{L}f(p).
+\end{eqn}
+
+
+
+\end{document}
