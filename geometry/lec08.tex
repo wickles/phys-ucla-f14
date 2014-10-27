@@ -1,0 +1,162 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Math 217 -- Geometry and Physics -- Lec08}
+\author{UCLA, Fall 2014}
+\date{\formatdate{20}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Local basis on $\Gamma(E|_U)$}
+
+Since $E|_U \cong U \times \C^r$, let $\set{s_1, \dots, s_r}$ be a local basis of sections on $U$, and $\set{s'_1, \dots, s'_r}$ another basis of sections on $V$. Then on $U \cap V$, we have $s' = gs$ for some 
+\begin{eqn}
+g : U \cap V \rightarrow GL(n, \C).
+\end{eqn}
+Then we can write $\nabla s = \omega s$ for all $s$, where $\omega$ is an $r \times r$ matrix called the connection matrix.
+
+\begin{lemma}
+\begin{eqn}
+\omega' = g \omega g^{-1} + \dif{g} g^{-1}.
+\end{eqn}
+\end{lemma}
+
+\begin{proof}
+\begin{align}
+\nabla s' &= \dif{g} \, s + g \nabla s \\
+	&= \dif{g} \, s + g \omega s \\
+	&= \dif{g} \, g^{-1} s' + g \omega g^{-1} s' \\
+	&= \underbrace{(g \omega g^{-1} + \dif{g} \, g^{-1})}_{\omega'} s'
+\end{align}
+\end{proof}
+
+\begin{lemma}
+\begin{eqn}
+\Omega = \nabla^2 = \dif{\omega} - \omega \wedge \omega = \dif{\omega} - \frac{1}{2} [\omega, \omega].
+\end{eqn}
+\end{lemma}
+
+\begin{proof}
+\begin{align}
+\Omega(s) &= \nabla^2 s = \nabla (\omega s) \\
+	&= \dif{\omega} \, s - \omega \wedge \nabla s \\
+	&= (\dif{\omega} - \omega \wedge \omega) s.
+\end{align}
+\end{proof}
+
+\begin{remark}[Bianchi identity]
+\begin{align}
+\dif \Omega &= \dif (\dif{\omega} - \omega \wedge \omega) \\
+	&= -\dif{\omega} \wedge \omega + \omega \wedge \dif{\omega} \\
+	&= -(\dif{\omega} - \omega \wedge \omega) \wedge \omega + \omega \wedge (\dif{\omega} - \omega \wedge \omega) \\
+	&= \omega \wedge \Omega - \Omega \wedge \omega \\
+	&= [\omega, \Omega].
+\end{align}
+\end{remark}
+
+\begin{lemma}
+\begin{eqn}
+\Omega' = g \Omega g^{-1}.
+\end{eqn}
+This implies that $\det(tI + (i / 2\pi) \Omega)$ is globally defined, which implies that Chern forms are globally defined. 
+\end{lemma}
+
+\begin{proof}
+\begin{align}
+\Omega' &= \dif \omega' - \omega' \wedge \omega' \\
+	&= \dif (g \omega g^{-1} + \dif g \, g^{-1}) - (g \omega g^{-1} + \dif g \, g^{-1}) \wedge (g \omega g^{-1} + \dif g \, g^{-1}) \\
+	&= \cancel{\dif g \wedge \omega g\inv} + g \dif\omega \, g\inv - \cancel{g \omega \wedge \dif g\inv} - \cancel{\dif g \wedge \dif g^{-1}} \\
+	&\qquad - \cancel{\dif g \, g\inv \wedge \dif g \, g\inv} - \cancel{\dif g \wedge \omega g\inv} - \cancel{g \omega g\inv \wedge \dif g \, g\inv} - g \omega \wedge \omega g\inv \\
+	&= g \underbrace{(\dif\omega - \omega \wedge \omega)}_{\Omega} g\inv.
+\end{align}
+\end{proof}
+
+
+\section{Metric connections}
+
+Now consider a metric $\inner{\cdot}{\cdot}$ on $E$. We say that a connection $\nabla$ is compatible with $\inner{\cdot}{\cdot}$ if 
+\begin{eqn}
+\dif \inner{s}{t} = \inner{\nabla s}{t} + \inner{s}{\nabla t}.
+\end{eqn}
+Consider an orthonormal basis $\set{s_1, \dots, s_r}$ on $E$. Then 
+\begin{eqn}
+0 = \dif \inner{s_i}{s_j} = \inner{\nabla s_i}{s_j} + \inner{s_i}{\nabla s_j} = \omega_{ij} + \bar{\omega}_{ji},
+\end{eqn}
+thus $\omega$ is anti-hermitian, $\omega^\dagger = -\omega$. We find
+\begin{align}
+\Omega^\dagger &= \dif \omega^\dagger + \omega^\dagger \wedge \omega^\dagger \\
+	&= -\dif \omega + \omega \wedge \omega \\
+	&= - \Omega,
+\end{align}
+so $\Omega$ is also anti-Hermitian. 
+
+\subsection{Example: Yang-Mills theory (non-Abelian gauge theory)}
+
+Suppose we have a complex vector bundle $E \rightarrow M^4$ with metric $\inner{\cdot}{\cdot}$ on $E$ and compatible connection $\nabla$. Given the curvature
+\begin{eqn}
+F = \nabla^2 \in \Gamma(\Lambda^2 T^*M \otimes \opname{End} E),
+\end{eqn}
+we define the Yang-Mills functional by
+\begin{eqn}
+YM(\nabla) = \int_M \inner{F}{F} \dif \nu,
+\end{eqn}
+where $\dif \nu$ is the volume form on $M$ and the inner product here is the induced metric on $\Gamma(\Lambda^2 T^*M \otimes \opname{End} E)$. So $YM : \mathcal{A} \rightarrow \reals$ is a functional on the space $\mathcal{A}$ of metric connections on $E$. 
+
+\begin{lemma}
+Critical points of $YM$ are given by 
+\begin{eqn}
+\nabla^\dagger F = 0,
+\end{eqn}
+where $\nabla^\dagger$ is the adjoint of $\nabla$ with respect to the metric. 
+\end{lemma}
+
+\begin{proof}
+Define a collection of connections
+\begin{eqn}
+\nabla_t = \nabla + t B,
+\end{eqn}
+where $B \in \Omega^*(\opname{End} E)$ [$\Omega'$?]. Then we find
+\begin{eqn}
+YM(\nabla_t) = \int_M \inner{F_t}{F_t} \dif \nu
+\end{eqn}
+where
+\begin{eqn}
+F_t = (\nabla + tB)^2 = \nabla^2 + t \underbrace{(\nabla B + B \nabla)}_{\nabla B [?]} + t^2 B \wedge B.
+\end{eqn}
+Thus, we find
+\begin{eqn}
+YM(\nabla_t) = YM(\nabla) + 2t \int_M \inner{\nabla B}{F} \dif\nu + \bigO(t^2),
+\end{eqn}
+so 
+\begin{eqn}
+\eval{\od{}{t}}_{t=0} YM(\nabla_t) = 2 \int_M \inner{\nabla B}{F} = 2 \int_M \inner{\nabla B}{\nabla^\dagger F} \dif\nu
+\end{eqn}
+which in general will vanish iff $\nabla^\dagger F = 0$. 
+\end{proof}
+
+\begin{definition}
+The Hodge star is a map $* : \Omega^p(M) \rightarrow \Omega^{r-p}(M)$ [not giving full definition here]. If $*F = F$, we call $F$ a self-dual connection. If $*F = -F$, it is called anti-self-dual. 
+\end{definition}
+
+\begin{theorem}
+(Anti-) Self-dual connections are solutions of Yang-Mills. 
+\end{theorem}
+
+\begin{proof}
+Since $\nabla^\dagger = \pm * \nabla *$, we know that $\nabla^\dagger F = 0$ occurs when $F$ is (anti-) self-dual. (Note that $** = \pm 1$.)
+\end{proof}
+
+
+
+
+
+
+\end{document}

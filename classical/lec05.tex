@@ -1,10 +1,26 @@
-\input{../header.tex}
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec05}
+\author{UCLA, Fall 2014}
+\date{\formatdate{16}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
 
 \begin{document}
-\section{Constraints}
-If we have readily dependent constraints sometimes they can be reduced to holonomic constraints. For example with a wheel rolling without slipping we have a coordinte x(t) whcih describes the center position of the wheel. We also have the orientation of the angle. Here we have the constraint of rolling without slipping which couples our things
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+% begin Pauline's notes
+
+\section{More on constraints}
+
+If we have readily dependent constraints sometimes they can be reduced to holonomic constraints. For example with a wheel rolling without slipping we have a coordinate $x(t)$ which describes the center position of the wheel. We also have the orientation of the angle. Here we have the constraint of rolling without slipping which couples our things
 \begin{equation}
-\d{x}{t} + R\d{\phi} = 0
+\d{x}{t} + R\d{\phi}{t} = 0
 \end{equation}
 This is an integrable constraint because they are integrable
 \begin{equation}
@@ -14,7 +30,7 @@ So that it is independent of time.
 
 More generally if we have coordinates
 \begin{equation}
-\Sigma_i = \psi_i(q) \dot{q_i} = 0
+\sum_i = \psi_i(q) \dot{q_i} = 0
 \end{equation}
 In general these are not integrable. But if
 \begin{equation}
@@ -22,10 +38,10 @@ In general these are not integrable. But if
 \end{equation}
 Then the constraint is equivalent to 
 \begin{equation}
-\d{}{t} \phi(q_1) = \Sigma_i \pd{\phi}{q_i} \dot{q_i}
+\d{}{t} \phi(q_1) = \sum_i \pd{\phi}{q_i} \dot{q_i}
 \end{equation}
-Then the velcoity dependent constraint can be replaced by the holonomic constraint. However this is only in a small class of problems. Even in a simple example with a wheel that rotates around and rolls without slipping with its axis fixed to x = 0. Then we have coordinates $\theta$ and $\phi$. Then our condition of rotating without slipping is in the direction to the radius in the direction $\theta$
-OUr constraint then is
+Then the velocity dependent constraint can be replaced by the holonomic constraint. However this is only in a small class of problems. Even in a simple example with a wheel that rotates around and rolls without slipping with its axis fixed to $x = 0$. Then we have coordinates $\theta$ and $\phi$. Then our condition of rotating without slipping is in the direction to the radius in the direction $\theta$
+Our constraint then is
 \begin{equation}
 \dot{x} = r\dot{\phi} \sin \theta
 \end{equation}
@@ -35,20 +51,46 @@ OUr constraint then is
 This is not integrable because $\theta$ is dependent on time. 
 
 
-\section{Symmetry}
-Let's go one step up in abstraction, we'll introduce the notion of symmetry in lagrangian mechanics. One of the beautiful results of N\"{o}ther's theorem, which in and of itself is not impressive, is something that he didn't finish the sentence what. Basically it allows us to simplify a problem. For example what does it mean when a pen is axisymmetric? It means that we have something invariant under a transormation (such as rotation). What is an active or passive transformation? Rotation vs rotating your axes. 
+\section{Symmetries, conserved charges and Noether's theorem}
 
-Either way under these transformation if we something that doesn't change under it then the quantity associated with the transformation is symmetric. Symmetries that are not subject to N\"{o}ther's theorem is discrete symmetry, so parity and charge conjugation. 
-\subsection{Some Philosophy}
- \begin{itemize}
-\item This brings in the powerful mathematics of group theory 
-\item It allows us to impose order of confusing structures like SU(2) and SU(3), eightfold way for nuclear resonences. For example particle in the 60s produced a lot of nuclear resonances. Every week they'd fine a new particle with no way that they'd fit together. However, symmetry made that into an ordered structiure. The dynamics were governed by this symmetry
-\item N\"{o}ther's theorem, which is basically continuous symmetry gives us a conservation law gives us accounting in experiments. Basically what comes in has to come out. Gives us a way of checking
-\item It's also fucking beautiful  
-\item Spontaneous breaking of symmetry is a very important concept (phase transitions, Higgs mechanism)
+Let's go one step up in abstraction, we'll introduce the notion of symmetry in Lagrangian mechanics. One of the beautiful results of Noether's theorem, which in and of itself is not impressive, is [something that he didn't finish the sentence what]. Basically it allows us to simplify a problem. For example what does it mean when a pen is axisymmetric? It means that we have something invariant under a transformation (such as rotation). What is an active or passive transformation? Rotation vs rotating your axes. 
+
+Either way under these transformation if we something that doesn't change under it then the quantity associated with the transformation is symmetric. Symmetries that are not subject to Noether's theorem is discrete symmetry, so parity and charge conjugation. 
+
+
+Symmetry is one of the most important concepts in physics. 
+\begin{itemize}
+\item It brings in the powerful mathematics of group theory. 
+\item It allows us to impose order in confusing structures, e.g. $SU(2)$ for isospin, $SU(3)$ for eightfold for nuclear resonances. For example particle in the 60s produced a lot of nuclear resonances. Every week they'd fine a new particle with no way that they'd fit together. However, symmetry made that into an ordered structure. The dynamics were governed by this symmetry
+\item The crown jewel, \textbf{Noether's theorem}: tells us that continuous symmetries give us a conservation law which gives us accounting in experiments. Basically what comes in has to come out. Gives us a way of checking things. 
+\item Aesthetically pleasing (But must be careful!) [i.e. it's fucking beautiful]
+\item Spontaneous breaking of symmetry is a very important concept, for example in phase transitions, Higgs mechanism
 \end{itemize}
 
-\section{N\"{o}ther's Theorem}
+Before we go into a derivation of the general Noether theorem, let's start with some simple observations.
+
+
+%%%% commented out. original from Wickes' notes
+\begin{comment}
+\subsection{Adding a derivative to the Lagrangian}
+
+What happens if you add a total time derivative of a function $\Lambda(q(t), t)$ to the Lagrangian? So
+\begin{eqn}
+L' = L(q, \dot q, t) + \od{}{t} \Lambda(q(t), t).
+\end{eqn}
+We find that answers to the EL equations do not change:
+\begin{eqn}
+\pd{L'}{q} - \od{}{t} \pd{L'}{\dot{q}} = \pd{L}{q} - \od{}{t} \pd{L}{\dot{q}} + \left\{ \pd{}{q} \left[ \pd{\Lambda}{q} \dot{q} + \pd{\Lambda}{t} \right] - \od{}{t} \pd{}{\dot{q}} \left[ \pd{\Lambda}{q} \dot{q} + \pd{\Lambda}{t} \right] \right\}
+\end{eqn}
+and we see that the derivatives of $\Lambda$, the terms in the braces, cancel one another, leaving us with the EL equations for $L'$. 
+\end{comment}
+%%%% end comment
+
+
+
+
+\section{Perturbing the Lagrangian}
+
 When you consider a Lagrangian and perturb it by
 \begin{equation}
   L'(q, \dot{q}, t) = L(q, \dot{q}, t) + \d{\Lambda(q, t)}{t}
@@ -59,11 +101,11 @@ Not going to touch the coordinates
 \end{equation}
 The final two terms should be zero since we're only perturbing it by a time derivative
 \begin{equation}
-0 = \pdd{\Lambda}{q} \dot{q} + \frac{\partial\Lambda}{\partial t\partial q} + \d{}{t} \pd{\Lambda}{q}
+0 = \pd[2]{\Lambda}{q} \dot{q} + \md{\Lambda}{2}{t}{}{q}{} + \d{}{t} \pd{\Lambda}{q}
 \end{equation}
 This should be obvious because of the time derivative will not change the action
 
-We have an important equivalent. COndier a particle coupled to an EM field
+We have an important equivalence. Consider a particle coupled to an EM field
 \begin{equation}
 L = \frac{1}{2} m\v{x}^2 - e\Phi - e\dot{x} \v{A}
 \end{equation}
@@ -74,63 +116,164 @@ L' = L + e\pd{\Lambda}{t} + e\dot{x} \nabla \Lambda = e \d{}{t} \Lambda
 This gives us equivalent Lagrangians.
 
 \section{Obvious Conservation Laws}
-Some conservation laws are very easy to derive directly from the Euler Lagrange coordates. For example cyclic coordinates. A coordinate $q_i$ is cyclical if and only if its derivative $\dot{q_i}$ not q itself appears in the Lagrangian so $\pd{L}{q_i} = 0$. This leads to a conserved quantity
+Some conservation laws are very easy to derive directly from the Euler Lagrange coordinates. It is especially easy for \textit{cyclic coordinates}. A coordinate $q_i$ is called cyclical if and only if its derivative $\dot{q_i}$ appears in the Lagrangian and not $q$ itself, so $\pd{L}{q_i} = 0$. This leads to a conserved quantity
 \begin{equation}
 Q = \pd{L}{\dot{q_i}}
 \end{equation}
+For a cyclic coordinate $q$, under the transformation $q' = q + \epsilon$ the Lagrangian has \textit{exactly} the same form. This is different from general coordinate transformations where we have the same Lagrangian just written in different coordinates; instead the Lagrangian remains exactly the same, written in the \textit{same} coordinates. 
 
-
-\subsection{One example}
+\setcounter{example}{0}
+\begin{example}
 Flat direction in potential
 \begin{equation}
 L = \frac{1}{2} m \dot{x_1}^2 + \frac{1}{2} m\dot{x_2}^2 + V(x_1)
 \end{equation}
 This implies that $m\dot{x_2}$ is conserved.
+\end{example}
 
-\subsection{Central potential}
-IN the potential, $\phi$ is cyclic and so angular momentum is conserved
-\subsection{Third example}
-If $L(q, \dot{q})$ has no explicit time dependence then the Hamiltonian
+\begin{example}[Central potential]
+In the potential, $\phi$ is cyclic and so angular momentum is conserved
+\end{example}
+
+\begin{example}
+If $L(q, \dot{q})$ has no explicit time dependence then the Hamiltonian is conserved. Since we have,
 \begin{equation}
-H = \pd{L}{\dot{q} \dot{q} - L
+H = \pd{L}{\dot{q}} \dot{q} - L
 \end{equation}
+we find
 \begin{equation}
-\d{H}{t} = \d{}{t} (\pd{L}{\dot{q}} \dot{q} - \d{L}{t} = \d{}{t} \pd{L}{\dot{q}} \dot{q} - \pd{L}{q} \dot{q} = 0
+\d{H}{t} = \d{}{t} (\pd{L}{\dot{q}} \dot{q}) - \d{L}{t} = \d{}{t} \pd{L}{\dot{q}} \dot{q} - \pd{L}{q} \dot{q} = 0.
 \end{equation}
+\end{example}
 
 
 \section{General Lessons}
 We have symmetry whenever we have something continuous. In the first example with the flat direction, it's saying that if we shift it along the flat part then it's not changing. In the case of the central force it just means if we rotate the system it's the same. the final just means that we can make a shift in the time coordinate. If I shift the time coordinate the form of the Lagrangian is constant. There's a continuous symmetry under which the Lagrangian does not change. 
 
 The second lesson is that to show that a quantity is conserved I need to use the Euler-Lagrange equation. The important thing is here is that the first part does not need Euler Lagrange equation, that symmetry is independent of the Euler Lagrange equation. 
-\begin{equation}
-L(q', \dot{q}', t) = L (q, \dot{q}, t)
-\end{equation}
-Our General definition of a symmetry of a lagrangian
-\begin{equation}
-q_i(t, \epsilon) = q_i(t) + \epsilon \delta q_i(q, t)
-\end{equation}
-\begin{equation}
-L(q', \dot{q'}, t) - \L(q, \dot{q}, t) = \d{\Lambda}{t}
-\end{equation}
-\begin{equation}
-\pd{L(q, q')}|_\epsilon = 0 = \d{\Lambda}{t}
-\end{equation}
 
-So our definition of symmetry
-\begin{equation}
-q_i' = q_i = \epsilon \delta q_i
-\end{equation}
-\begin{equation}
-\pd{L}{\epsilon}|_{\epsilon = 0} = \d{\Lambda}{t}
-\end{equation}
 
-N\"{o}ther's theorem says that there is a conserved quantity for an L with a symmetry defined above will have a conserved quantity which is given 
-\begin{equation}
-Q = \Sigma_i \pd{L}{q_i \delta q_i - \Lambda 
-\end{equation}
-So now what is the time evolution our conserved quantity? Using the Euler Lagrange equation
-\begin{equation}
-\d{Q}{t} = 0
-\end{equation}
+
+
+% End Pauline's notes. Begin Wickes' notes
+
+
+
+
+%\section{Cyclic coordinates}
+
+%For a cyclic coordinate $q$, i.e. $L(q,\dot q)$ only depends on $\dot q$,, under the transformation $q' = q + \epsilon$ the Lagrangian has \textit{exactly} the same form. This is different from general coordinate transformations where we have the same Lagrangian just written in different coordinates; instead the Lagrangian remains exactly the same, written in the original coordinates. 
+
+The general definition of a continuous symmetry of the Lagrangian is a transformation 
+\begin{eqn}
+q'_i(t, \epsilon) = q_i (t) + \epsilon \delta q_i (q,t).
+\end{eqn}
+which leaves the Lagrangian unchanged up to a total derivative, i.e.
+\begin{eqn}
+L(q', \dot{q}', t) - L(q, \dot q, t) = \od{\Lambda}{t}.
+\end{eqn}
+which can be expanded as
+\begin{eqn}
+\cancel{L(q, \dot q, t)} + \pd{}{\epsilon} \eval{L(q, \dot q, t)}_{\epsilon = 0} - \cancel{L(q, \dot q, t)} = \od{\Lambda}{t}.
+\end{eqn}
+
+Thus most generally a symmetry is a transformation $q_i \rightarrow q'_i = q_i + \epsilon \delta q_i$ such that
+\begin{eqn}
+\pd{}{\epsilon} \eval{L(q, \dot q, t)}_{\epsilon = 0} = \od{\Lambda}{t}.
+\end{eqn}
+Then \textbf{Noether's theorem} states that given such a symmetry we have a conserved quantity
+\begin{eqn}
+Q = \sum_i \pd{L}{\dot q_i} \delta q_i - \Lambda.
+\end{eqn}
+
+We can prove this by showing that $\od{Q}{t} = 0$. We have
+\begin{align}
+\od{\Lambda}{t} &= \eval{\pd{L}{\epsilon}}_{\epsilon = 0} = \sum_i \left( \pd{L}{q_i} \delta q_i + \pd{L}{\dot q_i} \od{}{t} \delta q_i \right) \\
+	&= \sum_i \left( (\od{}{t} \od{L}{\dot q_i} ) \delta q_i + \pd{L}{\dot q_i} \od{}{t} \delta q_i \right),
+\end{align}
+which we can rewrite to find
+\begin{eqn}
+\od{Q}{t} = \od{}{t} \left( \sum_i \pd{L}{\dot q_i} \delta q_i - \Lambda \right) = 0.
+\end{eqn}
+QED. 
+
+\setcounter{example}{0}
+\begin{example}
+For a cyclic variable, we have $\delta q_i = \delta_i^1 \implies \pd{L}{\dot q_1} = Q$.
+\end{example}
+
+\begin{example}
+For a free particle, we have $L = \sum_i (1/2) m_i \dot {\v x}_i^2$. Here our symmetry is translation, so the conserved quantity is $\v{Q} = \sum_i m_i \dot{\v x}_i$ which is just the momentum.
+\end{example}
+
+\begin{example}
+For $\delta \v x_i = \v \omega \times \v x_i$, we have a conserved quantity
+\begin{eqn}
+Q = \sum_i m_i \dot{\v x}_i \cdot (\v \omega \times \v x_i) = \v \omega \cdot \sum_i m_i (\v x_i \times \dot{\v x}_i) = \v \omega \cdot \v L_\text{total}
+\end{eqn}
+so the total angular momentum is conserved.
+\end{example}
+
+\subsection{Time translations}
+
+Consider the change $t \rightarrow t + \epsilon$. Then we can write
+\begin{eqn}
+q'(t, \epsilon) = q(t + \epsilon) = q(t) + \epsilon \dot q_i + \bigo(\epsilon^2)
+\end{eqn}
+so under time translation we have $\delta q = \dot q$. So we have
+\begin{eqn}
+\eval{ \pd{L}{\epsilon} }_{\epsilon = 0} = \od{L}{t} - \pd{L}{t},
+\end{eqn}
+so this is only a symmetry if there is no explicit time dependence, in which case we have $\Lambda = L$. Furthermore we can calculate $Q$:
+\begin{eqn}
+\sum_i \pd{L}{\dot q_i} \dot q_i - L = H.
+\end{eqn}
+The conserved quantity is just the Hamiltonian! 
+
+
+\subsection{Pathological issues}
+
+In general for our action 
+\begin{eqn}
+S[q] = \int dt L(q, \dot q, t)
+\end{eqn}
+this doesn't necessarily work [?]. The most general definition of a symmetry involves reparametrization of time:
+\begin{eqn}
+\begin{matrix}
+q'_i (t', \epsilon) & = & q_i (t) & + & \epsilon \delta q_i(q, t) \\
+t' & = & t & + & \epsilon \delta t (q,t),
+\end{matrix}
+\end{eqn}
+and we have 
+\begin{eqn}
+\int_{t'_1}^{t'_2} dt' L(q', \dot q', t') = \int_{t_1}^{t_2} dt L(q, \dot q, t) + \int dt \od{\Lambda}{t}
+\end{eqn}
+with a conserved quantity
+\begin{eqn}
+Q = \pd{L}{\dot q_i} \delta q_i - \Lambda + (L - \pd{L}{\dot q_i} \dot q_i) \delta t.
+\end{eqn}
+
+For example, with a Lagrangian 
+\begin{eqn}
+L = (1/2) m \dot q^2 - \alpha / 2 q^2
+\end{eqn}
+we have a few conserved quantities. For one, the energy 
+\begin{eqn}
+H = (m/2) \dot q^2 + \alpha / 2 q^2,
+\end{eqn}
+and furthermore we can write
+\begin{eqn}
+t' = \frac{\alpha t + \beta}{\gamma t + \delta}, \qquad q' (t') = \frac{q(t)}{\gamma t + \delta}
+\end{eqn}
+where $M = \begin{pmatrix} \alpha & \beta \\ \gamma & \delta \end{pmatrix}$ has determinant 1. Then we have new conserved quantities
+\begin{align}
+D &= -(m/2) q \dot q + t((m/2) \dot q^2 + \alpha / 2 q^2), \\
+K &= (m/2) (\dot q t - q)^2 + (\alpha / 2 q^2) t^2.
+\end{align}
+
+
+
+
+
+
 \end{document}

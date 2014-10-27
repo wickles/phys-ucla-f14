@@ -1,0 +1,135 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Math 217 -- Geometry and Physics -- Lec09}
+\author{UCLA, Fall 2014}
+\date{\formatdate{22}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{More stuff}
+
+We are considering a bundle $E \rightarrow M$ with inner product $\inner{\cdot}{\cdot}$ with associated metric connection $\nabla$. Last time we found $^t \bar{\Omega} = -\Omega$ and $c_j(E) = \bar{c_j(E)}$, where $c_j(E) \in H^{2j}(M, \reals)$. We will see that $c_j(E) \in H^{2j} (M, \ints)$. 
+
+\begin{exercise} 
+Given $\omega = \omega(t)$ a family of connections, we have the curvature $\Omega = \Omega(t) = \dif \omega - \omega \wedge \omega$. Prove that
+\begin{enumerate}
+\item \begin{align}
+\od{}{t} \log \det (1 + q\Omega) &= q \tr \left[ (1+q\Omega)^{-1} \dot{\Omega} \right] \\
+	&= \sum_{\ell = 0}^\infty (-1)^\ell q^{\ell +1} \tr \left( \Omega^\ell (\dif \dot \omega - \omega \dot \omega - \dot \omega \omega) \right).
+\end{align}
+\item Use the Bianchi identity $\dif \Omega = \Omega \omega - \omega \Omega$ to show that
+\begin{align}
+\tr \left( \Omega^\ell (\omega \dot \omega + \dot \omega \omega ) \right) &= \tr ( \Omega^\ell \omega \dot \omega - \omega \Omega^\ell \dot \omega) \\
+	&= \tr \left( (\dif \Omega^\ell) \dot \omega \right).
+\end{align}
+\item \begin{eqn}
+\od{}{t} \log \det (1 + q\Omega) = \dif \left\{ \sum_{\ell=0}^\infty (-1)^\ell q^{\ell+1} \tr (\Omega^\ell \dot \omega) \right\}.
+\end{eqn}
+This implies Chern-Weil theory. 
+\end{enumerate}
+\end{exercise}
+
+Since $\Omega$ is skew-Hermitian, i.e. [LHS is typeset wrong, see TeX]
+\begin{eqn}
+\det {^t \bar{ tI + (i / 2\pi) \Omega }} = \det (tI + \frac{i}{2\pi} \Omega)
+\end{eqn}
+so $\bar{c_j(E)} = c_j(E)$, we can formally diagonalize $\Omega$
+\begin{eqn}
+\frac{i}{2\pi} \Omega = \opname{diag} (x_1, \dots, x_r) \quad \implies \quad c_j(E) = \sigma_j (x_1, \dots, x_r)
+\end{eqn}
+where $\sigma_j$ are the elementary symmetric functions. We will call the $x_i$ the Chern roots and see that they are some form of line bundle. Formally, we have
+\begin{eqn}
+\frac{i}{2\pi} \Omega = \opname{diag} \left[ \pmat{0 & x_1 \\ -x_1 & 0}, \dots, \pmat{0 & x_r \\ -x_r & 0} \right]
+\end{eqn}
+and 
+\begin{eqn}
+P_j(E) = \sigma_j (x_1^2, \dots, x_r^2),
+\end{eqn}
+where the Euler class is 
+\begin{eqn}
+e(E) = \prod_{j=1}^r x_j = \opname{Pf} \frac{i}{2\pi} \Omega.
+\end{eqn}
+
+\begin{example}
+Some examples:
+\begin{enumerate}
+\item The trivial bundle, $\nabla = \dif$, $\Omega = \dif^2 = 0$, implies that $c_j = 0$, $p_j = 0$ for $j \geq 1$ and $c_0 = p_0 = 1$. 
+\item The $n$-sphere, $TS^n \rightarrow S^n$, where 
+\begin{eqn}
+TS^n \oplus N \cong \eval[1]{T\reals^{n+1}}_{S^n}
+\end{eqn}
+with $N$ the trivial line bundle. Then for the total Chern and Pontryagin numbers 
+\begin{align}
+c(E) &= 1 + c_1(E) + \dots + c_r(E) \\
+p(E) &= 1 + p_1(E) + \dots + p_r(E),
+\end{align}
+we have
+\begin{eqn} 
+P(TS^n \oplus N) = P(\eval[1]{T\reals^{n+1}}_{S^n}) = 1
+\end{eqn}
+and $P(N) = 1$ so we find $P(TS^n) = 1$. 
+\end{enumerate}
+\end{example}
+
+It's a basic property of Chern classes that
+\begin{enumerate}
+\item $c(E \oplus E') = c(E) c(E')$,
+\item Given $f : M \rightarrow N$, we have $c(f^* E) = f^*(c_1(E))$.
+\end{enumerate}
+Proof: 1. On $E \oplus E'$, we have
+\begin{eqn}
+\nabla = \pmat{\nabla^E & 0 \\ 0 & \nabla^{E'}} \quad \implies \quad \Omega = \pmat{\Omega^E & 0 \\ 0 & \Omega^{E'}}.
+\end{eqn}
+2. Due to the induced connection on $f^* E$, $f^* \nabla^E$
+\newline 
+
+[Missed an example on projective spaces here]
+
+
+\begin{theorem}
+(Grothendieck) For any complex vector bundle on a closed manifold $M$, there exist unique Chern classes $c_j(E) \in H^{2j}(X, \ints)$ such that 
+\begin{enumerate}
+\item $c_0(E) = 1$ and $c_j(E) = 0$ for $j > r = \opname{rank} E$
+\item Given smooth map $f : M \rightarrow N$, we have $c_j(f^* E) = f^* c_j(E)$ (`Naturality')
+\item $c(E \oplus E') = c(E) c(E')$
+\item For $\bigo(-1) = L \rightarrow \mathbb{P}^1$, we have 
+\begin{eqn}
+c_1(L^*) = c_1(\bigo(1)) = g \quad \text{where} \quad \int_{\mathbb{P}^1} g = 1.
+\end{eqn}
+\end{enumerate}
+\end{theorem}
+
+\subsection{Splitting principle}
+
+Given complex vector bundle $E \overset{\pi}{\longrightarrow} M$, there exists a flag bundle $F(E)$ on $M$ such that
+\begin{enumerate}
+\item $\pi : F(E) \rightarrow M$, $\pi^* E \cong L_1 \oplus \cdots \oplus L_r \rightarrow F(E)$
+\item $\pi^* : H^*(M) \rightarrow H^*(F(E))$ is injective. 
+\end{enumerate}
+Then there are maps $\pi_i$ such that
+\begin{eqn}
+\begin{matrix}
+E & & \pi_1^* E = S_1 \oplus Q_1 & & \pi_2^* Q_1 = S_2 \oplus Q_2 \\
+\downarrow & & \downarrow & & \downarrow \\
+M & \overset{\pi_1}{\longleftarrow} & P(E) & \overset{\pi_2}{\longleftarrow} & P(Q_1) & \overset{\pi_3}{\longleftarrow} \cdots \longleftarrow P(Q_{r-2}) = F(E)
+\end{matrix}
+\end{eqn}
+
+We have $\pi^* c_j(E) = \sigma_j (x_1, \dots, x_r) $ where $x_k = c_1(L_k)$
+
+\begin{remark}
+To prove identities of Chern classes, can prove using Chern roots.
+\end{remark}
+
+
+
+\end{document}

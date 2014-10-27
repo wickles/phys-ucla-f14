@@ -3,7 +3,7 @@
 \usepackage[margin=1in]{geometry} % handle page geometry
 
 % import packages and commands
-\input{../header.tex}
+\input{../header2.tex}
 
 
 \title{Math 217 -- Geometry and Physics -- Lec01}
@@ -31,10 +31,12 @@
 
 \subsection{History}
 
-\begin{align}
-\int_M \text{geometry} &\neq \text{Topological} \\
-\varepsilon(TM) &\qquad \chi(M) \notag
-\end{align}
+\begin{equation}
+\begin{matrix}
+\int_M & \text{geometry} & \neq & \text{Topological} \\
+& \varepsilon(TM) & \qquad & \chi(M) \notag
+\end{matrix}
+\end{equation}
 
 \begin{enumerate}
 \item Chern, 1946: Gauss-Bonnet theorem.
@@ -54,7 +56,7 @@
 
 \subsection{Basics}
 
-Denote the \textbf{manifold} $M = \cup_{i \in I} U_i$ with \textbf{coordinate maps} $\varphi_i: U_i \rightarrow \mathbb{R}^n$ which are homeomorphisms / coordinate covers. Recall that a manifold is a topological space (Hausdorff) and locally Euclidean. 
+Denote the \textbf{manifold} $M = \cup_{i \in I} U_i$ with \textbf{coordinate maps} $\varphi_i: U_i \rightarrow \R^n$ which are homeomorphisms / coordinate covers. Recall that a manifold is a topological space (Hausdorff) and locally Euclidean. 
 \begin{equation}
 \text{(insert canonical diagram of coordinate maps)}%. see e.g. https://commons.wikimedia.org/wiki/File:Two\_coordinate\_charts\_on\_a\_manifold.svg)}
 \end{equation}
@@ -63,28 +65,30 @@ If all the $\varphi_j \circ \varphi_i^{-1} \in C^\infty$, then it is a \textbf{s
 
 \subsection{Examples}
 
-\begin{enumerate}
-\item The circle $M = S^1 = \set{ (x,y)\in \mathbb{R}^2 : x^2 + y^2 = 1 }$
+\begin{example}
+The circle $M = S^1 = \set{ (x,y)\in \R^2 : x^2 + y^2 = 1 }$
 \begin{equation}
 \text{(insert diagram of $S^1$ with four charts)}
 \end{equation}
 with charts
 \begin{align}
-U_1 &= \set{ x>0 } \overset{\varphi_1}{\longrightarrow} \mathbb{R}^1, \qquad \varphi_1(p) = y, \\
-U_2 &= \set{ y>0 } \overset{\varphi_2}{\longrightarrow} \mathbb{R}^1, \qquad \varphi_2(p) = x, \\
-U_3 &= \set{ x<0 } \overset{\varphi_3}{\longrightarrow} \mathbb{R}^1, \qquad \varphi_3(p) = y, \\
-U_4 &= \set{ y<0 } \overset{\varphi_4}{\longrightarrow} \mathbb{R}^1, \qquad \varphi_4(p) = x.
+U_1 &= \set{ x>0 } \overset{\varphi_1}{\longrightarrow} \R^1, \qquad \varphi_1(p) = y, \\
+U_2 &= \set{ y>0 } \overset{\varphi_2}{\longrightarrow} \R^1, \qquad \varphi_2(p) = x, \\
+U_3 &= \set{ x<0 } \overset{\varphi_3}{\longrightarrow} \R^1, \qquad \varphi_3(p) = y, \\
+U_4 &= \set{ y<0 } \overset{\varphi_4}{\longrightarrow} \R^1, \qquad \varphi_4(p) = x.
 \end{align}
 On $U_1 \cap U_2$, we have the coordinate change $y = \sqrt{1-x^2}$, $x = \sqrt{1-y^2}$.
+\end{example}
 
-\item The 2-sphere $S^2 = \set{ (x,y,z) \in \mathbb{R}^3 : x^2 + y^2 + z^2 = 1 }$
+\begin{example}
+The 2-sphere $S^2 = \set{ (x,y,z) \in \R^3 : x^2 + y^2 + z^2 = 1 }$
 \begin{equation}
 \text{(insert diagram of $S^2$)}
 \end{equation}
 with charts
 \begin{align}
-U_+ &= \set{ z \neq -1 } \overset{\varphi_+}{\longrightarrow} \mathbb{R}^2 \\
-U_- &= \set{ z \neq 1 } \overset{\varphi_-}{\longrightarrow} \mathbb{R}^2
+U_+ &= \set{ z \neq -1 } \overset{\varphi_+}{\longrightarrow} \R^2 \\
+U_- &= \set{ z \neq 1 } \overset{\varphi_-}{\longrightarrow} \R^2
 \end{align}
 \begin{align}
 \varphi_+(x,y,z) &= (\frac{x}{1+z}, \frac{y}{1+z}) \\
@@ -92,11 +96,11 @@ U_- &= \set{ z \neq 1 } \overset{\varphi_-}{\longrightarrow} \mathbb{R}^2
 \end{align}
 The inverse of the coordinate maps can be written
 \begin{align}
-\varphi_+^{-1} : \mathbb{R}^2 &\longrightarrow U_+ \\
+\varphi_+^{-1} : \R^2 &\longrightarrow U_+ \\
 	(x_1, x_2) &\mapsto (\frac{2x_1}{1+\rho^2}, \frac{2x_2}{1+\rho^2}, \frac{1-\rho^2}{1+\rho^2}) 
 \end{align}
 \begin{align}
-\varphi_-^{-1} : \mathbb{R}^2 &\longrightarrow U_- \\
+\varphi_-^{-1} : \R^2 &\longrightarrow U_- \\
 	(x_1, x_2) &\mapsto (\frac{2x_1}{1+\rho^2}, \frac{2x_2}{1+\rho^2}, \frac{\rho^2-1}{1+\rho^2}) 
 \end{align}
 where $\rho^2 = x^2 + y^2$. Then
@@ -104,18 +108,22 @@ where $\rho^2 = x^2 + y^2$. Then
 \varphi_- \circ \varphi_+^{-1} : \varphi_+(U_+ \cap U_-) &\rightarrow \varphi_-(U_+ \cap U_p) \\
 	(x_1, x_2) &\mapsto (x_1 / \rho, x_2 / \rho)
 \end{align}
+\end{example}
 
+\begin{example}
+The real projective space $\RP^n = (\R^{n+1} - \set{ 0 }) / \R^* = S^n / \Z_2$, i.e. $(x_0, \dots, x_n) \sim (\lambda x_0, \dots, \lambda x_n)$, $\lambda \in \R^*$
+\end{example}
 
-\item The real projective space $\mathbb{RP}^n = (\mathbb{R}^{n+1} - \set{ 0 }) / \mathbb{R}^* = S^n / \mathbb{Z}_2$, i.e. $(x_0, \dots, x_n) \sim (\lambda x_0, \dots, \lambda x_n)$, $\lambda \in \mathbb{R}^*$
-
-\item The complex projective space $\mathbb{CP}^n = (\mathbb{C}^{n+1} - \set{ 0 }) / \mathbb{C}^* = S^{2n+1} / S^1$, i.e. $z_0, \dots, z_n) \sim (\lambda z_0, \dots, \lambda z_n)$, $\lambda \in \mathbb{C}^*$, say with charts: $U_i = \set{ z_i \neq 0 }$,
+\begin{example}
+The complex projective space $\CP^n = (\C^{n+1} - \set{ 0 }) / \C^* = S^{2n+1} / S^1$, i.e. $z_0, \dots, z_n) \sim (\lambda z_0, \dots, \lambda z_n)$, $\lambda \in \C^*$, say with charts: $U_i = \set{ z_i \neq 0 }$,
 \begin{align}
-\varphi_i : U_i &\longrightarrow \mathbb{C}^n \\
+\varphi_i : U_i &\longrightarrow \C^n \\
 	(z_0, \dots, z_n) &\mapsto (z_0/z_i, \dots, z_n/z_i)
 \end{align}
-For example, $\mathbb{CP}^1 \cong S^2$.
+For example, $\CP^1 \cong S^2$.
+\end{example}
 
-%(more stuff on $\mathbb{CP}^n$ missing here? (got more from Yeou))
+%(more stuff on $\CP^n$ missing here? (got more from Yeou))
 
 
 \subsection{More on manifolds}
@@ -123,39 +131,32 @@ For example, $\mathbb{CP}^1 \cong S^2$.
 Denote a \textbf{tangent bundle} $TM = \cup_{x \in M} T_x M$ with \textbf{canonical map} $\pi: TM \rightarrow M$. $TM$ has a manifold structure.
 
 $f: M \rightarrow N$ is a \textbf{smooth map} if $f \circ \varphi_i^{-1}$ is smooth for all $i$. If $f$ is smooth, then define the differential or pushforward $df = f_* : TM \rightarrow TN$ such that for all $x \in M$, 
-\begin{align}
-f_*(x) : T_x M &\longrightarrow T_{f(x)}M \\
-	v &\mapsto f_*(v) = \frac{d}{dt} f(\alpha(t)) \Big|_{t=0}
-\end{align}
+\begin{equation}
+\begin{matrix}
+f_*(x) & : & T_x M & \longrightarrow & T_{f(x)}M \\
+&&	v & \mapsto & f_*(v) = \frac{d}{dt} f(\alpha(t)) \Big|_{t=0}
+\end{matrix}
+\end{equation}
 where $\alpha : (-\epsilon, \epsilon) \rightarrow M$, $\alpha(0) = x$, and $\alpha'(0) = v$. 
 
 We define a \textbf{smooth section} as a map $X : M \rightarrow TM$ such that $\pi \circ X = \operatorname{id}_M$. For example, a vector field on $M$ is a standard example of a smooth section. 
 
 %(missed board on lie brackets here (got more from Yeou))
 
-Using coordinates on chart $U$, $X = \sum_{i=1}^n a_i \frac{\pd}{\pd x_i}$ for all $f \in C^\infty(M)$ such that $f : M \rightarrow \mathbb{R}$. Then $\mathcal{L}_X f = X(f) = f_*(X)$.
+Using coordinates on chart $U$, $X = \sum_{i=1}^n a_i \pd{}{x_i}$ for all $f \in C^\infty(M)$ such that $f : M \rightarrow \R$. Then $\mathcal{L}_X f = X(f) = f_*(X)$.
 
-Lie bracket: $[X,Y]f = X(Yf) - Y(Xf)$. Antisymmetric, Jacobi (???)
+We define the \textbf{Lie bracket} $[X,Y]f = X(Yf) - Y(Xf)$. Note Antisymmetric, Jacobi [???]
 
 
-Given a vector field $X$, let $\varphi : (a_x, b_x) \rightarrow M$ be a curve s.t. $\varphi(0) = x$, $\pd \varphi / \pd t = X \circ \varphi$ on $(a_x, b_x)$ maximal interval
+Given a vector field $X$, let $\varphi : (a_x, b_x) \rightarrow M$ be a curve s.t. $\varphi(0) = x$, $\pd{\varphi}{t} = X \circ \varphi$ on $(a_x, b_x)$ maximal interval
 
-If $(a_x, b_x) = (-\infty, \infty) = \mathbb{R}$, $\varphi$ or $X$ is complete
+If $(a_x, b_x) = (-\infty, \infty) = \R$, $\varphi$ or $X$ is complete
 
 %(more on a board here on vector field? (got more from Yeou))
 
-\end{enumerate}
 
 
 
-\begin{comment}
-\begin{figure}
-\centering
-\includegraphics{3a.pdf}
-\caption{Half the diagrams for photon-photon scattering.}
-\label{fig:3a}
-\end{figure}
-\end{comment}
 
 
 

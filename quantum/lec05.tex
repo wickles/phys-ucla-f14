@@ -1,0 +1,98 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec05}
+\author{UCLA, Fall 2014}
+\date{\formatdate{20}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+[missed first hour, lots of stuff missing here]
+
+\section{Spin precession (of a localized spin-$1/2$ particle)}
+
+We have a 2 dimensional Hilbert space with Hamiltonian
+\begin{eqn}
+H = -\gamma (\hbar / 2) \v{\sigma} \cdot \v{B},
+\end{eqn}
+where $\gamma$ is the gyromagnetic ratio and
+\begin{eqn}
+\v{\sigma} = \set{ \pmat{0 & 1 \\ 1 & 0}, \pmat{0 & -i \\ i & 0}, \pmat{1 & 0 \\ 0 & -1} }
+\end{eqn}
+are the Pauli matrices. We can also write
+\begin{eqn}
+H = -\gamma \v{S} \cdot \v{B} = -\v{\mu} \cdot \v{B},
+\end{eqn}
+where $\v{S} = (\hbar/2) \v{\sigma}$ is the spin operator and $\v{\mu} = \gamma \v{S}$ is the magnetic moment. 
+
+For the electron, we have
+\begin{eqn}
+\mu = \gamma \hbar / 2 = -(g/2) \mu_B
+\end{eqn}
+where $g$ is the so-called ``g factor'' and $\mu_B = \abs{e} \hbar / (2mc)$ is the Bohr magneton. Classically it is expected that $g = 1$, which was actually measured (incorrectly) by Einstein et al. According to QED and the Dirac equation, $g \approx 2$ for a free electron. In fact it is very close to 2, actually around $g \approx 2.002$ which has been measured with great accuracy in agreement with theory. This measurement is one of the great triumphs of quantum field theory. 
+
+\subsubsection{Constant magnetic field}
+
+Let $\v{B} = B \uv{z}$, then
+\begin{eqn}
+H = -\gamma (\hbar / 2) B \v{\sigma}_z = \pmat{-\mu B & 0 \\ 0 & +\mu B}.
+\end{eqn}
+So we have two energy eigenkets,
+\begin{eqn}
+\ket{\uparrow} = \pmat{1 \\ 0}, \qquad \ket{\downarrow} = \pmat{0 \\ 1}
+\end{eqn}
+with energies $E_\uparrow = -\mu B$, $E_\downarrow = \mu B$. Since $\mu < 0$, $E_\downarrow$ is the energy of the ground state. Furthermore, we have
+\begin{eqn}
+\Delta E = E_\uparrow - E_\downarrow = -2\mu B = \hbar \abs{\gamma} B
+\end{eqn}
+or $\Delta E = \hbar \omega_L$ where $\omega_L = \abs{\gamma} B$ is the Larmor frequency. 
+
+Now, for an arbitrary state $\ket{\psi}$ we can write
+\begin{eqn}
+\ket{\psi} = C_\uparrow \ket{\uparrow} + c_\downarrow \ket{\downarrow},
+\end{eqn}
+which time evolved becomes
+\begin{align}
+\ket{\psi(t)} &= e^{-(i / \hbar) E_\uparrow t} c_\uparrow \ket{\uparrow} + e^{-(i / hbar) E_\downarrow t} c_\downarrow \ket{\downarrow} \\
+	&= e^{-(i / \hbar) E_\uparrow t} (c_\uparrow \ket{\uparrow} + e^{i\omega_L t} c_\downarrow \ket{\downarrow}) \\
+	&\sim c_\uparrow \ket{\uparrow} + e^{i\omega_L t} c_\downarrow \ket{\downarrow}.
+\end{align}
+The expectation value of spin angular momentum is given by
+\begin{eqn}
+\v{s}(t) = \frac{\hbar}{2} \bra{\psi(t)} \v{\sigma} \ket{\psi(t)},
+\end{eqn}
+which satisfies the equation
+\begin{eqn}
+\od{\v{s}(t)}{t} = -\gamma \v{B} \times \v{s}(t) = \omega_L \uv{z} \times \v{s}(t).
+\end{eqn}
+
+
+\section{Heisenberg picture}
+
+In the Schroedinger picture, the operators are time-independent while the state evolves in time. In the Heisenberg picture, we picture the situation the other way around, that is the states are time-independent and the operators evolve in time. In general, for an operator $O(t)$ the time average is given by
+\begin{eqn}
+\avg{O(t)} = \bra{\psi(t)} O(t) \ket{\psi(t)}.
+\end{eqn}
+In the Schroedinger picture, we solve for $\ket{\psi(t)}$. In the Heisenberg picture, we have
+\begin{align}
+\avg{O(t)} &= \bra{\psi} U^\dagger(t) O(t) U(t) \ket{\psi} \\
+	&= \bra{\psi} O_H (t) \ket{\psi},
+\end{align}
+where 
+\begin{eqn}
+O_H(t) = U^\dagger (t) O(t) U(t)
+\end{eqn}
+is the operator in the Heisenberg picture. 
+
+
+
+
+\end{document}

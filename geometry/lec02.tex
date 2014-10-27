@@ -3,7 +3,7 @@
 \usepackage[margin=1in]{geometry} % handle page geometry
 
 % import packages and commands
-\input{../header.tex}
+\input{../header2.tex}
 
 
 \title{Math 217 -- Geometry and Physics -- Lec02}
@@ -21,14 +21,14 @@
 \subsection{Remarks}
 
 \begin{enumerate}
-\item Partition of unity: $M = \cup_{\alpha \in I} U_\alpha$ where $U_\alpha$ coordinate charts. There exists $\rho_\alpha : M \rightarrow \mathbb{R}$, $\rho_\alpha \geq 0$ smooth with $\opname{supp}(\rho_\alpha) \subset U_\alpha$ and $\sum_\alpha \rho_\alpha = 1$. $\omega = \sum_\alpha \rho_\alpha \omega$, $\opname{supp}(\rho_\alpha \omega) \subset U_\alpha$.
+\item Partition of unity: $M = \cup_{\alpha \in I} U_\alpha$ where $U_\alpha$ coordinate charts. There exists $\rho_\alpha : M \rightarrow \R$, $\rho_\alpha \geq 0$ smooth with $\opname{supp}(\rho_\alpha) \subset U_\alpha$ and $\sum_\alpha \rho_\alpha = 1$. $\omega = \sum_\alpha \rho_\alpha \omega$, $\opname{supp}(\rho_\alpha \omega) \subset U_\alpha$.
 \item Sheaf theory. local $\implies$ global (Cohomology)
 \item Characteristic classes. local computations $\implies$ global invariants.
-\item $M ( = \cup_{\alpha \in I} U_\alpha) \overset{f}{\longrightarrow} N ( = \cup_\beta V_\beta)$ is smooth iff $\psi_\beta \circ f \circ \varphi_\alpha^{-1} : \varphi_\alpha(U_\alpha) \rightarrow \psi_\beta (V_\beta)$ [is smooth?]. Where $\varphi_\alpha : U_\alpha \rightarrow \mathbb{R}^n$, $\psi_\beta : V_\beta \rightarrow \mathbb{R}^n$. 
-\item $\mathbb{CP}^n = \mathbb{C}^n \cup \mathbb{CP}^{n-1} = \dots = \mathbb{C}^n \cup \mathbb{C}^{n-1} \cup \dots \cup \mathbb{C} \cup \set{ \rho_+ }$ [rho sub what?]
+\item $M ( = \cup_{\alpha \in I} U_\alpha) \overset{f}{\longrightarrow} N ( = \cup_\beta V_\beta)$ is smooth iff $\psi_\beta \circ f \circ \varphi_\alpha^{-1} : \varphi_\alpha(U_\alpha) \rightarrow \psi_\beta (V_\beta)$ [is smooth?]. Where $\varphi_\alpha : U_\alpha \rightarrow \R^n$, $\psi_\beta : V_\beta \rightarrow \R^n$. 
+\item $\CP^n = \C^n \cup \CP^{n-1} = \dots = \C^n \cup \C^{n-1} \cup \dots \cup \C \cup \set{ \rho_+ }$ [rho sub what?]
 \end{enumerate}
 
-Given a tangent bundle $TM$ we have a vector field (smooth section) $X = \sum_i a_i \frac{\pd}{\pd x_i}$ and differential form $\omega = \sum_i a_i dx_i$, where $\langle dx_i, \frac{\pd}{\pd x_j} \rangle = \delta_{ij}$. Furthermore, a differential $p$-form $\eta = \sum_I a_I dx_I \in A^p (M)$, where $I = \set{ 1 \leq i_1 < \dots < i_p \leq n }$ and $1 \leq p \leq n$, is a section on $\Lambda^p T^* M$. $p = \opname{deg} \eta$.
+Given a tangent bundle $TM$ we have a vector field (smooth section) $X = \sum_i a_i \pd{}{x_i}$ and differential form $\omega = \sum_i a_i dx_i$, where $\langle dx_i, \pd{}{x_j} \rangle = \delta_{ij}$. Furthermore, a differential $p$-form $\eta = \sum_I a_I dx_I \in A^p (M)$, where $I = \set{ 1 \leq i_1 < \dots < i_p \leq n }$ and $1 \leq p \leq n$, is a section on $\Lambda^p T^* M$. $p = \deg \eta$.
 
 The exterior product $\Lambda^p T^* M \overset{\pi}{\longrightarrow} M$. 
 
@@ -38,98 +38,101 @@ $M$ is orientable iff there exists a nowhere vanishing $n$-form $\omega$ on $M^n
 
 $d : A^p (M) \rightarrow A^{p+1}(M)$, $d\eta = \sum_I da_I \wedge dx_I$.
 
-$da_I = \sum_{j=1}^n \frac{\pd a_I}{\pd x_j} dx_j$.
+$da_I = \sum_{j=1}^n \pd{a_I}{x_j} dx_j$.
 
-\subsection{Exercise}
-
+\begin{exercise}
+As an exercise, show that
 \begin{enumerate}
-\item $d^2 = 0$. $A^p(M) \overset{d}{\longrightarrow} A^{p+1}(M) \overset{d}{\longrightarrow} A^{p+2}(M)$. $\opname{\eta} = p$.
+\item $d^2 = 0$. $A^p(M) \overset{d}{\longrightarrow} A^{p+1}(M) \overset{d}{\longrightarrow} A^{p+2}(M)$. $\deg\eta = p$.
 \item Leibniz rule: $d(\eta \wedge \eta') = d\eta \wedge \eta' + (-1)^p \eta \wedge d\eta'$.
 \item $\int_M \omega = \sum_{\alpha \in I} \int_{U_\alpha} (\rho_\alpha \omega) = \int_M (\sum_\alpha \rho_\alpha) \omega$. 
 
-$\int_{U_\alpha} (\rho_\alpha \omega) = \int_{\varphi(U_\alpha) \subseteq \mathbb{R}^n} (\varphi_\alpha^{-1})^* (\rho_\alpha \omega)$
+$\int_{U_\alpha} (\rho_\alpha \omega) = \int_{\varphi(U_\alpha) \subseteq \R^n} (\varphi_\alpha^{-1})^* (\rho_\alpha \omega)$
 \end{enumerate}
+\end{exercise}
 
 \subsection{Stokes}
 
-$\int_M d\eta = \int_{\pd M} \eta$ where $\eta \in A^{n-1}(M)$ implies that $\int_M d\eta = 0$ if $M$ closed compact. 
+$\int_M d\eta = \int_{\partial M} \eta$ where $\eta \in A^{n-1}(M)$ implies that $\int_M d\eta = 0$ if $M$ closed compact. 
 
 Consider: $f : M \rightarrow M'$ a smooth map. Then the pullback $f^* \eta'$ of $\eta' = \sum_I b_I(y) dy_I \in A(M')$ is given by 
 \begin{equation}
 f^* \eta'(x) = \sum_I b_I(f(x)) df_I.
 \end{equation}
 
-\subsection{exercise}
-
+\begin{exercise}
+Show that
 \begin{enumerate}
 \item Chain rule: $f^* \circ d_{M'} = d_M f^*$
 \item $f^*(\eta_1 \wedge \eta_2) = (f^* \eta_1) \wedge (f^* \eta_2)$
 \end{enumerate}
+\end{exercise}
 
 \subsection{de Rham Cohomology}
 
 \begin{equation}
-H_{\text{dR}}^p(M, \mathbb{R}) = \frac{\opname{Ker} d}{\opname{Im} d} \Big|_{A^p(M)}
+H_{\text{dR}}^p(M, \R) = \frac{\ker d}{\Im d} \Big|_{A^p(M)}
 \end{equation}
-where of course $\opname{Im} d \subseteq \opname{Ker} d$. Then 
+where of course $\Im d \subseteq \ker d$. Then 
 \begin{equation}
 0 \rightarrow A^0(M) \overset{d}{\longrightarrow} A^1(M) \rightarrow \dots \overset{d}{\longrightarrow} A^p(M) \overset{d}{\longrightarrow} \dots \overset{d}{\longrightarrow} A^n(M) \rightarrow 0
 \end{equation}
 
 \subsection{Singular homology, Cohomology}
 
-Famous theorem of de Rham: $H_{\text{dR}}^p(M, \mathbb{R}) \cong H_{\text{sing}}^p(M, \mathbb{R})$ when $M$ is a compact, closed manifold. We will also see later that it is $\cong \opname{Ker} \Delta_d$, where $\Delta_d$ is the elliptic operator. 
+Famous theorem of de Rham: $H_{\text{dR}}^p(M, \R) \cong H_{\text{sing}}^p(M, \R)$ when $M$ is a compact, closed manifold. We will also see later that it is $\cong \ker \Delta_d$, where $\Delta_d$ is the elliptic operator. 
 
 Cohomology ring: $H_\text{dR}^* (M) = \oplus_{p=0}^n H_\text{dR}^p(M)$. 
 
-\begin{align}
-&H_\text{dR}^p(M) &\times &H_\text{dR}^q(M) &\rightarrow H_\text{dR}^{p+q}(M) \\
-&[\eta] = [\eta+d\alpha] &\quad &[\eta'] = [\eta+d\alpha'] &\mapsto [\eta \wedge \eta']
-\end{align}
+\begin{eqn}
+\begin{matrix}
+H_\text{dR}^p(M) & \times & H_\text{dR}^q(M) & \rightarrow & H_\text{dR}^{p+q}(M) \\
+[\eta] = [\eta+d\alpha] & & [\eta'] = [\eta+d\alpha'] & \mapsto & [\eta \wedge \eta']
+\end{matrix}
+\end{eqn}
 
 \subsection{Poincare duality}
 
-\begin{align}
-f^* : & H_\text{dR}^*(M') \rightarrow H_\text{dR}^*(M) \\
-&[\eta'] \mapsto [f^* \eta']
-\end{align}
+\begin{eqn}
+\begin{matrix}
+f^* & : & H_\text{dR}^*(M') & \rightarrow & H_\text{dR}^*(M) \\
+&& [\eta'] & \mapsto & [f^* \eta']
+\end{matrix}
+\end{eqn}
 
-\begin{align}
-&H_\text{dR}^p(M) &\times &H_\text{dR}^{n-p}(M) &\rightarrow \mathbb{R} \\
-&[\eta] = [\eta+d\alpha] &\quad &[\eta'] = [\eta'] &\mapsto \int_M \eta \wedge \eta'
-\end{align}
+\begin{eqn}
+\begin{matrix}
+H_\text{dR}^p(M) & \times & H_\text{dR}^{n-p}(M) & \rightarrow \R \\
+[\eta] = [\eta+d\alpha] &\quad &[\eta'] = [\eta'] &\mapsto \int_M \eta \wedge \eta'
+\end{matrix}
+\end{eqn}
 
 
 \subsection{Betti numbers}
-
+Since
 \begin{equation}
-H_\text{dR}^{n-}(M, \mathbb{R}) \cong H_\text{dR}^p(M, \mathbb{R}) \cong H_\text{dR}^p(M, \mathbb{R}) \implies b_p(M) = b_{n-p}(M)
+H_\text{dR}^{n-}(M, \R) \cong H_\text{dR}^p(M, \R) \cong H_\text{dR}^p(M, \R)
 \end{equation}
-where
+we have $b_p(M) = b_{n-p}(M)$, where
 \begin{equation}
-b_p(M) = \opname{dim}_\mathbb{R} H_\text{dR}^p(M, \mathbb{R})
+b_p(M) = \dim_\R H_\text{dR}^p(M, \R)
 \end{equation}
 is the $p$th Betti number of $M$.
 
 Euler number: $\chi(M) = \sum_{p=0}^n (-1)^p b_p(M) = \int_M^{2n} e(TM)$ by Gauss-Bonnet, where $e(TM)$ is the Euler characteristic class.
 
-\textbf{Corollary}: $\opname{dim}_\mathbb{R} M = \text{odd} \implies \chi(M) = 0$
+\begin{corollary}
+$\dim_\R M = \text{odd} \implies \chi(M) = 0$
+\end{corollary}
 
-Conjecture (Chern): Let $M$ be an affine-flat compact closed manifold. Then $\chi(M) = 0$. 
+\begin{conjecture}[Chern]
+Let $M$ be an affine-flat compact closed manifold. Then $\chi(M) = 0$. 
+\end{conjecture}
 
 
 
 
 
-
-\begin{comment}
-\begin{figure}
-\centering
-\includegraphics{3a.pdf}
-\caption{Half the diagrams for photon-photon scattering.}
-\label{fig:3a}
-\end{figure}
-\end{comment}
 
 
 

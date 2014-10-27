@@ -1,0 +1,103 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec06}
+\author{UCLA, Fall 2014}
+\date{\formatdate{21}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Small oscillations}
+
+Generally, in classical mechanics, the dynamics may often by too complicated to solve exactly, or even numerically. Often we will have a Lagrangian of the form
+\begin{eqn}
+L = \frac{1}{2} \sum_{ij} M_{ij}(q) \dot{q}_i \dot{q}_j + \sum_i N_i (q) \dot{q}_i - V(q),
+\end{eqn}
+or we will be able to approximate it in this form to order $\bigo(\dot{q}^2)$, assuming no time dependence. This gives us stability around equilibrium, which is of course important physically. An example where $N_i$ comes into play would be the potential for a particle coupled to the EM field. For driven systems we will have different stability properties. In condensed matter, small energy excitations around equilibrium are called phonons. 
+
+Equilibrium points occur at the extrema of the potential, that is at solutions $q_i^{(0)}$ to $\pd{V}{q_i} = 0$. The Euler-Lagrange equations are then solved by $q_i(t) = q_i^{(0)}$ for all $t$, i.e. $\dot{q}_i = 0$. Under small oscillations we will have
+\begin{eqn}
+q_i = q_i^{(0)} + \eta_i(t) + \bigo(\eta^2)
+\end{eqn}
+and we must expand the Lagrangian to quadratic order (i.e. linearize),
+\begin{align}
+L &= \frac{1}{2} \sum_{ij} M_{ij} (q^{0}) \dot{\eta}_i \dot{\eta}_j + \sum_i N_i (q^{0}) \dot{\eta}_i + \sum_{ij} \eval{\pd{N_i}{q_j}}_{q=q^0} \eta_j \dot{\eta}_i - V(q^0) \\
+	& \qquad - \sum_i \eval{\pd{V}{q_i}}_{q = q^0} \eta_i - \frac{1}{2} \eval{\md{V}{2}{q_i}{}{q_j}{}}_{q = q^0} \eta_i \eta_j + \bigo(n^3). \\
+	&\sim \frac{1}{2} \sum_{ij} m_{ij} \dot \eta_i \dot \eta_j - \frac{1}{2} \sum_{ij} v_{ij} \eta_i \eta_j + \sum_{ij} p_{ij} \eta_i \dot \eta_j + \bigo(\eta^3),
+\end{align}
+where in the second expression we've thrown out the $\sum_i N_i (q^0) \dot{\eta}_i$ and $V(q^0)$ terms since they are just a total derivative and an overall constant, and 
+\begin{eqn}
+m_{ij} = M_{ij}(q^0), \qquad p_{ij} = \eval{\pd{N_i}{q_j}}_{q = q^0}, \text{and} \qquad v_{ij} = \eval{\md{V}{2}{q_i}{}{q_j}{}}_{q = q^0}
+\end{eqn}
+are constant matrices. Now, if $p_{ij}$ has a symmetric part $p_{(ij)}$ we can throw it out and just consider it antisymmetric since
+\begin{eqn}
+p_{(ij)} \eta_i \dot{\eta}_j = \frac{1}{2} (p_{ij} + p_{ji}) \eta_i \dot{\eta}_j = p_{ij} (\eta_i \dot{\eta}_j + \eta_j \dot{\eta}_i) = \od{}{t} (\frac{1}{2} p_{ij} \eta_i \eta_j)
+\end{eqn}
+is just a total derivative. 
+
+\subsection{First analysis}
+
+As a first analysis, let's set $p_{ij} = 0$. Then we can write
+\begin{eqn}
+L = \frac{1}{2} \dot{\eta}^\top m \dot{\eta} - \frac{1}{2} \eta^\top v \eta + \bigo(\eta^3),
+\end{eqn}
+for which we can write the equation of motion in terms of the vector $\bar{\eta} = (\eta_1, \dots, \eta_n)$,
+\begin{eqn}
+m \ddot{\bar{\eta}} + v \bar{\eta} = 0.
+\end{eqn}
+This has ansatz $\bar{\eta} = \bar{\gamma} e^{i \omega t}$ which, plugging back in to the equation of motion, we have
+\begin{eqn}
+(-\omega^2 m + v) \bar{\gamma} = 0.
+\end{eqn}
+Thus $\omega$ is determined by the vanishing of the determinant
+\begin{eqn}
+\det (-\omega^2 m + v) = 0.
+\end{eqn}
+
+[blah blah, incomplete here]
+
+
+Thus our equatons of motion are given by
+\begin{eqn}
+\ddot{\bbar{\eta}}_i + \lambda_i \bbar{\eta}_i = 0, \qquad i = 1, \dots, N.
+\end{eqn}
+where in the stable case we have $\lambda_i = \omega_i^2$, the characteristic frequencies. So the normal modes are decoupled 1-dimensional oscillators along $\bbar{\eta}_i$ with coordinate relationship
+\begin{eqn}
+\eta = O \bar{m}^{-1/2} \bar{O} \bar{\bar{\eta}}. 
+\end{eqn}
+
+In the more general case with $\eta_{ij} \neq 0$, we have
+\begin{eqn}
+L = \frac{1}{2} \dot{\bar{\eta}}^\top \bar{\eta} + \bar{\eta}^\top \bar{p} \dot{\bar{\eta}} - \frac{1}{2} \bar{\eta}^\top \bar{v} \bar{\eta}
+\end{eqn}
+where
+\begin{eqn}
+\bar{p} = \bar{m}^{-1/2} O^\top p O \bar{m}^{-1/2}.
+\end{eqn}
+So the Euler-Lagrange equations are
+\begin{eqn}
+\ddot{\bar{\eta}} + \bar{v} \bar{\eta} - 2 \bar{p} \dot{\bar{\eta}} = 0
+\end{eqn}
+which has a new characteristic equation for the ansatz $\bar{\eta} = \gamma e^{i\omega t}$,
+\begin{eqn}
+\det (-\omega^2 + \bar{v} - 2i \omega \bar{p}) = 0
+\end{eqn}
+which determines $\omega$ and $\gamma$ in general. These cases are important for a particle in an EM field and motion in non-inertial frames. 
+
+
+\subsection{Double pendulum}
+
+[unfinished]
+
+
+
+
+
+\end{document}

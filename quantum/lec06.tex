@@ -1,0 +1,135 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec06}
+\author{UCLA, Fall 2014}
+\date{\formatdate{22}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Heisenberg picture}
+
+[missing first 30 minutes or so]
+
+In the Heisenberg picture, we have for a time-independent operator $A$,
+\begin{eqn}
+\avg{A}_t = \matrixel{\psi}{A_H(t)}{\psi},
+\end{eqn}
+where
+\begin{eqn}
+A_H(t) = U^\dagger(t) A U(t)
+\end{eqn}
+is the ``Heisenberg-picture evolved $A$''. In the Heisenberg picture, we lump QD [quantum dynamics?] together with dynamic variables, i.e. we have
+\begin{align}
+\avg{A^2}_t &= \matrixel{\psi}{A_H^2(t)}{\psi}, \\
+\avg{A^3}_t &= \matrixel{\psi}{A_H^3(t)}{\psi}, \\
+\vdots
+\end{align}
+
+More generally, for time-dependent operator $A(t)$, we have
+\begin{eqn}
+A_H(t) = U^\dagger(t) A(t) U(t).
+\end{eqn}
+and as before we have
+\begin{eqn}
+\avg{A(t)}_t = \matrixel{\psi}{A_H(t)}{\psi}.
+\end{eqn}
+Then from the equation of motion,
+\begin{align}
+i \hbar \od{}{t} U(t) &= H(t) U(t) \\
+-i \hbar \od{}{t} U^\dagger(t) &= U^\dagger(t) H(t),
+\end{align}
+we find
+\begin{align}
+\od{}{t} A_H(t) &= U^\dagger(t) \od{A(t)}{t} U(t) + \frac{1}{i\hbar} U^\dagger(t) A(t) H(t) U(t) - \frac{1}{i\hbar} U^\dagger(t) H(t) A(t) U(t) \\
+	&= \left\{ \dot A(t) + \frac{1}{i\hbar} [A(t), H(t)] \right\}_H \\
+	&= (\dot A)_H(t) + \frac{1}{i\hbar} [A_H(t), H_H(t)],
+\end{align}
+where we are defining
+\begin{eqn}
+\set{\dots}_H \equiv U^\dagger(t) \set{\dots} U(t),
+\end{eqn}
+and we recall that
+\begin{eqn}
+U(t) = T \exp \frac{1}{i\hbar} \int_0^t \dif{t'} H(t').
+\end{eqn}
+
+To summarize, we have that in the Schroedinger picture, kets evolve $\ket{\psi(t)}$ and operators can be time-dependent $A(t)$. In the Heisenberg picture, kets are stationary $\ket{\psi}$ but the operators are time-dependent and evolve in time as $A_H(t)$. Furthermore, the time average is the same in both pictures,
+\begin{eqn}
+\avg{A(t)}_t = \matrixel{\psi}{A_H(t)}{\psi} = \matrixel{\psi(t)}{A(t)}{\psi(t)}.
+\end{eqn}
+
+In the case that the Hamiltonian is time-independent, $H(t) = H$, the fact that $[U(t), H] = 0$ gives us
+\begin{eqn}
+H_H(t) = U^\dagger(t) H U(t) = H U^\dagger(t) U(t) = H.
+\end{eqn}
+If instead $H(t)$ is time-dependent, but we have
+\begin{eqn}
+[H(t), H(t')] = 0
+\end{eqn}
+for all $t, t'$, we have $[U(t), H(t')] = 0$ and thus $H_H(t) = H(t)$ (which of course implies the time-independent case). 
+
+
+\section{Stuff and things}
+
+Recall from classical mechanics that the Hamiltonian generally depends on $N$ generalized coordinates $x_i$ and conjugate momenta $p_i$ as well as time $t$, $H = H(x_i, p_i, t)$. Hamilton's equations tell us that
+\begin{eqn}
+\dot x_i = \pd{H}{p_i}, \qquad \dot p_i = -\pd{H}{x_i}.
+\end{eqn}
+Now, for an arbitrary function $f(x_i(t), p_i(t), t)$, we have
+\begin{align}
+\od{f}{t} &= \partial_t f + \pd{f}{x_i} \dot x_i + \pd{f}{p_i} p_i \\
+	&= \pd{f}{t} + [f, H]_C
+\end{align}
+where we define the classical Poisson bracket
+\begin{eqn}
+[f,g]_C \equiv \pd{f}{x_i} \pd{g}{p_i} - \pd{f}{p_i} \pd{g}{x_i}.
+\end{eqn}
+Notice that this looks very similar to the Heisenberg equation of motion
+\begin{eqn}
+\od{}{t} A_H(t) = (\dot A)_H(t) + \frac{1}{i\hbar} [A_H(t), H_H(t)].
+\end{eqn}
+Classically, we have $[x_i, p_j]_C = \delta_{ij}$, while quantum mechanically we have $[x_i, p_j] = i\hbar \delta_{ij}$. We will find that there is a relationship between observables quantum mechanically and classically, 
+\begin{eqn}
+[A(\v x, \v p, t), H(\v x, \v p, t)] \leftrightarrow i\hbar [A(\v x, \v p, t), H(\v x, \v p, t)]_C.
+\end{eqn}
+We can begin to see this in the special cases
+\begin{align}
+[x_i, f(\v p)] &= i\hbar \pd{f}{p_i} = i\hbar [x_i, f(\v p)]_C, \\
+[p_i, g(\v x)] &= -i\hbar \pd{g}{x_i} = i\hbar [p_i, g(\v x)]_C.
+\end{align}
+This should work in every case going quantum mechanically to classically, but not necessarily going from classical to quantum due to noncommutativity of $x$ and $p$. However, if as part of our procedure we symmetrize in $x$ and $p$, it should work. For example,
+\begin{align}
+[x^2, p^2] &= 2i\hbar \{x,p\}, \\
+\shortintertext{while}
+[x^2, p^2]_C &= 4xp.
+\end{align}
+but we can symmetrize the Poisson bracket to get
+\begin{eqn}
+\{ [x^2, p^2]_C \}_{x,p} = 2\{x,p\},
+\end{eqn}
+which agrees with our relation between classical and quantum commutators. 
+
+\begin{theorem}
+Given a quantum Hamiltonian $H(\v x, \v p, t)$ and commutation relation $[x_i, p_j] = i\hbar \delta_{ij}$, together with the equation of motion
+\begin{eqn}
+i\hbar \od{U(t)}{t} = H(t) U(t),
+\end{eqn}
+taking $\hbar \rightarrow 0$ we recover the classical theory with Hamiltonian $H(\v x, \v p, t)$ where $\v x, \v p$ are canonically conjugate while maintaining values of the dynamical variables such as $\v p, H$ etc.
+\end{theorem}
+
+
+
+
+
+
+
+\end{document}

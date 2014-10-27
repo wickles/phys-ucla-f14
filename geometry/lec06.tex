@@ -1,0 +1,141 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Math 217 -- Geometry and Physics -- Lec06}
+\author{UCLA, Fall 2014}
+\date{\formatdate{15}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{More stuff}
+
+Let $E^r \rightarrow M$ be a complex or real vector bundle on a compact closed manifold. 
+
+\begin{definition}
+Define 
+\begin{eqn}
+\Gamma(M,E) = \Gamma(E) = \set{ s : M \rightarrow E \text{ such that } \pi \circ s = \opname{id}_M}.
+\end{eqn}
+\end{definition}
+
+For example, we have
+\begin{align}
+\Gamma(T^*M) &= \set{ \sum_i f_i dx_i \text{ on $U_\alpha$}} \\
+\Gamma(TM) &= \set{ \sum_i f_i \pd{}{x_i} }.
+\end{align}
+
+\begin{definition}
+We define $S^p E$ the symmetric products, $\Lambda^p E$ the exterior products, and $\Omega^p(M) = \Gamma(\Lambda^p T^*M)$.
+\end{definition}
+
+\begin{definition}
+We define a connection on $E$ as a map
+\begin{eqn}
+\nabla : \Gamma(E) \rightarrow \Gamma(T^*M \otimes E)
+\end{eqn}
+such that
+\begin{enumerate}
+\item $\nabla(s_1 + s_2) = \nabla s_1 + \nabla s_2$, and
+\item $\nabla(fs) = (\dif{f}) s + f (\nabla s)$ for $f \in C^\infty (M)$. 
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+We define the curvature of $\nabla$ as
+\begin{eqn}
+\Omega = \nabla^2 : \Gamma(E) \rightarrow \Gamma(\Lambda^2 T^* M \otimes E).
+\end{eqn}
+\end{definition}
+
+\textbf{Claim} $\Omega$ is a $C^\infty(M)$-linear operator (tensor). 
+
+\begin{proof}
+We have
+\begin{align}
+\Omega(fs) &= \nabla^2 (fs) = \nabla(\nabla(fs)) \\
+	&= \nabla( \dif{f} \, s) + \nabla(f \nabla s) \\
+	&= [ \underbrace{\dif (\dif{f})}_{=0} s + \cancel{(-1) \dif{f} \nabla s}] + [\cancel{\dif{f} \nabla s} + f \nabla^2 s] \\
+	&= f \Omega(s).
+\end{align}
+\end{proof}
+
+\begin{definition}
+Given a curvature $\Omega^\nabla$, we can expand
+\begin{eqn}
+\det(t I_r + \frac{i}{2\pi} \Omega^\nabla) = \underbrace{c_0^\nabla(E)}_{1} t^r + \underbrace{c_1^\nabla(E)}_\text{2-form} t^{r-1} + \dots + \underbrace{c_r^\nabla(E)}_\text{$2r$-form}.
+\end{eqn}
+We call $\set{c_k^\nabla(E)}$ the Chern forms of $(E,\nabla)$. 
+\end{definition}
+
+\begin{theorem}[Chern-Weil]
+Let $M$ be a compact closed manifold, $E$ a complex vector bundle. Then
+\begin{enumerate}
+\item $\dif c_k^\nabla(E) = 0$, which implies that
+\item $[c_k^\nabla(E)] \in H^{2k}(M)$. Furthermore, $[c_k^\nabla(E)]$ is independent of $\nabla$, so we define $c_k(E) = [c_k^\nabla(E)]$ as the \textbf{Chern class} of $E$. 
+\end{enumerate}
+\end{theorem}
+
+We will see that Chern-Simons follows from Chern-Weil. 
+
+\begin{remark}
+Given a function with series expansion
+\begin{align}
+f(x) &= a_0 + a_1 x + \dots + a_r x^r + \dots \in \C[[x]], \\
+\shortintertext{we have}
+f(\Omega) &= a_0 I + a_1 \Omega + \dots + a_r \Omega^r \in \C[\Omega],
+\end{align}
+thus,
+\begin{eqn}
+\tr f(\Omega) = \sum_{k=0}^n a_k \tr \Omega^k.
+\end{eqn}
+\end{remark}
+
+\begin{lemma}
+We find that
+\begin{enumerate}
+\item $\dif \tr f(\Omega) = 0$, and
+\item if $\nabla'$ is another connection, then 
+\begin{eqn}
+\tr f(\Omega') - \tr f(\Omega) = \dif{\eta}
+\end{eqn}
+for some $\eta \in \Omega^*(M)$.
+\end{enumerate}
+\end{lemma}
+
+This lemma implies Chern-Weil. We also find that
+\begin{align}
+\det (I + \frac{i}{2\pi} \Omega) &= \exp \tr \log (I + \frac{i}{2\pi} \Omega) \\
+	&= \exp \log \det (I + \frac{i}{2\pi} \Omega),
+\end{align}
+from the linear algebra identity $\tr \log A = \log \det A$. 
+
+\begin{remark}
+Now, given
+\begin{eqn}
+\omega, \eta \in \Omega^*(M), \qquad A, B \in \Gamma(\opname{Hom}(E,E)) = \opname{End}(E),
+\end{eqn}
+we have
+\begin{eqn}
+[\omega A, \eta B] = (\omega A)(\eta B) - (-1)^{\deg \omega \deg \eta} (\eta B) (\omega A).
+\end{eqn}
+Then we find
+\begin{eqn}
+\tr [\omega A, \eta B] = 0.
+\end{eqn}
+\end{remark}
+(Show this as an exercise.)
+
+
+
+
+
+
+\end{document}

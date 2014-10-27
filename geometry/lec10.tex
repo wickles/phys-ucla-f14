@@ -1,0 +1,158 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+\newcommand{\Gr}{\opname{Gr}}
+
+
+\title{Math 217 -- Geometry and Physics -- Lec10}
+\author{UCLA, Fall 2014}
+\date{\formatdate{24}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Universal vector bundles}
+
+Let's start with complex vector bundles. Recall the grassmannian
+\begin{eqn}
+\opname{Gr}(n,N) = \set{V \subseteq \complexes^N | \dim V = n},
+\end{eqn}
+which has the property
+\begin{eqn}
+\begin{matrix}
+\opname{Gr}(n,N) & \subseteq & \opname{Gr} (n,N+!) & \subseteq \dots \\
+(z_1, \dots, z_N) & \mapsto & (z_1, \dots, z_N, 0) & 
+\end{matrix}
+\end{eqn}
+The ``infinite'' Grassmannian is denoted
+\begin{eqn}
+BU(n) = \opname{Gr}(n, \infty)
+\end{eqn}
+and has a universal subbundle $S \rightarrow \Gr(n,\infty) = BU(n)$. Furthermore, we find that
+\begin{align}
+\opname{Vect}_n(M) &= \set{ \text{complex vector bundles on $M$} } \\
+	& \cong [M, BU(n)] = \set{ \text{homotopy classes of $f: M \rightarrow BU(n)$} }.
+\end{align}
+Then we have
+\begin{eqn}
+H^*(BU(n), \ints) \cong \ints[c_1, \dots, c_n], \quad \text{where} \quad c_i = c_i(S).
+\end{eqn}
+We also have 
+\begin{eqn}
+c_i(E) = f^* c_i (S) = f^* c_i.
+\end{eqn}
+
+For grassmannians on real vector bundles, we have the infinite grassmannian 
+\begin{eqn}
+BO(n) = \Gr_\reals (n, \infty).
+\end{eqn}
+Then
+\begin{align}
+\opname{Vect}_n (M) &\cong [M, BO(n)] \\
+H^* (BO(n), \irrats) &= \irrats[p_1, \dots, p_{\lceil n/2 \rceil}] \\
+H^*(BO(n), \ints_2) &= \ints[w_1, \dots, w_n]
+\end{align}
+where $P_j (E) = f^* p_j(S)$, $w_j(E) = f^* w_j(S)$, and $w_j = w_j(S)$ (Universal Stiefle-Whitney [?])
+
+[$O(n) \rightarrow U(n)$, $BO(n) \rightarrow BU(n)$, $H^*(BU(n), \ints) \rightarrow H^*(BO(n),\ints)$, $p_j = (-1)^j c_{2j}$]
+
+\subsection{Axioms of SW [Stiefle-Whitney?] classes} 
+Given real vector bundle $E$ over closed $M$, there exist $\set{w_i(E)}$ in $H^*(M, \ints_2)$ ($w_i \in H^i(M, \ints_2)$) such that
+\begin{enumerate}
+\item $w_0 = 1$,
+\item $w_i (f^*E') = f^* w_i (E)$,
+\item $w(E \oplus E') = w(E) w(E')$,
+\item $\gamma_1$ (Universal [subdim?] bundle) $\rightarrow \RP^1$, where $w_1(\gamma_1)$ the generator of $H^1(\RP^1, \ints_2)$.
+\end{enumerate}
+
+
+\subsubsection{stuff}
+
+[missed some stuff here]
+
+so we have 
+\begin{eqn}
+c_j = \sigma_j(x_1, \dots, x_n)
+\end{eqn}
+
+
+\subsubsection{stuff}
+
+[missed bit more here]
+
+
+\subsection{Axioms for Chern classes}
+
+Given complex vector bundle $E^n \rightarrow M$,
+\begin{enumerate}
+\item $c_0(E) = 1$, $c_j(E) = 0$ for $j > n$.
+\item $f^* c_j(E') = c_j (f^* E')$,
+\item $c(E \oplus E') = c(E) c(E')$,
+\item $\bigO(-1) = L \rightarrow \CP^\infty$ and $c_1(L) = x$ is generator of $H^*(\CP^\infty, \ints)$.
+\end{enumerate}
+
+We can write
+\begin{eqn}
+i \partial \bar\partial \log(1 + \abs{z}^2) = c_1 (\bigO(-1)),
+\end{eqn}
+where $\bigO(-1) \rightarrow \CP^1$ (exercise). We find that
+\begin{eqn}
+\int_{\CP^1} c_1 \bigO(-1) = \int_{z \in \complexes} i \partial \bar\partial \log(1 + \abs{z}^2) = \pm 1.
+\end{eqn}
+We have $\pi^* c_j(E) = \sigma_j (x_1, \dots, x_n)$, where $x_j = c_1(L_j)$, where
+\begin{eqn}
+\pi^* : H^*(M) \hookrightarrow H^*(F(E)).
+\end{eqn}
+So we have
+\begin{eqn}
+\CP^{n-1} \hookrightarrow P(E) \overset{\pi}{\rightarrow} M
+\end{eqn}
+Let $t = -c_1(L)$, and note that 
+\begin{eqn}
+\pi^* E \cong \underbrace{L}_{\bigO(-1)} \oplus \underbrace{Q}_\text{quotient bundle}.
+\end{eqn}
+Writing out our expansion
+\begin{eqn}
+c_t = \det (tI + \frac{i}{2\pi} \Omega) = t^n + c_1 t^{n-1} + \dots + c_n,
+\end{eqn}
+since we have
+\begin{eqn}
+c_t(\pi^* E) = \underbrace{c_t(L)}_{=0} c_t(Q),
+\end{eqn}
+so that
+\begin{eqn}
+0 = t^n + \pi^* c_1(E) t^{n-1} + \dots + \pi^* c_n(E).
+\end{eqn}
+So we've found \textit{Grothendieck's characterization of Chern classes},
+\begin{eqn}
+H^*(P(E), \irrats) = H^*(M) [x_E] \Big/ \set{x_E^n + \pi^* c_1(E) x_E^{n-1} + \dots + \pi^* c_n(E) = 0}.
+\end{eqn}
+
+The most useful characteristic classes is probably Hirzebruch's:
+
+1. $L$-classes, $TM \rightarrow M^{2n}$. We have
+\begin{eqn}
+L(TM) = \prod_{j=1}^n \frac{x_j}{\tanh x_j} = \text{a symmetric function in $\set{x_j^2}$}
+\end{eqn}
+As an exercise, for $n=2$, can show
+\begin{eqn}
+L(TM)^\text{top} = \frac{x_1}{\tanh x_1} \frac{x_2}{\tanh x_2} = \frac{1}{3} P_1 (TM).
+\end{eqn}
+Then $\hat{A} (TM^4) = -\frac{1}{24} P_1 (TM)$ 
+
+2. The $\hat{A}$-classes are given by
+\begin{eqn}
+\hat{A} (TM) = \prod_{j=1}^n \frac{x_j / 2}{\sinh (x_j/2} = f(p_1, \dots, p_n)
+\end{eqn}
+
+
+
+
+
+\end{document}
