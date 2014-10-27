@@ -1,0 +1,150 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../../header2.tex}
+
+\newcommand{\Gr}{\opname{Gr}}
+
+
+\title{Math 217 -- Geometry and Physics -- Lec11}
+\author{UCLA, Fall 2014}
+\date{\formatdate{27}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{More on $L$-classes, $\hat{A}$-classes}
+
+Last time we started talking about the Hirzebruch $L$-classes. For a manifold $M^{2n}$ we the $L$-class is given by
+\begin{eqn}
+L(TM) = \prod_{j=1}^n \frac{x_j}{\tanh x_j},
+\end{eqn}
+and we have
+\begin{eqn}
+\int_{M^{2n}} L(TM) = \opname{sgn} M.
+\end{eqn}
+For $M^4$ we have 
+\begin{align}
+L(TM) &= 1 + \frac{1}{3} P_1 (TM), \\
+\hat{A} &= 1 - \frac{1}{24} P_1(TM).
+\end{align}
+where the $\hat{A}$-class is given by
+\begin{align}
+\hat{A}(TM) &= \prod_{j=1}^n \frac{x_j / 2}{\sinh(x_j/2)}, \\
+\opname{Ind} D &= \int_{M^{2n}} \hat{A}(TM) = \text{$\hat{A}$-genus},
+\end{align}
+where $D$ is the Dirac operator.
+
+Given $M^{4k}$ a compact closed manifold,
+\begin{eqn}
+\begin{matrix}
+H^{2k}(M, \R) & \times & H^{2k}(M, \R) & \rightarrow & \R \\
+\alpha & & \beta & \mapsto & \int_M \alpha \wedge \beta
+\end{matrix}
+\end{eqn}
+gives us a quadratic form. We have
+\begin{eqn}
+\opname{sgn} M = (\text{\# positive eigenvalues}) - (\text{\# negative eigenvalues}),
+\end{eqn}
+and
+\begin{eqn}
+\opname{sgn} M = \int_M L(TM) = \frac{1}{3} \int_M P_1(TM) = -8 \int_M \hat{A}(TM) = -8 \opname{Ind} D.
+\end{eqn}
+[$M$ a spin-manifold [?]]
+\begin{definition}
+A spin-manifold is an oriented manifold $M$ with structure group of $TM$ given by $SO(n)$ with $n \geq 2$. It turns out that $\pi_1 (SO(n)) = \Z_2$, so we have
+\begin{eqn}
+1 \rightarrow \Z_2 \rightarrow \opname{Spin}(n) \rightarrow SO(n) \rightarrow 1,
+\end{eqn}
+where $\opname{Spin}(n)$ is the universal cover of $SO(n)$. %break defn here?
+Then the principle bundle $P_{SO(n)}$ of $SO(n)$ is a frame bundle of $TM$, and we know there exists a principle $\opname{Spin}(n)$ bundle 
+\begin{eqn}
+P_{\opname{Spin}(n)} \overset{2:1}{\longrightarrow} P_{SO(n)} \rightarrow M.
+\end{eqn}
+which is where the name comes from. 
+\end{definition}
+[missed some stuff here on what this means in terms of Stiefel-Whitney classes]
+
+So if $M^4$ is a spin-manifold, we find that 
+\begin{eqn}
+\opname{sgn} M = o(8) \text{ [divisible by 8?]} = -8 \underbrace{\opname{Ind} D}_\text{even}.
+\end{eqn}
+
+\begin{theorem}[Rochlin Theorem]
+Given $M^4$ a compact smooth spin manifold, we have $\opname{sgn} M^4 = o(16)$. 
+\end{theorem}
+\begin{proof}
+The index or $\hat{A}$-genus is even for $8k+4$ dimensional manifold. 
+\end{proof}
+
+
+\section{K-theory, Chern character}
+
+Given manifold $M$ with vector bundles $E, F$, denote $[E], [F]$ as their equivalence classes. Then 
+\begin{eqn}
+[E] = [F] \quad \iff \quad E \oplus \zeta_1 \cong F \oplus \zeta_2
+\end{eqn}
+where $\zeta_1, \zeta_2$ are trivial bundles. Note that it is not true that
+\begin{eqn}
+0 \rightarrow F \rightarrow G \rightarrow E \rightarrow 0 \quad \implies \quad G \cong E \oplus F.
+\end{eqn}
+Rather if we have
+\begin{eqn}
+[E] + [F] = [E \oplus F], \quad [E] [F] = [E \otimes F],
+\end{eqn}
+then we find
+\begin{eqn}
+[E] - [F] = [G] \quad \implies \quad [E] = [G] + [F].
+\end{eqn}
+
+\begin{definition}
+We define $K(M)$ as the set of equivalence classes of vector bundles on $M$ with the operations. 
+\end{definition}
+\begin{remark}
+$K(M)$ is a \textit{generalized} Cohomology theory. 
+\end{remark}
+
+Now we have a map
+\begin{eqn}
+\begin{matrix}
+\opname{ch} & : & K(M) & \rightarrow & H^*(M, \Q) \\
+& & [E] & \mapsto & \opname{ch} E = \sum_{j=1}^r e^{x_i}.
+\end{matrix}
+\end{eqn}
+Let $\set{x_i}$ be Chern roots of $E$, i.e. $\tr \exp \frac{i}{2\pi} \Omega$. If $E$ is a real vector bundle then 
+\begin{eqn}
+\opname{ch} E = \opname{ch} (E \otimes_\R \C).
+\end{eqn}
+Given two vector bundles $E, E'$, we have
+\begin{enumerate}
+\item $\opname{ch} (E \oplus E') = \opname{ch} E + \opname{ch} E'$,
+\item $\opname{ch} (E \otimes E') = \opname{ch} E \, \opname{ch} E'$,
+\item $\opname{ch} (E - E') = \opname{ch} E - \opname{ch} E'$.
+\end{enumerate}
+
+We have 
+\begin{eqn}
+K(M) \overset{f_!}{\longrightarrow} K(N) \overset{\opname{ch}}{\longrightarrow} H^*(N)
+\end{eqn}
+and
+\begin{eqn}
+K(M) \overset{\opname{ch}}{\longrightarrow} H^*(M) \overset{f_*}{\longrightarrow} H^*(N).
+\end{eqn}
+In general they do not commute. But if we multiply the Chern characters $\opname{ch}$ by $\hat{A}(TM)$ then they do commute. 
+
+For $M$ a complex manifold we have $T$-odd class
+\begin{eqn}
+T \dif(TM) = \prod_{j=1}^n \frac{x_j}{1 - e^{-x_j}}.
+\end{eqn}
+This gives us [Top transfer, Riemann of Cohomology theory, Roch, something for holomorphic map between projective manifolds [???]]. Then
+\begin{eqn}
+K(M \times S^{2N}) \cong K(M).
+\end{eqn}
+
+
+
+\end{document}
