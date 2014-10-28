@@ -1,0 +1,184 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec08}
+\author{UCLA, Fall 2014}
+\date{\formatdate{28}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Quick note on higher dimensional Legendre Transform}
+
+Here we will have positions $\v{x} \in \R^n$ and a convex function $f : \R^n \rightarrow R$, convex here meaning the Hessian $H_{ij} = \partial_i \partial_j f$ is positive definite, i.e. has positive determinant. Then we will define the function
+\begin{eqn}
+F(\v p, \v x) = \v{p} \cdot \v{x} - f(\v x)
+\end{eqn}
+and define the Legendre transform as
+\begin{eqn}
+\mathcal{L}f (\v p) = \sup_{\v{x} \in \R^n} F(\v p, \v x).
+\end{eqn}
+Again we can write this as 
+\begin{eqn}
+\mathcal{L}f(\v p) = F(\v p, \v{x}(\v p)),
+\end{eqn}
+where $p_i = \pd{f}{x_i}$ determines $\v{x}(\v p)$. 
+
+\begin{example}
+Consider the function 
+\begin{eqn}
+f(\v x) = \frac{1}{2} \v{x}^\top M \v{x}
+\end{eqn}
+where $M$ is a symmetric matrix. Then $\v{x}(\v p)$ is determined by 
+\begin{eqn}
+\v p = M \v{x} \quad \implies \quad \v{x}(\v p) = M^{-1} \v{p}.
+\end{eqn}
+Then we find the Legendre transform
+\begin{align}
+\mathcal{L}f (\v p) &= F(\v p, \v{x}(\v p)) \\
+	&= \v{p} \cdot \v{x} - \frac{1}{2} \v{p}^\top (M^\top)^{-1} M M^{-1} \v{p} \\
+	&= \frac{1}{2} \v{p}^\top M^{-1} \v{p}.
+\end{align}
+\end{example}
+
+
+\section{Hamiltonian formulation}
+
+Euler-Lagrange formulation gives us $n$ 2nd order differential equations, which can be a bit of a mess. In the Hamiltonian formulation, they are replaced by $2n$ 1st order differential equations,
+\begin{eqn}
+\dot{p}_i = -\pd{H}{q_i}, \qquad \dot{q}_i = \pd{H}{p_i},
+\end{eqn}
+where
+\begin{eqn}
+H(\v q, \v p, t) = \sum_i p_i \dot{q}_i - L(\v q, \vd q, t)
+\end{eqn}
+is the Legendre transform of $L$ with respect to $\dot{q}_i$, i.e. $\dot{q}_i(p)$ is determined by $p_i = \pd{L}{\dot{q}_i}$. 
+
+\begin{proof}
+Looking at the differential of $H$, we have
+\begin{align}
+\dif H &= \sum_i \pd{H}{p_i} \dif{p_i} + \sum_i \pd{H}{q_i} \dif{q_i} + \pd{H}{t} \dif{t} \\
+	&= \dot{q}_i \dif{p_i} + \cancel{p_i \dif{\dot{q}_i}} - \pd{L}{q_i} \dif{q_i} - \cancel{\pd{L}{q_i} \dif{q_i}} - \pd{L}{t} \dif{t},
+\end{align}
+so equating the differentials, we see that 
+\begin{eqn}
+\dot{p}_i = -\pd{H}{q_i}, \qquad \dot{q}_i = \pd{H}{p_i}, \qquad \pd{H}{t} = -\pd{L}{t}.
+\end{eqn}
+The last term of course is only important when there is explicit time dependence, but it is trivially true by definition. 
+\end{proof}
+
+\begin{example}[1-dim. particle in potential]
+Consider the Lagrangian
+\begin{eqn}
+L = \frac{1}{2} m \dot{q}^2 - V(q),
+\end{eqn}
+then we find $p = m \dot{q}$, so that 
+\begin{align}
+H = p \dot{q} - L &= \frac{p^2}{m} - \frac{1}{2m} p^2 + V(q) \\
+	&= \frac{p^2}{2m} + V(q).
+\end{align}
+Thus $H$ is just the energy. 
+\end{example}
+
+\begin{example}[System of particles]
+Consider the Lagrangian
+\begin{eqn}
+L = \frac{1}{2} \sum_{ij} M_{ij}(q) \dot{q}^i \dot{q}^j - V(q),
+\end{eqn}
+then we have momentum $p_i = \sum_j M_{ij} \dot{q}^j$ and
+\begin{eqn}
+H(p,q) = \frac{1}{2} \sum_{ij} M_{ij}^{-1} p^i p^j + V(q).
+\end{eqn}
+\end{example}
+
+This is simple for diagonal $M$s, for example given Lagrangian
+\begin{eqn}
+L = \frac{1}{2} m (r^2 + r^2 \theta^2 + r^2 \sin^2 \theta \, \dot{\phi}^2 ) - V(r,\theta,\phi),
+\end{eqn}
+we have
+\begin{eqn}
+H = \frac{1}{2m} \left( p_r^2 + \frac{1}{r^2} p_\theta^2 + \frac{1}{r^2 \sin^2 \theta} p_\phi^2 \right) + V(r,\theta,\phi).
+\end{eqn}
+We must be more careful if there are terms like $N_i (q) \dot{q}^i$ in the Lagrangian, because then $p_i = \pd{L}{\dot{q}_i}$ will pick up a $N_i(q)$ term. 
+
+\begin{example}[particle in EM field]
+Consider the Lagrangian
+\begin{eqn}
+L = \frac{1}{2} m \vd{x}^2 - e \phi(\v x) + e \vd{x} \cdot \v{A}(\v x).
+\end{eqn}
+Then 
+\begin{eqn}
+\v p = m \vd{x} + e \v{A}(\v x) \qquad \implies \qquad \vd{x} = \frac{1}{m} (\v{p} - e \v{A}),
+\end{eqn}
+which results in a Hamiltonian (check this)
+\begin{eqn}
+H = \frac{1}{2m} (\v{p} - e \v{A})^2 + e \phi(\v x).
+\end{eqn}
+This is interesting because we have a first order term in the Lagrangian ending up squared in the Hamiltonian.
+\end{example}
+
+
+\subsection{Why Hamiltonian formalism?}
+
+We will see that the classical Hamiltonian formalism gives us a close correspondence to quantum mechanics. It turns out that many interesting calculations are the same or almost the same, to some order, in both quantum and classical mechanics when we use the Hamiltonian formulation along with the appropriate language. 
+
+In the Lagrangian formalism, our canonical variables are the coordinates $\v{q}(t)$. The trajectory in $q$-space can intersect itself because the trajectory also depends on $\vd{q}(t)$. On the other hand, in the Hamiltonian formalism, our canonical variables are the coordinates $\v q, \v p$ and in $qp$-space trajectories cannot intersect themselves because the flow is uniquely determined by $\v q(t), \v p(t)$. 
+
+The space of all $\set{\v q, \v p}$ is called the \textit{phase space} of the Hamiltonian system. This gives us a special kind of geometry called \textit{symplectic geometry}. In quantum mechanics, we will see that, crudely speaking, the phase space has fundamental cells of volume $\hbar^3$. The phase space here is analogous to the phase space in kinetic theory, where a system of $N$ particles in $\R^3$ is $6N$-dimensional. 
+
+We can also make more general coordinate changes in phase space---these are called \textit{canonical transformations}. Furthermore, Hamiltonian systems have the nice property of \textit{integrability} (i.e. action angle variable). Later, the Hamiltonian formulation will lead us to the \textit{Hamilton-Jacobi} formulation, which is very nice. 
+
+
+\subsection{Variational principle for Hamilton equations}
+
+Looking at the action in the Hamiltonian formalism, we have
+\begin{eqn}
+S[q(t), p(t)] = \int \dif{t} \left[ \dot{q} p - H(q,p) \right],
+\end{eqn}
+and taking the variation we find
+\begin{align}
+\delta{S} &= \int \dif{t} \left[ p \delta{\dot q} + \dot{q} \delta{p} - \pd{H}{q} \delta{q} - \pd{H}{p} \delta{p} \right] \\
+	&= \int \dif{t} \left[ (-\dot{p} - \pd{H}{q}) \delta{q} + (\dot{q} - \pd{H}{p}) \delta{p} \right] + \eval[3]{(p \delta{q})}_{t_1}^{t_2}.
+\end{align}
+We see that the boundary term vanishes under the action principle assumption that $\delta{q}(t_1) = \delta{q}(t_2) = 0$, and furthermore demanding that the variation vanishes gives us Hamilton's equations. 
+
+
+\subsection{Conservation and preservation}
+
+\begin{remark}[Simple conservation laws]
+Taking the total time derivative we have
+\begin{eqn}
+\od{H}{t} = \pd{H}{q} \dot{q} + \pd{H}{p} \dot{p} + \pd{H}{t} = -\cancel{\dot{p} \dot{q}} + \cancel{\dot{q} \dot{p}} + \pd{H}{t}
+\end{eqn}
+[???] where $\pd{H}{t} = -\pd{L}{t}$ so if there is no time dependence then $H$ is conserved. 
+
+Furthermore, if $q_i$ is a cyclic variable then the canonical momentum $p_i$ is conserved, since
+\begin{eqn}
+\pd{L}{q_i} = 0 \qquad \implies \qquad \dot{p}_i = \pd{H}{q_i} = 0.
+\end{eqn}
+\end{remark}
+
+Next we'll look at Liouville's theorem. We can motivate this by looking at a harmonic oscillator. If we plot trajectories of the SHO in phase space, i.e. a plot of $p$ vs $q$, the trajectories are ALL simply circles around the origin. In this case it is easy to see that if we take a volume in phase space and flow it along the Hamiltonian trajectories, the volume is simply rotated about the origin---thus the volume is preserved. It turns out that this is true for all Hamiltonian systems.
+
+\begin{theorem}[Liouville's theorem]
+The Hamiltonian flow is volume-preserving. In other words, if we denote the flow on phase space $\Phi_t(\v q, \v p) = (\v{q}(t), \v{p}(t))$, and we have a volume $V \subseteq \set{\text{phase space}}$ then 
+\begin{eqn}
+\od{\Phi_t(V)}{t} = 0 \qquad \implies \qquad \Phi_t(V) = V \quad \text{for all $t$}.
+\end{eqn}
+\end{theorem}
+
+\begin{proof}
+
+[stuff involving Jacobians, see handwritten notes]
+\end{proof}
+
+
+
+
+\end{document}
