@@ -1,0 +1,107 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec08}
+\author{UCLA, Fall 2014}
+\date{\formatdate{29}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Simple harmonic oscillator}
+
+Consider the Lagrangian for an SHO,
+\begin{eqn}
+H = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 x^2,
+\end{eqn}
+where $\omega > 0$. This will be very important in the future and we will focus quite a bit on it. Now, define operators
+\begin{align}
+a^\dagger &= \sqrt{\frac{m\omega}{2\hbar}} (x - \frac{ip}{m\omega}), \\
+a &= \sqrt{\frac{m\omega}{2\hbar}} (x + \frac{ip}{m\omega}),
+\end{align}
+which we call the ``raising'' (or ``creation'') and ``lowering'' (or ``annihilation'') operators respectively. If we work through the algebra we can show that in terms of these operators the Hamiltonian can be written
+\begin{eqn}
+H = (N + \frac{1}{2}) \hbar \omega,
+\end{eqn}
+where $N = a^\dagger a$ is called the number operator. We can find commutation relations for our new operators,
+\begin{eqn}
+[a, a^\dagger] = 1, \qquad [N,a] = -a, \qquad [N, a^\dagger] = a^\dagger.
+\end{eqn}
+
+For the (normalized) eigenkets $\ket{n}$ of the Hamiltonian, we will have an eigenvalue equation for $N$ written
+\begin{eqn}
+N \ket{n} = n \ket{n},
+\end{eqn}
+thus the eigenenergies can be written 
+\begin{eqn}
+E_n = (n + \frac{1}{2}) \hbar \omega.
+\end{eqn}
+What happens if we look at $N a \ket{n}$? Something interesting happens:
+\begin{eqn}
+N a \ket{n} = (aN - a) \ket{n} = (n-1) a \ket{n}.
+\end{eqn}
+This implies that
+\begin{eqn}
+a \ket{n} \propto \ket{n-1},
+\end{eqn}
+which is where the name of the operator comes from. Similarly,
+\begin{eqn}
+N a^\dagger \ket{n} = (n+1) a^\dagger \ket{n} \qquad \implies \qquad a^\dagger \ket{n} \propto \ket{n+1},
+\end{eqn}
+again hinting at the name. As an aside, note that 
+\begin{eqn}
+E_{n \pm 1} = E_n \pm \hbar \omega.
+\end{eqn}
+Going further, we find that % fix the brakets being to big..
+\begin{eqn}
+\braket{an}{an} = \matrixel{n}{\underbrace{a^\dagger a}_{N}}{n} = \braket{n}{n} n = n.
+\end{eqn}
+Thus, we find
+\begin{eqn}
+a \ket{n} = 
+\begin{cases}
+\sqrt{n} \ket{n-1}, & n>0 \\
+0, & n=0.
+\end{cases}
+\end{eqn}
+Similarly,
+\begin{eqn}
+\braket{a^\dagger n}{a^\dagger n} = \matrixel{n}{\underbrace{a a^\dagger}_{N+1}}{n} = n+1 > 0,
+\end{eqn}
+thus we have
+\begin{eqn}
+a^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}. 
+\end{eqn}
+
+What if $n$ is not an integer? Then we have a contradiction: applying $a$ many times we eventually get an eigenket $\ket{n'}$ with $n' < 0$, which is impossible. Thus, $n$ must be a non-negative integer, $n = 0, 1, 2, \dots$. Of course, we haven't really shown that these eigenkets exist, or that they are unique. Suppose $\ket{0}$ exists; then $a \ket{0} = 0$, so we have
+\begin{eqn}
+H \ket{0} = \hbar \omega (a^\dagger a + \frac{1}{2}) \ket{0} = \frac{\hbar\omega}{2} \ket{0}.
+\end{eqn}
+In the position representation, we can write $a \ket{0} = 0$ as
+\begin{eqn}
+(m \omega_x + \hbar \partial_x) \psi_0(x) = 0,
+\end{eqn}
+which has as solution a Gaussian,
+\begin{eqn}
+\psi_0(x) = \frac{e^{-x^2 / \rho^2}}{\pi^{1/4} \sqrt{\rho}}, \qquad \text{where} \qquad \rho = \sqrt{\hbar / m \omega}.
+\end{eqn}
+
+
+\section{stuff}
+
+[missed last hour+]
+
+
+
+
+
+\end{document}
