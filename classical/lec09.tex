@@ -1,0 +1,197 @@
+\input{../header.tex}
+
+\begin{document}
+
+\section{}
+If we imagine we have N coordinates 
+\begin{equation}
+x^i 
+\end{equation}
+And we consider an infinitesimal volume element then we can consider a change in coordinates that if we define new coordinates as a function of the old coordinates
+\begin{equation}
+\widetilde{x^i} = f^i(x^j)
+\end{equation}
+\begin{equation}
+d^n \widetilde{x} = d^nx J
+\end{equation}
+
+
+Then the Jacobian J is equal to
+\begin{equation}
+J = det \pd{\widetilde{j}}{x}
+\end{equation} 
+For an infinitesimal change, what does this mean? It's close to an identity so our new coordinate is equal to
+\begin{equation}
+\widetilde{x^i} = x^i + \epsilon V^i (x^j)
+\end{equation}
+Then our new volume is our old volume element with the determinant
+\begin{equation}
+d^n \widetilde{x} = d^n x det(J)
+\end{equation}
+\begin{equation}
+J = det(\delta^j_i + \epsilon \pd{v^j}{x^i}
+\end{equation}
+The term that is of order $\epsilon$ is simply the trace. Up to first order
+\begin{equation}
+1 + \epsilon tr(\pd{v^j}{x^i}) 
+\end{equation}
+\begin{equation}
+1 + \epsilon \sum_i \pd{v^i}{x^i}
+\end{equation}
+So now our volumen element is
+\begin{equation}
+d^n \widetilde{x} = d^n x det(J) = d^nx ( 1 + \epsilon \sum_i \pd{v^i}{x^i})
+\end{equation}
+The Volume element does not change if the vector field $v_i$ is divergence free or
+\begin{equation}
+\sum_i \pd{v^i}{x^i}
+\end{equation}
+Now we'll apply this to the Hamilton's equations. Now instead of $x^i$ we really have a set of coordinates $\{q_i, p_i\}$ where both position and moomentum are coordinates. And then we have our Hamilton's equations. How do we now view those? The equations are time evolution equations but now we map it to an infinitesimal time, i.e.
+\begin{equation}
+q_i(t + dt) = \widetilde{q_i}
+\end{equation}
+\begin{equation}
+p_i(t + dt) = \widetilde{p_i}
+\end{equation}
+Now hamilton's equations become
+\begin{equation}
+\widetilde{q_i} = q_i + \pd{H}{p_i}dt
+\end{equation}
+\begin{equation}
+\widetilde{p_i} = p_i - \pd{H}{q_i}dt
+\end{equation}
+Our $\epsilon$ before is the infinitesimal time step
+
+\begin{equation}
+V^k = \{ \pd{H}{p_i} - \pd{H}{q_i}\}
+\end{equation}
+\begin{equation}
+d^nx \rightarrow d^Nq d^N p
+\end{equation}
+Applying the general formula
+\begin{equation}
+d^N \widetilde{q} d^N \widetilde{p} =d^N q d^N p ( 1 + dt \sum_{i=1}^N\pd{}{q_i}\pd{H}{p_i} - \pd{}{p_i} \pd{H}{q_i})
+\end{equation}
+The second term is zero
+\begin{equation}
+d^N \widetilde{q} d^N \widetilde{p} =d^N q d^N p 
+\end{equation}
+
+Under Hamiltonian time evolution, the volume as phase space is invariant. The flow in phase space is incompressible. With friction, volume is not conserved
+
+\section{Phase space density}
+This is how we begin to get to classical statistical mechanics
+\begin{equation}
+\rho(p^i, q^i, t) 
+\end{equation}
+Depends all 2N coordinates in phase space. WE can normalize our probability
+\begin{equation}
+\int d^n p d^nq \rho(p_1 q1, t) =1
+\end{equation}
+We won't go into that because we will later. An example will be the classical Boltzmann distribution
+\begin{equation}
+\rho \propto exp(-H(p, q, t)/kt)
+\end{equation}
+Thhe volume element stays invariant so basically you then realize that we can say what the time evolution of this distribution. So we can take the time derivative and think about the time evolution from Liouville theorem that
+\begin{equation}
+\d{}{t} S(p_1, q_1, t) = 0
+\end{equation}
+This is equivalent to
+\begin{equation}
+\pd{\rho}{t} + \pd{\rho}{p_i} + \pd{\rho}{q_i} \dot{q_i} = 0
+\end{equation} 
+\begin{equation}
+\pd{S}{t} = \pd{S}{p_i} (-\pd{H}{q_i} - \pd{s}{q_i} \pd{H}{p_i}
+\end{equation}
+\begin{equation}
+\pd{S}{t} = - (\pd{S}{q_i} \pd{H}{p_i} - \pd{S}{p_i} \pd{H}{q_i}
+\end{equation}
+This is a continuity equation
+
+\section{Poicare Recurrence Theorem}
+What can we say about staying at point in phase space and evolving in time. Basically we can pick a small neighborhood about the point and if you wait long enough, the point will come back to that neighborhood and come arbitrary close. So we'll have Hamiltonian evolution. Also we have to say that this is in a bounded phase space. Pick a time t to define a map
+\begin{equation}
+g(t) = \{ p(0) q(0)\} \rightarrow \{p(t), q(t)\}
+\end{equation}
+This maps phase space to phase space. Look at the neighborhood of u and evolve it by $g_t u , g_t^2 u, g_t^3 u $. WE have these maps of other us we don't know where they are but they have to be in this phase space. So there will be this series of maps in our neighborhood u with these powers of gt. Basically the staement is now is that if I look at a volume of M which we have defined to be finite. Then the gts have to fill the space. Do a proof by contradition
+
+\section{Poisson Brackets}
+\begin{itemize}
+\item Geometrical structure on phase space (symmetric structure)
+\item New higher level understanding of symmetry (Algebra of charges)
+\item Makes classical mechanics almost look like QM
+\end{itemize}
+Recall that time dependence of a ``phase space observable'' $A(p, q, t)$
+\begin{equation}
+\d{A}{t} = \pd{A}{t} + \sum_i\left(\pd{A}{p_i} \d{p_i}{t} + \pd{A}{q_i} \pd{q_i}{t}\right)
+\end{equation}
+\begin{equation}
+= \pd{A}{t} + \sum_i \left(\pd{A}{q_i} \pd{H}{p_i} - \pd{A}{p_i} \pd{H}{q}\right)
+\end{equation}
+
+\begin{equation}
+\pd{A}{t} + \{A, H\}
+\end{equation}
+Where $\{A, B\}$ where.
+
+Let's look at the algebraic properties. We have antsymmetry
+\begin{equation}
+\{A, B\} = - \{B, A\}
+\end{equation}
+Also Linearity across real numbers
+\begin{equation}
+\{\alpha A + \beta B, C\} = \alpha\{ A, C\} + \beta\{B, C\}
+\end{equation}
+Leibinitz rule
+\begin{equation}
+\{AB, C\} = A\{B, C\} + \{ A, C\} B
+\end{equation}
+Jacobi itentity
+\begin{equation}
+\{A, \{B, C\}\} + \{B, \{C, A\}\} + \{C, \{A, B\}\} = 0
+\end{equation}
+
+These are the properties tat also hold for the commutator in quantum mechanics and the Lie bracket for Lie algebras and Lie derivatives for manifolds.
+
+But In quantum mechancis, the objects you put into the commutator are not c-number but operators, order matters in this case
+\begin{equation}
+\{AB, C\} = A\{B, C\}+ \{A, C\} B
+\end{equation}
+is NOT
+\begin{equation}
+\{AB, C\} = A\{B, C\}+ B\{A, C\} 
+\end{equation}
+If we rewrite Hamilton's equations
+\begin{equation}
+\dot{q_i} = \{q_i, H\}
+\end{equation}
+\begin{equation}
+\dot{p_i} = \{ p_i, H\}
+\end{equation}
+ COnservation laws assume A does not have explicit time dependence
+If a and B are conserved then so is $\{A, B\}$
+
+If we have A and b which are conserved
+\begin{equation}
+\{A, H\} = 0
+\end{equation}
+\begin{equation}
+\{B, H\} = 0
+\end{equation}
+Then 
+\begin{equation}
+\{A, B\} = C
+\end{equation}
+is also conserved. using the Jacoibe identity
+\begin{equation}
+\{H, C\} = \{H, \{A, B\}\} = -\{A, \{B, H\}\} + \{B, \{A, H\}\} = 0
+\end{equation}
+Example angular momentum $L_1$ and $L_2$ are conserved. Then ${L_1, L_2}$ are conserved
+\begin{equation}
+L_1 = x_2p_3 - x_3p_2
+\end{equation}
+\begin{equation}
+L_2 = x_3 p_1 - x_1p_3
+\end{equation}
+Poisson bracket, boring algebra
+\end{document}
