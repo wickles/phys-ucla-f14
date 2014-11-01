@@ -62,8 +62,80 @@ and setting $\lambda = 1$ we find $\sum_i \v{\nabla} V \cdot \v{x}_i = k V$. Thu
 2 \avg{T} = k \avg{V}.
 \end{equation}
 
+Let's look at some simple systems. For the harmonic oscillator
+\begin{equation}
+V = \frac{1}{2} kx^2
+\end{equation}
+So our parameter from above $k$ is 2, so virial theorem for this system is:
+\begin{equation}
+\avg{T} = \avg{V}
+\end{equation}
+For a Keplerian potential it's:
+\begin{equation}
+V = \frac{\alpha}{r}
+\end{equation}
+So k = 1 and Virial theorem is
+\begin{equation}
+\avg{T} = -\frac{1}{2} \avg{V}
+\end{equation}
+\textbf{Note that Virial theorem in general only holds for bound motion with no scattering}
 
-[incomplete]
+
+\section{Simple systems}
+\subsection{1-D Harmonic Oscillator}
+Let's look at the solutions to some systems
+
+Hookes law:
+\begin{equation}
+F = -kx 
+\end{equation}
+\begin{equation}
+m\ddot{x} = -kx
+\end{equation}
+\begin{equation}
+\ddot{x} + \frac{k}{m} x = 0
+\end{equation}
+This system has a very general ansatz where $\omega = \frac{k}{m}$
+\begin{equation}
+x(t) = c_1 \sin\omega t + c_2 \cos\omega t
+\end{equation}
+\begin{equation}
+x(t) = c\sin(\omega t + \phi_0)
+\end{euqation}
+\begin{equation}
+c_1 e^{i\omega t} + c_2^* e^{-i \omega t}
+\end{equation}
+There are 2 integration constants that determine x and $\dot{x}$ at t = 0. We can also write the momentum of this system
+\begin{equation}
+p = m\dot{x} = mc_1 \omega \cos(\omega t + \phi_0)
+\end{equation}
+\begin{equation}
+p^2 = m^2 \omega^2 (c_1^2 - x^2)
+\end{equation}
+\begin{equation}
+p^2 + \omega x^2 = m^2 \omega^2
+\end{equation}
+Looking at this in phase space, we get closed circles because this is a conservative field. The origin is the equilibrium point and the circles do not intersect. This changes if there is friction, and for driven harmonic oscillator
+
+\subsection{Particle in Constant Magnetic Field}
+Let's set up a constant magnetic field in the $\hat{z}$ direction. Then our forces are 
+\begin{equation}
+\v{F} = e\v{v} \times \v{B}
+\end{equation}
+In tensor notation
+\begin{equation}
+F_i = e \epsilon_{ijk} v_j B_k
+\end{equation}
+Which results in 
+\begin{equation}
+m\ddot{z} = -0
+\end{equation}
+\begin{equation}
+m\ddot{x} = B e \dot{y}
+\end{equation}
+\begin{equation}
+m\ddot{y} = -B e\dot{x}
+\end{equation}
 
 
 
