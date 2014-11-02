@@ -1,12 +1,12 @@
 % declare document class and geometry
-\documentclass[12pt]{article} % use larger type; default would be 10pt
-\usepackage[margin=1in]{geometry} % handle page geometry
+%\documentclass[12pt]{article} % use larger type; default would be 10pt
+%\usepackage[margin=1in]{geometry} % handle page geometry
 
-\input{../../header.tex}
+\input{../plaheader.tex}
 
 \title{Phys 220A -- Classical Mechanics -- Lec02}
 \author{UCLA, Fall 2014}
-\date{\formatdate{07}{10}{2014}} % Activate to display a given date or no date (if empty),
+%\date{\formatdate{07}{10}{2014}} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
 
 \begin{document}
@@ -33,7 +33,7 @@ Take some function $f$ and write the time average
 \end{equation}
 Note that there is no dependence on $t_0$ for a bounded quantity,
 \begin{equation}
-\frac{\pd}{\pd t_0} \avg{f_0} = \lim_{T \rightarrow \infty} \frac{f(t_0 + T) - f(t_0)}{T} = 0
+\pd{}{t_0} \avg{f_0} = \lim_{T \rightarrow \infty} \frac{f(t_0 + T) - f(t_0)}{T} = 0
 \end{equation}
 which vanishes because the numerator in the limit is bounded. 
 
@@ -101,7 +101,7 @@ x(t) = c_1 \sin\omega t + c_2 \cos\omega t
 \end{equation}
 \begin{equation}
 x(t) = c\sin(\omega t + \phi_0)
-\end{euqation}
+\end{equation}
 \begin{equation}
 c_1 e^{i\omega t} + c_2^* e^{-i \omega t}
 \end{equation}
@@ -136,9 +136,32 @@ m\ddot{x} = B e \dot{y}
 \begin{equation}
 m\ddot{y} = -B e\dot{x}
 \end{equation}
-
-
-
+This is a systme of two first order differential equations. Let's make a couple definitions
+\begin{equation}
+\omega_B = \frac{Be}{m}
+\end{equation}
+\begin{equation}
+\dot{x} = S_1
+\end{equation}
+\begin{equation}
+\dot{y} = S_2
+\end{equation}
+So now our equations become
+\begin{equation}
+\dot{S_1} = \omega_B S_2
+\end{equation}
+\begin{equation}
+\dot{S_2} = -\omega_B S_1
+\end{equation}
+Let's write this in matrix form
+\begin{equation}
+\d{}{t} \left(\begin{array}{c} S_1 \\S_2\end{array}\right) = M \left(\begin{array}{c} S_1 \\S_2\end{array}\right)
+\end{equation}
+where
+\begin{equation}
+M = \left(\begin{array}{cc} 0 & \omega_B \\ -\omega_B & 0 \end{array}\right)
+\end{equation}
+We can solve this by exponentiating and doing a Taylor expansion
 
 
 
