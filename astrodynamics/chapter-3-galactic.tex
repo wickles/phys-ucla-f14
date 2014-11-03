@@ -1,0 +1,83 @@
+% declare document class and geometry
+%\documentclass[12pt]{article} % use larger type; default would be 10pt
+%\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../plaheader.tex}
+
+\title{Astro 270 -- Astrophysical Dynamics -- The Orbits of Stars}
+\author{UCLA, Fall 2014}
+%\date{\formatdate{02}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+%\date{\formatdate{07}{10}{2014}} 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+\section{Orbits in static spherical potentials}
+Our fundamental equation in this chapters are the equations of motion which are derived from the Lagrangian
+\begin{equation}
+L = r^2 \dot{\phi}
+\end{equation}
+Our equation of motion is:
+\begin{equation}
+u^2 + \frac{2[\Phi (1/u) - E]}{L^2} = 0
+\end{equation}
+where u is 1/r
+
+The time that it takes a star to go from apocenter to pericenter back
+to apocenter is defined as the \ref{radial period}. Since this is a
+spherical symmetric potential, pericenter and apocenter are always the
+same for any orbit, though it may precess. The azimuthal period is the
+amount of time a particle will take to complete one orbit (traverse
+2$\pi$ of $\phi$ if it travelled at the average speed. This will only
+be a rational number if the orbit is closed, i.e. the beginning of an
+orbit ends at the same position. There are two cases where all bound
+orbits are closed. Note that \textit{all} potentials have at least one
+orbit that is bound - that of a circular orbit. 
+\subsection{Examples of Spherical Potentials}
+\subsubsection{Spherical Harmonic Oscillator}
+In this case, the radial period is $\pi /\Omega$. In order, the
+particle only needs to traverse half of one orbit to reach back to the
+same distance. This is because all of the orbits are ellipses centered
+on the center of the potential. This is in contrast to the Kepler
+potential which has radial period of $2\pi / \Omega$, where the
+ellipse has its \textit{focus} at the center of the potential
+
+\subsubsection{Kepler Potential}
+\subsubsection{Isochrone Potential}
+\subsubsection{Hyperbolic Encounters}
+
+
+
+\subsection{Constants and integrals of motion}
+A \textbf{constant of motion} is a quantity that 
+\begin{equation}
+C(\v{x}(t_1) \v{v}(t_1); t_1) = C(\v x(t_2) \v{v}(t_2); t_2)
+\end{equation}
+This is different from an integral of motion because you need an
+initial condition in order to calculate one of these quantities,
+i.e. you need to know the value at some particular time in order to be
+able to get it at a different time. Generally any initial conditions
+or boundary conditions can be considered constants of
+motion. Therefore, any orbit, which has six coordinates in phase space
+has six constants of motion. From the current time and the six coordinates and
+phase space it is possible to determine the position in phase space. 
+
+Integrals of motion are determined solely by the potential, and are
+invariant in time. They limit the amount of phase space that a
+particle can inhabit. Thus the number of integrals of motion describe
+how many coordinates are required to specify the location in phase
+space. In other words, having n integrals of motion means that any
+particle's orbit will lie on a 6-n dimensional subspace of x. A
+non-isolating integral is one that does not limit the number of
+dimensions that the orbit can lie on. They're fucking useless. 
+
+\section{Orbits in Axisymmetric Potentials}
+Effective potential
+\begin{equation}
+\Phi_{eff} = \Phi(R, z) + \frac{L_z^2}{2R^2}
+\end{equation}
+
+
+\end{document}

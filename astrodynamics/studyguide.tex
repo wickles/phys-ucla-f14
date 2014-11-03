@@ -1,0 +1,102 @@
+% declare document class and geometry
+%\documentclass[12pt]{article} % use larger type; default would be 10pt
+%\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../plaheader.tex}
+
+\title{Astro 270 -- Astrophysical Dynamics -- Study Guide}
+\author{UCLA, Fall 2014}
+%\date{\formatdate{02}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\tableofcontents
+
+
+
+\section{Orders of Magnitude}
+\begin{itemize}
+\item Galactic properties: Page 18
+\item Pramemters of clusters: 31
+\end{itemize}
+\begin{itemize}
+\item Star clusters have $10^2 - 10^6$ stars
+\item Galaxies can have $10^5 - 10^{12}$ stars
+\item Mikly Way orders of Mag
+\item Luminosities
+\begin{itemize}
+\item Sun: $10^{26}$
+\end{itemize}
+\end{itemize}
+
+
+\section{Equations to Know}
+\subsection{Potential Theory}
+
+\begin{itemize}
+\item General potential:
+\begin{equation}
+\Phi(x) = -G\int d^3\v{x'} \frac{\rho{\v x'}}{|\v x' - \v x|}
+\end{equation}
+\item Poisson's equation
+\begin{equation}
+\nabla^2 \Phi = 4\pi G \rho
+\end{equation}
+\end{itemize}
+
+
+
+\subsection{Spherically Symmetric Potentials}
+\begin{itemize}
+\item Blah
+\begin{equation}
+\Phi(r) = -4\pi G \left[ \frac{1}{r} \int_0^r dr' r'^2 \rho(r') + \int_r^{\infty} dr' r' \rho(r')\right]
+\end{equation}
+\item Point mass
+\begin{equation}
+\Phi(r) = -\frac{GM}{r}
+\end{equation}
+\item Homogeneous sphere within radius a
+\begin{equation}
+\Phi(r) = -2\pi G \rho ( a^2 - \frac{1}{3} r^2)
+\end{equation}
+\item Homogeneous sphere outside radius A
+\begin{equation}
+-\frac{4\pi G\rho a^3}{3r}
+\end{equation}
+\item Plummer Model
+\begin{equation}
+\Phi = -\frac{GM}{\sqrt{r^2 + b^2}}
+\end{equation}
+\end{itemize}
+
+
+\subsection{Circular velocities}
+\begin{itemize}
+\item Blah
+\begin{equation}
+v_c^2 = \frac{GM(r)}{r}
+\end{equation}
+\item Escape speed
+\begin{equation}
+v_e(r) = \sqrt{2|\Phi(r)|}
+\end{equation}
+\end{itemize}
+
+
+
+\section{Definitions}
+\begin{itemize}
+\item Radial period - The time that it takes a star to go from apocenter to pericenter back
+to apocenter
+\item True Anomaly
+\item Eccentric anomaly
+
+\end{itemize}
+
+
+\end{document}
