@@ -1,0 +1,190 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+\newcommand{\Gr}{\opname{Gr}}
+
+
+\title{Math 217 -- Geometry and Physics -- Lec12}
+\author{UCLA, Fall 2014}
+\date{\formatdate{29}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{More stuff}
+
+Recall Riemann-Roch. Given a function $f : M \rightarrow N = p+$, define a function
+\begin{eqn}
+f_! : K(M) \rightarrow K(p+) \cong \Z
+\end{eqn}
+where $K(p+) \ni [E] \cong \rank E = r$. Then we have $\hat{A} (Tp+) = 1$, and
+\begin{eqn}
+\int_M \hat{A} (TM) \opname{ch} E \in \Z
+\end{eqn}
+for all $[E] \in K(M)$. If $M$ is a spin manifold, then
+\begin{eqn}
+\int_M \hat{A} (TM) \in \Z.
+\end{eqn}
+Recall of course 
+\begin{eqn}
+\hat{A} (TM) = \frac{ \prod_j^n x_j }{ \prod_j^n (e^{-x_j/2} - e^{-x_j/2}) },
+% error? denom = 0.. check previous notes
+\end{eqn}
+where the numerator is just $e(TM)$ and the denominator is the Chern character of the ``Euler class'' of $TM$ in $K(M)$. 
+
+If $f : M \rightarrow N$ is a holomorphic map between projective manifolds, then (GRR)
+\begin{eqn}
+f_* (T \dif(TM) \opname{ch} E) = T \dif(TN) \opname{ch} f_! E.
+\end{eqn}
+We have 
+\begin{eqn}
+T \dif(TM^n) = \frac{ \prod_j^n x_j}{\prod_j^n (1-e^{-x_j})},
+\end{eqn}
+where again the numerator is just $e(TM)$ and the denominator is the Chern character of Euler class of $TM$ in $K(M)$. When $N = p+$, 
+\begin{eqn}
+f_! E = \sum_{q=0}^n (-1)^q \dim H^q (M,E) \in K(p+) \cong \Z.
+\end{eqn}
+Hirzebruch RR tells us that this sum is just
+\begin{eqn}
+f_! E = \int_M T \dif(TM) \opname{ch} E.
+\end{eqn}
+
+
+\begin{definition}[Cobordism (Generalized cohomology theory)]
+Given oriented, closed, compact manifolds $M_1, M_2$, they are said to be cobordant $M_1 \sim M_2$ if there exists a manifold $M$ with boundary 
+\begin{eqn}
+\partial M = M_1 \cup -M_2,
+\end{eqn}
+where $-M_2$ denotes $M_2$ with the reverse orientation. We denote $\Omega_\text{SO}^*$ as the set of cobordism equivalence classes. 
+\end{definition}
+% why SO? why use U below?
+
+These equivalence classes have a ring structure,
+\begin{align}
+[M_1] \times [M_2] &= [M_1 \times M_2] \\
+[M_1] + [M_2] &= [M_1 \sqcup M_2],
+\end{align}
+where $\sqcup$ denotes disjoint union. 
+
+\begin{theorem}
+We have
+\begin{eqn}
+\Omega^*_\text{SO} \otimes_\Z \Q = \Omega^*_U \otimes_\Z \Q = \Q[\CP^2, \CP^4, \dots].
+\end{eqn}
+(Due to Thom Milnor. [?])
+\end{theorem}
+
+% $J^2 = -I$ on $M$ then $TM \oplus \R^k$ has `almost' complex structure.  [huh?]
+
+\begin{lemma}
+The pontryagin numbers are cobordism invariants.
+\end{lemma}
+
+\begin{proof}
+Given $\partial M \overset{i}{\hookrightarrow} M$, we have
+\begin{eqn}
+P(i^* TM) = P(T \partial M) \underbrace{P(\R)}_{=1},
+\end{eqn}
+so Stoke's theorem tells us
+\begin{eqn}
+\int_{\partial M} i^* \omega = \int_M \dif{\omega} = 0
+\end{eqn}
+for any pontryagin class $\omega$.
+\end{proof}
+
+A genus is a ring homomorphism:
+\begin{eqn}
+\varphi : \Omega^*_\Q = \Q[\CP^2, \CP^4, \dots] \rightarrow R \text{ [ring]},
+\end{eqn}
+where we have
+\begin{align}
+\varphi([M] \times [N]) &= \varphi([M]) \varphi([N]), \\
+\varphi([M] + [N]) &= \varphi([M]) + \varphi([N]).
+\end{align}
+
+\begin{example} %is it example?
+Let $f(x) = \frac{x}{Q(x)}$ where $Q(x)$ is an even function and so $f(x)$ is odd and we can write
+\begin{eqn}
+f(x) = b_1 x + b_3 x^3 + \dots, \qquad g(x) = 1 + a_2 x^2 + a_4 x^4 + \dots.
+\end{eqn}
+Then consider
+\begin{eqn}
+\varphi([M^{2n}]) \equiv \int_M \prod_{j=1}^n Q(x_j)
+\end{eqn}
+where $\set{x_j}$ are the Chern roots of $TM$. Then $\varphi$ is a genus associated to $f$.
+\end{example}
+
+\begin{lemma}
+Let $y = f(x)$, $g = f\inv$. Then
+\begin{eqn}
+g'(y) = \sum_{n \geq 0}^\infty \varphi(\CP^n) y^n
+\end{eqn}
+where
+\begin{eqn}
+\varphi(M) = \int_M \prod_{j=1}^n Q(x_j).
+\end{eqn}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{eqn}
+T \CP^n \oplus \C \cong \underbrace{\bigO(1) \oplus \dots \oplus \bigO(1)}_{n+1},
+\end{eqn}
+and so
+\begin{eqn}
+c(T \CP^n) = c(\bigO(1))^{n+1} = t^{n+1}.
+\end{eqn}
+If we denote $t = c(\bigO(1))$, then
+\begin{eqn}
+H^* (\CP^n, \Z) = \Z[t] \Big/ t^{n+1} = 0
+\end{eqn}
+[???] and we have $\int_{\CP^n} t^n = 1$ and
+\begin{align}
+\varphi(\CP^n) &= \int_{\CP^n} Q(t)^{n+1} = \int_{\CP^n} \left( \frac{t}{f(t)} \right)^{n+1} = \Res\limits_{x=0} \left( \frac{1}{f(x)} \right)^{n+1} \\
+	&= \frac{1}{2\pi i} \int_C \left( \frac{1}{f(x)} \right)^{n+1} \dif{x} = \frac{1}{2\pi i} \int_{f(C)} \frac{g'(y)}{y^{n+1}} \dif{y} \\
+	&= \text{coeff. of $y^n$ in $g'(y)$},
+\end{align}
+where we have substituted $y = f(x)$, $\dif{y} = f'(x) \dif{x}$, $f'(x) = 1 / g'(y)$. 
+\end{proof}
+
+\begin{example}
+Take
+\begin{eqn}
+Q(x) = \frac{x}{\tanh x}, \qquad f(x) = \tanh x.
+\end{eqn}
+Then 
+\begin{eqn}
+\frac{1}{g'(y)} = f'(x) = 1 - f(x)^2 \quad \implies \frac{1}{g'(y)} = 1 - y^2 \quad \implies g'(y) = \frac{1}{1-y^2} = 1 + y^2 + y^4 + \dots
+\end{eqn}
+so we have
+\begin{eqn}
+L(\CP^n) = 
+\begin{cases}
+0 & \text{$n$ odd}, \\
+1 & \text{$n$ even}.
+\end{cases}
+\end{eqn}
+\end{example}
+
+\begin{theorem}[Thom]
+
+[missed this]
+
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+\end{document}
