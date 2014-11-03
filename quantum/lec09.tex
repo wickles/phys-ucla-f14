@@ -1,0 +1,165 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec09}
+\author{UCLA, Fall 2014}
+\date{\formatdate{3}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Propagator}
+
+The propagator is defined as the time evolution operator evaluated in position space
+\begin{eqn}
+K(\v r, t; \v r', t') = \matrixel{\v r}{U(t,t')}{\v r'}.
+\end{eqn}
+When $t=t'$ we have $U(t,t'=t) = 1$, so that the propagator in this case is just
+\begin{eqn}
+K(\v r, t; \v r', t'=t) = \delta(\v r - \v r').
+\label{eq:prop0}
+\end{eqn}
+Now, the Schroedinger equation can be rewritten
+\begin{eqn}
+(i \hbar \partial_t - H) \psi(\v r, t) = 0,
+\end{eqn}
+where $H$ is some differential operator, e.g. $H = -\frac{\hbar^2}{2m} \nabla_r^2$. Let's call the new operator on the left the ``Schroedinger operator''. Furthermore, we can write
+\begin{eqn}
+\int \dif^3{r} \, \psi(\v r, t) \ket{\v r} = U(t,t') \int \dif^3{r} \, \psi(\v r, t') \ket{\v r}.
+\end{eqn}
+Applying a position bra on the left, we have
+\begin{align}
+\psi(\v r, t) &= \bra{\v r} \int \dif^3{r'} \, \psi(\v r', t) \ket{\v r'} \\
+	&= \int \dif^3{r'} \, K(\v r, t; \v r', t') \psi(\v r, t').
+\end{align}
+Next, applying the Schroedinger operator, we have
+\begin{align}
+0 &= (i \hbar \partial_t - H) \psi(\v r, t) \\
+	&= \int \dif^3{r'} \left[ (i \hbar \partial_t - H) K(\v r, t; \v r', t') \right] \psi(\v r', t').
+\end{align}
+Since $\psi(\v r', t')$ is a completely arbitrary wavefunction, we find that in general the propagator itself obeys the Schroedinger equation,
+\begin{eqn}
+(i \hbar \partial_t - H) K(\v r, t; \v r', t') = 0.
+\end{eqn}
+This combined with the initial condition \eqref{eq:prop0} uniquely characterizes the propagator $K$. 
+
+
+\subsection{Causality, Retarded Propagator}
+
+We can impose causality by defining the retarded propagator
+\begin{eqn}
+K^R (\v r, t; \v r', t') \equiv \theta(t-t') K(\v r, t; \v r', t'),
+\end{eqn}
+where $\theta(x)$ is the Heaviside step function. This just cuts off information about the past, which is really just redundant because we should always have symmetry under time reversal. What happens when we applying the Schroedinger operator to the retarded propagator? Everything goes away except for the time derivative acting on the step function,
+\begin{align}
+(i \hbar \partial_t - H) K^R(\v r, t; \v r', t') &= \left[ i \hbar \partial_t \theta(t-t') \right] K(\v r, t; \v r', t') \\
+	&= i \hbar \delta (t-t') \delta^3(\v r - \v r').
+\end{align}
+This uniquely defines the retarded propagator---note also that, due to the step function, the retarded propagator is zero for $t < t'$. 
+
+
+\subsection{Green's function}
+
+Given a differential equation of the form
+\begin{eqn}
+L(\v x) f(\v x) = \delta(\v x - \v y)
+\end{eqn}
+with some boundary and/or initial conditions, where $L(\v x)$ is some operator and $\v y$ is an arbitrary point, we call $f(\v x)$ a Green's function of $L$. There is a lot of mathematical technology developed around Green's functions, so it is useful to consider the propagator as a Green's function of the Schroedinger operator. This formulation is very useful for more advanced applications like quantum field theory. 
+
+
+\subsection{Time-independent Hamiltonian}
+
+Let's specialize to the case of time-independent $H$, i.e. we will have energy eigenkets $\ket{\alpha_i}$ with eigenvalues $E_i$,
+\begin{eqn}
+H \ket{\alpha_i} = E_i \ket{\alpha_i}.
+\end{eqn}
+Recall that in this eigenbasis we can write
+\begin{eqn}
+U(t-t') = \sum_i \bra{\alpha_i} \ket{\alpha_i} e^{-i E_i (t-t') / \hbar},
+\end{eqn}
+thus we find that
+\begin{align}
+K(\v r, t; \v r', t') &= \sum_i \underbrace{\braket{\v r}{\alpha_i}}_{\psi_i(\v r)} \braket{\alpha_i}{\v r'} e^{-i E_i (t-t') / \hbar} \\
+	&= \sum_i \psi_i (\v r) \psi_i^* (\v r') e^{-i E_i (t-t') / \hbar},
+\end{align}
+where we have
+\begin{eqn}
+H(\v r) \psi_i(\v r) = E_i \psi(\v r).
+\end{eqn}
+
+\begin{remark}
+At the end of the day, we can think of the propagator as a wave function for a particle localized at $\v r'$ at time $t'$. 
+\end{remark}
+
+Now, we can think of the propagator as as a trace over time,
+\begin{align}
+G(t-t') &= \tr U(t,t') \\
+	&= \int \dif^3 r \, K(\v r, t; \v r', t') \\
+	&= \sum_i e^{-i E_i (t-t') / \hbar},
+\end{align}
+since the eigenfunctions are all normalized. Note that here the trace is defined by
+\begin{align}
+\tr U(t,t') &= \sum_i \matrixel{\beta_i}{U(t,t')}{\beta_i} \\
+	&= \sum_i \int \dif^3{r} \braket{\beta_i}{\v r} \matrixel{\v r}{U}{\beta_i} \\
+	&= \int \dif^3{r} \matrixel{\v r}{U(t,t')}{\v r}.
+\end{align}
+
+Notice that our Green's function 
+\begin{eqn}
+G(t) = \sum_i e^{-i E_i t / \hbar}
+\end{eqn}
+now is almost exactly the same as the partition function from statistical mechanics
+\begin{eqn}
+Z = \sum_i e^{-\beta E_i}.
+\end{eqn}
+This is no trivial remark---it turns out that much of what we do in statistical mechanics is directly applicable to quantum field theory, and vice versa. If we define an ``imaginary time'' $\tau = \hbar \beta$, the connection becomes clearer. We can analytically continue $G(t)$ onto the complex plane defined by $z = t - i \tau$. Then, we find that under the so-called ``Wick rotation'' $t \rightarrow i \tau$ we have
+\begin{eqn}
+G(-i \tau) = Z.
+\end{eqn}
+
+Of course we can also define a retarded Green's function
+\begin{eqn}
+G^R(t) = \theta(t) G(t),
+\end{eqn}
+which we can Fourier transform and write
+\begin{eqn}
+G^R(\omega) = -i \int_{-\infty}^\infty \dif{t} \, e^{i\omega t} G^R(t) = -i \int_0^\infty \dif{t} \, e^{i \omega t} G^R(t).
+\end{eqn}
+This generally ends up making further calculations intractible but we can ``regularize'' by taking $\omega \rightarrow \omega + i \eta$,
+\begin{eqn}
+G^R(\omega) \rightarrow -i \int_0^\infty e^{i \omega t - \eta t} G^R(t),
+\end{eqn}
+or in other words
+\begin{eqn}
+G^R(t) \rightarrow G^R(t) e^{-\eta t}.
+\end{eqn}
+Then we find that
+\begin{eqn}
+G^R(\omega) = -i \sum_i \int_0^\infty \dif{t} e^{i \omega t - \eta t - i E_i t / \hbar},
+\end{eqn}
+which we can evaluate using
+\begin{eqn}
+\int_0^\infty \dif{t} \, e^{-\alpha t} = 1 / \alpha, \qquad \text{where $\Re \alpha > 0$},
+\end{eqn}
+so that
+\begin{eqn}
+G^R(\omega) = \sum_i \frac{1}{\omega - E_i / \hbar + i \eta}.
+\end{eqn}
+So we have a function with poles in the complex plane at $E_i / \hbar - i \eta$, which we have pushed just below the real line, into the negative imaginary half-plane. 
+
+
+
+
+
+
+
+\end{document}
