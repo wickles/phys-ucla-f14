@@ -1,0 +1,175 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+\newcommand{\Gr}{\opname{Gr}}
+
+
+\title{Math 217 -- Geometry and Physics -- Lec14}
+\author{UCLA, Fall 2014}
+\date{\formatdate{3}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Atiyah-Singer Index Formula}
+
+Recall we are considering two complex vector bundles $E, F \rightarrow M$, with Dirac operator 
+\begin{eqn}
+D : \Gamma(E) \rightarrow \Gamma(F) 
+\end{eqn}
+with ``symbol''
+\begin{eqn}
+\sigma(D) : \pi^* E \rightarrow \pi^* F.
+\end{eqn}
+From last time, $D$ is elliptic iff $\sigma(D)(x, v)$ is a bundle isomorphism for $v \neq 0$. If $D$ is elliptic, then $\ker D$ and $\opname{coker} D$ are finite dimensional and
+\begin{eqn}
+\opname{Ind} D = \dim_\C \ker D - \dim_\C \opname{coker} D.
+\end{eqn}
+
+Suppose we have a sequence of complex vector bundles $\set{E_n}$ on $M$,
+\begin{eqn}
+0 \rightarrow \Gamma(E_0) \overset{D_0}{\longrightarrow} \Gamma(E_1) \overset{D_1}{\longrightarrow} \dots
+\label{eq:seqDirac}
+\end{eqn}
+such that $D_i \circ D_{i-1} = 0$. Then we have a corresponding symbol complex
+\begin{eqn}
+0 \rightarrow \pi^* (E_0) \overset{\sigma(D_0)}{\longrightarrow} \pi^*(E_1) \overset{\sigma(D_1)}{\longrightarrow} \dots.
+\label{eq:seqSymbol}
+\end{eqn}
+The complex \eqref{eq:seqDirac} is called an elliptic complex iff the complex \eqref{eq:seqSymbol} is exact, i.e.
+\begin{eqn}
+\ker \sigma(D_j) = \Im \sigma(D_{j-1}).
+\end{eqn}
+
+The cohomology of \eqref{eq:seqDirac} is given by
+\begin{eqn}
+H^p (D) = \eval{\frac{\ker D_p}{\Im D_{p-1}}}_{\Gamma(E_p)}
+\end{eqn}
+and
+\begin{eqn}
+\opname{Ind} D \equiv \sum_{p=0} (-1)^p \dim_\C H^p (D).
+\end{eqn}
+If it's an elliptic complex then 
+\begin{eqn}
+\dim_\C H^* (D) < \infty.
+\end{eqn}
+
+\begin{theorem}[Atiyah-Singer]
+For an elliptic complex on a compact closed smooth manifold $M^{2k}$, we have
+\begin{eqn}
+\opname{Ind} D = \int_M \left[ \sum_{i=0} (-1)^i \opname{ch} E_i \right] \left[ T \dif (TM \otimes_\R \C) \frac{1}{e(T^*M)} \right],
+\end{eqn}
+where, in terms of Chern roots we have
+\begin{eqn}
+T \dif(TM \otimes_\R \C) = \prod_{j=1}^k \left[ \frac{x_j}{1 - e^{-x_j}} \frac{1}{1 - e^{x_j}} \right].
+\end{eqn}
+\end{theorem}
+
+
+\subsection{Some examples}
+
+\begin{example}[de Rham complex]
+Consider vector bundles
+\begin{eqn}
+E_j = \Lambda^j (T^* M \otimes_\R \C), \qquad
+\Gamma(E_j) = \Omega^j (M).
+\end{eqn}
+Then the Dirac operator is just the exterior derivative $\Dif = \dif$
+\begin{eqn}
+0 \rightarrow \Omega^0(M) \overset{d}{\longrightarrow} \Omega^1(M) \overset{d}{\longrightarrow} \dots
+\end{eqn}
+while the symbol is just the exterior product
+\begin{eqn}
+\sigma(d) (x,v) w = v \wedge w.
+\end{eqn}
+We also have
+\begin{eqn}
+H^i (M, \C) = \eval{ \frac{\ker d}{\Im d} }_{\Omega^i(M)}
+\end{eqn}
+and
+\begin{eqn}
+\opname{Ind} d = \sum_{j=0} (-1)^j \dim H^j (M,\C) = \chi(M).
+\end{eqn}
+Furthermore,
+\begin{align}
+\sum_{i=0}^{2k} (-1)^i \opname{ch} E_i 
+	&= \sum_{i=0}^{2k} (-1)^i \opname{ch} \Lambda^i (T^* M \otimes_\R \C) \\
+	&= \prod_{j=0}^n (1-e^{x_j}) (1-e^{-x_j}),
+\end{align}
+(check this as an exercise) which gives us the Atiyah-Singer index formula. Finally, we have
+\begin{align}
+\chi(M) &= \opname{Ind} d = \int_M \left[ \prod_{j-1} (1-e^{-x_j})(1-e^{x_j}) \right] \left[ \prod_{j=1} \frac{-x_j}{1-e^{x_j}} \frac{1}{1-e^{-x_j}} \right] \\
+	&= \int_M \prod_j x_j \\
+	&= \int_M e(TM).
+\end{align}
+\end{example}
+
+\begin{example}[Complex manifold]
+Consider a compact closed manifold $M$ with charts 
+\begin{eqn}
+M = \cup_{\alpha \in I} U_\alpha, \qquad 
+\varphi_\alpha : U_\alpha \rightarrow \C^n
+\end{eqn}
+homeomorphic such that $\varphi_\alpha \circ \varphi_\beta^{-1}$ are biholomorphic. Consider $E \rightarrow M$ a holomorphic vector bundle, i.e. for the maps
+\begin{eqn}
+\psi_\alpha : \pi^* (U_\alpha) \rightarrow U_\alpha \times \C^n
+\end{eqn}
+the maps
+\begin{eqn}
+g_{\alpha\beta} : U_\alpha \cap U_\beta \rightarrow GL(n, \C)
+\end{eqn}
+are holomorphic. Given local holomorphic coordinates $\set{z_i}$ in $U$, define $T^{1,0}M$ as the associated holomorphic tangent bundle with basis $\set{\pd{}{z_i}}$, and similarly $T^{0,1}M$ for antiholomorphic tangent bundle. Then we have
+\begin{eqn}
+T_\R M \otimes_\R \C \cong T^{1,0}M \oplus T^{0,1}M,
+\end{eqn}
+and
+\begin{eqn}
+\Omega^j (E) = \Gamma(M, \Lambda^j T^{*0,1}M \otimes E).
+\end{eqn}
+The Dirac operator is then given by
+\begin{eqn}
+\bar{\partial}_E = \bar \partial \otimes \opname{id}_E, \qquad
+\bar \partial_E^2 = 0
+\end{eqn}
+so given a section
+\begin{eqn}
+s = \sum_I f_I \dif \bar z_I \otimes e
+\end{eqn}
+where $e$ is a local holomorphic section of $E$, we have
+\begin{eqn}
+\bar \partial_E s = \sum_I \bar \partial f_I \wedge \dif \bar z_I \otimes e.
+\end{eqn}
+The elliptic complex is then given by
+\begin{eqn}
+0 \rightarrow \Omega^0(E) \overset{\bar \partial_E}{\longrightarrow} \Omega^1(E) \overset{\bar \partial_E}{\longrightarrow} \dots \overset{\bar \partial_E}{\longrightarrow} \Omega^n(E) \rightarrow 0
+\end{eqn}
+which is called the Dolbeault complex. Furthermore, we find
+\begin{eqn}
+\opname{Ind} \bar \partial_E = \sum_{i=0}^n (-1)^i \dim_\C H^i (M,E) = \chi(M,E)
+\end{eqn}
+and
+\begin{align}
+\sum_{j=0}^n (-1)^j \opname{ch} \left( (\Lambda^j T^{*0,1}M) \otimes E \right) 
+	&= \left( \sum_{j=0}^n (-1)^j \opname{ch} \Lambda^j T^{*0,1}M \right) \opname{ch} E \\
+	&= \prod_{j=1}^n (1-e^{x_j}) \opname{ch} E.
+\end{align}
+Thus we get the most important equation in algebraic geometry 
+\begin{align}
+\chi(M,E) &= \int_M \prod_j (1-e^{x_j}) \opname{ch} E \prod_j \frac{x_j}{1-e^{x_j}} \frac{1}{1-e^{-x_j}} \\
+	&= \int_M T \dif (T^{1,0}M) \opname{ch} E.
+\end{align}
+\end{example}
+
+
+
+
+
+
+
+\end{document}
