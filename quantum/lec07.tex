@@ -1,61 +1,180 @@
 % declare document class and geometry
 \documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX
 \usepackage[margin=1in]{geometry} % handle page geometry
 
+% import packages and commands
 \input{../header2.tex}
 
-\title{Phys 220A -- Classical Mechanics -- Lec07}
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec07}
 \author{UCLA, Fall 2014}
-\date{\formatdate{21}{10}{2014}} % Activate to display a given date or no date (if empty),
+\date{\formatdate{27}{10}{2014}} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
 
 \begin{document}
-\setlength{\unitlength}{1mm}
 \maketitle
 
 
-\section{Lagrange points}
+\section{Commutators and Quantum-Classical Correspondence}
 
-
-
-
-\section{Parametric resonance}
-
-
-
-\section{Legendre transform (for Hamiltonian mechanics)}
-
-Given a function $f(x)$, we say that it is convex if $f''(x) > 0$. If it is, then we will have a Legendre transform
+Suppose we have three operators $A,B,C$ and we know their commutators. Then we have
+\begin{align}
+ABC &= ([A,B] + BA) C \\
+	&= [A,B] C + B ([A,C] + CA) \\
+	&= [A,B] C + B [A,C] + BCA,
+\end{align}
+thus we find
 \begin{eqn}
-\mathcal{L} : f(x) \mapsto (\mathcal{L}f)(p)
+[A,BC] = ABC - BCA = [A,B] C + B [A,C].
 \end{eqn}
-taking $f(x)$ from position space to a function $(\mathcal{L}f)(p)$ in momentum space. Define
+Recall our relations,
+\begin{align}
+[x_i, p_j] &= i \hbar \delta_{ij}, \\
+[x_i, f(\v p)] &= i \hbar \partial_i f, \\
+[p_i, g(\v x)] &= -i \hbar \partial_i g.
+\end{align}
+For an arbitrary function $A(\v x, \v p)$, we can expand
 \begin{eqn}
-F(p,x) = px - f(x),
+A(\v x, \v p) = \text{const} + A_i x_i + B_i p_i + C_i x_i^2 + D_i p_i^2 + E_{ij} x_i p_j + F_{ij} p_i x_j + \dots,
 \end{eqn}
-which we picture as the difference between a line of slope $p$ and the convex function $f(x)$. Then the Legendre transformed function is defined as
+for some constants $A_i, B_i, C_i$, etc. Note that $\v x \cdot \v p \neq \v p \cdot \v x$. Now, what should we get for
 \begin{eqn}
-(\mathcal{L}f)(p) = \sup_{x \in \reals} F(p,x). 
+[A(\v x, \v p), B(\v x, \v p)] = \text{?}
 \end{eqn}
-Put another way, given $p$ there exists some $x(p)$ which maximizes $F(p,x)$, i.e.
+and do we expect that
+\begin{align}
+[x_i, A(\v x, \v p)] &= i \hbar `` \pd{}{p_i} " A(\v x, \v p), \\
+[p_i, B(\v x, \v p)] &= -i \hbar `` \pd{}{x_i} " B(\v x, \v p) ?
+\end{align}
+These turn out to be somewhat complicated because we must expand the functions in terms of the canonical variables, and work through it taking note of their noncommutativity. However, we can use the classical Poisson brackets $[\cdot,\cdot]_C$ to establish an approximation,
 \begin{eqn}
-\eval[3]{\pd{F}{x}(p,x)}_{x = x(p)} = 0,
+[A(\v x, \v p), B(\v x, \v p)] = i \hbar [A(\v x, \v p), B(\v x, \v p)]_C + \bigO(\hbar^2).
 \end{eqn}
-Then we have 
+This happens because, from the canonical commutation relations, when we commute terms we get the commuted value plus the commutator, which involves some term with a factor of $\hbar$. For example,
+\begin{align}
+[x^2, p^2] &= 2i \hbar (xp + px), \\
+[x^2, p^2]_C &= 4xp,
+\end{align}
+but using the commutation relations we find
 \begin{eqn}
-\mathcal{L}f(p) = F(p,x(p)).
+[x^2, p^2] = 4i \hbar xp + 2 \hbar^2 = [x^2, p^2]_C + \bigO(\hbar^2).
+\end{eqn}
+So in the Heisenberg equation of motion,
+\begin{eqn}
+\od{}{t} O_H (t) = (\partial_t O)_H (t) + \frac{1}{i\hbar} [O,H]_H,
+\end{eqn}
+we can write the commutator term as
+\begin{eqn}
+\frac{1}{i\hbar} [O,H] = [O,H]_C + \bigO(\hbar^2),
+\end{eqn}
+which gives us the quantum-classical correspondence in the limit $\hbar \rightarrow 0$. 
+
+
+\section{Free nonrelativistic particle in Heisenberg picture}
+
+Consider the Hamiltonian $H = \v{p}^2 / 2m$. In the Heisenberg picture, we have
+\begin{align}
+\v{p}_H(t) &= U^\dagger (t) \, \v{p} \, U(t) \rightarrow \v{p}(t), \\
+\v{x}_H(t) &= U^\dagger (t) \, \v{x} \, U(t) \rightarrow \v{x}(t),
+\end{align}
+so we will drop the $H$ subscripts and just write these as $\v{x}(t), \v{p}(t)$. Notice that
+\begin{eqn}
+\dot{\v p}(t) = \frac{1}{i\hbar} [\v p, H]_H = 0 \quad \implies \quad \v{p}(t) = \v{p}.
+\end{eqn}
+More interestingly for $\v x(t)$, we have
+\begin{eqn}
+\vd{x}(t) = \frac{1}{i\hbar} [\v x, H]_H = (\frac{\v{p}}{m})_H = \frac{\v{p}(t)}{m} = \frac{\v p}{m}.
+\end{eqn}
+To summarize, we have
+\begin{eqn}
+\v{x}(t) = \v{x} + \frac{\v{p}t}{m}, \qquad \v{p}(t) = \v{p},
+\end{eqn}
+and we find the expectation values
+\begin{eqn}
+\avg{\v{p}(t)} = \matrixel{\psi}{\v{p}(t)}{\psi} = \matrixel{\psi}{\v{p}(t)}{\psi} = \avg{\v p}_0,
+\end{eqn}
+and
+\begin{eqn}
+\avg{\v{x}(t)} = \avg{\v x}_t = \avg{\v x}_0 + \frac{\avg{\v p}_0}{m} t.
+\end{eqn}
+This is not so surprising because classically we have
+\begin{eqn}
+\v{x}(t) = \v{x}_0 + \frac{\v{p}}{m} t.
+\end{eqn}
+We can use our expression for $\v{x}(t)$ along with the canonical commutation relations to find
+\begin{eqn}
+[x_i (t), x_j (t')] = -\frac{i \hbar}{m} (t - t') \delta_{ij},
+\end{eqn}
+which gives us an uncertainty relation
+\begin{eqn}
+\sqrt{ \avg{(\Delta x_i(t))^2} \avg{(\Delta x_j(t'))^2} } \geq \frac{\hbar}{2m} \abs{t - t'}.
 \end{eqn}
 
-[missed examples here: $f(x) = ax^2$ and $f(x) = x^a / a$]
 
-An important property of Legendre transforms is that they are \textit{involutions}, that is the Legendre transform squares to the identity. In other words,
+\section{Particle in a potential in Heisenberg picture}
+
+Consider the Hamiltonian
 \begin{eqn}
-\mathcal{L}^2 f(x) = \mathcal{L}(\mathcal{L}f)(x) = f(x).
+H = \frac{\v{p}^2}{2m} + V(\v x).
 \end{eqn}
-Another useful property is \textit{Young's inequality},
+We find that 
 \begin{eqn}
-px - f(x) \leq \mathcal{L}f(p).
+\vd{p}(t) = -\left( \partial_{\v x} V(\v x) \right)_H, \qquad \vd{x}(t) = \frac{\v{p}(t)}{m},
 \end{eqn}
+(essentially Hamilton's equations), so that
+\begin{eqn}
+m \vdd{x}(t) = \vd{p} = -\left( \partial_{\v x} V(\v x) \right)_H,
+\end{eqn}
+which is just what we expect from Newton's second law. If we expand the potential
+\begin{eqn}
+V(\v x) = \text{const} + \v{\eta} \cdot \v{x} + \frac{kx^2}{2} + \frac{\gamma x^3}{3} + \dots,
+\end{eqn}
+we have
+\begin{eqn}
+\left( \partial_{\v x} V(\v x) \right)_H = \v{\eta} + k \v{x}(t) + \gamma x(t)^2 + \dots
+\end{eqn}
+which gives us \textbf{Ehrenfest's theorem},
+\begin{eqn}
+m \od[2]{}{t} \avg{\v x}_t = - \avg{\partial_{\v x} V(\v x)}_t.
+\end{eqn}
+For a harmonic oscillator for example, we have
+\begin{eqn}
+V(x) = \frac{1}{2} m \omega^2 x^2,
+\end{eqn}
+where 
+\begin{eqn}
+H = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 x^2.
+\end{eqn}
+We find that
+\begin{eqn}
+\vd{p}(t) = -m \omega^2 \v{x}(t), \qquad \vd{x}(t) = \frac{\v{p}(t)}{m},
+\end{eqn}
+so that
+\begin{eqn}
+\vdd{x}(t) + \omega^2 \v{x} (t) = 0,
+\end{eqn}
+and also
+\begin{eqn}
+\od[2]{}{t} \avg{\v x}_t + \omega^2 \avg{\v x}_t = 0,
+\end{eqn}
+so they correspond exactly. This only occurs for a harmonic oscillator---generally, with higher order terms, they will not correspond so precisely. We find
+\begin{eqn}
+\avg{\v x}_t = \avg{\v{x}}_0 \cos(\omega t + \varphi).
+\end{eqn}
+
+Next we will write down some useful operators, the raising and lowering operators
+\begin{align}
+a^\dagger &= \sqrt{\frac{m\omega}{2\hbar}} (x - \frac{ip}{m\omega}), \\
+a &= \sqrt{\frac{m\omega}{2\hbar}} (x + \frac{ip}{m\omega}),
+\end{align}
+so we can rewrite the Hamiltonian
+\begin{eqn}
+H = (N + \frac{1}{2}) \hbar \omega,
+\end{eqn}
+where $N = a^\dagger a$ and $[H,N] = 0$ and $[a, a^\dagger] = 1$. 
+
 
 
 
