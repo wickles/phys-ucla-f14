@@ -40,11 +40,15 @@
 \newcommand{\opname}[1]{\operatorname{#1}} % custom operator names
 %\newcommand{\pd}{\partial} % partial differential shortcut
 \newcommand{\ket}[1]{\left| #1 \right>} % for Dirac kets
+%\newcommand{\ket}[1]{| #1 \rangle}
 \newcommand{\bra}[1]{\left< #1 \right|} % for Dirac bras
+%\newcommand{\bra}[1]{\langle #1 |}
 \newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right| \left. #2 \vphantom{#1} \right>} 
 	% for Dirac bra-kets \braket{bra}{ket}
+%\newcommand{\braket}[2]{\langle #1 | #2 \rangle} 
 \newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right| #2 \left| #3 \vphantom{#1#2} \right>} 
 	% for Dirac matrix elements \matrixel{bra}{op}{ket}
+%\newcommand{\matrixel}[3]{\langle #1 | #2 | #3 \rangle} 
 
 %\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % for partial derivatives
 %\newcommand{\fd}[2]{\frac{\delta #1}{\delta #2}} % for functional derivatives
@@ -56,6 +60,10 @@
 %\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value ||x||
 %\newcommand{\mag}{\abs} % magnitude, just another name for \abs
 %\newcommand{\norm}[1]{\left\Vert #1 \right\Vert} % for norm ||v||
+\newcommand{\vd}[1]{\v{\dot{#1}}} % for dotted vectors
+\newcommand{\vdd}[1]{\v{\ddot{#1}}} % for ddotted vectors
+\newcommand{\vddd}[1]{\v{\dddot{#1}}} % for dddotted vectors
+\newcommand{\vdddd}[1]{\v{\ddddot{#1}}} % for ddddotted vectors
 \newcommand{\avg}[1]{\left< #1 \right>} % for average <x>
 \newcommand{\inner}[2]{\left< #1, #2 \right>} % for inner product <x,y>
 %\newcommand{\set}[1]{ \left\{ #1 \right\} } % for sets {a,b,c,...}
@@ -64,6 +72,7 @@
 \newcommand{\rank}{\opname{rank}} % for rank
 \let \fancyre = \Re
 \let \fancyim = \Im
+\newcommand{\Res}{\opname{Res}\limits} % for residue function -- change to put limits on bottom
 \renewcommand{\Re}{\opname{Re}}
 \renewcommand{\Im}{\opname{Im}}
 \renewcommand{\bbar}[1]{\bar{\bar{#1}}} 
@@ -142,6 +151,7 @@
 \newtheorem{note}{Note}
 \newtheorem{claim}{Claim}
 \newtheorem{conclusion}{Conclusion}
+% to-do: add problem/subproblem/answer environments for homeworks
 
 
 
@@ -156,6 +166,8 @@
 
 \let \underdot = \d % rename builtin command \d{} to \underdot{}
 \let \d = \od % for derivatives
+
+% BUG: derivatives revert to text mode often when in smaller environments in math mode?
 
 
 % Command for functional derivatives. The first argument denotes the function and the second argument denotes the variable with respect to which the derivative is taken. The optional argument denotes the order of differentiation. The style (text style/display style) is determined automatically

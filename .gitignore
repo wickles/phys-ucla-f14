@@ -1,4 +1,5 @@
-# Ignore auxiliary LaTeX files
+# Ignore auxiliary and binary LaTeX files
+*.pdf
 *.aux
 *.glo
 *.idx
@@ -22,6 +23,3 @@
 *.mtc1
 *.out
 *.synctex.gz
-
-# Ignore generated PDF files (binary files should not be version controlled)
-lec*.pdf 
