@@ -1,0 +1,222 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec09}
+\author{UCLA, Fall 2014}
+\date{\formatdate{30}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Proof of Liouville's theorem}
+
+If we imagine we have N coordinates $x^i$ and we consider an infinitesimal volume element then we can consider a change in coordinates that if we define new coordinates as a function of the old coordinates
+\begin{equation}
+\widetilde{x}^i = f^i(x^j), \qquad \dif^n \widetilde{x} = J \dif^n x.
+\end{equation}
+Then the Jacobian $J$ is equal to
+\begin{equation}
+J = \det \pd{\widetilde{x}}{x}
+\end{equation} 
+For an infinitesimal change, what does this mean? It's close to an identity so our new coordinate is equal to
+\begin{equation}
+\widetilde{x}^i = x^i + \epsilon V^i (x^j)
+\end{equation}
+Then our new volume is our old volume element with the determinant
+\begin{equation}
+\dif^n \widetilde{x} = \dif^n x \det(J)
+\end{equation}
+\begin{equation}
+J = \det(\delta^j_i + \epsilon \pd{v^j}{{x^i}})
+\end{equation}
+The term that is of order $\epsilon$ is simply the trace. So up to first order
+\begin{equation}
+J = 1 + \epsilon \tr \left( \pd{v^j}{{x^i}} \right) 
+	= 1 + \epsilon \sum_i \pd{v^i}{{x^i}}.
+\end{equation}
+So now our volume element is
+\begin{equation}
+\dif^n \widetilde{x} = \dif^n x \det(J) = \dif^n x \left( 1 + \epsilon \sum_i \dpd{v^i}{{x^i}} \right)
+\end{equation}
+The volume element does not change if the vector field $v_i$ is divergence free, i.e.
+\begin{equation}
+\sum_i \pd{v^i}{{x^i}} = 0.
+\end{equation}
+Now we'll apply this to the Hamilton's equations. Now instead of $x^i$ we really have a set of coordinates $\set{q_i, p_i}$ where both position and momentum are coordinates. And then we have our Hamilton's equations. How do we now view those? The equations are time evolution equations but now we map it to an infinitesimal time, i.e.
+\begin{equation}
+q_i(t + \dif{t}) = \widetilde{q_i}, \qquad 
+p_i(t + \dif{t}) = \widetilde{p_i}
+\end{equation}
+Now hamilton's equations become
+\begin{equation}
+\widetilde{q_i} = q_i + \pd{H}{p_i} \dif{t}, \qquad
+\widetilde{p_i} = p_i - \pd{H}{q_i} \dif{t}
+\end{equation}
+Our $\epsilon$ here is an infinitesimal time step $\dif{t}$, our $V$ becomes
+\begin{equation}
+V^k = \set{ \dpd{H}{p_i}, - \dpd{H}{q_i} },
+\end{equation}
+and our volume element is
+\begin{equation}
+\dif^nx \rightarrow \dif^N q \, \dif^N p
+\end{equation}
+Applying the general formula
+\begin{equation}
+\dif^N \widetilde{q} \, \dif^N \widetilde{p} =\dif^N q \, \dif^N p \left[ 1 + \dif{t} \sum_{i=1}^N \left( \dpd{}{q_i} \dpd{H}{p_i} - \dpd{}{p_i} \dpd{H}{q_i} \right) \right]
+\end{equation}
+The second term is zero
+\begin{equation}
+\dif^N \widetilde{q} \, \dif^N \widetilde{p} =\dif^N q \, \dif^N p 
+\end{equation}
+Under Hamiltonian time evolution, the volume as phase space is invariant. The flow in phase space is incompressible. With friction, volume is not conserved.
+
+
+\section{Phase space density}
+
+This is how we begin to get to classical statistical mechanics. The density 
+\begin{equation}
+\rho(p_i, q_i, t) 
+\end{equation}
+depends on all $2N$ coordinates in phase space. We can normalize so that the total probability is 
+\begin{equation}
+\int \dif^n p \, \dif^n q \, \rho(p_i q_i, t) =1
+\end{equation}
+We won't go into that because we will later. An example will be the classical Boltzmann distribution
+\begin{equation}
+\rho \propto \exp \left(-\frac{H(p, q, t)}{kt} \right).
+\end{equation}
+The volume element stays invariant so basically you then realize that we can say what the time evolution of this distribution. So we can take the time derivative and think about the time evolution from Liouville theorem and find that
+\begin{equation}
+\d{}{t} \rho(p_i, q_i, t) = 0.
+\end{equation}
+Working around with this a bit, we find
+\begin{align}
+0 &= \dpd{\rho}{t} + \dpd{\rho}{p_i} \dot{p}_i + \dpd{\rho}{q_i} \dot{q}_i \\
+	&= \dpd{\rho}{t} + \sum_i \left( -\dpd{\rho}{p_i} \dpd{H}{q_i} + \dpd{\rho}{q_i} \dpd{H}{p_i} \right),
+\end{align}
+thus we have
+\begin{equation}
+\pd{\rho}{t} = \sum_i \left( \dpd{\rho}{q_i} \dpd{H}{p_i} - \dpd{\rho}{p_i} \dpd{H}{q_i} \right).
+\end{equation}
+So this is our continuity equation for $\rho$. 
+
+
+\section{Poincare Recurrence Theorem}
+
+What can we say about staying at point in phase space and evolving in time. Basically we can pick a small neighborhood about the point and if you wait long enough, the point will come back to that neighborhood and come arbitrary close. So we'll have Hamiltonian evolution. Also we have to say that this is in a bounded phase space. 
+
+\begin{theorem}
+Under Hamiltonian evolution in a system with bounded phases space $M$ (i.e. the allowed region in phase space has finite volume). Given an initial point $P = \set{p_i(t_0), q_i(t_0)}$ and a neighborhood $U$ of $P$, there is a point $P'$ in $U$ which returns to $U$ in finite time. 
+\end{theorem}
+
+\begin{proof}
+Consider a map that evolves in time points in phase space
+\begin{eqn}
+g_t : \set{p_i(0), q_i(0)} \mapsto \set{p_i(t), q_i(t)},
+\end{eqn}
+which maps phase space to phase space. Consider taking the map many times on itself, i.e.
+\[
+U \rightarrow g_t(U) \rightarrow g_t^2 (U) \rightarrow g_t^3 (U) \rightarrow \dots.
+\]
+Now, there must be some intersecting $g^k(U)$ and $g^\ell(U)$, since otherwise we would have
+\begin{eqn}
+\opname{Vol} M > \sum_{n=0}^\infty \opname{Vol} g^n (U) = \infty \times \opname{Vol} U.
+\end{eqn}
+Then taking the inverse map $g^{-\ell}$ of $g^k (U) \cap g^\ell (U) \neq \varnothing$, we have
+\begin{eqn}
+g^{k-\ell} (U) \cap U \neq \varnothing.
+\end{eqn}
+Thus, calling $n = k - \ell$, if 
+\begin{eqn}
+y \in g^n(U) \cap U,
+\end{eqn}
+then 
+\begin{eqn}
+y = g^n (x) \in U
+\end{eqn}
+for some $x \in U$. 
+\end{proof}
+
+
+\section{Poisson Brackets}
+
+\begin{itemize}
+\item Geometrical structure on phase space (symmetric structure)
+\item New higher level understanding of symmetry (Algebra of charges)
+\item Makes classical mechanics almost look like QM
+\end{itemize}
+Recall that time dependence of a ``phase space observable'' $A(p, q, t)$ can be written
+\begin{align}
+\dod{A}{t} &= \dpd{A}{t} + \sum_i\left( \dpd{A}{p_i} \dod{p_i}{t} + \dpd{A}{q_i} \dpd{q_i}{t} \right) \\
+	&= \dpd{A}{t} + \sum_i \left( \dpd{A}{q_i} \dpd{H}{p_i} - \dpd{A}{p_i} \dpd{H}{q_i} \right) \\
+	&= \dpd{A}{t} + \{A, H\}
+\end{align}
+where $\{A, B\}$ is the Poisson bracket
+\begin{eqn}
+\{A,B\} \equiv \sum_i \left( \dpd{A}{q_i} \dpd{B}{p_i} - \dpd{A}{p_i} \dpd{B}{q_i} \right).
+\end{eqn}
+
+Let's look at the algebraic properties. We have antisymmetry
+\begin{equation}
+\{A, B\} = - \{B, A\},
+\end{equation}
+linearity across real numbers
+\begin{equation}
+\{\alpha A + \beta B, C\} = \alpha\{ A, C\} + \beta\{B, C\},
+\end{equation}
+Leibnitz rule
+\begin{equation}
+\{AB, C\} = A\{B, C\} + \{ A, C\} B,
+\end{equation}
+and the Jacobi identity
+\begin{equation}
+\{A, \{B, C\}\} + \{B, \{C, A\}\} + \{C, \{A, B\}\} = 0.
+\end{equation}
+
+These are the properties that also hold for the commutator in quantum mechanics and the Lie bracket for Lie algebras and Lie derivatives for manifolds. But In quantum mechanics, the objects you put into the commutator are not $c$-numbers but operators, so that order matters, i.e.
+\begin{equation}
+\{AB, C\} = A\{B, C\}+ \{A, C\} B
+\end{equation}
+is NOT the same as
+\begin{equation}
+\{AB, C\} = A\{B, C\}+ B\{A, C\} 
+\end{equation}
+for Lie brackets and commutators. 
+
+We can now rewrite Hamilton's equations as
+\begin{equation}
+\dot{q_i} = \{q_i, H\}, \qquad 
+\dot{p_i} = \{ p_i, H\}.
+\end{equation}
+(Note that conservation laws for some quantity $A$ assume that $A$ does not have explicit time dependence.)
+
+If $A$ and $B$ are conserved then so is $\{A, B\}$. So if we have
+\begin{equation}
+\{A, H\} = 0, \qquad 
+\{B, H\} = 0
+\end{equation}
+Then the quantity
+\begin{equation}
+C = \{A, B\}
+\end{equation}
+is also conserved. Using the Jacobi identity
+\begin{equation}
+\{H, C\} = \{H, \{A, B\}\} = -\{A, \{B, H\}\} + \{B, \{A, H\}\} = 0,
+\end{equation}
+so we see that $C$ is also conserved.
+
+For example, angular momentum components $L_1$ and $L_2$ are conserved. Then $\{L_1, L_2\}$ is conserved
+
+[incomplete]
+
+
+
+
+
+\end{document}

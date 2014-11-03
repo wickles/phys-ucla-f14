@@ -2,7 +2,7 @@
 \documentclass[12pt]{article} % use larger type; default would be 10pt
 \usepackage[margin=1in]{geometry} % handle page geometry
 
-\input{../header.tex}
+\input{../header2.tex}
 
 \title{Phys 220A -- Classical Mechanics -- Lec02}
 \author{UCLA, Fall 2014}
@@ -33,7 +33,7 @@ Take some function $f$ and write the time average
 \end{equation}
 Note that there is no dependence on $t_0$ for a bounded quantity,
 \begin{equation}
-\frac{\pd}{\pd t_0} \avg{f_0} = \lim_{T \rightarrow \infty} \frac{f(t_0 + T) - f(t_0)}{T} = 0
+\pd{}{t_0} \avg{f_0} = \lim_{T \rightarrow \infty} \frac{f(t_0 + T) - f(t_0)}{T} = 0
 \end{equation}
 which vanishes because the numerator in the limit is bounded. 
 
@@ -62,11 +62,113 @@ and setting $\lambda = 1$ we find $\sum_i \v{\nabla} V \cdot \v{x}_i = k V$. Thu
 2 \avg{T} = k \avg{V}.
 \end{equation}
 
+Let's look at some simple systems. For the harmonic oscillator
+\begin{equation}
+V = \frac{1}{2} kx^2
+\end{equation}
+So our parameter from above $k$ is 2, so virial theorem for this system is:
+\begin{equation}
+\avg{T} = \avg{V}
+\end{equation}
+For a Keplerian potential it's:
+\begin{equation}
+V = \frac{\alpha}{r}
+\end{equation}
+So k = 1 and Virial theorem is
+\begin{equation}
+\avg{T} = -\frac{1}{2} \avg{V}
+\end{equation}
+\textbf{Note that Virial theorem in general only holds for bound motion with no scattering}
+
+
+\section{Simple systems}
+\subsection{1-D Harmonic Oscillator}
+Let's look at the solutions to some systems
+
+Hookes law:
+\begin{equation}
+F = -kx 
+\end{equation}
+\begin{equation}
+m\ddot{x} = -kx
+\end{equation}
+\begin{equation}
+\ddot{x} + \frac{k}{m} x = 0
+\end{equation}
+This system has a very general ansatz where $\omega = k / m$
+\begin{equation}
+x(t) = c_1 \sin\omega t + c_2 \cos\omega t
+\end{equation}
+\begin{equation}
+x(t) = c\sin(\omega t + \phi_0)
+\end{equation}
+\begin{equation}
+c_1 e^{i\omega t} + c_2^* e^{-i \omega t}
+\end{equation}
+There are 2 integration constants that determine x and $\dot{x}$ at t = 0. We can also write the momentum of this system
+\begin{equation}
+p = m\dot{x} = mc_1 \omega \cos(\omega t + \phi_0)
+\end{equation}
+\begin{equation}
+p^2 = m^2 \omega^2 (c_1^2 - x^2)
+\end{equation}
+\begin{equation}
+p^2 + \omega x^2 = m^2 \omega^2
+\end{equation}
+Looking at this in phase space, we get closed circles because this is a conservative field. The origin is the equilibrium point and the circles do not intersect. This changes if there is friction, and for driven harmonic oscillator
+
+\subsection{Particle in Constant Magnetic Field}
+Let's set up a constant magnetic field in the $\hat{z}$ direction. Then our forces are 
+\begin{equation}
+\v{F} = e\v{v} \times \v{B}
+\end{equation}
+In tensor notation
+\begin{equation}
+F_i = e \epsilon_{ijk} v_j B_k
+\end{equation}
+Which results in 
+\begin{equation}
+m\ddot{z} = -0
+\end{equation}
+\begin{equation}
+m\ddot{x} = B e \dot{y}
+\end{equation}
+\begin{equation}
+m\ddot{y} = -B e\dot{x}
+\end{equation}
+This is a system of two first order differential equations. Let's make a couple definitions
+\begin{equation}
+\omega_B = \frac{Be}{m}
+\end{equation}
+\begin{equation}
+\dot{x} = S_1
+\end{equation}
+\begin{equation}
+\dot{y} = S_2
+\end{equation}
+So now our equations become
+\begin{equation}
+\dot{S_1} = \omega_B S_2
+\end{equation}
+\begin{equation}
+\dot{S_2} = -\omega_B S_1
+\end{equation}
+Let's write this in matrix form
+\begin{equation}
+\d{}{t} \left(\begin{array}{c} S_1 \\S_2\end{array}\right) = M \left(\begin{array}{c} S_1 \\S_2\end{array}\right)
+\end{equation}
+where
+\begin{equation}
+M = \left(\begin{array}{cc} 0 & \omega_B \\ -\omega_B & 0 \end{array}\right)
+\end{equation}
+We can solve this by exponentiating and doing a Taylor expansion
 
 [incomplete]
 
 
+\section{Motion in a central potential}
 
+[incomplete]
 
 
 
