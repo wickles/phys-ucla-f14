@@ -8,8 +8,14 @@ Classical
 - lec04 - all
 - lec06 - most of it
 - lec07 - most of it
-- lec08 - end not missing, just continued in next lecture
-- lec09 - same ^^
+- lec09 - very end missing, continued in next lecture?
+
+Quantum
+
+- lec03 - some remarks at the very end
+- lec05 - first half (first hour)
+- lec06 - first 1/4 or so (first half hour)
+- lec08 - last half or so (last hour)
 
 Geometry
 
@@ -18,10 +24,3 @@ Geometry
 - lec07 - all
 - lec09 - an example in the middle
 - lec10 - some stuff in the middle
-
-Quantum
-
-- lec03 - some remarks at the very end
-- lec05 - first half (first hour)
-- lec06 - first 1/4 or so (first half hour)
-- lec08 - last half or so (last hour)
