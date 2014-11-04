@@ -74,7 +74,7 @@ For a Keplerian potential it's:
 \begin{equation}
 V = \frac{\alpha}{r}
 \end{equation}
-So k = 1 and Virial theorem is
+So $k = 1$ and Virial theorem is
 \begin{equation}
 \avg{T} = -\frac{1}{2} \avg{V}
 \end{equation}
@@ -105,7 +105,7 @@ x(t) = c\sin(\omega t + \phi_0)
 \begin{equation}
 c_1 e^{i\omega t} + c_2^* e^{-i \omega t}
 \end{equation}
-There are 2 integration constants that determine x and $\dot{x}$ at t = 0. We can also write the momentum of this system
+There are 2 integration constants that determine $x$ and $\dot{x}$ at t = 0. We can also write the momentum of this system
 \begin{equation}
 p = m\dot{x} = mc_1 \omega \cos(\omega t + \phi_0)
 \end{equation}
@@ -118,57 +118,222 @@ p^2 + \omega x^2 = m^2 \omega^2
 Looking at this in phase space, we get closed circles because this is a conservative field. The origin is the equilibrium point and the circles do not intersect. This changes if there is friction, and for driven harmonic oscillator
 
 \subsection{Particle in Constant Magnetic Field}
-Let's set up a constant magnetic field in the $\hat{z}$ direction. Then our forces are 
+Let's set up a constant magnetic field in the $\uv{z}$ direction. Then our forces are 
 \begin{equation}
-\v{F} = e\v{v} \times \v{B}
+\v{F} = e\v{v} \times \v{B}, \quad \text{or} \quad
+F_i = e \epsilon_{ijk} v_j B_k,
 \end{equation}
-In tensor notation
+which gives us equations of motion
+\begin{eqn}
+m\ddot{z} = 0 \quad \implies \quad z = z_0 + v_z t,
+\end{eqn}
+and
+\begin{eqn}
+m\ddot{x} = B e \dot{y}, \qquad
+m\ddot{y} = -B e\dot{x}.
+\end{eqn}
+This is a system of two first order differential equations. Defining
 \begin{equation}
-F_i = e \epsilon_{ijk} v_j B_k
+\omega_B = \frac{eB}{m}, \quad 
+S_1 = \dot x, \quad
+S_2 = \dot y,
 \end{equation}
-Which results in 
+our equations become
+\begin{align}
+\dot{S_1} &= \omega_B S_2, \\
+\dot{S_2} &= -\omega_B S_1.
+\end{align}
+Written in vector form, this becomes
 \begin{equation}
-m\ddot{z} = -0
+\d{}{t} \pmat{ S_1 \\ S_2 } = M \pmat{ S_1 \\ S_2 }
 \end{equation}
+where $M$ is a matrix
 \begin{equation}
-m\ddot{x} = B e \dot{y}
+M = \pmat{ 0 & \omega_B \\ -\omega_B & 0 }
 \end{equation}
-\begin{equation}
-m\ddot{y} = -B e\dot{x}
-\end{equation}
-This is a system of two first order differential equations. Let's make a couple definitions
-\begin{equation}
-\omega_B = \frac{Be}{m}
-\end{equation}
-\begin{equation}
-\dot{x} = S_1
-\end{equation}
-\begin{equation}
-\dot{y} = S_2
-\end{equation}
-So now our equations become
-\begin{equation}
-\dot{S_1} = \omega_B S_2
-\end{equation}
-\begin{equation}
-\dot{S_2} = -\omega_B S_1
-\end{equation}
-Let's write this in matrix form
-\begin{equation}
-\d{}{t} \left(\begin{array}{c} S_1 \\S_2\end{array}\right) = M \left(\begin{array}{c} S_1 \\S_2\end{array}\right)
-\end{equation}
+The solution of course is given by exponentiation
+\begin{eqn}
+\pmat{ S_1(t) \\ S_2(t) } = R(t) \pmat{ S_1(0) \\ S_2(0) }
+\end{eqn}
 where
-\begin{equation}
-M = \left(\begin{array}{cc} 0 & \omega_B \\ -\omega_B & 0 \end{array}\right)
-\end{equation}
-We can solve this by exponentiating and doing a Taylor expansion
-
-[incomplete]
+\begin{eqn}
+R(t) = \exp (Mt) = 
+\begin{pmatrix}
+\cos \omega_B t & \sin \omega_B t \\
+-\sin \omega_B t & \cos \omega_B t
+\end{pmatrix}.
+\end{eqn}
+Then $x,y$ can be obtained by integration
+\begin{align}
+x(t) &= \int S_1(t) \dif{t} + x_0, \\
+y(t) &= \int S_2(t) \dif{t} + y_0,
+\end{align}
+which gives us
+\begin{align}
+x(t) &= \frac{S_1(0)}{\omega_B} \sin \omega_B t - \frac{S_2(0)}{\omega_B} \cos \omega_B t + x_0, \\
+y(t) &= \frac{S_1(0)}{\omega_B} \cos \omega_B t + \frac{S_2(0)}{\omega_B} \sin \omega_B t + y_0.
+\end{align}
+This motion can be described as a drift in the $\uv{z}$ direction with constant velocity and circular motion in the $xy$-plane with radius $R$ and angular frequency $\omega_B = eB/m$, the Larmor frequency. 
 
 
 \section{Motion in a central potential}
 
-[incomplete]
+Next we will study motion in a central potential. This is where the potential is a function only of the radial coordinate $r$, most important being the Kepler/Coulomb potential. In the Kepler case it describes the motion of two masses $m_1, m_2$ in their gravitational field. 
+
+The first step is to transform to the center of mass and relative coordinate
+\begin{eqn}
+\v{X} = \frac{m_1 \v x_1 + m_2 \v x_2}{m_1 + m_2}, \qquad
+\v R = \v x_1 - \v x_2.
+\end{eqn}
+This results in decoupled coordinates: free motion of the center of mass and a central force equation for $R$,
+\begin{eqn}
+\vdd{X} = 0, \qquad
+\mu \vdd{R} = -\v{\nabla} V(R).
+\end{eqn}
+Some special cases are as follows.
+
+
+\subsection{Special cases}
+
+\begin{example}[Spherical harmonic oscillator]
+$V(r) = \alpha r^2$
+\end{example}
+
+\begin{example}[Gravitational/Kepler potential]
+$V(r) = - \beta / r$
+\end{example}
+
+In general, $V(r)$ can be a complicated function.
+
+\begin{example}[Yukawa potential]
+$V(r) = -\frac{\gamma}{r} e^{-r / r_0}$
+\end{example}
+
+\begin{example}[Lennard-Jones potential]
+$V(r) = \epsilon \left[ (\frac{r_m}{r})^{12} - 2 (\frac{r_m}{r})^6 \right]$, where the first term is a repulsive (Pauli) force, and the second term is an attractive Van der Waals force. 
+\end{example}
+
+As we shall see, apart from being simpler than other potentials, the harmonic oscillator and Kepler potentials are special since they allow for closed bounded orbits. 
+
+
+\subsection{Angular momentum conservation}
+
+In general, angular momentum $\v L = \v x \times \v p$ is conserved for central potentials:
+\begin{align}
+\vd L &= \vd x \times \v p + \v x \times \vd p \\
+	&= \frac{1}{m} \cancel{\v p \times \v p} - \v x \times \v \nabla V \\
+	&= 0
+\end{align}
+since $\v \nabla V \sim \v x$ for central potentials. By choice of coordinates we can choose $\v L = L \uv z$, which gives us motion solely in the $xy$-plane. Note that angular momentum conservation is Kepler's area law---so it's not limited to $1/r$ potentials. 
+
+
+\subsection{Cylindrical coordinates}
+
+Here we will go to cylindrical coordinates $(x,y,z) \rightarrow (\rho, \phi, z)$, where we have
+\begin{eqn}
+x = r \cos\phi, \qquad
+y = r \sin\phi, \qquad
+z = z
+\end{eqn}
+and velocity
+\begin{eqn}
+\vd x = \dot r \uv r + r \dot \phi \uv \phi + \cancel{\dot z \uv z}
+\end{eqn}
+since
+\begin{eqn}
+\uv r = \frac{1}{r} \pmat{x \\ y}, \qquad
+\uv \phi = \frac{1}{r} \pmat{-y \\ x}.
+\end{eqn}
+So for angular momentum we have
+\begin{align}
+\v L &= r \uv r \times m (\dot r \uv r + r \dot \phi \uv \phi) \\
+	&= m r^2 \dot \phi \uv z
+\end{align}
+so that $L = m r^2 \dot \phi$ is constant. An application of Kepler's law is that comets have very eccentric orbits and hence spend most of the time in the outer reaches of the solar system. 
+
+
+\subsection{Integration of Newton's equation}
+
+Note that
+\begin{eqn}
+\uv{\dot r} = \dot \phi \uv \phi, \qquad
+\uv{\dot \phi} = - \dot \phi \uv r,
+\end{eqn}
+Furthermore, we have the acceleration
+\begin{eqn}
+\vdd x = (\ddot r - r \dot \phi^2) \uv r + (2 \dot r \dot \phi + r \ddot \phi) \uv \phi + \cancel{\ddot z \uv z},
+\end{eqn}
+so that our potential equation
+\begin{eqn}
+m \vdd x = - \v \nabla V(r) = - \pd{V}{r} \uv r
+\end{eqn}
+can be written as two equations,
+\begin{eqn}
+m (\ddot r - r \dot \phi^2) = - \pd{V}{r}
+\end{eqn}
+and
+\begin{eqn}
+0 = 2 \dot r \dot \phi + r \ddot \phi = \frac{1}{r} \od{}{t} m r^2 \dot \phi.
+\end{eqn}
+Since $\dot \phi = L^2 / m r^2$ the second equation is just angular momentum conservaion, while for the first equation we obtain a new equation of motion just in $r$,
+\begin{eqn}
+m \ddot r = -\pd{V}{r} + \frac{L^2}{mr^3}
+\end{eqn}
+which we can rewrite as
+\begin{eqn}
+m \ddot r = - \pd{V_\text{eff}}{r}
+\end{eqn}
+where
+\begin{eqn}
+V_\text{eff}(r) = V(r) + \frac{L^2}{2mr^2}.
+\end{eqn}
+
+Our new equation of motion is 2nd order and nonlinear---would be very difficult to solve explicitly directly from here. But $V(r)$ is a potential for a conservative force, so we have energy conservation
+\begin{align}
+E &= \frac{1}{2} m \dot r^2 + \frac{1}{2} m r^2 \dot \phi^2 + V(r) \\
+	&= \frac{1}{2} m \dot r^2 + V_\text{eff}(r).
+\end{align}
+One can check that $\od{E}{t} = 0$ using the equation of motion. So instead of solving the 2nd order equation explicitly, we can use energy conservation to reduce the problem to a first order equation which can be solved by integration,
+\begin{eqn}
+\dot r = \pm \sqrt{ \frac{2}{m} (E - V_\text{eff}(r))},
+\end{eqn}
+which gives us
+\begin{eqn}
+\pm (t - t_0) = \int \frac{\dif r}{\sqrt{\frac{2}{m} (E - V_\text{eff}(r))}}.
+\end{eqn}
+So we have ``reduced to quadrature'', i.e. a single integral. Depending on the form of $V(r)$ this integral may be elementary (readily soluble) or not. Some comments are in order:
+\begin{itemize}
+\item $\pm (t-t_0) = f(r)$ implies that we need to find $r(t) = f\inv (\pm (t-t_0))$, the functional inverse. 
+\item Can also find $\phi(t)$ via integration of $\dot \phi = L / mr^2$,
+\begin{eqn}
+\phi - \phi_0 = \int \frac{L}{m r(t)^2} \dif{t}.
+\end{eqn}
+\item The effective potential $V_\text{eff}(r)$ generally comes down from infinity as $1/r^2$ for small $r$ and then goes as $V(r)$ as $r \rightarrow \infty$. For the Kepler potential this gives us a dip beneath the zero which then comes back up and approaches zero as $r \rightarrow \infty$, so that we have unbounded orbits for $E>0$ but bounded orbits for $E < 0$ between $r_\text{min}$ and $r_\text{man}$ where $V_\text{eff}(r_\text{min}) = V_\text{eff}(r_\text{max}) = E$.
+\item Instead of finding $r(t)$ we can determine $r(\phi)$ or $\phi(r)$ to obtain the orbit. Using
+\begin{eqn}
+\od{\phi}{t} = \frac{L}{mr^2}
+\end{eqn}
+we find
+\begin{eqn}
+\frac{\dif r}{\sqrt{\frac{2}{m} (E-V_\text{eff})}} = \pm \dif t = \pm \frac{mr^2}{L} \dif \phi,
+\end{eqn}
+which gives us a solution
+\begin{eqn}
+\pm (\phi - \phi_0) = \int \dif{r} \frac{L / mr^2}{\sqrt{\frac{2}{m} (E - V_\text{eff})}}.
+\end{eqn}
+\end{itemize}
+
+\subsection{Bertrand's theorem}
+
+We will state this theorem without proof. It states that the only potentials for which all bounded orbits are closed are the Kepler potential and the radial harmonic oscillator
+\begin{eqn}
+V_1(r) = - k / r, \qquad
+V_2(r) = \frac{1}{2} m \omega^2 r^2.
+\end{eqn}
+
+
+
+
 
 
 

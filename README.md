@@ -4,7 +4,6 @@ This repository contains notes for graduate physics courses at UCLA for the 2014
 
 Classical
 
-- lec02 - last third or so
 - lec04 - all
 - lec06 - most of it
 - lec07 - most of it
