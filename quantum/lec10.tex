@@ -1,0 +1,129 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec10}
+\author{UCLA, Fall 2014}
+\date{\formatdate{5}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{More on propagators}
+
+Recall that for a time-independent $H$ with eigenstates $\ket{\alpha_i}$ and eigenenergies $E_i$, the propagator is given by
+\begin{eqn}
+K(\v r, t; \v r', t') = \sum_i \psi_i (\v r) \psi_i^* (\v r') e^{-i E_i (t-t') / \hbar}.
+\end{eqn}
+
+\begin{example}[Free particle in 1D]
+For example, for a free particle in 1D, we have
+\begin{eqn}
+\psi_p = \frac{1}{\sqrt{2\pi \hbar}} e^{ipx / \hbar}, \qquad
+E_p = \frac{p^2}{2m}
+\end{eqn}
+which has propagator
+\begin{eqn}
+K(x, t; x', t') = \int_{-\infty}^\infty \frac{\dif p}{2\pi \hbar} \exp \left[ip (x-x') / \hbar - i \frac{p^2 (t-t')}{2m\hbar} \right].
+\end{eqn}
+We can evaluate this using the Gaussian integrals
+\begin{eqn}
+\int_{-\infty}^\infty \dif{x} e^{-x^2} = \sqrt \pi, \qquad \implies \qquad
+\int_{-\infty}^\infty \dif{x} e^{-ix^2} = \sqrt{\pi/i} \text{ (or so)},
+\end{eqn}
+which gives us
+\begin{eqn}
+K(x,t;x',t') = \sqrt{\frac{m}{2\pi i \hbar (t-t')}} \exp \left[ \frac{im(x-x)^2}{2\hbar (t-t')} \right]
+\end{eqn}
+for $t \neq t'$. This is just a Gaussian wave packet. Looking at the real part, we have
+\begin{eqn}
+\Re K \propto \frac{1}{\sqrt{t-t'}} \cos \left[ \frac{m(x-x')^2}{2\hbar(t-t')} - \pi/4 \right].
+\end{eqn}
+This all tells us that the propagator gets smaller and spreads out over time. 
+\end{example}
+
+\begin{example}[1D harmonic oscillator]
+For a 1D harmonic oscillator we find a similar propagator,
+\begin{eqn}
+K(x,t;x',t') = \sqrt{\frac{m\omega}{2\pi i \hbar \sin (\omega(t-t'))}} \exp \left[ i m \omega \frac{(x^2+x'^2) \cos (\omega (t-t')) - 2xx'}{2\hbar \sin (\omega (t-t'))} \right],
+\end{eqn}
+which you can show reproduces the free propagator when $\omega \rightarrow 0$. This can be used in approximation to model quantum tunneling in various applications. This is called the tight binding approximation. 
+\end{example}
+
+Recall that the general propagator is defined by
+\begin{eqn}
+K(\v r, t; \v r', t') = \matrixel{\v r}{U(t,t')}{\v r'} = \braket{\v r, t}{\v r', t'}
+\end{eqn}
+where
+\begin{eqn}
+\ket{\v r, t} \equiv U^\dagger(t) \ket{\v r}.
+\end{eqn}
+Recall also the composition property
+\begin{eqn}
+U(t,t'') U(t'',t') = U(t,t'),
+\end{eqn}
+which implies that
+\begin{eqn}
+U(t,t') U(t',t) = 1,
+\end{eqn}
+and thus 
+\begin{eqn}
+U^\dagger(t,0) = U(0,t). 
+\end{eqn}
+Thus the Schroedinger equation gives us $\ket{\v r,t}$ at time $t=0$ and $\ket{\v r}$ at time $t$. 
+
+A note on notation. When we write a ket $\ket{\v r}$, $\v r$ is just a vectorial parameter, not an operator. But we will use vectorial operators, so we'll denote that by $\v x$. Then we have
+\begin{eqn}
+\v x \ket{\v r} = \v r \ket{\v r},
+\end{eqn}
+or as a wavefunction
+\begin{eqn}
+\psi_{\v r} (\v R) = \braket{\v R}{\v r} = \delta(\v R - \v r).
+\end{eqn}
+Of course we can evolve the position operator in time
+\begin{eqn}
+\v x(t) = U^\dagger(t) \v x U(t)
+\end{eqn}
+so that we find
+\begin{eqn}
+\v x(t) \ket{\v r,t} = U^\dagger(t) \v x \underbrace{U(t) U^\dagger(t)}_{=1} \ket{\v r} = \v r \ket{\v r,t}.
+\end{eqn}
+Furthermore, at fixed time $t$ we have
+\begin{eqn}
+\braket{\v r, t}{\v r', t} = \delta(\v r - \v r')
+\end{eqn}
+so that 
+\begin{eqn}
+1 = \int \dif^3{r} \ket{\v r, t} \bra{\v r, t}
+\end{eqn}
+for any time $t$, which is just the closure relation. Thus we can think of the propagator as a matrix that takes us from the $t$ basis to the $t'$ basis. 
+
+
+\section{Feynman path integrals}
+
+If we insert the closure relation into the propagator we have (with $t' < t$) 
+\begin{eqn}
+K(\v r, t; \v r', t') = \braket{\v r, t}{\v r', t'} = \int \dif^3{r''} \braket{\v r,t}{\v r'',t''} \braket{\v r'',t''}{\v r',t'}.
+\end{eqn}
+If we take more times $t' < t'' < \dots < t$, we can continue this process and find
+\begin{eqn}
+K(\v r, t; \v r', t') = \int \dif^3{r''} \cdots \dif^3{r^{(n)}} \braket{\v r,t}{\v r^{(n)},t^{(n)}} \cdots \braket{\v r'', t''}{\v r', t'}.
+\end{eqn}
+
+Some history: Feynman and Schwinger both came up with this formalism independently. Amateurs might tell you Feynman is better, but experts know Schwinger is the best. Schwinger was also a professor at UCLA for a long time. He was more idiosyncratic but Feynman was cooler and more intuitive. So you can think of Schwinger as Lennon and Feynman as McCartney. 
+
+We'll continue talking about path integrals next time.
+
+
+
+
+
+\end{document}
