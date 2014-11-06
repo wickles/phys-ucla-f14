@@ -16,33 +16,30 @@
 
 \section{Proof of Liouville's theorem}
 
-If we imagine we have N coordinates $x^i$ and we consider an infinitesimal volume element then we can consider a change in coordinates that if we define new coordinates as a function of the old coordinates
+If we imagine we have $N$ coordinates $x^i$ and we consider an infinitesimal volume element then we can consider a change in coordinates that if we define new coordinates as a function of the old coordinates we have
 \begin{equation}
-\widetilde{x}^i = f^i(x^j), \qquad \dif^n \widetilde{x} = J \dif^n x.
+\widetilde{x}^i = f^i(x^j), \qquad \dif^n \widetilde{x} = J \, \dif^n x.
 \end{equation}
-Then the Jacobian $J$ is equal to
+where $J$ is the Jacobian,
 \begin{equation}
-J = \det \pd{\widetilde{x}}{x}
+J = \det \pd{\widetilde{x}^i}{{x^j}}.
 \end{equation} 
-For an infinitesimal change, what does this mean? It's close to an identity so our new coordinate is equal to
+For an infinitesimal change, what does this mean? It's close to an identity so our new coordinates can be written
 \begin{equation}
 \widetilde{x}^i = x^i + \epsilon V^i (x^j)
 \end{equation}
-Then our new volume is our old volume element with the determinant
+for some function $V^i(x^j)$. Then the Jacobian is just
 \begin{equation}
-\dif^n \widetilde{x} = \dif^n x \det(J)
+J = \det(\delta^j_i + \epsilon \pd{v^j}{{x^i}}).
 \end{equation}
-\begin{equation}
-J = \det(\delta^j_i + \epsilon \pd{v^j}{{x^i}})
-\end{equation}
-The term that is of order $\epsilon$ is simply the trace. So up to first order
+One can show using linear algebra that when we expanding this the term of order $\epsilon$ is simply the trace. So up to first order
 \begin{equation}
 J = 1 + \epsilon \tr \left( \pd{v^j}{{x^i}} \right) 
 	= 1 + \epsilon \sum_i \pd{v^i}{{x^i}}.
 \end{equation}
 So now our volume element is
 \begin{equation}
-\dif^n \widetilde{x} = \dif^n x \det(J) = \dif^n x \left( 1 + \epsilon \sum_i \dpd{v^i}{{x^i}} \right)
+\dif^n \widetilde{x} = \dif^n x \, J = \dif^n x \left( 1 + \epsilon \sum_i \dpd{v^i}{{x^i}} \right).
 \end{equation}
 The volume element does not change if the vector field $v_i$ is divergence free, i.e.
 \begin{equation}
@@ -51,12 +48,12 @@ The volume element does not change if the vector field $v_i$ is divergence free,
 Now we'll apply this to the Hamilton's equations. Now instead of $x^i$ we really have a set of coordinates $\set{q_i, p_i}$ where both position and momentum are coordinates. And then we have our Hamilton's equations. How do we now view those? The equations are time evolution equations but now we map it to an infinitesimal time, i.e.
 \begin{equation}
 q_i(t + \dif{t}) = \widetilde{q_i}, \qquad 
-p_i(t + \dif{t}) = \widetilde{p_i}
+p_i(t + \dif{t}) = \widetilde{p_i}.
 \end{equation}
 Now hamilton's equations become
 \begin{equation}
 \widetilde{q_i} = q_i + \pd{H}{p_i} \dif{t}, \qquad
-\widetilde{p_i} = p_i - \pd{H}{q_i} \dif{t}
+\widetilde{p_i} = p_i - \pd{H}{q_i} \dif{t}.
 \end{equation}
 Our $\epsilon$ here is an infinitesimal time step $\dif{t}$, our $V$ becomes
 \begin{equation}
@@ -68,26 +65,26 @@ and our volume element is
 \end{equation}
 Applying the general formula
 \begin{equation}
-\dif^N \widetilde{q} \, \dif^N \widetilde{p} =\dif^N q \, \dif^N p \left[ 1 + \dif{t} \sum_{i=1}^N \left( \dpd{}{q_i} \dpd{H}{p_i} - \dpd{}{p_i} \dpd{H}{q_i} \right) \right]
+\dif^N \widetilde{q} \, \dif^N \widetilde{p} =\dif^N q \, \dif^N p \left[ 1 + \dif{t} \sum_{i=1}^N \left( \dpd{}{q_i} \dpd{H}{p_i} - \dpd{}{p_i} \dpd{H}{q_i} \right) \right],
 \end{equation}
-The second term is zero
+the second term is zero,
 \begin{equation}
-\dif^N \widetilde{q} \, \dif^N \widetilde{p} =\dif^N q \, \dif^N p 
+\dif^N \widetilde{q} \, \dif^N \widetilde{p} =\dif^N q \, \dif^N p.
 \end{equation}
-Under Hamiltonian time evolution, the volume as phase space is invariant. The flow in phase space is incompressible. With friction, volume is not conserved.
+Under Hamiltonian time evolution, the volume of phase space is invariant. The flow in phase space is incompressible. Note however that volume is not conserved in certain cases, for example when there is friction.
 
 
 \section{Phase space density}
 
-This is how we begin to get to classical statistical mechanics. The density 
+From here we can start to see a route to classical statistical mechanics. Suppose we have some phase space density
 \begin{equation}
 \rho(p_i, q_i, t) 
 \end{equation}
-depends on all $2N$ coordinates in phase space. We can normalize so that the total probability is 
+which depends on all $2N$ coordinates in phase space. We can normalize so that it is a probability distribution,
 \begin{equation}
-\int \dif^n p \, \dif^n q \, \rho(p_i q_i, t) =1
+\int \dif^n p \, \dif^n q \, \rho(p_i q_i, t) = 1,
 \end{equation}
-We won't go into that because we will later. An example will be the classical Boltzmann distribution
+but we won't go into that and instead save it for later. An example will be the classical Boltzmann distribution
 \begin{equation}
 \rho \propto \exp \left(-\frac{H(p, q, t)}{kt} \right).
 \end{equation}
@@ -104,7 +101,7 @@ thus we have
 \begin{equation}
 \pd{\rho}{t} = \sum_i \left( \dpd{\rho}{q_i} \dpd{H}{p_i} - \dpd{\rho}{p_i} \dpd{H}{q_i} \right).
 \end{equation}
-So this is our continuity equation for $\rho$. 
+So this gives us a continuity equation for $\rho$. 
 
 
 \section{Poincare Recurrence Theorem}
