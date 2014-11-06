@@ -26,16 +26,16 @@ J = \det \pd{\widetilde{x}^i}{{x^j}}.
 \end{equation} 
 For an infinitesimal change, what does this mean? It's close to an identity so our new coordinates can be written
 \begin{equation}
-\widetilde{x}^i = x^i + \epsilon V^i (x^j)
+\widetilde{x}^i = x^i + \epsilon v^i (x^j)
 \end{equation}
 for some function $V^i(x^j)$. Then the Jacobian is just
 \begin{equation}
-J = \det(\delta^j_i + \epsilon \pd{v^j}{{x^i}}).
+J = \det(\delta^i_j + \epsilon \pd{v^i}{{x^j}}).
 \end{equation}
 One can show using linear algebra that when we expanding this the term of order $\epsilon$ is simply the trace. So up to first order
 \begin{equation}
-J = 1 + \epsilon \tr \left( \pd{v^j}{{x^i}} \right) 
-	= 1 + \epsilon \sum_i \pd{v^i}{{x^i}}.
+J = 1 + \epsilon \tr \left( \dpd{v^i}{{x^j}} \right) 
+	= 1 + \epsilon \sum_i \dpd{v^i}{{x^i}}.
 \end{equation}
 So now our volume element is
 \begin{equation}
