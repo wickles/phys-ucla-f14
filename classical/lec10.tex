@@ -1,0 +1,226 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec10}
+\author{UCLA, Fall 2014}
+\date{\formatdate{6}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Symplectic Geometry}
+
+If we want to write the Poisson bracket for some arbitrary functions, i.e.
+\begin{eqn}
+C(q,p) = \cbr{A(q,p), B(q,p)},
+\end{eqn}
+we can expand in $q, p$ and we find that the fundamental bracket is really the ``canonical'' coordinate brackets,
+\begin{eqn}
+\cbr{q_i, q_j} = 0, \qquad
+\cbr{p_i, p_j} = 0, \qquad
+\cbr{q_i, p_j} = \delta_{ij}.
+\end{eqn}
+We see that (as expected from quantum-classical correspondence) these are basically the same as in quantum mechanics just without the factor of $i\hbar$. 
+
+If we write points in phase space using aggregate coordinates 
+\begin{eqn}
+\xi_I = (q_1, \dots, q_n, p_1, \dots, p_n)^\top,
+\end{eqn}
+we can reformulate Hamilton's equations as a single differential equation
+\begin{eqn}
+\dot \xi_I = \sum_J J_{IJ} \pd{H}{\xi_J}, \qquad
+J = \pmat{0 & 1_n \\ -1_n & 0}.
+\end{eqn}
+Suppose we have a coordinate transformation
+\begin{eqn}
+Q = Q(q,p), \qquad P = P(q,p).
+\end{eqn}
+If this transformation leaves the structure of Hamilton's equations unchanged, i.e. it leaves the symplectic geometry invariant, we call it a canonical transformation. We can characterize canonical transformations in a few equivalent ways as follows.
+\begin{enumerate}
+\item Structure of Hamilton's equations is unchanged:
+\begin{eqn}
+H'(P,Q) = H(q(Q,P), p(Q,P))
+\end{eqn}
+we will have
+\begin{eqn}
+\dot P = -\pd{H'}{Q}, \qquad
+\dot Q = \pd{H'}{P}.
+\end{eqn}
+\item Poisson brackets are invariant:
+\begin{eqn}
+\cbr{A'(Q,P), B'(Q,P)}_{QP} = \cbr{A(q,p), B(q,p)}_{qp}.
+\end{eqn}
+\item Under the transformation $Y_I = Y_I(X_I)$, the matrix $J_{IJ}$ can be written in terms of the Jacobian $j_{IJ}$ as
+\begin{eqn}
+J = j J j^\top, \qquad
+J_{IJ} = \sum_{KL} \pd{Y_I}{X_K} J_{KL} \pd{Y_J}{X_L}.
+\end{eqn}
+\item Most importantly: the Poisson brackets of the new coordinates are canonical,
+\begin{eqn}
+\cbr{Q_i, Q_j}_{qp} = 0, \qquad
+\cbr{P_i, P_j}_{qp} = 0, \qquad
+\cbr{Q_i, P_j}_{qp} = \delta_{ij}.
+\end{eqn}
+\end{enumerate}
+
+We can show that that canonical transformations reproduce Hamilton's equations [which characterization?]. We know
+\begin{eqn}
+\dot X_I = \sum_J J_{IJ} \pd{H}{X_J} = \sum_J \pd{X_I}{Y_J} \dot Y_J,
+\end{eqn}
+and also
+\begin{eqn}
+\pd{H}{X_J} = \sum_K \pd{H'}{Y_K} \pd{Y_K}{X_J}.
+\end{eqn}
+Then we find that
+\begin{eqn}
+\sum_J \dot Y_J \pd{X_I}{Y_J} = \sum_{J,K} J_{IJ} \pd{H'}{Y_K} \pd{Y_K}{X_J}
+\end{eqn}
+and using
+\begin{eqn}
+\sum_I \pd{X_I}{Y_J} \pd{Y_K}{X_I} = \delta_{KJ}
+\end{eqn}
+we multiply both sides by $\pd{Y_M}{X_I}$ and sum over $I$ to find
+\begin{eqn}
+\sum_J \dot Y_J \delta_{MJ} 
+	= \sum_{IJK} \pd{Y_M}{X_I} J_{IJ} \pd{Y_K}{X_J} \pd{H'}{Y_K} 
+	= \sum_K J_{MK} \pd{H'}{Y_K}.
+\end{eqn}
+
+
+\subsection{Some Examples of Canonical Transformations}
+
+\begin{example}
+Suppose we have the transformation $Q = p$, $P = -q$. Then
+\begin{eqn}
+\cbr{Q,P}_{qp} = - \cbr{p,q} = +1.
+\end{eqn}
+So this is a very simple example of a canonical transformation that shows how the $q$s and $p$s are really somewhat interchangeable. For example if we have a relativistic harmonic oscillator
+\begin{eqn}
+H = \sqrt{p^2 + m^2} + \frac{1}{2} m \omega^2 q^2,
+\end{eqn}
+under the transformation this is just
+\begin{eqn}
+H' = \sqrt{Q^2 + m^2} + \frac{1}{2} m \omega^2 P^2.
+\end{eqn}
+\end{example}
+
+\begin{example}
+Consider the transformation [this was on the final last year]
+\begin{eqn}
+Q = \frac{1}{2} p^2, \qquad
+P = -\frac{p}{q},
+\end{eqn}
+so that
+\begin{eqn}
+p = \sqrt{2Q}, \qquad
+q = -\sqrt{2Q} P.
+\end{eqn}
+Then we have
+\begin{eqn}
+\cbr{Q,P} = \frac{1}{2} \left( \pd{(p^2)}{q} \pd{(-q/p)}{p} - \pd{(p^2)}{p} \pd{(-q/p)}{q} \right) = p \frac{1}{p} = 1.
+\end{eqn}
+Then 
+\begin{eqn}
+H = p^2 + q^2, \qquad
+H' = 2Q + 2QP^2.
+\end{eqn}
+\end{example}
+
+This approach can be somewhat messy but there it turns out that there is a nicer, more algorithmic way of checking for canonical transformations. This is the method of generating functions. 
+
+
+\subsection{Method of generating functions}
+
+In this method, we will pick out functions of one old coordinate and one new coordinate so that, for example for some function $F_1(q,Q,t)$
+\begin{eqn}
+p = \eval{\pd{F_1}{q}}_Q \qquad \implies \qquad Q = Q(q,p),
+\end{eqn}
+and
+\begin{eqn}
+P = -\eval{\pd{F_1}{Q}}_q \qquad \implies \qquad P = P(q,p),
+\end{eqn}
+since
+\begin{eqn}
+\eval{\pd{P}{p}}_q = \eval{\pd{P}{Q}}_q \eval{\pd{Q}{p}}_q.
+\end{eqn}
+We will need to do this for four functions $F_1, F_2, F_3, F_4$ with parameters as all four combinations of $q,p$ and $Q,P$.
+
+\begin{proof}
+Recall that we can write the action
+\begin{eqn}
+S = \int \dif{t} (p \dot q - H),
+\end{eqn}
+so for some transformed coordinates we can write
+\begin{eqn}
+S = \int \dif t (P \dot Q - K)
+\end{eqn}
+for some function $K(Q,P)$ which will just be $H'(Q,P)$ for a canonical transformation. This is sometimes referred to as the "Cameltoenian". So we want
+\begin{align}
+p \dot q - H &= P \dot Q - K(Q,P) + \dod{}{t} F_1(q,Q) \\
+	&= P \dot Q - K(Q, P) + \dpd{F_1}{t} + \dpd{F_1}{q} \dot q + \dpd{F_1}{Q} \dot Q.
+\end{align}
+So we have what we want if
+\begin{eqn}
+p = \pd{F_1}{q}, \qquad
+P = -\pd{F_1}{Q}, \qquad
+K = H + \pd{F_1}{t}.
+\end{eqn}
+\end{proof}
+
+So for the three other functions we will have
+\begin{eqn}
+F_2(q,P), \qquad p = \pd{F_2}{q}, \qquad Q = \pd{F_2}{p},
+\end{eqn} \begin{eqn}
+F_3(p,Q), \qquad q = -\pd{F_3}{p}, \qquad P = -\pd{F_3}{Q},
+\end{eqn} \begin{eqn}
+F_4(p,P), \qquad q = -\pd{F_4}{p}, \qquad Q = \pd{F_4}{P}.
+\end{eqn}
+
+\setcounter{example}{0}
+\begin{example}
+Let $F_1 = qQ$, then
+\begin{eqn}
+p = \pd{F_1}{q} = Q, \qquad P = -\pd{F_1}{Q} = -q, \qquad H = K.
+\end{eqn}
+\end{example}
+
+\begin{example}
+Given Hamiltonian
+\begin{eqn}
+H = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 q^2,
+\end{eqn}
+using 
+\begin{eqn}
+F_1 = \frac{m \omega}{2} q^2 \cot Q,
+\end{eqn}
+we find
+\begin{eqn} 
+p = m \omega q \cot Q, \qquad
+P = \frac{m \omega q^2}{2 \sin^2 Q}.
+\end{eqn}
+so that
+\begin{eqn}
+q = \sqrt{\frac{2P}{m\omega}} \sin Q, \qquad
+p = \sqrt{2 m \omega P} \cos Q,
+\end{eqn}
+and
+\begin{eqn}
+K = \omega P (\sin^2 Q + \cos^2 Q) = \omega P.
+\end{eqn}
+This one in particular is useful if $Q$ is cyclic and $P$ is constant, in which case $Q = Q_0 + \omega t$.
+\end{example}
+
+
+
+
+
+
+
+
+\end{document}
