@@ -1,0 +1,113 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec11}
+\author{UCLA, Fall 2014}
+\date{\formatdate{10}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{More on Path Integrals}
+
+Aside: Turns out Yaroslav was wrong about Feynman and Schwinger being perfect prodigies. Feynman wanted to go to Columbia but couldn't get in, went to MIT instead. But they both ended up sharing the Nobel prize, which is funny? Anyway...
+
+So the propagator $K(\v r, t; \v r', t')$ basically tells us all the information we want to know about the system, since
+\begin{eqn}
+\psi(\v r, t) = \int \dif^3{r'} K(\v r, t; \v r, t') \psi(\v r', t').
+\end{eqn}
+Last time we started breaking up the propagator into multiple integrals 
+\begin{eqn}
+K(\v r, t; \v r', t') = \int \dif^3{r''} \cdots \dif^3{r^{(n)}} \braket{\v r,t}{\v r^{(n)},t^{(n)}} \cdots \braket{\v r'', t''}{\v r', t'}
+\end{eqn}
+for $t' < t'' < \dots < t^{(n)} < t$. We will take 
+\begin{eqn}
+t^{(\ell+1)} - t^{(\ell)} = \frac{t-t'}{n} \equiv \delta,
+\end{eqn}
+where for convenience we denote $t^{(n+1)} = t$. If we write
+\begin{eqn}
+K_\ell = \braket{\v r^{(\ell+1)}, t^{(\ell+1)}}{\v r^{(\ell)}, t^{(\ell)}}
+\end{eqn}
+then we can think of the propagator as an integral
+\begin{eqn}
+K(\v r, t; \v r', t') = \int \mathcal{D}[\v r] I[\v r], \qquad
+I = K_1 K_2 \cdots K_n.
+\end{eqn}
+Furthermore note that when $n$ is large, we can make the approximation
+\begin{eqn}
+\vd r_\ell = \frac{\v r^{(\ell+1)} - \v r^{(\ell)}}{\delta}.
+\end{eqn}
+
+Recall the propagator for a free particle, which we derived last time (in 1D, here in 3D),
+\begin{eqn}
+K_0(\v r, t; \v r', t') = \left( \frac{m}{2\pi i \hbar (t-t')} \right)^{3/2} \exp \left[ \frac{im(\v r - \v r')^2}{2\hbar (t-t')} \right]. 
+\end{eqn}
+We will use this to derive a general expression for the path integral. For the general propagator, we have
+\begin{eqn}
+K(\v r, t; \v r', t') = \matrixel{\v r}{U(t,t')}{\v r'},
+\end{eqn}
+where the time evolution operator is given by
+\begin{eqn}
+U(t,t') = e^{-iH(t-t') / \hbar} = \exp \cbr{ -\frac{i}{\hbar} \left[ \frac{p^2}{2m} (t-t') + V(\v r) (t-t') \right]}.
+\end{eqn}
+Making the appropriate approximations (skipping a few steps here), we find
+\begin{eqn}
+K(\v r, t; \v r', t') \approx K_0(\v r, t; \v r', t') e^{-\frac{i}{\hbar} V(\v r) (t-t')}.
+\end{eqn}
+In the limit $n \rightarrow \infty$ we have
+\begin{eqn}
+K_\ell \approx \left( \frac{m}{2\pi i \hbar \delta} \right)^{3/2} \exp \cbr{ \frac{i}{\hbar} \left[ \frac{1}{2} m \vd r_\ell^2 - V(\bar{\v r}_\ell, \bar t_\ell) \right] } \delta 
+	= \left( \frac{m}{2\pi i \hbar \delta} \right)^{3/2} e^{\frac{i}{\hbar} S_\ell}.
+\end{eqn}
+where
+\begin{eqn}
+\bar{\v r}_\ell = \frac{1}{2} (\v r^{(\ell+1)} + \v r^{(\ell)}), \qquad
+\bar t_\ell = \frac{1}{2} (t^{(\ell+1)} + t^{\ell}).
+\end{eqn}
+Then in the limit $n \rightarrow \infty$ the full propagator becomes
+\begin{align}
+K(\v r, t; \v r', t') &= \lim_{n \rightarrow \infty} \int \dif^3{r''} \cdot \dif^3{r^{(n)}} \, K_1 \cdots K_n \\
+	&= \lim_{n \rightarrow \infty} \int \left( \frac{m}{2\pi i \hbar \delta} \right)^{3n/2} \dif^3{r''} \cdots \dif^3{r^{(n)}} \, e^{(i / \hbar) (S_1 + \dots + S_n)} \\
+	&= \int_{\v r(t)}^{\v r'(t')} \mathcal{D} [\v r(t)] e^{i S[\v r(t)] / \hbar},
+\end{align}
+where our new measure is
+\begin{eqn}
+\mathcal{D}[\v r(t)] = \lim_{n \rightarrow \infty} \left( \frac{m}{2\pi i \hbar \delta} \right)^{3n/2} \dif^3{r''} \cdots \dif^3{r^{(n)}}
+\end{eqn}
+and the full action is just
+\begin{eqn}
+S[\v r(t)] = \sum_{n=0}^\infty S_n = \int_t^{t'} \dif{t''} L(\v r, \vd r, t''), \qquad
+L(\v r, \vd r, t) = \frac{1}{2} m \vd r^2 - V(\v r, t).
+\end{eqn}
+
+Classically, the principle of least action (really extremal action), also called Hamilton's principle, tells us that the classical trajectory is the one which extremizes the action. Quantum mechanically, we find a similar principle holds, only instead we need to sum over all paths, and we find that paths nearest the classical trajectory hold the greatest weight in this sum. Since $\hbar$ is so darn small, for macroscopic events we find that the nearly-classical paths interfere constructively and we just reproduce Hamilton's principle. In fact, one can show that if we take $\hbar \rightarrow 0$, we precisely reproduce classical mechanics because all non-classical paths interfere destructively. It's only for very small-scale events that non-classical paths becomes important. 
+
+When $\hbar$ is small, we can employ the saddle-point approximation or SPA as follows. Suppose we have an integral
+\begin{eqn}
+I(h) = \int_{-\infty}^\infty \dif{x} \, e^{i x^2 / h} f(x)
+\end{eqn}
+with some function $f(x)$. When $h \rightarrow 0$ we can use the limit
+\begin{eqn}
+\lim_{h \rightarrow 0} \frac{e^{i x^2 / h}}{\sqrt{i\pi \hbar}} = \delta(x)
+\end{eqn}
+to show that 
+\begin{eqn}
+\lim_{h \rightarrow 0} I(h) = f(0).
+\end{eqn}
+
+
+
+
+
+
+
+\end{document}
