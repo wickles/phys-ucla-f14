@@ -1,0 +1,85 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec12}
+\author{UCLA, Fall 2014}
+\date{\formatdate{12}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Path integrals and classical mechanics}
+
+Any serious discussion of quantum theory or quantum field theory should first discuss the classical limit. A general path integral can be written
+\begin{eqn}
+G \sim \int \mathcal{D} \phi \, e^{i S(\phi) / \hbar}
+\end{eqn}
+where $G$ is a Green's function, $\phi$ is the field (for the propagator just the trajectories), and $S$ is the classical action. We will analyze what this means classically.
+
+Suppose we have a spinless particle of mass $m$ and charge $e$. The physical EM fields are $\v E(\v r, t), \v B(\v r, t)$, and we have the Lorentz force (in cgs units)
+\begin{eqn}
+\v F_L = e(\v E + \frac{\v v}{c} \times \v B).
+\end{eqn}
+It turns out that the Lagrangian which determines this force is given by
+\begin{eqn}
+L(\v r, \vd r, t) = \frac{1}{2} m \vd r^2 - e \phi(\v r, t) + e \frac{\v v}{c} \cdot \v A(\v r, t),
+\end{eqn}
+where $\phi$ and $\v A$ are the potentials or auxiliary fields,
+\begin{eqn}
+\v E = - \v \nabla \phi - \frac{1}{c} \vd A, \qquad
+\v B = \v \nabla \times \v A.
+\end{eqn}
+These potentials have a gauge freedom, meaning that different potentials can determine the same physical fields. Specifically, under the transformation
+\begin{eqn}
+\v A \rightarrow \v A + \v \nabla f, \qquad
+\phi \rightarrow \phi - \frac{1}{c} \pd{f}{t},
+\end{eqn}
+for any arbitrary function $f(\v r, t)$, we will obtain the same physical fields with the same dynamics. We can also verify that this Lagrangian gives us the correct dynamics (the Lorentz force). [See Wikipedia.] 
+
+We can split the Lagrangian into two parts, 
+\begin{eqn}
+L_0 = \frac{1}{2} m \vd r^2 - e \phi(\v r, t), \qquad
+L_g = e \frac{\v v}{c} \cdot \v A(\v r, t).
+\end{eqn}
+Then the action splits into $S_0$, the ``dynamical action'' and $S_g$, the ``geometric action''. $S_g$ is called the geometric action because if $\v B$ is time-independent then we can choose a gauge where $\v A$ is time-independent, so that 
+\begin{eqn}
+S_g = \frac{e}{c} \int_i^f \dif{\v r} \cdot \v A(\v r).
+\end{eqn}
+is a purely geometric quantity. 
+
+
+\section{Aharonov-Bohm effect}
+
+This is historically interesting because it came a while after Feynman's path integrals, but it comes right out of that so it's interesting that Feynman didn't discover it. 
+
+Suppose we have a static magnetic field $\v B(\v r)$ and a particle constrained to move on a ring (electron in a copper wire, for example). We are interested in how a static $\v B$ field can affect physical properties. In statistical mechanics, we will find that the partition function $Z$ depends on the spectrum $\varepsilon_i$. Also useful for studying heat capacity of the ring $C(\v B)$ and the conductance $g(\v B$). 
+
+If we consider two paths labelled 1 and 2, we can write the propagator
+\begin{align}
+K &= \int \mathcal{D} [\v r(t)] e^{i S / \hbar} \\
+	&\sim K^{(1)} + K^{(2)} \\
+	&\sim e^{i S_g^{(1)} / \hbar} \left[ K_0^{(1)} + K_0^{(2)} e^{(i / \hbar) [S_g^{(2)} - S_g^{(1)}]} \right],
+\end{align}
+so we find that the only really important factor here is the phase difference $\Delta S_g = S_g^{(2)} - S_g^{(1)}$, which is really just the integral around the loop
+\begin{eqn}
+\Delta S_g = \frac{e}{c} \oint_{2-1} \v A \cdot \dif{\v r}
+\end{eqn}
+which by Stoke's theorem is just $(e/c) \phi$. 
+
+[missed tiny bit at the end]
+
+
+
+
+
+
+\end{document}

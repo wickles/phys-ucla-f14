@@ -1,0 +1,171 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec10}
+\author{UCLA, Fall 2014}
+\date{\formatdate{13}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Action/Angle Variables}
+
+Consider the Harmonic oscillator
+\begin{eqn}
+H = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 q^2,
+\end{eqn}
+where we found that the trajectories in phase space make ellipses centered about the origin. This suggests that we could make a canonical transformation to nice polar coordinates in phase space,
+\begin{eqn}
+(p,q) \rightarrow (I,\theta), \qquad 
+q = \sqrt{\frac{2I}{m\omega}} \sin\theta, \qquad
+p = \sqrt{2Im\omega} \cos\theta,
+\end{eqn}
+This results in a very nice form for the Hamiltonian, $H' = \omega I$, and thus the equations of motion are just
+\begin{eqn}
+\dot \theta = \omega, \qquad
+\dot I = 0.
+\end{eqn}
+So we can visualize the trajectories as constant motion about a ring on a cylinder, where the ring is at height $I$ and angles are labelled $\theta$. These are called action angle variables.
+
+Suppose instead we have system with $N$ degrees of freedom. The system is called \textit{integrable} if there exists a canonical transformation
+\begin{eqn}
+(q_i, p_i) \rightarrow (I_i, \theta_i), \qquad
+H' = \sum_i \omega_i I_i,
+\end{eqn}
+so that the equations of motion are just
+\begin{eqn}
+\dot \theta_i = \omega_i, \qquad
+\dot I_i = 0.
+\end{eqn}
+So we have motion in $\theta_i$ on $(S^1)^n = T^n$, the $n$-torus. 
+
+\begin{theorem}[Liouville's theorem]
+Suppose we have some canonical coordinates $I_1, \dots, I_N$ with 
+\begin{eqn}
+\cbr{I_i, H'} = \cbr{I_i, I_j} = 0, \qquad
+i,j = 1, \dots, N.
+\end{eqn}
+Then the system is integrable. 
+\end{theorem}
+
+[missed a tiny bit, something about potentials?]
+
+[missed toda lattice stuff]
+
+[missed very short example?]
+
+
+\section{Hamilton-Jacobi theory}
+
+Motivations:
+\begin{itemize}
+\item New formulation of mechanics
+\item It gives a practical way to construct action/angle variables (separability) (sometimes)
+\item Most efficient way of solving dynamics
+\item New way of thinking about the action
+\item Geometrical optics / semiclassical approximation (QM)
+\end{itemize}
+
+In the Hamilton-Jacobi formulation, we are interested in finding a generating function $F(q,Q,t)$ such that the new Hamiltonian is as simple as possible. What's the simplest Hamiltonian?
+\begin{eqn}
+K(P,Q,t) \equiv 0.
+\end{eqn}
+Then $\dot Q = \dot P = 0$ or $Q \equiv \alpha, P \equiv \beta$, so we've just moved the dynamics from the Hamiltonian into the generating function. So we can write, using our results from the generating function formalism,
+\begin{eqn}
+0 = K(Q_i,P_i,t) = H(p_i,q_i,t) + \pd{F}{t}.
+\end{eqn}
+This is a canonical transformation of type 1, $F_1 = F$, so we have
+\begin{eqn}
+p_i = \pd{F}{q_i}, \qquad
+P_i = -\pd{F}{Q_i}.
+\end{eqn}
+Then we can rewrite $K = 0$ as 
+\begin{eqn}
+H(q_i, \tpd{F(q,Q,t)}{q_i}, t) + \pd{F(q,Q,t)}{t} = 0,
+\end{eqn}
+which is the \textbf{Hamilton-Jacobi equation} (HJE). As a comparison, recall that Hamilton's equations give us a system of $2N$ first order ODEs. Here in the Hamilton-Jacobi formalism, we have a single first order PDE in $N+1$ variables. 
+
+As a first example, let's look at the free particle $H = p^2 / 2m$. Then the HJE can be written
+\begin{eqn}
+\frac{1}{2m} \left(\pd{F}{q}\right)^2 + \pd{F}{t} = 0.
+\end{eqn}
+We see that even for a very simple example, we can end up with a difficult problem because we now have a nonlinear PDE. By inspection, we can write down a solution 
+\begin{eqn}
+F(q,Q,t) = \frac{m(q-Q)^2}{2t},
+\end{eqn}
+then we find
+\begin{eqn}
+p = \pd{F}{q} = \frac{m(q-Q)}{t}, \qquad
+P = -\pd{F}{Q} = \frac{m(q-Q)}{t}.
+\end{eqn}
+Recall that $Q$ and $P$ are supposed to be constant---looking at their forms, we notice that $\alpha \equiv Q = q(0)$ and $\beta \equiv P = p(0)$ and we can write
+\begin{eqn}
+q(t) = \frac{\beta}{m} t + \alpha.
+\end{eqn}
+Furthermore, $F$ looks familiar:
+\begin{eqn}
+F = \frac{p(0)^2}{2m} t,
+\end{eqn}
+it's just the action! 
+\begin{eqn}
+S = \int_0^t \frac{1}{2} m \dot q^2 \dif{t} = \frac{\beta^2}{2m} t.
+\end{eqn}
+So we've found that $F$ evaluated on the solution is the action. 
+
+It turns out that this solution is not unique. Another solution is given by
+\begin{eqn}
+F = q \sqrt{2m\alpha} - \alpha t,
+\end{eqn}
+so we have
+\begin{eqn}
+p = \pd{F}{q} = \sqrt{2m \alpha}, \qquad
+P = -\pd{F}{\alpha} = \frac{q\sqrt{2m}}{2\sqrt{\alpha}} - t = \beta,
+\end{eqn}
+or 
+\begin{eqn}
+q = \sqrt{\frac{2\alpha}{m}} (t+\beta), \qquad
+p = \sqrt{2m\alpha}.
+\end{eqn}
+[Is this an equivalent action? i.e. under an equivalent Lagrangian?]
+
+We can show that indeed $F = S$. Given the action
+\begin{eqn}
+S[q(t)] = \int_0^t \dif{t'} \, L(q, \dot q, t'),
+\end{eqn}
+the variation is just
+\begin{eqn}
+\delta S = \int_0^t \cancelto{0}{\left( \pd{L}{q} - \od{}{t} \pd{L}{\dot q} \right)} \delta q + \pd{L}{\dot q} \delta q \Big|_0^t 
+	= p \Big|_t \delta q \Big|_t
+\end{eqn}
+so that $\tpd{S}{q|_t} = p |_t$. Furthermore
+\begin{eqn}
+L = \od{S}{t} = \pd{S}{t} + \pd{S}{q_t} \od{q_t}{t} \big|_t
+\end{eqn}
+gives us
+\begin{eqn}
+L(q, \dot q, t) |_t = \pd{S}{t} + p |_t \od{q}{t} \big|_t 
+\end{eqn}
+so that
+\begin{eqn}
+\pd{S}{t} = - \left[ p \dot q - L(q, \dot q, t) \right]
+\end{eqn}
+and thus
+\begin{eqn}
+\pd{S}{t} = -H(p,q,t) = -H(\pd{S}{q}, q, t),
+\end{eqn}
+which is just the HJE. 
+
+
+
+
+
+
+
+
+\end{document}
