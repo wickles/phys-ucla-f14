@@ -1,0 +1,77 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 221A -- Quantum Mechanics -- HW04}
+\author{UCLA, Fall 2014}
+\date{\formatdate{12}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+
+\textit{
+Problems 2.24 (p. 153), 2.25 (p. 153), 2.27 (p. 154), 2.29 (p. 154; no need to answer the last question), 2.31 (p. 154), and 2.33 (p. 155) from the textbook (Sakurai and Napolitano, Modern Quantum Mechanics, 2nd edition).
+}
+
+
+
+\section*{Problem 2.24}
+\textit{
+Consider a particle in one dimension bound to a fixed center by a $\delta$-function potential of the form
+\begin{eqn}
+V(x) = -\lambda \delta(x), \qquad
+\lambda > 0.
+\end{eqn}
+Find the wave function and the binding energy of the ground state. Are there excited bound states?
+}
+
+
+\section*{Problem 2.25}
+\textit{
+Continuing from the previous problem, at $t=0$ the potential is suddenly switched off (that is, $V=0$ for $t>0$). Find the wave function for $t>0$. (Be quantitative! But you need not attempt to evaluate an integral that may appear.)
+}
+
+
+\section*{Problem 2.27}
+\textit{
+Derive an expression for the density of free-particle states in \textbf{two} dimensions, normalized with periodic boundary conditions inside a box of side length $L$. [removed: Your answer should be written as a function of $k$ (or $E$) times $\dif E \dif \phi$, where $\phi$ is the polar angle that characterizes the momentum direction in two dimensions.]
+}
+
+
+\section*{Problem 2.29}
+\textit{
+Consider a particle moving in one dimension under the influence of a potential $V(x)$. Suppose its wave function can be written as $\exp[i S(x,t) / \hbar]$. Prove that $S(x,t)$ satisfies the classical Hamilton-Jacobi equation to the extent that $\hbar$ can be regarded as small in some sense. Show how one may obtain the correct wave function for a plane wave by starting with the solution of the classical Hamilton-Jacobi equation with $V(x)$ set equal to zero. Why do we get the exact wave function in this particular case?
+}
+
+
+\section*{Problem 2.31}
+\textit{
+Derive (2.6.16),
+\begin{eqn}
+K(x'', t; x', t_0) = \sqrt{\frac{m}{2\pi i \hbar (t-t_0)}} \exp \left[ \frac{im(x'' - x')^2}{2 \hbar (t-t_0)} \right],
+\end{eqn}
+and derive the three-dimensional generalization.
+}
+
+
+\section*{Problem 2.33}
+\textit{
+The propagator in momentum space analogous to (2.6.26),
+\begin{align}
+K(\v x'', t, \v x', t_0) &= \sum_{a'} \braket{\v x''}{a'} \braket{a'}{\v x'} \exp \left[ \frac{-i E_{a'} (t-t_0)}{\hbar} \right] \\
+	&= \sum_{a'} \bra{\v x''}{\exp \left( \frac{-i H t}{\hbar} \right)}\ket{a'} \bra{a'}{\exp \left( \frac{i H t_0}{\hbar} \right)} \ket{\v x'} \\
+	&= \braket{\v x'', t}{\v x', t_0},
+\end{align}
+is given by $\braket{\v p'', t}{\v p', t_0}$. Derive an explicit expression for $\braket{\v p'', t}{\v p', t_0}$ for the free-particle case. 
+}
+
+
+
+\end{document}

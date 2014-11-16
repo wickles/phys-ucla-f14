@@ -1,0 +1,163 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 220A -- Classical Mechanics -- HW07}
+\author{UCLA, Fall 2014}
+\date{\formatdate{21}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1 (25 pts)}
+\textit{
+Consider a canonical transformation with a generating function $F_2(q_i,P_i)$ where the $p_i, Q_i$ are determined by
+\begin{eqn}
+p_i = \pd{F_2}{q_i}, \qquad 
+Q_i = \pd{F_2}{P_i}, \qquad
+H' = H + \pd{F_2}{t}
+\end{eqn}
+and $F_2$ has the form
+\begin{eqn}
+F_2 = \sum_i q_i P_i + X.
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Find the relation of $q_i, p_i$ and $Q_i, P_i$ if $X = \delta \v a \cdot \v P$ where $\delta \v a$ is an infinitesimal vector.
+}
+
+
+% part B
+\item \textit{
+Find the relation of $q_i, p_i$ and $Q_i, P_i$ if $X = \delta \v \phi \cdot (\v q \times \v P)$ where $\delta \v \phi$ is an infinitesimal vector.
+}
+
+
+% part C
+\item \textit{
+Find the relation of $q_i, p_i$ and $Q_i, P_i$ if $X = \delta \delta \tau \, H$ where $\delta \tau$ is an infinitesimal paramter and $H$ is the Hamiltonian.
+}
+
+
+% part D
+\item \textit{
+Find the relation of $q_i, p_i$ and $Q_i, P_i$ if $X = -e \chi(\v q, t)$.
+}
+
+
+% part E
+\item \textit{
+For the Hamiltonian 
+\begin{eqn}
+H = \frac{1}{2m} (\v p - e \v A(\v q,t))^2 + e \Phi(\v q,t)
+\end{eqn}
+where
+\begin{eqn}
+\v E = -\v \nabla \Phi - \pd{\v A}{t}, \qquad
+\v B = \v \nabla \times \v A.
+\end{eqn}
+Calculate the new Hamiltonian $H'(Q,P)$ under the canonical transformations defined in parts (a)--(d).
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2 (20 pts)}
+\textit{
+Consider the Hamiltonian 
+\begin{eqn}
+H = \frac{1}{2m} p^2 q^4 + \frac{k}{2q^2}
+\end{eqn}
+and the canonical transformation given by the generating function
+\begin{eqn}
+F_1(q,Q) = -\sqrt{mk} \, \frac{Q}{q}.
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Find the canonical transformations $Q=Q(q,p)$ and $P=P(q,p)$.
+}
+
+
+% part B
+\item \textit{
+Find the new Hamiltonian $H'(Q,P)$.
+}
+
+
+% part C
+\item \textit{
+Find the general solution for $Q(t), P(t)$.
+}
+
+
+% part D
+\item \textit{
+Solve for $q(t), p(t)$ with the initial condition $q(0) = q_0$ and $p(0) = 0$.
+}
+
+\end{enumproblem}
+
+
+
+\section*{Problem 3 (15 pts)}
+\textit{
+Use Hamilton-Jacobi theory to solve for the dynamics of a particle with Cartesian coordinates $(x,y,z)$ moving in the gravitational potential of two fixed masses $m_+, m_-$ located at the points $(\pm c,0,0)$. Restrict motion to the plane $z=0$ for the sake of simplicity. This system has Lagrangian (we set $\mu_\pm = G m_\pm m > 0$ and $r_\pm^2 = (x \mp c)^2 + y^2$ for brevity)
+\begin{eqn}
+L = \frac{1}{2} m (\dot x^2 + \dot y^2) + \frac{\mu_+}{r_+} + \frac{\mu_-}{r_-}.
+\end{eqn}
+\textbf{Hint:} Change variables to elliptical coordinates, $x = c \cosh q_1 \cos q_2$ and $y = c \sinh q_1 \sin q_2$.
+}
+
+
+
+\section*{Problem 4 (10 pts)}
+\textit{
+Consider an infinitesimal canonical transformation with generating function
+\begin{eqn}
+F_2(q,P) = P q + \epsilon S(P,q).
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Show that to first order in $\epsilon$ one has
+\begin{eqn}
+p = P + \epsilon \frac{S}{q}, \qquad
+Q = q + \epsilon \pd{S}{P}.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+From this show that the infinitesimal canonical transformation satisfies Hamilton equations with $\epsilon$ viewed as ``time''
+\begin{eqn}
+\eval{\od{P}{\epsilon}}_{\epsilon=0} = -\pd{H}{q}, \qquad
+\eval{\od{Q}{\epsilon}}_{\epsilon=0} = -\pd{Q}{p}
+\end{eqn}
+where $H(q,p) = S(q,p)$. [Should the second one not have a plus instead of minus sign?]
+}
+
+
+\end{enumproblem}
+
+
+\end{document}

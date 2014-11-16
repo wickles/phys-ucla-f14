@@ -1,0 +1,142 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 221A -- Quantum Mechanics -- HW02}
+\author{UCLA, Fall 2014}
+\date{\formatdate{29}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+
+\textit{
+Problems 2.3 (p. 148), 2.6 (p. 149), 2.10 (p. 150), 2.12 (p. 151), and 2.16 (p. 151) from
+the textbook (Sakurai and Napolitano, Modern Quantum Mechanics, 2nd edition).
+}
+
+
+
+\section*{Problem 2.3}
+\textit{
+An electron is subject to a uniform, time-independent magnetic field of strength $B$ in the positive $z$-direction. At $t = 0$ the electron is known to be in an eigenstate of $\v{S} \cdot \uv{n}$ with eigenvalue $\hbar / 2$, where $\uv n$ is a unit vector, lying in the $xz$-plane, that makes an angle $\beta$ with the $z$-axis.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Obtain the probability for finding the electron in the $s_x = \hbar / 2$ state as a function of time.
+}
+
+
+% part B
+\item \textit{
+Find the expectation value of $S_x$ as a function of time.
+}
+
+
+% part C
+\item \textit{
+For your own peace of mind, show that your answers make good sense in the extreme cases (i) $\beta \rightarrow 0$ and (ii) $\beta \rightarrow \pi / 2$.
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2.6}
+\textit{
+Consider a particle in one dimension whose Hamiltonian is given by 
+\begin{eqn}
+H = \frac{p^2}{2m} + V(x).
+\end{eqn}
+By calculating $[[H,x],x]$, prove
+\begin{eqn}
+\sum_{a'} \abs{ \matrixel{a''}{x}{a'} }^2 (E_{a'} - E_{a''}) = \frac{\hbar^2}{2m},
+\end{eqn}
+where $\ket{a'}$ is an energy eigenket with eigenvalue $E_{a'}$.
+}
+
+
+\section*{Problem 2.10}
+\textit{
+A box containing a particle is divided into a right and a left compartment by a thin partition. If the particle is known to be on the right (left) side with certainty, the state is represented by the position eigenket $\ket{R}$ ($\ket{L}$), where we have neglected spatial variations within each half of the box. The most general state vector can then be written as 
+\begin{eqn}
+\ket{\alpha} = \ket{R} \braket{R}{\alpha} + \ket{L} \braket{L}{\alpha},
+\end{eqn}
+where $\braket{R}{\alpha}$ and $\braket{L}{\alpha}$ can be regarded as ``wave functions.'' The particle can tunnel through the partition; this tunneling effect is characterized by the Hamiltonian
+\begin{eqn}
+H = \Delta (\ket{L} \bra{R} + \ket{R} \bra{L}),
+\end{eqn}
+where $\Delta$ is a real number with the dimension of energy.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Find the normalized energy eigenkets. What are the corresponding energy eigenvalues?
+}
+
+
+% part B
+\item \textit{
+In the Schroedinger picture the base kets $\ket{R}$ and $\ket{L}$ are fixed, and the state vector moves with time. Suppose the system is represented by $\ket{\alpha}$ as given above by $t=0$. Find the state vector $\ket{\alpha, t_0 = 0; t}$ for $t > 0$ by applying the appropriate time-evolution operator to $\ket{\alpha}$.
+}
+
+
+% part C
+\item \textit{
+Suppose that at $t=0$ the particle is on the right side with certainty. What is the probability for observing the particle on the left side as a function of time?
+}
+
+
+% part D
+\item \textit{
+Write down the coupled Schroedinger equations for the wave functions $\braket{R}{\alpha, t_0 = 0; t}$ and $\braket{L}{\alpha, t_0 = 0; t}$. Show that the solutions to the coupled Schroedinger equations are just what you expect from (b).
+}
+
+
+% part E
+\item \textit{
+Suppose the printer made an error and wrote $H$ as
+\begin{eqn}
+H = \Delta \ket{L} \bra{R}.
+\end{eqn}
+By explicitly solving the most general time-evolution problem with this Hamiltonian, show that probability conservation is violated. 
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2.12}
+\textit{
+Consider a particle subject to a one-dimensional simple harmonic oscillator potential. Suppose that at $t=0$ the state vector is given by
+\begin{eqn}
+\exp (\frac{-ipa}{\hbar}) \ket{0},
+\end{eqn}
+where $p$ is the momentum operator and $a$ is some number with dimension of length. Using the Heisenberg picture, evaluate the expectation value $\avg{x}$ for $t \geq 0$. 
+}
+
+
+\section*{Problem 2.16}
+\textit{
+Consider a function, known as the \textbf{correlation function}, defined by 
+\begin{eqn}
+C(t) = \avg{x(t) x(0)},
+\end{eqn}
+where $x(t)$ is the position operator in the Heisenberg picture. Evaluate the correla­tion function explicitly for the ground state of a one-dimensional simple harmonic oscillator.
+}
+
+
+\end{document}
