@@ -1,0 +1,163 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 221A -- Quantum Mechanics -- HW03}
+\author{UCLA, Fall 2014}
+\date{\formatdate{5}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+
+\textit{
+Problems 2.17 (p. 152), 2.18 (p. 152), 2.19 (p. 152), 2.20 (p. 152), and 2.22 (p. 153) from the textbook (Sakurai and Napolitano, Modern Quantum Mechanics, 2nd edition).
+}
+
+
+
+\section*{Problem 2.17}
+\textit{
+Consider again a one-dimensional simple harmonic oscillator. Do the following algebraically---that is, without using wave functions.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Construct a linear combination of $\ket{0}$ and $\ket{1}$ such that $\avg{x}$ is as large as possible.
+}
+
+
+% part B
+\item \textit{
+Suppose the oscillator is in the state constructed in (a) at $t=0$. What is the state vector for $t>0$ in the Schroedinger picture? Evaluate the expectation value $\avg{x}$ as a function of time for $t>0$, using (i) the Schroedinger picture and (ii) the Heisenberg picture. 
+}
+
+
+% part C
+\item \textit{
+Evaluate $\avg{(\Delta x)^2}$ as a function of time using either picture.
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2.18}
+\textit{
+Show that for the one-dimensional simple harmonic oscillator,
+\begin{eqn}
+\matrixel{0}{e^{ikx}}{0} = \exp \left[ -\frac{k^2}{2} \matrixel{0}{x^2}{0} \right],
+\end{eqn}
+where $x$ is the position \textbf{operator}.
+}
+
+
+\section*{Problem 2.19}
+\textit{
+A coherent state of a one-dimensional simple harmonic oscillator is defined to be an eigenstate of the (non-Hermitian) annihilation operator $a$:
+\begin{eqn}
+a \ket{\lambda} = \lambda \ket{\lambda},
+\end{eqn}
+where $\lambda$ is, in general, a complex number.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Prove that
+\begin{eqn}
+\ket{\lambda} = e^{-\abs{\lambda}^2 / 2} e^{\lambda a^\dagger} \ket{0}
+\end{eqn}
+is a normalized coherent state.
+}
+
+
+% part B
+\item \textit{
+Prove the minimum uncertainty relation for such a state.
+}
+
+
+% part C
+\item \textit{
+Write $\ket{\lambda}$ as 
+\begin{eqn}
+\ket{\lambda} = \sum_{n=0}^\infty f(n) \ket{n}.
+\end{eqn}
+Show that the distribution of $\abs{f(n)}^2$ with respect to $n$ is of the Poisson form. Find the most probable value of $n$, and hence of $E$.
+}
+
+
+% part D
+\item \textit{
+Show that a coherent state can also be obtained by applying the translation (finite-displacement) operator $e^{-ipl/\hbar}$ (where $p$ is the momentum operator and $l$ is the displacement distance) to the ground state. (See also Gottfried 1966, 262-64.)
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2.20}
+\textit{
+Let
+\begin{eqn}
+J_\pm = \hbar a_\pm^\dagger a_\mp, \qquad
+J_z = \frac{\hbar}{2} (a_+^\dagger a_+ - a_-^\dagger a_-), \qquad
+N = a_+^\dagger a_+ + a_-^\dagger a_-,
+\end{eqn}
+where $a_\pm$ and $a_\pm^\dagger$ are the annihilation and creation operators of two \textbf{independent} simple harmonic oscillators satisfying the usual simple harmonic oscillator commutation relations. Prove
+\begin{eqn}
+[J_z, J_\pm] = \pm \hbar J_\pm, \qquad
+[\v{J}^2, J_z] =0, \qquad
+\v{J}^2 = \left( \frac{\hbar^2}{2} \right) N \left[ \left( \frac{N}{2} \right) + 1 \right].
+\end{eqn}
+}
+
+
+\section*{Problem 2.22}
+\textit{
+Consider a particle of mass $m$ subject to a one-dimensional potential of the following form:
+\begin{eqn}
+V = 
+\begin{cases}
+\frac{1}{2} k x^2 & \text{for $x > 0$} \\
+\infty & \text{for $x < 0$.}
+\end{cases}
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+What is the ground-state energy?
+}
+
+
+% part B
+\item \textit{
+What is the expectation value $\avg{x^2}$ for the ground state?
+}
+
+
+
+\end{enumproblem}
+
+
+
+
+
+
+
+\end{document}

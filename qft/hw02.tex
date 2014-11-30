@@ -1,0 +1,173 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 230A -- QFT -- HW02}
+\author{UCLA, Fall 2014}
+\date{\formatdate{10}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1}
+\textit{
+Let $\phi(x)$ be a free quantum field obeying the KG equation
+\begin{eqn}
+(\Box + m^2) \phi = 0.
+\end{eqn}
+We can define the two-point correlation functions 
+\begin{align}
+G_W(x-y) &= \matrixel{0}{\phi(x)\phi(y)}{0} & \text{(Wightman functions)} \\
+G_F(x-y) &= \matrixel{0}{T \phi(x) \phi(y)}{0} & \text{(Feynman propagator)} \\
+G_R(x-y) &= \theta(x^0 - y^0) \matrixel{0}{[\phi(x),\phi(y)]}{0} & \text{(retarded correlator)}.
+\end{align}
+These all obey an equation of the form
+\begin{eqn}
+(\Box_x + m^2) G(x-y) = \text{$c$-number}.
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Compute what's on the right hand side in each case.
+}
+
+
+% part B
+\item \textit{
+Evaluate $G_F(x)$ for a massless scalar field. Hint: First use the mode expansion, then do the momentum integral in spherical coordinates. The $\dif{p}$ integral will be ill-defined, so multiply the integrand by a regulator factor $e^{-p\delta}$ for small constant $\delta$. Finally, take $\delta \rightarrow 0$ using 
+\begin{eqn}
+\lim_{\delta \rightarrow 0} \frac{1}{x + i\delta} = -i \pi \delta(x) + P(1/x),
+\end{eqn}
+where $P$ denotes the ``principal part''. Result should be
+\begin{eqn}
+G_F = \frac{i}{4\pi} \delta(x^2) - \frac{1}{4\pi^2} P(1/x^2).
+\end{eqn}
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2}
+\textit{
+$\phi^4$-theory is defined by the action
+\begin{eqn}
+S = \int \dif^4{x} \left( \frac{1}{2} (\partial \phi)^2 - \frac{1}{2} m^2 \phi^2 - \lambda \phi^4 \right).
+\end{eqn}
+Compute 
+\begin{eqn}
+\matrixel{0}{T \phi(x_1) \phi(x_2)}{0} 
+\quad \text{and} \quad 
+\matrixel{0}{T \phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)}{0}
+\end{eqn}
+to order $\lambda$. Use Wick's theorem to express the result as spatial integrals of Feynman propagators. Don't bother doing the integral. Make sure to get the numerical factors right!
+}
+
+
+\section*{Problem 3}
+\textit{
+Consider the $ABC$ theory discussed in the class/notes, and the following processes:
+\begin{align}
+AA & \rightarrow AA \\
+AA & \rightarrow AB \\
+AA & \rightarrow BB \\
+AA & \rightarrow BC \\
+AB & \rightarrow AB \\
+AB & \rightarrow BC.
+\end{align}
+Consider each amplitude at order $g^2$ (tree level). At this order write down the momentum space, connected, amputated amplitude, expressed in the form
+\begin{eqn}
+g^2 \left[ \frac{c_A}{p_1^2 - m_A^2} + \frac{c_B}{p_2^2 - m_B^2} + \frac{c_C}{p_3^2 - m_C^2} \right]
+\end{eqn}
+where $p_{1,2,3}$ are three momenta that depend on which process is being considered. Note: Some amplitudes might vanish at this order.
+}
+
+
+\section*{Problem 4}
+\textit{
+Perturbation series in QFT are almost always asymptotic series. Such series are \textbf{not} convergent, yet are useful nonetheless. This problem will study one such series in a context very similar to the QFT case. Consider the integral
+\begin{eqn}
+I(\lambda) = \frac{1}{\sqrt{2}} \int_{-\infty}^\infty \dif{x} e^{-\frac{1}{2} x^2 - \frac{\lambda}{4} x^4}.
+\end{eqn}
+We assume that $\lambda$ is small and think of expanding $I(\lambda)$ as a power series in $\lambda$.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Show that if we expand the exponential in $\lambda$ and do the integrals we get the series
+\begin{eqn}
+I_{\text{ser}} (\lambda) = \sum_{n=0}^\infty (-1)^n \frac{\Gamma(2n+1/2)}{n!} \lambda^n.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+What is the radius of convergence of this series?
+}
+
+
+% part C
+\item \textit{
+Evaluate $I(\lambda)$ on the computer at $\lambda = 0.02$.
+}
+
+
+% part D
+\item \textit{
+Now define the partial sum
+\begin{eqn}
+I_M(\lambda) = \sum_{n=0}^M (-1)^n \frac{\Gamma(2n+1/2)}{n!} \lambda^n.
+\end{eqn}
+Plot $\log[I(.02)-I_M(.02)]$ for $0 \leq M \leq 30$. What do you notice?
+}
+
+
+% part E
+\item \textit{
+Repeat for $\lambda = .01, .03$. How many terms should you keep to get the best approximation to $I(\lambda)$?
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 5: Mass as a perturbation}
+\textit{
+Consider the Lagrangian
+\begin{eqn}
+\Lag = \frac{1}{2} (\partial \phi)^2 - \frac{1}{2} m^2 \phi^2.
+\end{eqn}
+We derived the Feynman propagator
+\begin{eqn}
+\matrixel{0}{T \phi(x) \phi(y)}{0} = \int \frac{\dif^4 p}{(2\pi)^4} \frac{i}{p^2 - m^2 + i\epsilon} e^{-i p \cdot (x-y)}.
+\end{eqn}
+Now we rederive this by doing perturbation theory in $m^2$ and summing the series. Take
+\begin{eqn}
+\Lag = \Lag_0 + \Lag_\text{int}, \qquad
+\Lag_0 = \frac{1}{2} (\partial \phi)^2, \qquad
+\Lag_\text{int} = -\frac{1}{2} m^2 \phi^2.
+\end{eqn}
+Work out the corresponding Feynman diagrams
+\[
+\text{---} m^2 \text{---} m^2 \text{---} m^2 \text{---} \cdots \text{---} m^2 \text{---}
+\]
+and sum the series.
+}
+
+
+
+\end{document}

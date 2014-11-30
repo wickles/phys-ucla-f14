@@ -1,0 +1,213 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 230A -- QFT -- HW01}
+\author{UCLA, Fall 2014}
+\date{\formatdate{22}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+
+\section*{Problem 1: Natural units}
+\textit{
+As standard in high energy physics, we work in natural units such that $\hbar = c = 1$, i.e. $c$ represents one unit of velocity. Furthermore, it is standard to express all dimensionful quantities in terms of GeV (to some power). This is convenient because $1~\text{GeV} \approx \text{rest energy of proton}$. Any dimensionful quantity which can be expressed in MKS units can be written in terms of GeV. Do so for the following.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{$\unit{1}{s}$}
+
+% B
+\item \textit{$\unit{1}{m}$}
+
+% C
+\item \textit{$\unit{1}{kg}$}
+
+% D
+\item \textit{Bohr radius}
+
+% E
+\item \textit{electron mass}
+
+% F
+\item \textit{Newton constant}
+
+% G
+\item \textit{age of universe}
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2: EM field}
+\textit{
+Work out the Euler-Lagrange equations for the action
+\begin{eqn}
+S = -\frac{1}{4} \int \dif^4 x ~ F^{\mu\nu} F_{\mu\nu}, \qquad F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu.
+\end{eqn}
+Identifying the $\v{E}$ and $\v{B}$ fields appropriately, verify that these equations (supplemented with the identity $\partial_\alpha F_{\mu\nu} + \partial_\mu F_{\nu\alpha} + \partial_\nu F_{\alpha\mu} = 0$) are equivalent to Maxwell's equations, e.g. as seen on the PAB elevator doors. 
+}
+
+
+
+\section*{Problem 3: Hamiltonian of free scalar field}
+\textit{
+Starting from 
+\begin{eqn}
+H = \frac{1}{2} \int \dif^3 x \left( \Pi_\phi^2 + (\v{\nabla} \phi)^2 + m^2 \phi^2 \right)
+\end{eqn}
+and the mode expansion for $\phi$, work out the form of $H$ in terms of $a_p$ and $a_p^\dagger$. 
+}
+
+
+
+\section*{Problem 4: Momentum operator}
+\textit{
+For an interacting scalar field with Lagrangian
+\begin{eqn}
+\Lag = \frac{1}{2} \partial^\mu \phi ~ \partial_\mu \phi - V(\phi),
+\end{eqn}
+define the momentum operator
+\begin{eqn}
+\v{P} = - \int \dif^3 x ~ \Pi_\phi (x) \v{\nabla} \phi (x).
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Show that $\v P$ is conserved. 
+}
+
+
+% part B
+\item \textit{
+Show that 
+\begin{eqn}
+[P_i, \phi(x)] = i \partial_i \phi(x).
+\end{eqn}
+}
+
+
+% part C
+\item \textit{
+Show that 
+\begin{eqn}
+e^{-i a^i p_i} \phi(x) e^{i a^i p_i} = \phi(x+a).
+\end{eqn}
+}
+
+
+% part D
+\item \textit{
+In the case of a free scalar field, express $\v{P}$ in terms of $a_k$ and $a_k^\dagger$ operators.
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 5: Noether theorem}
+\textit{
+Consider a collection of $N$ real scalar field with Lagrangian
+\begin{eqn}
+\Lag = \sum_{i=1}^N \frac{1}{2} \partial^\mu \phi_i \partial_\mu \phi_i - V(\sum_{i=1}^N \phi_i \phi_i).
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Show that $\Lag$ is invariant under the infinitesimal transformation
+\begin{eqn}
+\delta \phi_i = \epsilon \sum_j T_{ij} \phi_j, \qquad T_{ij} = -T_{ji}.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Derive the corresponding Noether currents, and verify that they are conserved. 
+}
+
+
+% part C
+\item \textit{
+How many independent conserved currents are there?
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 6: Boosts}
+\textit{
+Noether's theorem converts symmetries into conserved quantities. So what is the conserved quantity associated with Lorentz boosts?
+}
+
+
+
+\section*{Problem 7: Functional derivatives}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Consider an action with higher time derivatives
+\begin{eqn}
+S = \int_{t_1}^{t_2} \dif t ~ L(x, \dot x, \ddot x).
+\end{eqn}
+Specify boundary conditions such that $\fd{S}{x(t)}$ exists, and evaluate it to obtain the Euler-Lagrange equation for this system. Generalize to 
+\begin{eqn}
+S = \int_{t_1}^{t_2} \dif t ~ L(x, \dot x, \ddot x, \dddot x, \dots).
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Suppose we want to impose mixed boundary conditions
+\begin{eqn}
+\od{x}{t} + \alpha x = 0 \quad \text{at $t=t_1$ and $t = t_2$}
+\end{eqn}
+for some constant $\alpha$. Starting from 
+\begin{eqn}
+S = \int_{t_1}^{t_2} dt \left( \frac{1}{2} \mu \dot x^2 - V(x) \right),
+\end{eqn}
+show that one can add boundary terms to $S$ such that $\fd{S}{x}$ exists with these boundary conditions.
+}
+
+
+% part C
+\item \textit{
+The Hamiltonian form of the action is
+\begin{eqn}
+S = \int_{t_1}^{t_2} \dif t ~ (p \dot x - H(x,p)),
+\end{eqn}
+where $x(t)$ and $p(t)$ are treated as independent. Show that with appropriate boundary conditions the equations
+\begin{eqn}
+\fd{S}{x(t)} = \fd{S}{p(t)} = 0
+\end{eqn}
+are Hamilton's equations, and that these are equivalent to the Euler-Lagrange equations obtained from the Lagrangian version of the action.
+}
+
+
+\end{enumproblem}
+
+
+
+
+\end{document}

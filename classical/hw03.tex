@@ -1,0 +1,162 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 220A -- Classical Mechanics -- HW03}
+\author{UCLA, Fall 2014}
+\date{\formatdate{23}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1 (15 pts)}
+\textit{
+In this problem you will show that for small times in a one dimensional system the solution of the Euler-Lagrange equations minimizes the action. Consider an action of the form
+\begin{eqn}
+S[x] = \int_0^T \dif{t} \left( \frac{1}{2} m \dot{x}^2 - V(x) \right).
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Show that for a variation $\delta x (0) = \delta x(T) = 0$ that the variation in the action is
+\begin{eqn}
+\Delta S = - \int_0^T \dif{t} \left( m \ddot{x} + \pd{V}{x} \right) \delta x + \bigO(\delta x^2).
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Show that for an $x(t)$ which satisfies the Euler-Lagrange equations the second variation has the form
+\begin{eqn}
+\delta S = \frac{1}{2} \int_0^T \dif{t} \left( m(\delta \dot{x})^2 - g(t) \delta x^2 \right) + \bigO(\delta x^3)
+\end{eqn}
+and show that
+\begin{eqn}
+g(t) = \eval[3]{ \pd[2]{V}{x} }_{x = x(t)}.
+\end{eqn}
+}
+
+
+% part C
+\item \textit{
+Using the boundary condition $\delta x(0) = \delta x(T) = 0$ and estimating the value of $g(t)$ show that one can choose a time $T$ small enough that the order $\delta x^2$ term in the variation of $S$ is always positive.
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2 (15 pts)}
+\textbf{
+Note: A variant of this problem appeared in the 2013 comprehensive exam.
+}
+
+\textit{
+A mass $m_1$ is moving (without friction) on a desk in the presence of constant gravitational fields. It is attached by a massless rope through a hole in the desk to a second mass $m_2$, the first mass rotates on the desk (see figure 1).
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Find the constraints and the Lagrangian for this system.
+}
+
+
+% part B
+\item \textit{
+Calculate the equations of motion.
+}
+
+
+% part C
+\item \textit{
+Find conserved quantities of the system to reduce the equations of motion to a single differential equation of first order.
+}
+
+
+% part D
+\item \textit{
+Find the initial conditions for which the mass $m_1$ moves on a circle, calculate the tension in the string for this solution.
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 3 (15 pts)}
+\textit{
+A mass $m_1$ is moving frictionless on a ramp with angle $\alpha$ with base accelerates with constant acceleration $x_0(t) = \frac{1}{2} a t^2$. (See Figure 2.) 
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Set up the constraints and the Lagrangian.
+}
+
+
+% part B
+\item \textit{
+Find generalized coordinates and solve the Euler Lagrangian equations 
+}
+
+
+% part C
+\item \textit{
+What is the condition that the mass leaves the ramp?
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 4 (20 pts)}
+\textit{
+A particle of mass $m_1$ is constrained to move on a circle $x^2 + y^2 = r_1^2$, a second particle of mass $m_2$ is constrained to move on a second circle $(x - a)^2 + y^2 = r_2^2$. The two masses are connected by a (massless) spring with constant $k$ (i.e. there is a potential which takes the form $V = \frac{1}{2} k d^2$ where $d$ is the euclidean distance between the masses.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Identify the two generalized coordinates and express the Lagrangian in terms of these. 
+}
+
+
+% part B
+\item \textit{
+Write down the equations of motion following from the Lagrangian
+}
+
+
+% part C
+\item \textit{
+For which value of $a$ is there an additional conserved quantity ?
+}
+
+
+% part D
+\item \textit{
+For the special case in (c) reduce the equation of motion to a first order equation.
+}
+
+
+\end{enumproblem}
+
+
+\end{document}

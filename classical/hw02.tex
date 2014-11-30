@@ -1,0 +1,176 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header.tex}
+
+
+\title{Phys 220A -- Classical Mechanics -- HW02}
+\author{UCLA, Fall 2014}
+\date{\formatdate{16}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1: Lenz vector (20 pts)}
+\textit{
+In this problem we use the fact that the Kepler problem has an additional conserved quantity to solve it without doing an integral.
+\newline
+Consider the motion of a particle with mass $\mu$ in a potential $V = -\alpha / r$ and define the Lenz vector
+\begin{equation}
+\v{\Lambda} = \frac{\mu}{\alpha} \left( \frac{d}{dt} \v{r} \right) \times (\v{r} \times \left( \frac{d}{dt} \v{r} \right) ) - \frac{\v{r}}{r}.
+\end{equation}
+}
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+
+% part A
+\item \textit{
+Show that $\v{\Lambda}$ is conserved.
+}
+
+
+% part B
+\item \textit{
+Show that $\abs{\v{\Lambda}}$ is equal to the eccentricity $\epsilon$ of the orbit.
+\newline \textbf{Note:} Remember that for the Kepler problem
+\begin{equation}
+\frac{L^2}{\mu \alpha} \frac{1}{r} = 1 + \epsilon \cos\phi.
+\label{eq:orbit}
+\end{equation}
+}
+
+
+% part C
+\item \textit{
+Show that $\v{\Lambda} \cdot \v{r}$ can be evaluated in two ways
+\begin{align}
+\v{\Lambda} \cdot \v{r} &= \epsilon r \cos\phi, \text{and} \\
+\v{\Lambda} \cdot \v{r} &= \frac{L^2}{\mu \alpha} - r,
+\end{align}
+and use these results to derive the orbit equation \eqref{eq:orbit}. 
+}
+
+
+% part D
+\item \textit{
+Can $\v{\Lambda}$ be conserved for other central potentials?
+}
+
+
+\end{enumerate}
+
+
+
+\section*{Problem 2: Good vibrations (20 pts)}
+\textit{
+Consider a particle of mass $\mu$ moving in a central harmonic oscillator potential
+\begin{equation}
+V(r) = \alpha r^2, \quad \alpha > 0.
+\end{equation}
+}
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+
+% part A
+\item \textit{
+In terms of the angular momentum and the other parameters of the problem, find the minimum of the effective potential. If the energy is equal to this minimal value what is the orbit?
+}
+
+
+% part B
+\item \textit{
+For an energy which is larger than the minimal value, find the minimal and maximal radius $r_\text{min}, r_\text{max}$. 
+}
+
+
+% part C
+\item \textit{
+Find the orbit equation $r = r(\phi)$, what do these orbits look like?
+}
+
+
+% part D
+\item \textit{
+How does the problem look like if you formulate it in Cartesian coordinates in the $(x,y)$ plane (assuming that the motion is in this plane)?
+}
+
+
+\end{enumerate}
+
+
+\section*{Problem 3 (15 pts)}
+\textit{
+Consider a soap-film spanned between two rings of radius $R$ located at $x = -x_0$ and $x = +x_0$. Assume that the film is rotationally symmetric around the $x$-axis. 
+}
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+
+% part A
+\item \textit{
+Show that the area functional can be expressed in terms of the location $y(x)$ of the soap-film at the cross section $z=0$, $y>0$ and is given by
+\begin{equation}
+A[y] = 2\pi \int_{-x_0}^{x_0} dx y(x) \sqrt{1+y'(x)^2}.
+\end{equation}
+}
+
+
+% part B
+\item \textit{
+Find the Euler-Lagrange equations.
+}
+
+
+% part C
+\item \textit{
+Find the solution which minimizes the area of the soap-film.
+}
+
+
+\end{enumerate}
+
+
+
+\section*{Problem 4: I walk the line (10 pts)}
+\textit{
+Consider a system with $N$ degrees of freedom and coordinates $q^i$, $i = 1, \dots, N$. The Lagrangian for motion without a potential is given by
+\begin{equation}
+L = \frac{1}{2} \sum_{ij} g_{ij} (q^k) \dot{q}^i \dot{q}^j
+\end{equation}
+where the function (``metric'') is assumed to be symmetric, $g_{ij} = g_{ji}$, depends on the coordinates $q^k$ and has an inverse (i.e. $\det g \neq 0$). 
+}
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+
+% part A
+\item \textit{
+Show that the Euler-Lagrange equations are given by
+\begin{equation}
+\ddot{q}^k + \sum_{ij} \Gamma\indices{^k_{ij}} \dot{q}^i \dot{q}^j = 0
+\end{equation}
+where
+\begin{equation}
+\Gamma\indices{^k_{ij}} = \frac{1}{2} \sum_l g^{kl} \left( \frac{\pd g_{il}}{\pd q^j} + \frac{\pd g_{jl}}{\pd q^i} - \frac{\pd g_{ij}}{\pd q^l} \right)
+\end{equation}
+where $g^{ij}$ is the inverse of $g_{ij}$, i.e.
+\begin{equation}
+\sum_k g^{ik} g_{kj} = \delta^i_j
+\end{equation}
+}
+
+
+% part B
+\item \textit{
+What does this equation reduce to if $g_{ij}$ is the identity matrix?
+}
+
+
+\end{enumerate}
+
+
+
+
+\end{document}

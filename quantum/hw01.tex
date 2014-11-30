@@ -1,0 +1,164 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 221A -- Quantum Mechanics -- HW01}
+\author{UCLA, Fall 2014}
+\date{\formatdate{22}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+
+\textit{
+Problems 1.12 (p. 60), 1.15 (p. 61), 1.18 (p. 62), 1.23 (p. 63), 1.29 (p. 64) from the textbook (Sakurai and Napolitano, Modern Quantum Mechanics, 2nd edition).
+}
+
+
+
+\section*{Problem 1.12}
+\textit{
+A spin $1/2$ system is known to be in an eigenstate of $\v{S} \cdot \uv{n}$ with eigenvalue $\hbar / 2$, where $\uv{n}$ is a unit vector lying in the $xz$-plane that makes an angle $\gamma$ with the positive $z$-axis.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Suppose $S_x$ is measured. What is the probability of getting $+\hbar / 2$?
+}
+
+
+% part B
+\item \textit{
+Evaluate the dispersion in $S_x$---that is, 
+\begin{eqn}
+\avg{(S_x - \avg{S_x})^2}.
+\end{eqn}
+(For your own peace of mind, check your answers for the special cases $\gamma = 0$, $\pi/2$, and $\pi$.)
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 1.15}
+\textit{
+Let $A$ and $B$ be observables. Suppose the simultaneous eigenkets $\set{\ket{a',b'}}$ of $A$ and $B$ form a \textbf{complete} orthonormal set of base kets. Can we always conclude that
+\begin{eqn}
+[A,B] = 0?
+\end{eqn}
+If your answer is yes, prove the assertion. If your answer is no, give a counterexample. 
+}
+
+
+\section*{Problem 1.18}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+The simplest way to derive the Schwarz inequality goes as follows. First, observe
+\begin{eqn}
+(\bra{\alpha} + \lambda^* \bra{\beta}) \cdot (\ket{\alpha} + \lambda \ket{\beta}) \geq 0
+\end{eqn}
+for any complex number $\lambda$; then choose $\lambda$ in such a way that the preceding inequality reduces to the Schwarz inequality.
+}
+
+
+% part B
+\item \textit{
+Show that the equality sign in the generalized uncertainty relation holds if the state in question satisfies
+\begin{eqn}
+\Delta A \ket{\alpha} = \lambda \Delta B \ket{\alpha}
+\end{eqn}
+with $\lambda$ purely \textbf{imaginary}.
+}
+
+
+% part C
+\item \textit{
+Explicit calculations using the usual rules of wave mechanics show that the wave function for a Gaussian wave packet given by
+\begin{eqn}
+\braket{x'}{\alpha} = (2 \pi d^2)^{-1/4} \exp \left[ \frac{i \avg{p} x'}{\hbar} - \frac{(x' - \avg{x})^2}{4d^2} \right]
+\end{eqn}
+satisfies the minimum uncertainty relation
+\begin{eqn}
+\sqrt{\abs{(\Delta x)^2}} \sqrt{\abs{(\Delta p)^2}} = \hbar / 2.
+\end{eqn}
+Prove that the requirement
+\begin{eqn}
+\matrixel{x'}{\Delta x}{\alpha} = (\text{imaginary number}) \matrixel{x'}{\Delta p}{\alpha}
+\end{eqn}
+is indeed satisfied for such a Gaussian wave packet, in agreement with (b). 
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 1.23}
+\textit{
+Consider a three-dimensional ket space. If a certain set of orthonormal kets---say, $\ket{1}$, $\ket{2}$, and $\ket{3}$---are used as the base kets, the operators $A$ and $B$ are represented by 
+\begin{eqn}
+A = \pmat{a & 0 & 0 \\ 0 & -a & 0 \\ 0 & 0 & -a}, \qquad B = \pmat{b & 0 & 0 \\ 0 & 0 & -ib \\ 0 & ib & 0}
+\end{eqn}
+with $a$ and $b$ both real.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Obviously $A$ exhibits a degenerate spectrum. Does $B$ also exhibit a degenerate spectrum?
+}
+
+
+% part B
+\item \textit{
+Show that $A$ and $B$ commute.
+}
+
+
+% part C
+\item \textit{
+Find a new set of orthonormal kets that are simultaneous eigenkets of both $A$ and $B$. Specify the eigenvalues of $A$ and $B$ for each of the three eigenkets. Does your specification of eigenvalues completely characterize each eigenket?
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 1.29}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+On page 247, Gottfried (1966) states that
+\begin{eqn}
+[x_i, G(\v{p})] = i \hbar \pd{G}{p_i}, \qquad [p_i, F(\v{x})] = -i \hbar \pd{F}{x_i}
+\end{eqn}
+can be ``easily derived'' from the the fundamental commutation relations for all functions of $F$ and $G$ that can be expressed as power series in their arguments. Verify this statement. 
+}
+
+
+% part B
+\item \textit{
+Evaluate $[x^2, p^2]$. Compare your result with the classical Poisson bracket $[x^2, p^2]_\text{classical}$. 
+}
+
+
+\end{enumproblem}
+
+
+\end{document}

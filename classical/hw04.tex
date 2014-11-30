@@ -1,0 +1,183 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 220A -- Classical Mechanics -- HW04}
+\author{UCLA, Fall 2014}
+\date{\formatdate{30}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1 (20 pts)}
+\textit{
+Consider the following Lagrangian which describes the motion of a charged particle in a uniform constant electric field $\v{E}$,
+\begin{eqn}
+L_1 = \frac{1}{2} m \dot{\v{x}}^2 + q \v{E} \cdot \v{x}.
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Even though the Lagrangian does not seem to be invariant under spatial translation show that it transforms under translations into an equivalent Lagrangian (i.e. differs by a total time derivative).
+}
+
+
+% part B
+\item \textit{
+Using Noether's theorem calculate the conserved quantity and solve the equations of motion.
+}
+
+
+% part C
+\item \textit{
+Show that the following Lagrangian is equivalent to $L_1$ and find the total time derivative which relates them
+\begin{eqn}
+L_2 = \frac{1}{2} m \dot{\v x}^2 - q (\v{E} \cdot \dot{\v x}) t.
+\end{eqn}
+}
+
+
+% part D
+\item \textit{
+Calculate the conserved quantity from $L_2$ and compare.
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2 (20 pts)}
+\textit{
+Consider the three dimensional symmetric harmonic oscillator with Lagrangian
+\begin{eqn}
+L = \frac{1}{2} \sum_{i=1}^3 (\dot{x}_i^2 - x_i^2).
+\end{eqn}
+(For simplicity we choose units where $m = \omega = 1$.)
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Show that is invariant (up to equivalences) under the following 9 transformations
+\begin{eqn}
+x'_i = x_i + \epsilon \delta x_i(k, l)
+\end{eqn}
+with
+\begin{eqn}
+\delta x_i(k,l) = \frac{1}{2} (\delta_{ik} \dot{x}_l + \delta_{il} \dot{x}_k), \qquad i,k = 1,2,3.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+From the transformation in (a) calculate the conserved charges $Q_{kl}$ using Noether's theorem. How many of those are independent?
+}
+
+
+% part C
+\item \textit{
+Find an expression for the energy in terms of $Q$'s
+}
+
+
+% part D
+\item \textit{
+Find on expression for the angular momentum $(L_i)^2$ in terms of the $Q$'s.
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 3 (20 pts)}
+\textit{
+Three masses with mass $m$ are connected along a line by four identical massless springs with spring constant $k$. The left and right springs are connected to walls. Consider only the linear motion. The coordinates of the $i$-th mass is denoted $y_i (t)$. 
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Express the Lagrangian in terms of the displacement from equilibrium
+\begin{eqn}
+x_i = y_i(t) - y_i^{(0)}.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Find the matrices $m_{ij}$ and $v_{ij}$ for the small oscillations (here this approximation is actually exact). 
+}
+
+
+% part C
+\item \textit{
+Find the normal frequencies, normal modes, and identify the type of motion associated with them.
+}
+
+
+% part D
+\item \textit{
+\textbf{More difficult:} Solve the analogous problem for $N$ masses and show that the eigenfrequencies are given by
+\begin{eqn}
+\omega_j = 2 \sqrt{k/m} \abs{ \sin \left( \frac{j\pi}{2(N+1)} \right) }, \qquad j = 1,2, \dots, N.
+\end{eqn}
+\textbf{Hint:} Solve the characteristic equation in the form $D_N = \det (m\omega^2 - v) = 0$ by row expanding the determinant and derive a recursion relation for the determinants $D_N$c for lower $N$. Solve the recursion with an ansatz $D = (\beta)^N$.
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 4 (20 pts)}
+\textit{
+Consider two masses with mass $m$ which each are connected to massless springs with spring constant $k$ and equilibrium length $b$. The mass points are connected by a massless rigid rod of length $l$ (see Figure 1). Assume the motion is just in the plane and neglect gravity. 
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Find appropriate generalized coordinates and express the Lagrangian in terms of them. 
+}
+
+
+% part B
+\item \textit{
+Calculate the characteristic frequencies of the small oscillations.
+}
+
+
+% part C
+\item \textit{
+Find the normal modes and sketch the motion they correspond to.
+}
+
+
+% part D
+\item \textit{
+What happens to the characteristic frequencies if I increase the value of the spring constants?
+}
+
+
+\end{enumproblem}
+
+
+
+
+\end{document}

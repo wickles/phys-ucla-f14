@@ -1,0 +1,164 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 220A -- Classical Mechanics -- HW05}
+\author{UCLA, Fall 2014}
+\date{\formatdate{7}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1 (15 pts)}
+\textit{
+This problem concerns the Runge-Lanz vector and its algebra under Poisson brackets. The Runge-Lenz vector is defined as
+\begin{eqn}
+\v{K} = \frac{1}{m} \v p \times \v L - \frac{\v r}{r}.
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Show that the following Poisson bracket is given by
+\begin{eqn}
+\cbr{L_i, K_j} = \epsilon_{ijk} K_k.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Show that
+\begin{eqn}
+\cbr{K_i, K_j} = - \frac{2}{m} \left( \frac{p^2}{2m} - \frac{1}{r} \right) \epsilon_{ijk} L_k.
+\end{eqn}
+}
+
+
+% part C
+\item \textit{
+Show that for a Hamiltonian of the form
+\begin{eqn}
+H = \frac{p^2}{2m} + V(r)
+\end{eqn}
+one has 
+\begin{eqn}
+[\v K, H] = \frac{\v r \times (\v p \times \v r)}{m} \left( \frac{-1 + r^2 V'(r)}{r^3} \right).
+\end{eqn}
+}
+
+
+\end{enumproblem}
+
+
+
+
+\section*{Problem 2 (15 pts)}
+\textit{
+Consider a mass point which moves on a wire which rotates with constant angular velocity.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+By transforming to general coordinates which rotate with the wire show that the Lagrangian of the system is given by
+\begin{eqn}
+L = \frac{m}{2} (\dot r^2 + \omega^2 r^2).
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Calculate the Hamiltonian of the system. Does it change with time ?
+}
+
+
+% part C
+\item \textit{
+Calculate the kinetic energy (which is the total energy) of the mass point in terms of the generalized coordinate $r$. Is it the same as the Hamiltonian and is it conserved ?
+}
+
+
+\end{enumproblem}
+
+
+
+
+\section*{Problem 3 (15 pts)}
+\textit{
+Consider a transformation of a Lagrangian to an equivalent Lagrangian, i.e.
+\begin{eqn}
+L(q, \dot q, t) \rightarrow L(q, \dot q, t) + \od{}{t} \Lambda(q,t).
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+How do the coordinates and canonical momenta change ? 
+}
+
+
+% part B
+\item \textit{
+How does the Hamiltonian change
+}
+
+
+% part C
+\item \textit{
+Consider this change as a generalized coordinate change $(q, p) \rightarrow (q', p')$. Show that the Poisson braced for the new coordinates will have the same form as the old one.
+}
+
+
+\end{enumproblem}
+
+
+
+
+\section*{Problem 4 (10 pts)}
+\textit{
+Consider a dynamical flow which is defined on $\R^n$ with $\v x = (x_1, \dots x_n)$ and a vector field $\v v(\v x)$ as follows
+\begin{eqn}
+\od{}{t} \v x(t) = \v v(\v x(t)).
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Solving the differential equations and finding $\v x(t)$ defines a map from $\R^n \rightarrow \R^n$. Show that this map is volume preserving if the vector field $\v v$ is divergence free, i.e.
+\begin{eqn}
+\sum_i \pd{v_i}{x_i} = 0.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Show that by setting $\v x = \set{q_1, \dots, q_n, p_1, \dots, p_n}$ and 
+\begin{eqn}
+v^i = \sum_j J^i_j \pd{H}{{x^j}}, \qquad
+J = \pmat{0 & 1_n \\ -1_n & 0},
+\end{eqn}
+the vector field $\v v$ is divergence free if Hamilton's equations hold. Hence you have proved Liouville's theorem.
+}
+
+
+\end{enumproblem}
+
+
+
+\end{document}

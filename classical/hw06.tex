@@ -1,0 +1,148 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 220A -- Classical Mechanics -- HW06}
+\author{UCLA, Fall 2014}
+\date{\formatdate{12}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1 (15 pts)}
+\textit{
+A particle with mass $m$ and charge $e$ moves in a magnetic field $\v B$. 
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Show that the following Poisson brackets hold
+\begin{eqn}
+\cbr{m \dot x_i, m \dot x_j} = e \epsilon_{ijk} B_k, \qquad
+\cbr{m \dot x_i, x_j} = - \delta_{ij}.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Consider the magnetic field of a magnetic monopole with 
+\begin{eqn}
+\v B = g_m \frac{\uv x}{\abs{x}^2}
+\end{eqn}
+where $\uv x$ is the unit vector in the $\v x$ direction. Show that the following generalization of the angular momentum
+\begin{eqn}
+\v J = m \v x \times \vd x - eg \uv x
+\end{eqn}
+commutes with the Hamiltonian $H$. 
+}
+
+
+% part C
+\item \textit{
+Can you interpret the fact that the usual angular momentum is not conserved but the new $\v J$ defined above is?
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2 (15 pts)}
+\textit{
+Show that the following coordinate transformations are canonical.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+$P = \frac{1}{2}(p^2 + q^2), \quad Q = \arctan(q/p)$. 
+}
+
+
+% part B
+\item \textit{
+$P = 1/q, \quad Q = pq^2$.
+}
+
+
+% part C
+\item \textit{
+$P = 2 \sqrt{q} (1 + \sqrt{q} \cos p) \sin p, \quad Q = \log(1 + \sqrt{q} \cos p)$. 
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 3 (10 pts)}
+\textit{
+For a particle moving in one dimension in a uniform force field the Lagrangian is given by
+\begin{eqn}
+L(q, \dot q) = \frac{1}{2} m \dot q^2 + m a q.
+\end{eqn}
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Solve the Hamilton equations and find the map
+\begin{eqn}
+g_t : \set{q(0), p(0)} \mapsto \set{q(t), p(t)}.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Determine the shape of a square in phase space given by $\set{q,p} = \set{\set{0,0}, \set{\alpha,0}, \set{0,\beta}, \set{\alpha,\beta}}$ and verify that the volume is preserved. 
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 4 (10 pts)}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Verify that the symplectic tensor $J$ expressed in new coordinates a transformation $Q_i = Q_i(p_j, q_k), P_i = P_i(p_j, q_k)$ takes the form
+\begin{eqn}
+J_{IJ} = 
+\begin{pmatrix}
+\set{Q_i, Q_j} & \set{Q_i, P_j} \\
+\set{P_j, Q_j} & \set{P_i, P_j}
+\end{pmatrix}.
+\end{eqn}
+}
+
+
+% part B
+\item \textit{
+Verify the Jacobi-identity 
+\begin{eqn}
+\set{A, \set{B,C}} + \set{B,\set{C,A}} + \set{C,\set{A,B}} = 0.
+\end{eqn}
+}
+
+
+\end{enumproblem}
+
+
+
+
+\end{document}

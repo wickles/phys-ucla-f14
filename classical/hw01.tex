@@ -1,0 +1,166 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header.tex}
+
+
+\title{Phys 220A -- Classical Mechanics -- HW01}
+\author{UCLA, Fall 2014}
+\date{\formatdate{09}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1: Math recap (15 pts)}
+\begin{description}
+
+\item[(a)]
+\textit{
+Show that
+\begin{equation}
+(\v{a} \times \v{b} ) \times \v{c} = (\v{a} \cdot \v{c}) \v{b} - (\v{b} \cdot \v{c}) \v{a}.
+\end{equation}
+}
+
+
+\item[(b)]
+\textit{
+Spherical coordinates $r, \theta, \phi$ are defined as 
+\begin{equation}
+x = r \sin\theta \cos\phi, \qquad y = r \sin\theta \sin\phi, \qquad z = r \cos\theta.
+\end{equation}
+Express the cartesian differential operators 
+\begin{equation}
+\v{\nabla} = (\pd_x, \pd_y, \pd_z), \qquad \v{\nabla}^2 = \pd_x^2 + \pd_y^2 + \pd_z^2
+\end{equation}
+in spherical coordinates. 
+}
+
+
+\item[(c)]
+\textit{
+Show the following identities:
+\begin{align}
+\v{\nabla} \times (\v{\nabla} f(\v{x})) &= 0, \text{ and} \\
+\v{\nabla} \cdot (\v{\nabla} \times \v{a}) &= 0.
+\end{align}
+}
+
+
+\end{description}
+
+
+
+\section*{Problem 2: Conservation is important in a drought! (15 pts)}
+
+\begin{description}
+
+\item[(a)]
+\textit{
+Show that in an isolated system of $n$ point masses $m_i$ (no external forces), the momentum $\v{p}_\text{tot} = \sum_{i=1}^n \v{p}_i$ is conserved. 
+}
+
+
+\item[(b)]
+\textit{
+Show that in an isolated system of $n$ point masses $m_i$ (no external forces) the total angular momentum $\v{L}_\text{tot} = \sum_{i=1}^n \v{r}_i \times \v{p}_i$ is conserved. 
+}
+
+
+\item[(c)]
+\textit{
+What about the total energy of such an isolated system. Is it necessarily conserved? 
+}
+
+
+\end{description}
+
+
+
+\section*{Problem 3: Work, work work (15 pts)}
+
+\textit{
+Check whether the following forces are conservative by calculating
+\begin{equation}
+W_{if} = \int_{i \rightarrow f} d\v{x} \cdot \v{F}
+\end{equation}
+for two different paths. (If you believe the force is non-conservative try to find a path which makes this clear.) 
+}
+
+\begin{description}
+
+\item[(a)]
+\textit{
+For a central force $\v{F} = r^2 \uv{r}$.
+}
+
+
+\item[(b)]
+\textit{
+For the Lorentz force $\v{F} = -e\v{v} \times \v{B}$ with a constant magnetic field $\v{B}$. 
+}
+
+
+\item[(c)]
+\textit{
+For a friction force $\v{F} = -b\v{v}$.
+}
+
+
+\end{description}
+
+
+\section*{Problem 4: Central motion (30 pts)}
+\textit{
+A planet of mass $m$ is moving around a Sun of mass $M$ subject to Newtonian gravitational force. 
+}
+
+\begin{description}
+
+\item[(a)]
+\textit{
+Write down the Newtonian equation of motion for the planet and the sun, and show that they can be separated into a free motion of the center of mass and a motion in the central potential of a mass point with reduced mass $\mu$.
+}
+
+
+\item[(b)]
+\textit{
+Show that conservation of angular momentum implies that the motion of the mass point lies in a plane with coordinates $\rho, \phi$.
+}
+
+
+\item[(c)]
+\textit{
+Use the substitution $u = 1 / \rho$ to write down a differential equation for the trajectory $u = u(\phi)$.
+}
+
+
+\item[(d)]
+\textit{
+What is the equilibrium solution of this equation? What does it represent?
+}
+
+
+\item[(e)]
+\textit{
+If the planet is not initially on the equilibrium orbit, there will be small oscillations around the equilibrium point. What is the period of these oscillations?
+}
+
+
+\item[(f)]
+\textit{
+Assume there is a perturbing potential $V = -B / \rho^2$, calculate the effect of this perturbation on the orbit $u(\phi)$.
+}
+
+
+\end{description}
+
+
+
+
+
+\end{document}
