@@ -1,0 +1,121 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec13}
+\author{UCLA, Fall 2014}
+\date{\formatdate{17}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Landau levels and quantum Hall effect}
+
+We're going to talk a bit more about the stuff from last time because it's important and subtle. Recall that classically if we have an electron subjected to a uniform magnetic field $\v B = B \uv z$. From the Lorentz force we have
+\begin{eqn}
+m \vdd r = \frac{e}{c} \v v \times \v B.
+\end{eqn}
+If the particle is stopped, it will remain stopped. However if it is moving it will undergo cyclotron motion (in the $xy$-plane). The radius can be found from balancing the centripetal and centrifugal forces,
+\begin{eqn}
+\frac{mv^2}{R} = \frac{\abs{e}}{c} v \abs{B} \qquad
+\implies \qquad
+R_c = \frac{mc}{\abs{eB}} v, \quad
+\omega_c = v / R_c = \frac{\abs{eB}}{mc}.
+\end{eqn}
+This turns out to give us quantized energy levels all separated by $\hbar \omega_c$, called Landau levels. Furthermore, we will not go into much detail but this turns out to imply quantized Hall conductance in a free electron gas,
+\begin{eqn}
+g_H = n \frac{e^2}{2\pi \hbar}, \quad n = 1, 2, 3, \dots.
+\end{eqn}
+This is the smallest measure of conductivity we have---in fact it is the standard set by NIST. Except maybe not, because actually there is the fractional quantum Hall effect, where we can have certain fractional quantizations of this value. 
+
+
+\subsection{things and stuff}
+
+Now suppose we have a particle on a ring of radius $R$, subjected to a uniform time-independent magnetic field $\v B = B \uv z$. The Hamiltonian for such a particle not on the ring is 
+\begin{eqn}
+H_k = \frac{\Pi^2}{2m} = \frac{1}{2m} (\v p - \frac{e \v A}{c})^2
+\end{eqn}
+where $\v \Pi = \v p - (e/c) \v A$ is the kinematical momentum (as opposed to the canonical momentum $\v p$). When we constrain the particle to the ring we get a new Hamiltonian $H_p$. Since our wavefunctions are now just functions $\psi(\theta)$ of the azimuthal angle $\theta$, we have a new canonical momentum
+\begin{eqn}
+\v p \rightarrow - \uv \theta \frac{i\hbar \partial_\theta}{R}.
+\end{eqn}
+Of course we can write a vector potential
+\begin{eqn}
+\v A = \frac{BR}{2} \uv \theta
+\end{eqn}
+for the magnetic field $\v B$ on the ring, so the old Hamiltonian becomes
+\begin{eqn}
+H_k = \frac{1}{2m} (- \frac{i\hbar \partial_\theta}{R} - \frac{eB}{2c})^2.
+\end{eqn}
+What is this vector potential? It's a vortex or some shit. From Stokes' theorem, the geometrical action is just
+\begin{eqn}
+\oint \dif{\v r} \cdot \v A = \int \dif{\v S} \cdot \v B = B \pi R^2,
+\end{eqn}
+which is constant so for some reason we find that the energy is really just $H = H_k$. So we haven't really done anything or something? 
+
+So we find that 
+\begin{eqn}
+p_\theta = -\frac{i\hbar \partial_\theta}{R}
+\end{eqn}
+is the generator of translations along the ring (which is a symmetry). Then
+\begin{eqn}
+[p_\theta, H] = 0
+\end{eqn}
+since
+\begin{eqn}
+H = \frac{1}{2m} (p_\theta - \frac{eBR}{2c})^2.
+\end{eqn}
+The quantum numbers are given by the eigenvalues of $p_\theta$, where eigenstates are 
+\begin{eqn}
+\psi_n \frac{1}{2\pi} e^{in \theta}, \qquad
+n = 0, \pm 1, \pm 2, \dots
+\end{eqn}
+so the energy spectrum is
+\begin{eqn}
+E_n = \frac{1}{2m} (\frac{\hbar n}{R} - \frac{eBR}{2c})^2
+\end{eqn}
+where the momentum is quantized $p_n = \hbar n / R$. Suppose we plot the spectrum on a parabolic plot along the $n$ axis, so there is a point at each $n = 0, \pm 1, \pm 2$ etc. Then if we change the field $B$ it will shift the points along the parabola by 
+\begin{eqn}
+\Delta n = \frac{e B R^2}{2c \hbar}.
+\end{eqn}
+So if we change the $B$ field in increments of
+\begin{eqn}
+\Delta B = \frac{2c\hbar}{eR^2}
+\end{eqn}
+we just get back the original spectrum. So the spectrum is invariant under incrementing $B$ by $\Delta B$. This gives us a corresponding magnetic flux
+\begin{eqn}
+\phi_0 = \frac{2c\hbar}{eR^2} \pi R^2 = \frac{2\pi \hbar c}{e}.
+\end{eqn}
+
+This is beginning to lead us to a proper understanding of the Aharonov-Bohm effect. Suppose we have a particle on a ring but this time there is a solenoid passing through the ring, with sufficient field containment that $\v B = 0$ outside the solenoid near the ring. Classically, the particle should not be affected by the solenoid because there is no field to interact with it. However, quantum mechanically we do obtain dynamics. We can model the vector potential as
+\begin{eqn}
+\v A = f(r) \frac{B \uv \theta}{2}
+\end{eqn}
+where
+\begin{eqn}
+f(r) = 
+\begin{cases}
+r & r < R_S \\
+\alpha / r & r > R_S
+\end{cases}
+\end{eqn}
+where $\alpha$ is some constant to make it continuous. Then all the arguments from before carry over and we have an energy spectrum
+\begin{eqn}
+E_n = \frac{\hbar^2}{2mR^2} (n - \phi / \phi_0)^2.
+\end{eqn}
+
+Historically, the Aharonov-Bohm effect is something that many people missed. 
+
+
+
+
+
+\end{document}

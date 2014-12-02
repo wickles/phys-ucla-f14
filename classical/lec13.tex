@@ -1,0 +1,220 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec13}
+\author{UCLA, Fall 2014}
+\date{\formatdate{20}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Rigid bodies}
+
+Rigid bodies are great because they give us interesting differential equations and provide a good example of when coordinate transformations are useful. What is a rigid body? It's a set of $3N$ degrees of freedom $\v x^1, \dots, \v x^N$ ($N$ mass points) where all the distances are constant, i.e.
+\begin{eqn}
+\abs{\v x^i - \v x^j} = \text{const}
+\end{eqn}
+for all $i,j$. We can think of rigid bodies from a different perspective by considering translations of the center of mass $\v X$,
+\begin{eqn}
+\v x^i \rightarrow \v x^i + \v X,
+\end{eqn}
+which gives us three degrees of freedom, and rotations of the body
+\begin{eqn}
+\v x^i \rightarrow R \cdot \v x^i, \qquad
+R \in SO(3),
+\end{eqn}
+which give us another 3 degrees of freedom. So the $3N$ degrees of freedom reduce down to 6. 
+
+If we look at the rotations in terms of the Lie algebra, we have
+\begin{eqn}
+R = 1 + \epsilon T
+\end{eqn}
+where $T$ is a generator of rotations. We find that
+\begin{eqn}
+R^\top R =1 \qquad
+\implies \qquad
+T^\top + T = 0,
+\end{eqn}
+so the generators $T$ are $3 \times 3$ antisymmetric matrices,
+\begin{eqn}
+T = 
+\begin{pmatrix}
+0 & a & b \\
+-a & 0 & c \\
+-b & -c & 0
+\end{pmatrix}.
+%\begin{pmatrix}
+%0 & \omega_3 & -\omega_2 \\
+%-\omega_3 & 0 & \omega_1 \\
+%\omega_2 & -\omega_1 & 0
+%\end{pmatrix}.
+\end{eqn}
+For $b=c=0$ we get rotations about the $z$-axis, similarly about the $x$-axis for $a=b=0$ and about the $y$-axis for $a=c=0$. So we can rewrite the generators as
+\begin{eqn}
+T_{ij} = \sum_k \epsilon_{ijk} \omega_k
+\end{eqn}
+which gives us rotation about the vector $\v \omega_k$. 
+
+Generally it will be useful to change from the lab frame $\Gamma$ into the body frame $\Gamma'$. The relation between points $\v x$ and $\v x'$ in these frames can be written
+\begin{eqn}
+x_i(t) = X_i(t) + R_{ij}(t) x'_j(t),
+\label{eq:changeFrame}
+\end{eqn}
+where $\v x'$ is a constant vector and we need to find the rotation $R_{ij}(t)$. 
+
+
+\subsection{Euler Angles}
+
+It turns out that for an arbitrary rotation $R \in SO(3)$ we can write 
+\begin{eqn}
+R = R_3(\psi) R_1(\theta) R_3(\phi)
+\end{eqn}
+where $R_1$ and $R_3$ are rotations
+\begin{eqn}
+R_3(\phi) = 
+\begin{pmatrix}
+\cos \phi & \sin\phi & 0 \\
+-\sin\phi & \cos\phi & 0 \\
+0 & 0 & 1,
+\end{pmatrix}, \qquad
+R_1(\theta) = 
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & \cos\theta & \sin\theta \\
+0 & -\sin\theta & \cos\theta
+\end{pmatrix}.
+\end{eqn}
+Note that we perform these rotations in right-left order, i.e. first perform the rotation $R_3(\phi)$, next the rotation $R_1(\theta)$, and finally the rotation $R_3(\psi)$. 
+
+\subsection{Velocity}
+
+If we take the time derivative of our coordinate transformation \eqref{eq:changeFrame}, we obtain
+\begin{eqn}
+\dot x_i = \dot X_i + \dot R_{ij} x'_j.
+\label{eq:velocity0}
+\end{eqn}
+Now consider for a moment the derivative of $R^\top R = 1$,
+\begin{eqn}
+\dot R^\top R + R^\top \dot R = 0,
+\end{eqn}
+which if we write $M = R^\top \dot R$ is just
+\begin{eqn}
+M^\top + M = 0.
+\end{eqn}
+Then we can write $M$ as
+\begin{eqn}
+M_{ij} = (R^\top \dot R)_{ij} = \sum_k \epsilon_{ijk} \omega_k
+\end{eqn}
+where $\v \omega$ is the angular velocity, so we can rewrite the velocity equation \eqref{eq:velocity0} as 
+\begin{eqn}
+\vd x = \vd X + R \cdot (\v \omega \times \v x'),
+\label{eq:velocity1}
+\end{eqn}
+which is our major result. One more thing to note is that if we shift coordinates in the body frame $\v x' \rightarrow \v x' + \v a$, our velocity changes by
+\begin{eqn}
+\vd x \rightarrow \vd x + R \cdot (\v \omega \times \v a).
+\end{eqn}
+
+Now we can work out the kinetic energy with our new velocity equation \eqref{eq:velocity1},
+\begin{align}
+T &= \frac{1}{2} \sum_i m_i \vd x^{i\top} \vd x^i \\
+	&= \frac{1}{2} \sum_i m_i \vd X^\top \vd X 
+		\; + \; \vd X^\top R \cdot (\v \omega \times \cancelto{0}{\sum_i m_i  \v x'^i}) \\
+		&\qquad + \; \frac{1}{2} \sum_i m_i (\v \omega \times \v x'^i)^\top \underbrace{R^\top R}_{=1} \cdot (\v \omega \times \v x'^i),
+\end{align}
+where the second term cancels because it is just the center of mass in the body frame, which is zero. So we can rewrite the remaining two terms as
+\begin{eqn}
+T = T_\mathrm{CM} + \frac{1}{2} \sum_{ij} \omega_i I_{ij} \omega_j,
+\end{eqn}
+where $I_{ij}$ is the inertia tensor
+\begin{eqn}
+I_{ij} = \sum_k m_k \left[ \delta_{ij} (\v x'^k)^2 - x'^k_i x'^k_j \right]. 
+\end{eqn}
+We've been working with discrete point masses, what if we more generally have a mass density $\rho(\v x)$? Then the sum over masses becomes an integral over the mass density. Explicitly, the matrix takes the form
+\begin{eqn}
+I = \int \dif^3{x} \, \rho(\v x) 
+\begin{pmatrix}
+y^ + z^2 & -xy & -xz \\
+-xy & x^2 + z^2 & -yz \\
+-xz & -yz & x^2 + y^2
+\end{pmatrix}.
+\end{eqn}
+
+We can immediately notice some nice properties of $I_{ij}$:
+\begin{itemize}
+\item it's positive definite, 
+\item it's symmetric, and thus
+\item it can be diagonalized, i.e. we can rotate so that $I = \diag\set{I_1, I_2, I_3}$.
+\end{itemize}
+The inertia tensor's eigenvectors define a set of ``principal axes'' determined by the eigenvalues $I_k$. We can summarize the symmetry of an object by
+\begin{itemize}
+\item $I_1 = I_2 = I_3$ --- completely spherically symmetric object, e.g. point mass;
+\item $I_1 = I_2 \neq I_3$ --- radially symmetric, e.g. symmetric top;
+\item $I_1 \neq I_2 \neq I_3$ --- asymmetric, e.g. asymmetric top.
+\end{itemize}
+Finally we have the following theorem.
+\begin{theorem}[Parallel Axis theorem]
+Suppose we shift the axis from the center of mass to the point $\v a$, then the inertia tensor shifts by
+\begin{eqn}
+I_{ij}' = I_{ij}^\mathrm{CM} + M_\mathrm{tot} (\v a^2 \delta_{ij} - a_i a_j).
+\end{eqn}
+\end{theorem}
+
+How can we write the angular momentum in this notation? We have
+\begin{align}
+\v L_\mathrm{tot} &= \sum_k m_k \v x x^k \times \vd x^k \\
+	&= \sum_k m_k (\v X + R \v x'^k) \times (\vd X + R \cdot (\omega \times \v x'^k)) \\
+	&= \underbrace{\sum_k m_k \v X \times \vd X}_{\v L_\mathrm{CM}} \; + \; \cancelto{0}{\sum_k m_k \v x'^k} \\
+		&\qquad\quad + \; \sum_k m_k (R \v x'^k) \times R (\v \omega \times \v x'^k).
+\end{align}
+Using the identity
+\begin{eqn}
+\sum_{ijk} \epsilon_{ijk} R_{ii'} R_{jj'} R_{kk'} = \epsilon_{i'j'k'},
+\end{eqn}
+one can show that this results in 
+\begin{eqn}
+\v L_\mathrm{tot} = \v L_\mathrm{CM} + R \cdot (I \cdot \v \omega).
+\end{eqn}
+This informs us that the angular momentum in the body frame is $\v L' = I \cdot \v \omega$. 
+
+
+\subsection{Free rigid body}
+
+Suppose there are no external forces and therefore no torques. Then we have $\vd L_\mathrm{inertial} = 0$ so that
+\begin{eqn}
+0 = \od{}{t} (R I \v \omega) = \dot R I \v \omega + R I \vd \omega.
+\end{eqn}
+If we multiply the first term on the left by $R R^\top = 1$ we find
+\begin{eqn}
+R \underbrace{(\v \omega \times (I \v \omega) + I \vd \omega)}_{=0} = 0.
+\end{eqn}
+Explicitly, working in the diagonalized frame where our axes are the principal axes, we obtain \textit{Euler's equations},
+\begin{align}
+0 &= I_1 \dot \omega_1 + \omega_2 \omega_3 (I_3 - I_2), \\
+0 &= I_2 \dot \omega_2 + \omega_3 \omega_1 (I_1 - I_3), \\
+0 &= I_3 \dot \omega_3 + \omega_1 \omega_2 (I_2 - I_1).
+\end{align}
+If we further assume that $\v \omega$ is constant and we have a symmetric top, $I_1 = I_2$, we find 
+\begin{eqn}
+\dot \omega_1 = \omega_2 \Omega, \qquad
+\dot \omega_2 = - \omega_1 \Omega,
+\end{eqn}
+where
+\begin{eqn}
+\Omega = \omega_3 \, \frac{I_1 - I_3}{I_1}.
+\end{eqn}
+The general case is very difficult and must be solved using elliptic functions. 
+
+
+
+
+
+
+
+\end{document}

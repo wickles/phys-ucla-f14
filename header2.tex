@@ -1,13 +1,18 @@
 % standard packages
 \usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{epstopdf} % allows complier to convert eps files to pdf files for inclusion in document
 \usepackage{amsmath} % for nice math commands and environments
-\usepackage{mathtools} % extends amsmath with bug fixes and useful commands e.g. \shortintertext
+\usepackage{mathtools} % extends amsmath with bug fixes and useful commands, e.g.
+	% \shortintertext for short interjections in align environment,
+	% \prescript{t}{b}{X} for simple, nicely aligned math pre-(super/sub)scripts
 \usepackage{amsthm} % for theorem and proof environments
+\usepackage{hyperref} % adds hyperlinks and outline to PDF documents
 
 % font packages
 \usepackage{amssymb} % for \mathbb, \mathfrak fonts
 \usepackage{mathrsfs} % for \mathscr font
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it} % defines \mathpzc for Zapf Chancery (standard postscript) font
+	% basically another calligraphic font, alternative to mathcal
 
 % other packages
 \usepackage{datetime} % allows easy formatting of dates, e.g. \formatdate{dd}{mm}{yyyy}
@@ -17,6 +22,7 @@
 \usepackage{cancel} % for crossing out terms with \cancel
 \usepackage{verbatim} % for verbatim and comment environments
 \usepackage{tensor} % for \indices e.g. M\indices{^a_b^{cd}_e}, and \tensor e.g. \tensor[^a_b^c_d]{M}{^a_b^c_d}
+\usepackage{mhchem} % for writing chemical formulas with \ce, e.g. \ce{AgCl2-} or \ce{^{227}_{90}Th+}
 \usepackage{feynmp-auto} % for Feynman diagrams. 
 \usepackage{pgfplots} % for plotting in tikzpicture environment
 \usepackage{commath} % for some nice standardized syntax stuff. \dif, \Dif \od, \pd, \md, \(abs | envert), \(norm | enVert), \(set | cbr), \sbr, \eval, \int(o | c)(o | c), etc
@@ -39,16 +45,13 @@
 % notational commands
 \newcommand{\opname}[1]{\operatorname{#1}} % custom operator names
 %\newcommand{\pd}{\partial} % partial differential shortcut
-\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac kets
-%\newcommand{\ket}[1]{| #1 \rangle}
-\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac bras
-%\newcommand{\bra}[1]{\langle #1 |}
-\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right| \left. #2 \vphantom{#1} \right>} 
+% \bra, \ket, \braket, \matrixel redefined below for easy rescaling
+%\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac kets
+%\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac bras
+%\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right| \left. #2 \vphantom{#1} \right>} 
 	% for Dirac bra-kets \braket{bra}{ket}
-%\newcommand{\braket}[2]{\langle #1 | #2 \rangle} 
-\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right| #2 \left| #3 \vphantom{#1#2} \right>} 
+%\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right| #2 \left| #3 \vphantom{#1#2} \right>} 
 	% for Dirac matrix elements \matrixel{bra}{op}{ket}
-%\newcommand{\matrixel}[3]{\langle #1 | #2 | #3 \rangle} 
 
 %\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % for partial derivatives
 %\newcommand{\fd}[2]{\frac{\delta #1}{\delta #2}} % for functional derivatives
@@ -70,6 +73,7 @@
 \newcommand{\tr}{\opname{tr}} % for trace
 \newcommand{\Tr}{\opname{Tr}} % for Trace
 \newcommand{\rank}{\opname{rank}} % for rank
+\newcommand{\diag}{\opname{diag}} % i.e. \diag(\lambda_1, \dots, \lambda_n)
 \let \fancyre = \Re
 \let \fancyim = \Im
 \newcommand{\Res}{\opname{Res}\limits} % for residue function -- change to put limits on bottom
@@ -86,11 +90,13 @@
 \renewcommand{\dif}{\mathrm{d}} % \opname{d} better maybe?
 \renewcommand{\Dif}{\mathrm{D}}
 
+
 % notational shortcuts
 \newcommand{\bigO}{\mathcal{O}} % big O notation
 \let \bigo = \bigO % keep for now, need to update instances in older files
 \newcommand{\Lag}{\mathcal{L}} % fancy Lagrangian
 \newcommand{\Ham}{\mathcal{H}} % fancy Hamiltonian
+% fields and spaces
 \newcommand{\reals}{\mathbb{R}} % real numbers
 \newcommand{\complexes}{\mathbb{C}} % complex numbers
 \newcommand{\ints}{\mathbb{Z}} % integers
@@ -106,6 +112,11 @@
 \newcommand{\E}{\euclids}
 \newcommand{\RP}{\mathbb{RP}} % real projective space
 \newcommand{\CP}{\mathbb{CP}} % complex projective space
+% Lie groups
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+% etc
+
 
 % matrix shortcuts!
 \newcommand{\pmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
@@ -156,18 +167,99 @@
 
 
 
+%\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac kets
+%\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac bras
+%\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right| \left. #2 \vphantom{#1} \right>} 
+%\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right| #2 \left| #3 \vphantom{#1#2} \right>} 
+
+%% better definitions for \bra, \ket, \braket, \matrixel, etc.
+
+%\begin{comment}
+
+% the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
+% default value for #1 is -1 which results in automatic size for the delimeters
+\providecommand{\bra}[2][-1]{
+\ensuremath{\mathinner{
+\ifthenelse{\equal{#1}{-1}}{ % if
+\left< #2 \right| }{}
+\ifthenelse{\equal{#1}{0}}{ % if
+\langle #2 | }{}
+\ifthenelse{\equal{#1}{1}}{ % if
+\bigl< #2 \bigr| }{}
+\ifthenelse{\equal{#1}{2}}{ % if
+\Bigl< #2 \Bigr| }{}
+\ifthenelse{\equal{#1}{3}}{ % if
+\biggl< #2 \biggr| }{}
+\ifthenelse{\equal{#1}{4}}{ % if
+\Biggl< #2 \Biggr| }{}
+}} % \ensuremath{\mathinner{
+}  % bra - Dirac bra. the optional argument describes the size of the delimiters, no argument results in automatic size
+
+% the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
+% default value for #1 is -1 which results in automatic size for the delimeters
+\providecommand{\ket}[2][-1]{
+\ensuremath{\mathinner{
+\ifthenelse{\equal{#1}{-1}}{ % if
+\left| #2 \right> }{}
+\ifthenelse{\equal{#1}{0}}{ % if
+| #2 \rangle }{}
+\ifthenelse{\equal{#1}{1}}{ % if
+\bigl| #2 \bigr> }{}
+\ifthenelse{\equal{#1}{2}}{ % if
+\Bigl| #2 \Bigr> }{}
+\ifthenelse{\equal{#1}{3}}{ % if
+\biggl| #2 \biggr> }{}
+\ifthenelse{\equal{#1}{4}}{ % if
+\Biggl| #2 \Biggr> }{}
+}} % \ensuremath{\mathinner{
+}  % bra - Dirac ket. the optional argument describes the size of the delimiters, no argument results in automatic size
+
+% the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
+% default value for #1 is -1 which results in automatic size for the delimeters
+\providecommand{\braket}[3][-1]{
+\ensuremath{\mathinner{
+\ifthenelse{\equal{#1}{-1}}{ % if
+\left< #2 \vphantom{#3} \right| \left. #3 \vphantom{#2} \right> }{}
+\ifthenelse{\equal{#1}{0}}{ % if
+\langle #2 | #3 \rangle }{}
+\ifthenelse{\equal{#1}{1}}{ % if
+\bigl< #2 \vphantom{#3} \bigr| \bigl. #3 \vphantom{#2} \bigr> }{}
+\ifthenelse{\equal{#1}{2}}{ % if
+\Bigl< #2 \vphantom{#3} \Bigr| \Bigl. #3 \vphantom{#2} \Bigr> }{}
+\ifthenelse{\equal{#1}{3}}{ % if
+\biggl< #2 \vphantom{#3} \biggr| \biggl. #3 \vphantom{#2} \biggr> }{}
+\ifthenelse{\equal{#1}{4}}{ % if
+\Biggl< #2 \vphantom{#3} \Biggr| \Biggl. #3 \vphantom{#2} \Biggr> }{}
+}} % \ensuremath{\mathinner{
+}  % braket - Dirac bra-ket. the optional argument describes the size of the delimiters, no argument results in automatic size
+
+% the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
+% default value for #1 is -1 which results in automatic size for the delimeters
+\providecommand{\matrixel}[4][-1]{
+\ensuremath{\mathinner{
+\ifthenelse{\equal{#1}{-1}}{ % if
+\left< #2 \vphantom{#3#4} \right| #3 \left| #4 \vphantom{#2#3} \right> }{}
+\ifthenelse{\equal{#1}{0}}{ % if
+\langle #2 \vphantom{#3#4} | #3 | #4 \vphantom{#2#3} \rangle }{}
+\ifthenelse{\equal{#1}{1}}{ % if
+\bigl< #2 \vphantom{#3#4} \bigr| #3 \bigl| #4 \vphantom{#2#3} \bigr> }{}
+\ifthenelse{\equal{#1}{2}}{ % if
+\Bigl< #2 \vphantom{#3#4} \Bigr| #3 \Bigl| #4 \vphantom{#2#3} \Bigr> }{}
+\ifthenelse{\equal{#1}{3}}{ % if
+\biggl< #2 \vphantom{#3#4} \biggr| #3 \biggl| #4 \vphantom{#2#3} \biggr> }{}
+\ifthenelse{\equal{#1}{4}}{ % if
+\Biggl< #2 \vphantom{#3#4} \Biggr| #3 \Biggl| #4 \vphantom{#2#3} \Biggr> }{}
+}} % \ensuremath{\mathinner{
+}  % matrixel - matrix element. the optional argument describes the size of the delimiters, no argument results in automatic size
+
+%\end{comment}
+
 
 
 
 
 
 %%%%% derivatives
-
-
-\let \underdot = \d % rename builtin command \d{} to \underdot{}
-\let \d = \od % for derivatives
-
-% BUG: derivatives revert to text mode often when in smaller environments in math mode?
 
 
 % Command for functional derivatives. The first argument denotes the function and the second argument denotes the variable with respect to which the derivative is taken. The optional argument denotes the order of differentiation. The style (text style/display style) is determined automatically
@@ -220,6 +312,19 @@
 \providecommand{\dpdc}[4][]{\ensuremath{\mathinner{
 \left( \dfrac{\partial{^{#1}}#2}{\partial{#3^{#1}}} \right)_{#4}
 }}}
+
+
+
+% BUG: derivatives revert to text mode often when in smaller environments in math mode?
+% fix applied below
+
+\let \underdot = \d % rename builtin command \d{} to \underdot{}
+\let \d = \od % for derivatives
+\let \pd = \dpd % redefine \pd as \dpd because the ambiguity is annoying
+\let \fd = \dfd % likewise for these
+\let \od = \dod
+\let \pdc = \dpdc
+
 
 
 %%%%%%

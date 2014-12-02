@@ -1,0 +1,58 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec15}
+\author{UCLA, Fall 2014}
+\date{\formatdate{24}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Magnetic monopoles}
+
+Should we really be studying something that has never been seen experimentally and that may not necessarily exist? [Niko says yes.] Magnetic monopoles are interesting so the answer is yes or something, because once we have studied them we find that they are interesting, therefore we should study them (to find that they are interesting). 
+
+To begin, we take Gauss' law 
+\begin{eqn}
+\v \nabla \cdot \v E = 4 \pi \rho_e
+\end{eqn}
+for some electric charge distribution $\rho_e$, and generalize to the magnetic field
+\begin{eqn}
+\v \nabla \cdot \v B = 4 \pi \rho_m
+\end{eqn}
+for some magnetic charge density $\rho_m$. So if we have a charge distribution $\rho_m = e_m \delta(\v r)$, we obtain a magnetic field
+\begin{eqn}
+\v B = e_m \frac{\uv r}{r^2}.
+\end{eqn}
+
+Dirac was the first to study this and find an issue. He found that the vector potential could not be made smooth everywhere for a magnetic monopole. Since $\v B = \v \nabla \times \v A$, we find from Stokes' theorem that
+\begin{eqn}
+4\pi e_m = \int \dif \v S \cdot \v B = \int \dif \v S \cdot (\v \nabla \times \v A).
+\end{eqn}
+But if $\v A$ is smooth then the last integral should be zero, so we have a contradiction. Therefore there must be a singularity in $\v A$ which emanates toward infinity. The simplest choice of gauge would have a singular string coming off the point charge in a ray off to infinity, called a \textit{Dirac string}. In particular, we find that the vector potential 
+\begin{eqn}
+\v A = e_m \, \frac{1 - \cos\theta}{r\sin\theta} \uv \phi
+\end{eqn}
+works exactly as desired, giving us the monopole under $\v B = \v \nabla \times \v A$. 
+
+
+
+
+\section{stuff}
+
+[missed last hour+]
+
+
+
+
+
+\end{document}
