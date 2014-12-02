@@ -14,7 +14,7 @@
 \maketitle
 
 
-\section{Action/Angle Variables}
+\section{Action-Angle Variables}
 
 Consider the Harmonic oscillator
 \begin{eqn}
@@ -31,21 +31,9 @@ This results in a very nice form for the Hamiltonian, $H' = \omega I$, and thus 
 \dot \theta = \omega, \qquad
 \dot I = 0.
 \end{eqn}
-So we can visualize the trajectories as constant motion about a ring on a cylinder, where the ring is at height $I$ and angles are labelled $\theta$. These are called action angle variables.
+So we can visualize the trajectories as constant motion about a ring on a cylinder, where the ring is at height $I$ and angles are labelled $\theta$. These are called action-angle variables.
 
-
-Finding a canonical transformation that maps in this way we're
-essentially looking at bound orbits by definition. So then basically
-if I have a canonical transformation from p, q to I, $\theta$ then
-these are action angle variables. If we're moving in a potential then
-this is a little bit trivial. The point is that I don't know he didn't
-finish his scentence. In one dimensions this is not too
-exciting but basically the point is that it is not always possible to
-do this for all degrees of freedom. This defines a special class of
-systems where basically if for a system n degrees of freedom or n
-coordinates and n conjugate momenta, if there exists a map where I map
-them to I and $\theta$ such that H' is the sum of
-%Suppose instead we have system with $N$ degrees of freedom. The system is called \textit{integrable} if there exists a canonical transformation
+Suppose instead we have a system with $N$ degrees of freedom. For certain systems there exists a canonical transformation to a complete set of action-angle variables. This defines a special class of \textit{integrable} systems, for which, more precisely, we have
 \begin{eqn}
 (q_i, p_i) \rightarrow (I_i, \theta_i), \qquad
 H' = \sum_i \omega_i I_i,
@@ -66,64 +54,40 @@ i,j = 1, \dots, N.
 Then the system is integrable. 
 \end{theorem}
 
+In other words, the system is integrable if there exists a canonical transformation with a complete set of conserved momenta. For example, in the central potential problem we should also have 3 action-angle variables. This also applies to something with infinitely many degrees of freedom like a field theory. 
+
+Integrability is really the exception and not the rule---integral systems are special. Furthermore, integrability is a global property. Consider motion along the phase space in a non-integrable system. Locally, the path looks like a tiny line segment so we can rotate into action-angle variables. Thus any path in phase space is locally integrable in a small neighborhood, but this is not always the case. In an integrable system, we can define action-angle variables globally, in every coordinate patch. 
 
 
-It has N \textbf{integrals of
-motion} which are quantities that 
-\begin{equation}
-\{I_i, H\} = 0
-\end{equation}
-and which are canonical coordinates. Also that
-\begin{equation}
-\{I_i, I_j\} = 0 
-\end{equation}
-Another characterization of an integrable system is that I have N
-integrals of motion with all vanishing poisson brackets and that are
-linearly independent. So if I have N independent integrals of motion
-then the system is integrable. This is also Liouville's theorem. 
+\subsection{Some Examples}
 
-So in the central potential problem the we should also have 3 action
-angle variables. This also applies to something with infinitely many
-degrees of freedom like a field theory. Two more comments before
-examples. Integrability is really the exception and not the
-rule. They're special. Also, integrability is a global property. What
-do I mean by that? If youthink about it, if I have some motion along
-the phase space in a non-integrable system what I can do is focus on a small neighborhood of the
-path. that will look like a tiny line segment and rotate it so that it
-looks like an action angle. In other words, locally with a change of
-coordinates I can always make any system into an integrable
-system. But only for an infinitesimal amount of time with a
-nonintegrable system. With an integrable system every patch maps to an
-action angle.
-
-\section{Examples}
 \begin{itemize}
-\item Harmonic oscillator
-\item Motion in central potential
-\item Spinning top
-\item Toda-lattice - mass points coupled by nearest neighbor
-  interactions where my Hamiltonian looks like
+\item Elementary examples: Harmonic oscillator; Motion in central potential; Spinning top
+
+\item \textit{Toda-lattice}: mass points coupled by nearest neighbor interactions where the Hamiltonian looks like
 \begin{equation}
 H = \sum_{i = 1}^{N+1} \frac{1}{2} p_1^2 + \omega^2 e^{q_i - q_{i+1}}
 \end{equation}
-We can link the last to the first one to make a circle and this is the
-SU(N) lattice. This is hard to solve with convential methods because
-exponentials are scary. 
-\item Cologero-Moses systems
+We can link the last to the first one to make a circle and this is the $SU(N)$ lattice. This is hard to solve with conventional methods because exponentials are scary. 
+
+\item \textit{Calogero-Moser} systems, which have an interparticle potential
 \begin{equation}
 H = \sum_i \frac{1}{2} p_i^2 + \sum_{i\ne j}^N V(q_i - q_j)
 \end{equation}
+of the form
 \begin{equation}
-V_1(q) = \frac{1}{q^2}
+V_1(q) = \frac{1}{q^2}, \quad
+V_2(q) = -\frac{4}{\sinh^2 (q/2)}, \quad
+\text{or} \quad
+V_3(q) = \frac{4}{\sin^2 (q/2)}
 \end{equation}
-\begin{equation}
-V_2(q) = \frac{1}{\sin^2 q}
-\end{equation}
-\item Study of integrable systems is a full subfield of mathematical
-  physics exspecially when applied to field theories
-\item The method for finding action angle variables and to check
-  whether a system is integrable is Hamilton Jacobi equations
+
+\item Study of integrable systems is a full subfield of mathematical physics especially when applied to field theories
+
+\item The best approach to finding action angle variables and for checking whether a system is integrable is to use the Hamilton-Jacobi formalism, onto which we now shift our focus. 
+
 \end{itemize}
+
 
 \section{Hamilton-Jacobi theory}
 
