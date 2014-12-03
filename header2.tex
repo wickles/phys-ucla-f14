@@ -1,3 +1,25 @@
+%%%%%%%%%%%%%%%%%%
+%% CONTENTS
+%%%%%%%%%%%%%%%%%%
+% Packages
+% Commands
+% Environments
+% More commands: Resizable delimiters
+% More commands: Derivatives
+% Useful templates
+% Notes
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%
+%% PACKAGES
+%%%%%%%%%%%%%%%%%%
+
+
 % standard packages
 \usepackage{graphicx} % support the \includegraphics command and options
 \usepackage{epstopdf} % allows complier to convert eps files to pdf files for inclusion in document
@@ -6,11 +28,14 @@
 	% \shortintertext for short interjections in align environment,
 	% \prescript{t}{b}{X} for simple, nicely aligned math pre-(super/sub)scripts
 \usepackage{amsthm} % for theorem and proof environments
-\usepackage{hyperref} % adds hyperlinks and outline to PDF documents
+\usepackage[pdfencoding=auto,psdextra]{hyperref} % adds hyperlinks and outline to PDF documents
+	% otpions enable enhanced unicode and math support in PDF outlines [causes conflict with \C command?]
 
 % font packages
 \usepackage{amssymb} % for \mathbb, \mathfrak fonts
 \usepackage{mathrsfs} % for \mathscr font
+\usepackage{dsfont} % best option for non-alphabetical doublestruck characters
+\usepackage{bbm} % alternative option for non-alphabetical doublestruck characters
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it} % defines \mathpzc for Zapf Chancery (standard postscript) font
 	% basically another calligraphic font, alternative to mathcal
 
@@ -31,6 +56,15 @@
 %\newcommand{\fsl}[1]{\ensuremath{\mathrlap{\!\not{\phantom{#1}}}#1}}% \fsl{<symbol>}
 	% alternative feynman slash
 
+
+
+
+
+%%%%%%%%%%%%%%%%%%
+%% COMMANDS
+%%%%%%%%%%%%%%%%%%
+
+
 % new commands
 \newcommand{\beg}{\begin} % a few letters less for beginning environments
 \newenvironment{eqn}{\begin{equation}}{\end{equation}} % a lot fewer letter for equation environment
@@ -45,13 +79,18 @@
 % notational commands
 \newcommand{\opname}[1]{\operatorname{#1}} % custom operator names
 %\newcommand{\pd}{\partial} % partial differential shortcut
-% \bra, \ket, \braket, \matrixel redefined below for easy rescaling
+%%
+% \bra, \ket, \braket, \matrixel, \avg, \inner redefined below for easy rescaling
+%%
 %\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac kets
 %\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac bras
 %\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right| \left. #2 \vphantom{#1} \right>} 
 	% for Dirac bra-kets \braket{bra}{ket}
 %\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right| #2 \left| #3 \vphantom{#1#2} \right>} 
 	% for Dirac matrix elements \matrixel{bra}{op}{ket}
+%\newcommand{\avg}[1]{\left< #1 \right>} % for average <x>
+%\newcommand{\inner}[2]{\left< #1, #2 \right>} % for inner product <x,y>
+%\newcommand{\set}[1]{ \left\{ #1 \right\} } % for sets {a,b,c,...}
 
 %\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % for partial derivatives
 %\newcommand{\fd}[2]{\frac{\delta #1}{\delta #2}} % for functional derivatives
@@ -67,9 +106,6 @@
 \newcommand{\vdd}[1]{\v{\ddot{#1}}} % for ddotted vectors
 \newcommand{\vddd}[1]{\v{\dddot{#1}}} % for dddotted vectors
 \newcommand{\vdddd}[1]{\v{\ddddot{#1}}} % for ddddotted vectors
-\newcommand{\avg}[1]{\left< #1 \right>} % for average <x>
-\newcommand{\inner}[2]{\left< #1, #2 \right>} % for inner product <x,y>
-%\newcommand{\set}[1]{ \left\{ #1 \right\} } % for sets {a,b,c,...}
 \newcommand{\tr}{\opname{tr}} % for trace
 \newcommand{\Tr}{\opname{Tr}} % for Trace
 \newcommand{\rank}{\opname{rank}} % for rank
@@ -105,7 +141,7 @@
 \newcommand{\quats}{\mathbb{H}} % quaternions (a la Hamilton)
 \newcommand{\euclids}{\mathbb{E}} % Euclidean space
 \newcommand{\R}{\reals}
-\newcommand{\C}{\complexes}
+\renewcommand{\C}{\complexes}
 \newcommand{\Z}{\ints}
 \newcommand{\Q}{\irrats}
 \newcommand{\N}{\nats}
@@ -127,8 +163,6 @@
 
 
 % more stuff
-\newenvironment{enumproblem}{\begin{enumerate}[label=\textbf{(\alph*)}]}{\end{enumerate}}
-	% for easily enumerating letters in problems
 \newcommand{\grad}[1]{\v{\nabla} #1} % for gradient
 \let \divsymb = \div % rename builtin command \div to \divsymb
 \renewcommand{\div}[1]{\v{\nabla} \cdot #1} % for divergence
@@ -136,6 +170,20 @@
 \let \baraccent = \= % rename builtin command \= to \baraccent
 \renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
 
+
+
+
+
+%%%%%%%%%%%%%%%%%%
+%% ENVIRONMENTS
+%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{enumproblem}{
+\begin{enumerate}[label=\textbf{(\alph*)},listparindent=\parindent]
+}{\end{enumerate}}
+	% for easily enumerating letters in problems
+	
 
 % theorem-style environments. note amsthm builtin proof environment: \begin{proof}[title]
 % appending [section] resets counter and prepends section number
@@ -167,14 +215,11 @@
 
 
 
-%\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac kets
-%\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac bras
-%\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right| \left. #2 \vphantom{#1} \right>} 
-%\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right| #2 \left| #3 \vphantom{#1#2} \right>} 
 
-%% better definitions for \bra, \ket, \braket, \matrixel, etc.
+%%%%%%%%%%%%%%%%%%
+% RESIZEABLE DELIMITERS
+%%%%%%%%%%%%%%%%%%
 
-%\begin{comment}
 
 % the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
 % default value for #1 is -1 which results in automatic size for the delimeters
@@ -193,7 +238,7 @@
 \ifthenelse{\equal{#1}{4}}{ % if
 \Biggl< #2 \Biggr| }{}
 }} % \ensuremath{\mathinner{
-}  % bra - Dirac bra. the optional argument describes the size of the delimiters, no argument results in automatic size
+}  % bra - Dirac bra <x|. the optional argument describes the size of the delimiters, no argument results in automatic size
 
 % the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
 % default value for #1 is -1 which results in automatic size for the delimeters
@@ -212,7 +257,7 @@
 \ifthenelse{\equal{#1}{4}}{ % if
 \Biggl| #2 \Biggr> }{}
 }} % \ensuremath{\mathinner{
-}  % bra - Dirac ket. the optional argument describes the size of the delimiters, no argument results in automatic size
+}  % bra - Dirac ket |x>. the optional argument describes the size of the delimiters, no argument results in automatic size
 
 % the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
 % default value for #1 is -1 which results in automatic size for the delimeters
@@ -231,7 +276,7 @@
 \ifthenelse{\equal{#1}{4}}{ % if
 \Biggl< #2 \vphantom{#3} \Biggr| \Biggl. #3 \vphantom{#2} \Biggr> }{}
 }} % \ensuremath{\mathinner{
-}  % braket - Dirac bra-ket. the optional argument describes the size of the delimiters, no argument results in automatic size
+}  % braket - Dirac bra-ket <x|y>. the optional argument describes the size of the delimiters, no argument results in automatic size
 
 % the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
 % default value for #1 is -1 which results in automatic size for the delimeters
@@ -250,16 +295,53 @@
 \ifthenelse{\equal{#1}{4}}{ % if
 \Biggl< #2 \vphantom{#3#4} \Biggr| #3 \Biggl| #4 \vphantom{#2#3} \Biggr> }{}
 }} % \ensuremath{\mathinner{
-}  % matrixel - matrix element. the optional argument describes the size of the delimiters, no argument results in automatic size
+}  % matrixel - matrix element <x|A|y>. the optional argument describes the size of the delimiters, no argument results in automatic size
 
-%\end{comment}
+% the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
+% default value for #1 is -1 which results in automatic size for the delimeters
+\providecommand{\avg}[2][-1]{
+\ensuremath{\mathinner{
+\ifthenelse{\equal{#1}{-1}}{ % if
+\left< #2 \right> }{}
+\ifthenelse{\equal{#1}{0}}{ % if
+\langle #2 \rangle }{}
+\ifthenelse{\equal{#1}{1}}{ % if
+\bigl< #2 \bigr> }{}
+\ifthenelse{\equal{#1}{2}}{ % if
+\Bigl< #2 \Bigr> }{}
+\ifthenelse{\equal{#1}{3}}{ % if
+\biggl< #2 \biggr> }{}
+\ifthenelse{\equal{#1}{4}}{ % if
+\Biggl< #2 \Biggr> }{}
+}} % \ensuremath{\mathinner{
+}  % avg - average value <x>. the optional argument describes the size of the delimiters, no argument results in automatic size
+
+% the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
+% default value for #1 is -1 which results in automatic size for the delimeters
+\providecommand{\inner}[3][-1]{
+\ensuremath{\mathinner{
+\ifthenelse{\equal{#1}{-1}}{ % if
+\left< #2 , #3 \right> }{}
+\ifthenelse{\equal{#1}{0}}{ % if
+\langle #2 , #3 \rangle }{}
+\ifthenelse{\equal{#1}{1}}{ % if
+\bigl< #2 , #3 \bigr> }{}
+\ifthenelse{\equal{#1}{2}}{ % if
+\Bigl< #2 , #3 \Bigr> }{}
+\ifthenelse{\equal{#1}{3}}{ % if
+\biggl< #2 , #3 \biggr> }{}
+\ifthenelse{\equal{#1}{4}}{ % if
+\Biggl< #2 , #3 \Biggr> }{}
+}} % \ensuremath{\mathinner{
+}  % inner - inner product <x,y>. the optional argument describes the size of the delimiters, no argument results in automatic size
 
 
 
 
 
-
-%%%%% derivatives
+%%%%%%%%%%%%%%%%%%
+%% DERIVATIVES
+%%%%%%%%%%%%%%%%%%
 
 
 % Command for functional derivatives. The first argument denotes the function and the second argument denotes the variable with respect to which the derivative is taken. The optional argument denotes the order of differentiation. The style (text style/display style) is determined automatically
@@ -317,6 +399,9 @@
 
 % BUG: derivatives revert to text mode often when in smaller environments in math mode?
 % fix applied below
+% BUG: superscripts in bottom of derivative impose double superscript error 
+% -- requires embedding within brackets, i.e. \pd{x^\mu}{{y^\nu}}
+% -- redefine \pd and other derivatives?
 
 \let \underdot = \d % rename builtin command \d{} to \underdot{}
 \let \d = \od % for derivatives
@@ -327,14 +412,17 @@
 
 
 
-%%%%%%
 
 
 
 
 
-%%%%%%%%%%%%%%%%%%%
-% some templates for various things
+
+
+%%%%%%%%%%%%%%%%%%
+%% USEFUL TEMPLATES
+%%%%%%%%%%%%%%%%%%
+
 \begin{comment}
 
 % template for figures
@@ -370,11 +458,17 @@ extra tick style={grid=major}]
 %% find package for easily drawing mapping / algebraic / commutative diagrams..
 
 \end{comment}
-%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
 
 
 
-%%%%% A note on spacing
+
+
+%%%%%%%%%%%%%%%%%%
+%% NOTES
+%%%%%%%%%%%%%%%%%%
+
+%% Note on spacing
 % 5) \qquad
 % 4) \quad
 % 3) \thickspace = \;
@@ -383,5 +477,15 @@ extra tick style={grid=major}]
 % -1) \negthinspace = \!
 % -2) \negmedspace
 % -3) \negthickspace
+
+%% Note on useful synonyms
+% \rightarrow = \to
+% \leftarrow = \gets
+% \ni = \owns = backwards \in
+% \cup = union, \cap = intersect
+% \sqcup / \sqcap for disjoint varieties
+% \gg = >>, \ll = <<
+% \vert = |, \Vert = || 
+
 
 
