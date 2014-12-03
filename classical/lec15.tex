@@ -1,0 +1,214 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec15}
+\author{UCLA, Fall 2014}
+\date{\formatdate{2}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Relativity}
+
+The principle of relativity postulates that the laws of nature (and therefore the results of experiments) are the same in two inertial frames. Even in Newtonian mechanics, we have relativity under Galilean transformations, where the Galilean group consists of translations, rotations, and Galilean boosts of the form
+\begin{align}
+t' &= t \\
+\v x' &= \v x - \v v t. \\
+\end{align}
+In special relativity, we go further and demand that the speed of light is the same in any inertial frame. This clearly cannot happen, so our relativistically invariant group of transformations is no longer the Galilean group but instead the Lorentz group. 
+
+How do we construct the Lorentz group? As we all know by now, we need to combine space and time coordinates into a 4-dimensional spacetime vector, a 4-vector. One way to impose relativistic invariance is to define a new distance 
+\begin{eqn}
+s^2 = -c^2 \Delta t^2 + \Delta \v x^2
+\end{eqn}
+which is invariant under the new transformation group, which we refer to as the Lorentz group. Infinitesimally, this defines a new line element, the Minkowskian metric
+\begin{eqn}
+\dif s^2 = -c^2 \dif t^2 + \dif \v x^2.
+\end{eqn}
+This gives us a new ``Lorentzian'' or ``Minkowskian'' geometry in which we must work. Now the invariant distances between spacetime events are classified into three distinct categories,
+\begin{align}
+s^2 &= 0, & & \text{lightlike, defining the \textit{lightcone}} \\
+s^2 &> 0, & & \text{spacelike, outside the lightcone} \\
+s^2 &< 0, & & \text{timelike, inside the lightcone.}
+\end{align}
+Notice that the lightcone, where $s^2 = 0$, is defined so that the metric gives us
+\begin{eqn}
+\frac{\dif \v x}{\dif t} = c.
+\end{eqn}
+
+Now, since the Lorentz boosts must be linear they must necessarily be of the form
+\begin{align}
+ct' &= A \, ct + B \, \v x \\
+\v x' &= C \, ct + D \, \v x.
+\end{align}
+Demanding that the metric is preserved, we find that $A = D = \gamma$ and $B = C = -\gamma \beta$ where
+\begin{eqn}
+\beta = v / c, \qquad
+\gamma = 1 / \sqrt{1 - \beta^2}.
+\end{eqn}
+Thus the Lorentz boosts are given by
+\begin{align}
+ct' &= \gamma(ct - \beta \, \v x) \\
+\v x' &= \gamma(\v x - \beta \, ct).
+\end{align}
+
+We now have some physical consequences:
+\begin{enumerate}
+\item Lorentz boosts do not change the causal relationship between points in spacetime since $s'^2 = s^2$. 
+\item We discover time dilation: if $x=0$, we have
+\begin{eqn}
+t' = \gamma t \ge t.
+\end{eqn}
+\item Finally we find Lorentz contraction: if $t = 0$, we have
+\begin{eqn}
+\abs{\v x'} = \gamma \abs{\v x} \ge \abs{\v x}.
+\end{eqn}
+\end{enumerate}
+
+Generally, it is convenient to denote the spacetime 4-vector by 
+\begin{eqn}
+x^\mu = (x^0, \v x) = (ct, \v x),
+\end{eqn}
+where $\mu = 0, \dots, 4$ is now a spacetime index. So now we can write the spacetime distance between $x^\mu$ and $y^\mu$ as
+\begin{eqn}
+s^2 = (x^\mu - y^\mu) (x_\mu - y_\mu) = \eta_{\mu\nu} (x^\mu - y^\mu) (x^\nu - y^\nu),
+\end{eqn}
+where $\eta_{\mu\nu}$ is the Minkowskian metric tensor 
+\begin{eqn}
+\eta_{\mu\nu} = \diag \set{-1, 1, 1, 1} = 
+\begin{pmatrix}
+-1 & & & \\
+& 1 & & \\
+& & 1 & \\
+& & & 1
+\end{pmatrix}.
+\end{eqn}
+We can now write out Lorentz transformations more compactly as
+\begin{eqn}
+x^\mu \rightarrow x'^\mu = \Lambda\indices{^\mu_\nu} x^\nu.
+\end{eqn}
+Then the invariance of the metric under Lorentz transformations gives us
+\begin{eqn}
+x^\mu x^\nu \eta_{\mu \nu} 
+	= x'^\mu x'^\nu \eta_{\mu\nu} 
+	= \Lambda\indices{^\mu_\rho} \Lambda\indices{^\nu_\sigma} x^\rho x^\sigma \eta_{\mu\nu}
+\end{eqn}
+which we can rewrite as
+\begin{eqn}
+\Lambda\indices{^\mu_\rho} \eta_{\mu\nu} \Lambda\indices{^\nu_\sigma} = \eta_{\rho\sigma} 
+\qquad \text{or} \qquad
+\Lambda^\top \eta \Lambda = \eta
+\end{eqn}
+which tells us that the Lorentz group is just the orthogonal group $O(1,3)$ with signature $(-1,+1,+1,+1)$. However this contains improper rotations and thus transformations that reverse the direction of time, so usually we refer to the Lorentz group as the special orthogonal group $SO(1,3)$. 
+
+What are the generators of Lorentz boost, and how many are there? For an infinitesimal Lorentz boost we have
+\begin{eqn}
+\Lambda\indices{^\mu_\nu} = \delta\indices{^\mu_\nu} + \epsilon M\indices{^\mu_\nu},
+\end{eqn}
+and by invariance of the metric we have
+\begin{align}
+\eta_{\mu\nu} &= \eta_{\rho \sigma} (\delta\indices{^\rho_\mu} + \epsilon M\indices{^\rho_\mu}) (\delta\indices{^\sigma_\nu} + \epsilon M\indices{^\sigma_\nu}) \\
+	&= \eta_{\mu\nu} + \epsilon (\eta_{\rho \sigma} \delta\indices{^\sigma_\nu} M\indices{^\rho_\mu} + \eta_{\rho \sigma} \delta\indices{^\rho_\mu} M\indices{^\sigma_\nu}) + \bigO(\epsilon^2).
+\end{align}
+Therefore we have
+\begin{eqn}
+0 = \eta_{\rho\nu} M\indices{^\rho_\mu} + \eta_{\mu\sigma} M\indices{^\sigma_\nu}
+\end{eqn}
+or
+\begin{eqn}
+0 = M_{\mu\nu} + M_{\nu\mu}.
+\end{eqn}
+So the generators $M_{\mu\nu}$ form a $4 \times 4$ antisymmetric tensor giving us a total of 6 generators (3 rotations and 3 boosts). For example if we have
+\begin{eqn}
+(M_0)\indices{^\mu_\nu} = 
+\begin{pmatrix}
+0 & & & \\
+& 0 && \\
+& & 0 & 1 \\
+& & -1 & 0
+\end{pmatrix}
+\end{eqn}
+then the full exponentiated transformation is given by
+\begin{eqn}
+\exp(\alpha M_0) = 
+\begin{pmatrix}
+1 & & & \\
+& 1 && \\
+& & \cos \alpha & \sin\alpha \\
+& & -\sin\alpha & \cos\alpha
+\end{pmatrix},
+\end{eqn}
+which is just a rotation about $\uv x$ by angle $\alpha$. Similarly if we have
+\begin{eqn}
+(M_0)\indices{^\mu_\nu} = 
+\begin{pmatrix}
+0 & 1 & & \\
+-1 & 0 & & \\
+& & 0 & \\
+& & & 0
+\end{pmatrix}
+\end{eqn}
+then the full exponentiated transformation is given by
+\begin{eqn}
+\exp(\phi M_0) = 
+\begin{pmatrix}
+\cosh\phi & -\sinh\phi & & \\
+-\sinh\phi & \cosh\phi & & \\
+& & 1 & \\
+& & & 1
+\end{pmatrix},
+\end{eqn}
+which is a ``hyperbolic rotation'' by ``rapidity'' $\phi$. 
+
+Recall that the coordinates transform as
+\begin{eqn}
+x^\mu \rightarrow x'^\mu = \Lambda\indices{^\mu_\nu} x^\nu.
+\end{eqn}
+The coordinate 4-vector $x^\mu$ with indices upstairs is called \textit{covariant}. More generally any vector $A^\mu$ with indices upstairs transforms like this,
+\begin{eqn}
+A^\mu \rightarrow A'^\mu = \Lambda\indices{^\mu_\nu} A^\nu
+\end{eqn}
+and is called \textit{covariant}, while a vector $B_\mu$ with indices downstairs transforms like
+\begin{eqn}
+B_\mu \rightarrow B'_\mu 
+	= (\eta_{\mu\rho} \Lambda\indices{^\rho_\sigma}) (\eta^{\sigma\tau} B_\tau)
+	= \Lambda\indices{_\mu^\nu} B_\nu 
+\end{eqn}
+is called \textit{contravariant}.
+
+In general we will be working with quantities like $M_{\mu\nu}$ which have more than one index. A \textit{tensor} is an object with an arbitrary number of upper and lower indices that transforms like a covariant vector in each of its upper indices and like a contravariant vector in each of its lower indices. Notice that
+\begin{eqn}
+\partial_\mu x^\nu = \pd{{x^\nu}}{{x^\mu}} = \delta^\nu_\mu,
+\end{eqn}
+so that we can think of the derivatives $\partial_\mu$ as contravariant vectors. 
+
+We know that Maxwell's equations are relativistically invariant, so we can rewrite Maxwell's equations in a more obviously invariant way in terms of 4-vectors. Denoting the 4-potential 
+\begin{eqn}
+A^\mu = (\phi / c, \v A)
+\end{eqn}
+where $\phi$ and $\v A$ are the EM potentials, and then writing
+\begin{eqn}
+F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu
+\end{eqn}
+we find that Maxwell's equations can be written nice and compactly as
+\begin{eqn}
+\partial_\mu F^{\mu\nu} = -J^\nu, \qquad
+\epsilon^{\mu\nu\rho\sigma} \partial_\nu F_{\rho\sigma} = 0
+\end{eqn}
+where we define the 4-current 
+\begin{eqn}
+J^\mu = (\rho_e, \v J).
+\end{eqn}
+
+
+
+
+
+
+\end{document}
