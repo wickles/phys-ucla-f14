@@ -22,6 +22,8 @@
 
 % standard packages
 \usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{caption} % makes figure captions better, more configurable
+\usepackage{subcaption} % allows for subfigures and subcaptions
 \usepackage{epstopdf} % allows complier to convert eps files to pdf files for inclusion in document
 \usepackage{amsmath} % for nice math commands and environments
 \usepackage{mathtools} % extends amsmath with bug fixes and useful commands, e.g.
@@ -41,7 +43,6 @@
 
 % other packages
 \usepackage{datetime} % allows easy formatting of dates, e.g. \formatdate{dd}{mm}{yyyy}
-\usepackage{caption} % makes figure captions better, more configurable
 \usepackage{enumitem} % allows for custom labels on enumerated lists, e.g. \begin{enumerate}[label=\textbf{(\alph*)}]
 \usepackage[squaren]{SIunits} % for nice units formatting e.g. \unit{50}{\kilo\gram}
 \usepackage{cancel} % for crossing out terms with \cancel
@@ -428,9 +429,34 @@
 % template for figures
 \begin{figure}
 \centering
-\includegraphics{myfile.png}
+\includegraphics[width=0.8\textwidth]{myfile.png}
 \caption{This is a caption}
 \label{fig:myfigure}
+\end{figure}
+
+% template for subfigures
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{gull}
+		\caption{A gull}
+		\label{fig:gull}
+	\end{subfigure}%
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+		%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{tiger}
+		\caption{A tiger}
+		\label{fig:tiger}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{mouse}
+		\caption{A mouse}
+		\label{fig:mouse}
+	\end{subfigure}
+	\caption{Pictures of animals}\label{fig:animals}
 \end{figure}
 
 % template for Feynman diagrams using feynmf/feynmp
