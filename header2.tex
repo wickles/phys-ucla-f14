@@ -20,10 +20,13 @@
 %%%%%%%%%%%%%%%%%%
 
 
-% standard packages
+% standard and structural packages
 \usepackage{graphicx} % support the \includegraphics command and options
-\usepackage{caption} % makes figure captions better, more configurable
+\usepackage[font=footnotesize,labelfont=bf,labelsep=space]{caption} 
+	% makes figure captions better, more configurable.
+	% specific options make captions smaller and the label bold.
 \usepackage{subcaption} % allows for subfigures and subcaptions
+	% can add usual caption options to change format for subcaptions
 \usepackage{epstopdf} % allows complier to convert eps files to pdf files for inclusion in document
 \usepackage{amsmath} % for nice math commands and environments
 \usepackage{mathtools} % extends amsmath with bug fixes and useful commands, e.g.
@@ -43,7 +46,10 @@
 
 % other packages
 \usepackage{datetime} % allows easy formatting of dates, e.g. \formatdate{dd}{mm}{yyyy}
-\usepackage{enumitem} % allows for custom labels on enumerated lists, e.g. \begin{enumerate}[label=\textbf{(\alph*)}]
+\usepackage[inline]{enumitem} % allows for custom labels on enumerated lists
+	% e.g. \begin{enumerate}[label=\textbf{(\alph*)}]
+	% inline option creates '*' versions of enumerate, itemize, description 
+		% which can be inlined within the text of a paragraph. 
 \usepackage[squaren]{SIunits} % for nice units formatting e.g. \unit{50}{\kilo\gram}
 \usepackage{cancel} % for crossing out terms with \cancel
 \usepackage{verbatim} % for verbatim and comment environments
@@ -51,12 +57,17 @@
 \usepackage{mhchem} % for writing chemical formulas with \ce, e.g. \ce{AgCl2-} or \ce{^{227}_{90}Th+}
 \usepackage{feynmp-auto} % for Feynman diagrams. 
 \usepackage{pgfplots} % for plotting in tikzpicture environment
-\usepackage{commath} % for some nice standardized syntax stuff. \dif, \Dif \od, \pd, \md, \(abs | envert), \(norm | enVert), \(set | cbr), \sbr, \eval, \int(o | c)(o | c), etc
+\usepackage{commath} % for some nice standardized syntax stuff. 
+	% \dif, \Dif, \od, \pd, \md, \(abs | envert), \(norm | enVert), \(set | cbr), \sbr, \eval, \int(o | c)(o | c), etc
 \usepackage{slashed} % provides a command \slashed[1] for Feynman slash notation
-%\newcommand{\fslash}[1]{#1\!\!\!/} % feynman slash
-%\newcommand{\fsl}[1]{\ensuremath{\mathrlap{\!\not{\phantom{#1}}}#1}}% \fsl{<symbol>}
-	% alternative feynman slash
+\usepackage{listings} % for typesetting source code
+\usepackage{algorithmicx} % for typesetting algorithms and pseudocode
 
+\usepackage{rotating} 
+	% provides environments for rotating arbitrary objects, e.g. sideways, turn[ang], rotate[ang]
+	% also provides macro \turnbox{ang}{stuff}
+%\newcommand{\sideways}[1]{\begin{sideways} #1 \end{sideways}} % turn things 90 degrees CCW
+%\newcommand{\turn}[2][]{\begin{turn}{#2} #1 \end{turn}} % \turn[ang]{stuff} turns things arbitrary +/- angle
 
 
 
@@ -66,47 +77,8 @@
 %%%%%%%%%%%%%%%%%%
 
 
-% new commands
-\newcommand{\beg}{\begin} % a few letters less for beginning environments
-\newenvironment{eqn}{\begin{equation}}{\end{equation}} % a lot fewer letter for equation environment
-
-% rotate stuff
-\usepackage{rotating}
-	% provides environments for rotating arbitrary objects, e.g. sideways, turn[ang], rotate[ang]
-	% also provides macro \turnbox{ang}{stuff}
-%\newcommand{\sideways}[1]{\begin{sideways} #1 \end{sideways}} % turn things 90 degrees CCW
-%\newcommand{\turn}[2][]{\begin{turn}{#2} #1 \end{turn}} % \turn[ang]{stuff} turns things arbitrary +/- angle
-
-% notational commands
+% functions and operators
 \newcommand{\opname}[1]{\operatorname{#1}} % custom operator names
-%\newcommand{\pd}{\partial} % partial differential shortcut
-%%
-% \bra, \ket, \braket, \matrixel, \avg, \inner redefined below for easy rescaling
-%%
-%\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac kets
-%\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac bras
-%\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right| \left. #2 \vphantom{#1} \right>} 
-	% for Dirac bra-kets \braket{bra}{ket}
-%\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right| #2 \left| #3 \vphantom{#1#2} \right>} 
-	% for Dirac matrix elements \matrixel{bra}{op}{ket}
-%\newcommand{\avg}[1]{\left< #1 \right>} % for average <x>
-%\newcommand{\inner}[2]{\left< #1, #2 \right>} % for inner product <x,y>
-%\newcommand{\set}[1]{ \left\{ #1 \right\} } % for sets {a,b,c,...}
-
-%\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % for partial derivatives
-%\newcommand{\fd}[2]{\frac{\delta #1}{\delta #2}} % for functional derivatives
-\let \vaccent = \v % rename builtin command \v{} to \vaccent{}
-%\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
-\renewcommand{\v}[1]{\ensuremath{\boldsymbol{\mathbf{#1}}}} % for vectors
-%\newcommand{\gv}[1]{\ensurmath{\mbox{\boldmath$ #1 $}}} % for vectors of Greek letters
-\newcommand{\uv}[1]{\ensuremath{\boldsymbol{\mathbf{\widehat{#1}}}}} % for unit vectors
-%\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value ||x||
-%\newcommand{\mag}{\abs} % magnitude, just another name for \abs
-%\newcommand{\norm}[1]{\left\Vert #1 \right\Vert} % for norm ||v||
-\newcommand{\vd}[1]{\v{\dot{#1}}} % for dotted vectors
-\newcommand{\vdd}[1]{\v{\ddot{#1}}} % for ddotted vectors
-\newcommand{\vddd}[1]{\v{\dddot{#1}}} % for dddotted vectors
-\newcommand{\vdddd}[1]{\v{\ddddot{#1}}} % for ddddotted vectors
 \newcommand{\tr}{\opname{tr}} % for trace
 \newcommand{\Tr}{\opname{Tr}} % for Trace
 \newcommand{\rank}{\opname{rank}} % for rank
@@ -116,21 +88,39 @@
 \newcommand{\Res}{\opname{Res}\limits} % for residue function -- change to put limits on bottom
 \renewcommand{\Re}{\opname{Re}}
 \renewcommand{\Im}{\opname{Im}}
-\renewcommand{\bbar}[1]{\bar{\bar{#1}}} 
-	% for barring things twice -- use \cbar or \zbar instead of original \bbar
+\newcommand{\inv}{^{-1}}
+
+
+% vector and other notational commands
+\let \vaccent = \v % rename builtin command \v{} to \vaccent{}
+\renewcommand{\v}[1]{\ensuremath{\boldsymbol{\mathbf{#1}}}} % for vectors
+\newcommand{\uv}[1]{\ensuremath{\boldsymbol{\mathbf{\widehat{#1}}}}} % for unit vectors
+\newcommand{\vd}[1]{\v{\dot{#1}}} % for dotted vectors
+\newcommand{\vdd}[1]{\v{\ddot{#1}}} % for ddotted vectors
+\newcommand{\vddd}[1]{\v{\dddot{#1}}} % for dddotted vectors
+\newcommand{\vdddd}[1]{\v{\ddddot{#1}}} % for ddddotted vectors
+\renewcommand{\bbar}[1]{\bar{\bar{#1}}} % for barring things twice -- use \cbar or \zbar instead of original \bbar
 \newcommand{\bbbar}[1]{\bar{\bbar{#1}}}
 \newcommand{\bbbbar}[1]{\bar{\bbbar{#1}}}
 
-\newcommand{\inv}{^{-1}}
+% deprecated by commath package
+%\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value ||x||
+%\newcommand{\mag}{\abs} % magnitude, just another name for \abs
+%\newcommand{\norm}[1]{\left\Vert #1 \right\Vert} % for norm ||v||
 
-% temporary fixes -- commath's versions are bad for powers, like $\dif^3 x$
-\renewcommand{\dif}{\mathrm{d}} % \opname{d} better maybe?
-\renewcommand{\Dif}{\mathrm{D}}
+
+% more stuff
+\newcommand{\grad}[1]{\v{\nabla} #1} % for gradient
+\let \divsymb = \div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\v{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\v{\nabla} \times #1} % for curl
+\let \baraccent = \= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
 
 
 % notational shortcuts
 \newcommand{\bigO}{\mathcal{O}} % big O notation
-\let \bigo = \bigO % keep for now, need to update instances in older files
+\let \bigo = \bigO % deprecated version. keeping for now because need to update instances in older files
 \newcommand{\Lag}{\mathcal{L}} % fancy Lagrangian
 \newcommand{\Ham}{\mathcal{H}} % fancy Hamiltonian
 % fields and spaces
@@ -155,21 +145,13 @@
 % etc
 
 
-% matrix shortcuts!
+% matrix shortcuts! only use for small vectors/matrices and such
 \newcommand{\pmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
 \newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
 \newcommand{\Bmat}[1]{\begin{Bmatrix} #1 \end{Bmatrix}}
 \newcommand{\vmat}[1]{\begin{vmatrix} #1 \end{vmatrix}}
 \newcommand{\Vmat}[1]{\begin{Vmatrix} #1 \end{Vmatrix}}
 
-
-% more stuff
-\newcommand{\grad}[1]{\v{\nabla} #1} % for gradient
-\let \divsymb = \div % rename builtin command \div to \divsymb
-\renewcommand{\div}[1]{\v{\nabla} \cdot #1} % for divergence
-\newcommand{\curl}[1]{\v{\nabla} \times #1} % for curl
-\let \baraccent = \= % rename builtin command \= to \baraccent
-\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
 
 
 
@@ -180,9 +162,12 @@
 %%%%%%%%%%%%%%%%%%
 
 
+\newcommand{\beg}{\begin} % a few letters less for beginning environments
+\newenvironment{eqn}{\begin{equation}}{\end{equation}} % a lot fewer letter for equation environment
+
 \newenvironment{enumproblem}{
-\begin{enumerate}[label=\textbf{(\alph*)},listparindent=\parindent]
-}{\end{enumerate}}
+	\begin{enumerate}[label=\textbf{(\alph*)},listparindent=\parindent]
+	}{\end{enumerate}}
 	% for easily enumerating letters in problems
 	
 
@@ -345,6 +330,14 @@
 %%%%%%%%%%%%%%%%%%
 
 
+
+% BUG: derivatives revert to text mode often when in smaller environments in math mode?
+% FIXED: below by setting defaults to display
+% BUG: superscripts in bottom of derivative impose double superscript error 
+% -- requires embedding within brackets, i.e. \pd{x^\mu}{{y^\nu}}
+% -- redefine \pd and other derivatives?
+
+
 % Command for functional derivatives. The first argument denotes the function and the second argument denotes the variable with respect to which the derivative is taken. The optional argument denotes the order of differentiation. The style (text style/display style) is determined automatically
 \providecommand{\fd}[3][]{\ensuremath{
 \ifinner
@@ -398,18 +391,17 @@
 
 
 
-% BUG: derivatives revert to text mode often when in smaller environments in math mode?
-% fix applied below
-% BUG: superscripts in bottom of derivative impose double superscript error 
-% -- requires embedding within brackets, i.e. \pd{x^\mu}{{y^\nu}}
-% -- redefine \pd and other derivatives?
-
+% some shorter synonyms for commath
 \let \underdot = \d % rename builtin command \d{} to \underdot{}
 \let \d = \od % for derivatives
 \let \pd = \dpd % redefine \pd as \dpd because the ambiguity is annoying
 \let \fd = \dfd % likewise for these
 \let \od = \dod
 \let \pdc = \dpdc
+
+% fixes for commath's differentials, which look bad for powers, e.g. $\dif^3 x$
+\renewcommand{\dif}{\mathrm{d}} % \opname{d} better maybe?
+\renewcommand{\Dif}{\mathrm{D}}
 
 
 
@@ -494,6 +486,21 @@ extra tick style={grid=major}]
 %% NOTES
 %%%%%%%%%%%%%%%%%%
 
+
+%% Note on math environments
+% 'equation' and 'align' are basic standards 
+	% use '&' to for alignment in 'align'
+	% multi-line environments all end lines with '\\' (except for last line)
+	% generally all lines are tagged except in 'split' and '*' versions of environments
+	% add \label{txt} after line to give LaTeX-label, \tag{txt} to change textual label
+% use 'gather' to display multiple center-aligned lines (no manual alignment)
+	% tags/labels every line
+% use 'multline' to left-align first line, right-aline last line, and center-align all lines in between (no manual alignment)
+	% only tags/labels last line
+% use 'split' within 'equation' or 'align' to give single middle-aligned tag/label to the contained lines
+	% use '&' for alignment within 'split'
+	% no '*' version
+
 %% Note on spacing
 % 5) \qquad
 % 4) \quad
@@ -511,7 +518,6 @@ extra tick style={grid=major}]
 % \cup = union, \cap = intersect
 % \sqcup / \sqcap for disjoint varieties
 % \gg = >>, \ll = <<
-% \vert = |, \Vert = || 
-
-
+% \vert = | (pipe, e.g. absolute value delimiter), 
+% \Vert = || (double pipes, e.g. norm delimiter)
 
