@@ -9,6 +9,7 @@ Classical
 - lec06 - most of it
 - lec07 - most of it
 - lec09 - very end missing, continued in next lecture?
+- lec14 - last 2/3 or so
 
 Quantum
 
