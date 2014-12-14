@@ -1,0 +1,122 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec20}
+\author{UCLA, Fall 2014}
+\date{\formatdate{10}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+         % format: formatdate{dd}{mm}{yyyy}
+
+\begin{document}
+\maketitle
+
+
+\section{Even mooooore on angular momentum}
+
+Recall that for the total angular momentum $\v J$ we have the commutation relation
+\begin{eqn}
+[J_i, J_j] = i \hbar \epsilon_{ijk} J_k,
+\end{eqn}
+which also applies individually to the orbital angular momentum $\v L$ and spin angular momentum $\v S$ (just take $\v J$ to be either one). Generally, it is useful to work in the descending $m$ basis, i.e.
+\begin{eqn}
+\sum_m c_m \ket{j,m} \rightarrow \pmat{c_j \\ c_{j-1} \\ \vdots \\ c_{-j+1} \\ c_{-j}}.
+\end{eqn}
+So using the eigenvalues of $\v J^2, J_z$ along with the ladder operators, we can construct the various matrices of matrix elements in this basis. We are familiar already with the typical case of $j = 1/2$ where
+\begin{eqn}
+\v{J} = \frac{\hbar}{2} \v \sigma = \set{ \frac{\hbar}{2} \pmat{0 & 1 \\ 1 & 0}, \frac{\hbar}{2} \pmat{0 & -i \\ i & 0}, \frac{\hbar}{2} \pmat{1 & 0 \\ 0 & -1} }.
+\end{eqn}
+More generally we have
+\begin{eqn}
+J_z = \hbar 
+\begin{pmatrix}
+j & & & & \\
+& j-1 & & & \\
+& & \ddots & & \\
+& & & -j+1 & \\
+& & & & -j
+\end{pmatrix}
+\end{eqn}
+
+Of course the matrix elements of $\v J^2$ are just the eigenvalues down the diagonal, but they're all the same so we have
+
+[will finish writing this part later]
+
+In general, we can make a choice of complete set of commuting operators $\v J^2, J_z, H$. This works because generally, physical Hamiltonians are isotropic in the full Hilbert space,
+\begin{eqn}
+[H, J_k] = 0, \qquad \text{all $k$}.
+\end{eqn}
+However, we could also choose individually $\v L^2, L_z, \v S^2, S_z$, but \emph{generally} we can only include $H$ in this set if we neglect relativistic effects. It does work, for example, in the Zeeman effect where we have Hamiltonian
+\begin{eqn}
+H = \frac{p^2}{2m} + U(r) - \gamma \v B \cdot \v S
+\end{eqn}
+which commutes with $\v S^2, S_z$. 
+
+
+\subsection{Orbital angular momentum and spherical coordinates}
+
+Consider a single spinless particle which has Hilbert space $L_2$, so orbital angular momentum only. We are interested in central potentials
+\begin{eqn}
+H = \frac{p^2}{2m} + U(r). 
+\end{eqn}
+We will use the commutation relations for $\v x, \v p$ and $\v L = \v x \times \v p$,
+\begin{eqn}
+[x_i, p_j] = i \hbar \delta_{ij}, \qquad
+[L_i, L_j] = i \hbar \epsilon_{ijk} L_k
+\end{eqn}
+to derive properties of central potential systems. We are interested in symmetries under rotations $R(\phi \uv n) \in SO(3)$. Under such a rotation the wavefunction changes by
+\begin{eqn}
+\psi (\v r) \rightarrow \psi'(\v r) = \psi(R\inv \v r) = e^{-i\phi \uv n \cdot \v L / \hbar} \psi(\v r).
+\end{eqn}
+So, rotating about the $z$-axis by some small angle $\epsilon$, we have
+\begin{eqn}
+R\inv_z(\epsilon) = R_z(-\epsilon) = \pmat{1 & \epsilon & 0 \\ -\epsilon & 1 & 0 \\ 0 & 0 & 1} 
+\qquad \implies \qquad 
+R\inv_z \v r = \pmat{x + \epsilon y \\ y - \epsilon x \\ z}
+\end{eqn}
+so that
+\begin{align}
+\psi'(\v r) &\approx (1 - \frac{i \epsilon}{\hbar} L_z) \psi(\v r) \\
+	&= (1 - \epsilon (x \partial_y - y \partial_x)) \psi(\v r) \\
+	&= (1 - \epsilon \partial_\phi) \psi(r, \theta, \phi),
+\end{align}
+so we identify $L_z = -i\hbar \partial_\phi$. Furthermore, we have
+\begin{eqn}
+L_\pm = L_x \pm i L_y = -i \hbar e^{\pm i \phi} (\pm i \partial_\theta - \cot \theta \partial_\phi).
+\end{eqn}
+So working out the full angular momentum we have
+\begin{align}
+\v L^2 &= L_z^2 + \frac{1}{2} (L_+ L_- + L_- L_+) \\
+	&= -\hbar^2 \left[ \frac{1}{s\in\theta} \partial_\theta (\sin\theta \partial_\theta) + \frac{1}{\sin^2 \theta} \partial_\phi^2 \right].
+\end{align}
+Notice that this is just the angular part of the Laplacian,
+\begin{eqn}
+\nabla^2 = \frac{1}{r^2} \left[ \partial_r (r^2 \partial_r) - \v L^2 / \hbar^2 \right].
+\end{eqn}
+
+
+\subsection{Spherical harmonics}
+
+Now, since $\v L^2, L_z$ form a complete set of (linearly independent) commuting operators, we can factorize the wavefunction
+\begin{eqn}
+\psi(r,\theta,\phi) = f(r) Y_\ell^m (\theta,\phi).
+\end{eqn}
+This factorization is unique up to constants, and we call the functions $Y_\ell^m(\theta,\phi)$ with a particular normalization \emph{spherical harmonics}. Furthermore since $Y_\ell^m$ must be an eigenfunction of $L_z$, we have
+\begin{eqn}
+(\partial_\phi - im) Y_\ell^m = 0 
+\qquad \implies \qquad
+Y_\ell^m(\theta,\phi) = e^{im\phi} y_\ell^m(\theta).
+\end{eqn}
+Finally, we can show that $L_+ Y_\ell^\ell = 0$ which gives us a solution for $Y_\ell^\ell$, and we can generate the rest using the ladder operators. [See Yaroslav's notes for more on spherical harmonics.]
+
+
+
+
+
+\end{document}
