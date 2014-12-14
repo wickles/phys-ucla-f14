@@ -1,0 +1,143 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec17}
+\author{UCLA, Fall 2014}
+\date{\formatdate{1}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+         % format: formatdate{dd}{mm}{yyyy}
+
+\begin{document}
+\maketitle
+
+
+\section{Angular momentum}
+
+In general, the total angular momentum has two components
+\begin{eqn}
+\v J = \v L + \v S,
+\end{eqn}
+where $\v L = \v r \times \v p$ is the orbital angular momentum and $\v S$ is the spin angular momentum. The spin angular momentum acts in an abstract space, spin space, with dimensionality $2s+1$ where $s$ is the spin quantum number (i.e. $S_i$ are $(2s+1) \times (2s+1)$ Hermitian matrices). The spin quantum number is integer-valued for bosons and half-integer-valued for fermions. (In QFT, bosons can be modeled by complex-valued spinors but to model fermions we must introduce Grassman numbers, i.e. anticommuting numbers.) Since $\v L$ and $\v S$ act in different spaces, we find commutation relations
+\begin{eqn}
+[L_i, L_j] = i \hbar \epsilon_{ijk} L_k, \qquad
+[S_i, S_j] = i \hbar \epsilon_{ijk} S_k, \qquad
+[L_i, S_j] = 0,
+\end{eqn}
+and thus
+\begin{eqn}
+[J_i, J_j] = i \hbar \epsilon_{ijk} J_k.
+\end{eqn}
+
+Quantum mechanically, we will represent a general ket, including angular momentum, as
+\begin{eqn}
+\ket{\alpha} = \ket{\psi} \otimes \ket{\sigma}
+\end{eqn}
+where $\ket{\psi}$ is the usual complex-valued $L_2$ wavefunction, and $\ket{\sigma}$ is the spin state living in $(2s+1)$-dimensional spin space. We will represent the spin state $\ket{\sigma}$ in an orthonormal basis as a column vector called a ``spinor'',
+\begin{eqn}
+\ket{\sigma} \rightarrow \chi_\sigma = \pmat{\alpha \\ \beta}, \quad
+\alpha, \beta \in \C
+\end{eqn}
+with inner product
+\begin{eqn}
+\braket{\sigma}{\sigma'} = \chi^\dagger \chi' = \alpha^* \alpha' + \beta^* \beta'.
+\end{eqn}
+Generally, we will demand that the spin state be normalized so that
+\begin{eqn}
+1 = \braket{\sigma}{\sigma} = \chi^\dagger \chi = \abs{\alpha}^2 + \abs{\beta}^2.
+\end{eqn}
+Furthermore, the general inner product is written
+\begin{eqn}
+\braket{\alpha}{\alpha'} = \braket{\psi}{\psi'} \braket{\sigma}{\sigma'}.
+\end{eqn}
+
+
+\subsection{Rotations}
+
+What happens to the general ket under a general rotation $R : \ket{\alpha} \mapsto \ket{\alpha'}$? For the wavefunction we have as always
+\begin{eqn}
+\ket{\psi} \mapsto \ket{\psi'} = e^{-i \phi \uv \cdot \v L / \hbar} \ket{\psi}.
+\end{eqn}
+On the other hand, the spin state does not depend on spatial coordinates, so instead it transforms as 
+\begin{eqn}
+\ket{\sigma} \mapsto \ket{\sigma'} = D(R) \ket{\sigma}
+\end{eqn}
+where $D(R)$ is some representation of the rotation $R$, i.e. a homomorphism
+\begin{eqn}
+D(R_1 R_2) = D(R_1) D(R_2).
+\end{eqn}
+Since it must preserve the norm, the representation must be unitary, $D^\dagger = D\inv$, and unimodular, i.e. $\det D = 1$, so that
+\begin{eqn}
+D(R) \in SU(2s+1).
+\end{eqn}
+
+Recall that under the Euclidean rotations $R_i(\theta)$ we have
+\begin{eqn}
+[R_x(\epsilon), R_y(\epsilon)] = R_z(\epsilon^2) - 1 + \bigO(\epsilon^3).
+\end{eqn}
+Since the representation is a homomorphism, this commutation relation must pass through to the representation. So we will define $S_k$ by
+\begin{eqn}
+D(R_k(\epsilon)) = 1 - \frac{i}{\hbar} \, \epsilon S_k + \bigO(\epsilon^2).
+\end{eqn}
+Then the commutation relation tells us that
+\begin{eqn}
+[S_x, S_y] = i\hbar S_z,
+\end{eqn}
+as expected. Thus $\v S$ is the generator of $SU(2s+1)$ rotations in spin space for a real rotation $R$ parameterized by $\phi, \uv n$, i.e.
+\begin{eqn}
+D(R) = U_S(\uv n, \phi) = e^{i \phi \uv n \cdot \v S / \hbar} \in SU(2s+1).
+\end{eqn}
+We can define a total rotation operator
+\begin{eqn}
+U = U_L \otimes U_S.
+\end{eqn}
+Finally, we can parameterize any orientational configuration by Euler angles
+\begin{eqn}
+U_S (\phi, \theta, \psi) = e^{-i \phi S_z / \hbar} e^{-i \theta S_y / \hbar} e^{-i \psi S_z / \hbar}.
+\end{eqn}
+
+A useful identity is given by
+\begin{eqn}
+e^{-i \phi J_i / \hbar} J_j e^{i \phi J_i / \hbar} = e^{-i \phi \opname{ad}_{J_i} / \hbar} J_j = J_j \cos \phi + \epsilon_{ijk} J_k \sin \phi,
+\end{eqn}
+where $\opname{ad}_X Y \equiv [X,Y]$. Then for any vector $\v a$ we have
+\begin{eqn}
+e^{-i \phi \uv n \cdot \v J / \hbar} (\v a \cdot \v J) e^{i \phi \uv n \cdot \v J / \hbar} = (R \v a) \cdot \v J,
+\end{eqn}
+but we can also pull out the vector $\v a$ so that
+\begin{eqn}
+\v a \cdot \left[ e^{-i \phi \uv n \cdot \v J / \hbar} \v J e^{i \phi \uv n \cdot \v J / \hbar} \right] = \v a \cdot (R\inv \v J),
+\end{eqn}
+where we obtained the RHS from
+\begin{eqn}
+(R \v a) \cdot \v J = (R \v a) \cdot (R (R\inv \v J)) = \v a \cdot (R\inv \v J),
+\end{eqn}
+the last equality following from the fact that for a rotation we have
+\begin{eqn}
+(R \v a) \cdot (R \v b) = \v a \cdot \v b.
+\end{eqn}
+Then since $R(\phi)\inv = R(-\phi)$ we find the useful relation
+\begin{eqn}
+e^{i \phi \uv n \cdot \v J / \hbar} \v J e^{-i \phi \uv n \cdot \v J / \hbar} = R \v J.
+\end{eqn}
+Thus under a rotation the matrix element changes by
+\begin{eqn}
+\matrixel{\alpha}{\v J}{\alpha} \overset{R}{\longrightarrow} \matrixel{\alpha}{e^{i \phi \uv n \cdot \v J / \hbar} \v J e^{-i \phi \uv n \cdot \v J / \hbar}}{\alpha} = R \avg{\v J}.
+\end{eqn}
+Finally, we have
+\begin{eqn}
+\v S = \frac{\hbar}{2} \v \sigma. 
+\end{eqn}
+
+
+
+
+
+
+\end{document}

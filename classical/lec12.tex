@@ -1,0 +1,146 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec12}
+\author{UCLA, Fall 2014}
+\date{\formatdate{18}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{More HJE: Separability}
+
+As our first realistic example, we'll take a look at motion in a central potential from a new perspective. Given Hamiltonian
+\begin{eqn}
+H = \frac{p_r^2}{2m} + \frac{p_\theta}{2mr^2} + V(r)
+\end{eqn}
+the HJE equation
+\begin{eqn}
+H(\pd{F}{q_i}, q_i,  t) + \pd{F}{t} = 0
+\end{eqn}
+is just
+\begin{eqn}
+\frac{1}{2m} \left( \pd{F}{r} \right)^2 + \frac{1}{2mr^2} \left( \pd{F}{\theta} \right)^2 + V(r) + \pd{F}{t} = 0.
+\end{eqn}
+
+Since we know that energy is conserved we can actually separate out the time dependence in the generating function
+\begin{eqn}
+F = W(r, \theta) - \alpha_1 t
+\end{eqn}
+where $\alpha$ is the constant energy,
+\begin{eqn}
+H(\pd{W}{q_i}, q_i, t) = \alpha_1.
+\end{eqn}
+Then our HJE equation reduces to
+\begin{eqn}
+\frac{1}{2m} \left( \pd{W}{r} \right)^2 + \frac{1}{2mr^2} \left( \pd{W}{\theta} \right)^2 + V(r) = \alpha_1,
+\end{eqn}
+which we can rewrite as
+\begin{eqn}
+\left( \pd{W}{\theta} \right)^2 = 2mr^2 (\alpha_1 - V(r)) - r^2 \left( \pd{W_r}{r} \right)^2.
+\end{eqn}
+We can further separate our ansatz as
+\begin{eqn}
+W = W_r(r) + w_\theta(\theta)
+\end{eqn}
+which allows us to separate our equation into separate parts dependent on each coordinate
+\begin{eqn}
+\left( \pd{W_\theta}{\theta} \right)^2 = \alpha_2^2
+\end{eqn}
+and
+\begin{eqn}
+2mr^2 (\alpha_1 - V(r)) - r^2 \left( \pd{W_r}{r} \right)^2 = \alpha_2^2.
+\end{eqn}
+The first one then just gives us a constant for $\tpd{W_\theta}{\theta}$, and for the other part we have
+\begin{eqn}
+\pd{W_r}{r} = \frac{1}{r} \sqrt{ 2mr^2(\alpha_1 - V(r)) - \alpha_2^2}.
+\end{eqn}
+So we have solutions
+\begin{eqn}
+W_\theta = \alpha_2 \theta, \qquad
+W_r = \int \dif{r} \sqrt{2m(\alpha_1 - V(r)) - \alpha_2^2 / r^2}.
+\end{eqn}
+
+Of course the HJE equation only gives us the generating function 
+\begin{eqn}
+F = W_r + W_\theta - \alpha_1 t.
+\end{eqn}
+To solve for the dynamics, we get from the canonical transformation (from the generating function formalism),
+\begin{align}
+\beta_1 &= \pd{F}{\alpha_1} = -t + \int \dif{r} \, m \left[ 2m(\alpha_1 - V(r)) + \alpha_2^2 / r^2 \right]^{-1/2}, \\
+\beta_2 &= \pd{F}{\alpha_2} = \theta - \int \dif{r} \, \frac{\alpha_2}{r^2} \left[ 2m (\alpha_1 - V(r)) + \alpha_2^2 / r^2 \right]^{-1/2}.
+\end{align}
+So we can interpret $\beta_1$ as initial time $-t_0$ and $\beta_2$ as initial angle $\theta_0$. Furthermore, the angular momentum is just 
+\begin{eqn}
+p_\theta = \pd{W}{\theta} = \alpha_2.
+\end{eqn}
+
+
+\section{Semi-classical approximation}
+
+Recall the Schroedinger equation
+\begin{eqn}
+i \hbar \pd{\psi}{t} = -\frac{\hbar^2}{2m} \pd[2]{\psi}{q}^2 + V(q) \psi(q,t).
+\end{eqn}
+If we write an ansatz
+\begin{eqn}
+\psi(q,t) = R(q,t) e^{i W(q,t) / \hbar}
+\end{eqn}
+the Schroedinger equation reduces to
+\begin{eqn}
+\pd{W}{t} + \frac{1}{2m} \left( \pd{W}{q} \right)^2 + V(q) = \bigO(\hbar).
+\end{eqn}
+If we take $\hbar \rightarrow 0$ then this just reduces to the HJE! So the Hamilton-Jacobi formalism actually gives us ``waves'' with wavefronts of constant action, so the HJE is about as close to a ``particle-wave duality'' in classical mechanics. 
+
+
+\section{Mathematics of Lagrangian and Hamiltonian Mechanics}
+
+In the Lagrangian $L(q_i, \dot q_i, t)$ the $q_i$ are coordinates on a configuration manifold $V$. Then the velocity
+\begin{eqn}
+\dot q_i(t) = \lim_{\epsilon \rightarrow 0} \frac{q_i(t+\epsilon) - q_i(t)}{\epsilon}
+\end{eqn}
+is actually just a vector in the tangent space $T_{q(t)}V$, which is the vector space of all tangent vectors at the point $q(t)$. If we consider the collection of all tangent spaces on the manifold $V$ we get the tangent bundle $TV$. 
+
+Things get more complicated when we go to Hamiltonian mechanics. When we write the Hamiltonian
+\begin{eqn}
+H = \sum_i p_i \cdot \dot q_i - L,
+\end{eqn}
+the velocity $\vd q$ is an element of the tangent space, $\vd q \in T_{q(t)}V$, while the canonical momentum $\v p$ is really a covector, an element of the cotangent space $\v p \in T^*_{q(t)}V$, which is the vector space of all cotangent vectors at the point $q(t)$. Similar to the tangent bundle, the collection of all cotangent spaces is called the cotangent bundle $T^*V$. 
+
+We can reformulate the symplectic tensor
+\begin{eqn}
+J_{IJ} = \pmat{ 0 & 1 \\ -1 & 0}
+\end{eqn}
+as a 2-form on $T^* V$
+\begin{eqn}
+\omega = \sum_i \dif p_i \wedge \dif q_i,
+\end{eqn}
+for which we have $\dif \omega = 0$. It turns out that all of the symplectic geometry we've been discussing can be formulated in terms of this 2-form. 
+
+
+\section{More on integrable systems}
+
+Integrable systems are very important, particularly in statistical mechanics where we have constant energy
+\begin{eqn}
+H(p_i, q_i) = E.
+\end{eqn}
+This gives us ``Ergodic behavior'', meaning that every configuration in phase space is equally probable. Since the constant energy surface is a $2n-1$ dimensional subspace of the phase space, we reason that the when the trajectories are evolved to $t = \infty$, the path should trace out every point in the phase space. This is the ``Ergodic hypothesis''. 
+
+[Something something, baking analogy]
+
+We can define some interesting subsets of phase space. The Poincare section is defined as the surface which is everywhere orthogonal to the flow at time $t$. In an integrable system, the trajectories instead trace out the Poincare section. [??? but the Poincare section is orthogonal to the flow?] 
+
+[something something chaos]
+
+
+
+
+
+
+\end{document}

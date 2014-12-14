@@ -1,0 +1,241 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec04}
+\author{UCLA, Fall 2014}
+\date{\formatdate{14}{10}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Mechanical systems with constraints}
+
+Another advantage of the Lagrangian formalism is that it makes the handling of constraints easier. Constraints are ubiquitous in physics --- some examples:
+
+\begin{enumerate}
+\item Atwood machine. Masses $m_1$ and $m_2$ attached to a pulley.
+\item Motion constrained to a surface
+\item Spherical pendulum
+\item Double pendulum
+\item Bead on a rotating rigid rod. 
+\item Rolling without slipping
+\end{enumerate}
+
+In Newtonian mechanics, to deal with these constraints we must make use of normal forces, string tensions, kinetic vs static friction etc. It is arguably simpler and more systematical in the Lagrangian approach. Let's attempt to classify the different constraints. 
+
+Imagine the motion of a particle in a potential $\Phi(\v x,t)$ (no dependence on velocity). Suppose the potential has a uniformly-valued valley along some curve $\v \gamma (\lambda,t)$, so that
+\begin{eqn}
+\Phi(\v \gamma, t) = c(t).
+\end{eqn}
+In the limit where $\Phi \to \infty$ away from $\v \gamma(\lambda,t)$, this determines a constraint for the particle's motion, which we can write as an isosurface
+\begin{eqn}
+\phi(\v x, t) = \Phi(\v x, t) - c(t) = 0.
+\end{eqn}
+A constraint like this that does not depend on velocity is called \emph{holonomic}. The constraint can be further classified as \emph{scleronomic} if it does not depend explicitly on time $t$, or \emph{rheonomic} if it does. 
+
+A \emph{nonholonomic} constraint is one that depends on the velocities,
+\begin{eqn}
+\phi(\v x, \vd x, t) = 0.
+\end{eqn}
+More generally, a \emph{nonholonomic system} is one whose state depends on the particular path taken. Nonholonomic constraints are generally difficult to treat in the Lagrangian formalism. For holonomic constraints, the general approach is to use \emph{Lagrange multipliers}. Another case may be that the constraint is an \emph{inequality} rather than an \emph{equality}, which may be treated \emph{Kuhn-Tucker method}. For now we will only treat holonomic equality constraints. 
+
+
+\subsection{Holonomic constraints}
+
+Suppose we have $s$ linearly independent constraints $\phi_1, \dots, \phi_s$. There are generally two methods to treat the constraints.
+
+\subsubsection{Lagrange multipliers}
+
+Introduce $s$ new auxiliary coordinates $\lambda_1(t), \dots, \lambda_s(t)$ and modify the action,
+\begin{eqn}
+\widetilde{S} [q_i, \lambda_j] = \int_{t_1}^{t_2} \dif{t} \left[ L(q_i, \dot q_i, t) + \sum_{k=1}^s \lambda_k \phi_k (q_i, t) \right].
+\end{eqn}
+Varying the new action with respect to the coordinates $q_i, \lambda_j$, we find that the Euler-Lagrange equations give us
+\begin{eqn}
+0 = \pd{\widetilde{L}}{\lambda_j} = \phi_j
+\end{eqn}
+for the $\lambda_j$ coordinates, and
+\begin{eqn}
+0 = \od{}{t} \pd{L}{\dot q_i} - \pd{L}{q_i} - \sum_{k=1}^s \lambda_k \pd{\phi_k}{q_i}
+\end{eqn}
+for the $q_i$ coordinates, $i = 1, \dots, N$. 
+
+Counting, we have $N+s$ unknowns, with $N$ constrained EL equations and $s$ constraint equations, fully determining $q_i, \lambda_j$. From the EL equation, the gradient of $\phi_k$ looks like a force derived from potential $\phi_k$ with strength $\lambda_k$, which we can interpret as compensating for various normal forces arising on the constraint surfaces. 
+
+
+\subsubsection{Change coordinates}
+
+In this method, we pick $N-s$ coordinates $\widetilde{q}_1, \dots, \widetilde{q}_{N-s}$ which parametrize the constrained surface, and make $\phi_1, \dots, \phi_s$ the remaining coordinates. Then our constraints are satisfied automatically by choice of coordinates, and we just have the usual EL equations on the constrained coordinates
+\begin{eqn}
+0 = \pd{L}{\widetilde{q}_m} - \od{}{t} \pd{L}{\widetilde{q}_m}.
+\end{eqn}
+This is best to use when the constraints are simple, but generally we need to rely on Lagrange multipliers. 
+
+
+\subsection{Simple example: Atwood machine}
+
+In this example we have two masses $m_1$ and $m_2$ at either end of a string of length $\ell$ going over a pulley. The Lagrangian is given by
+\begin{eqn}
+L = \frac{1}{2} m_1 \dot x_1^2 + \frac{1}{2} m_2 \dot x_2^2 - m_1 g x_1 - m_2 g x_2
+\end{eqn}
+with constraint
+\begin{eqn}
+0 = \phi(x_1, x_2) = x_1 + x_2 - \ell.
+\end{eqn}
+
+First we will use Lagrange multipliers, so we have the new Lagrangian
+\begin{align}
+L' &= L + \lambda \phi \\
+	&= \frac{1}{2} m_1 \dot x_1^2 + \frac{1}{2} m_2 \dot x_2^2 - m_1 g x_1 - m_2 g x_2 \\
+	&\qquad + \lambda (x_1 + x_2 - \ell).
+\end{align}
+Then the constrained EL equations give us
+\begin{gather}
+0 = m_1 \ddot x_1 + m_1 g - \lambda \\
+0 = m_2 \ddot x_2 + m_2 g - \lambda \\
+0 = x_1 + x_2 - \ell.
+\end{gather}
+Then we know that $\dot x_1 = -\dot x_2$ so subtracting the equations of motion we have
+\begin{eqn}
+(m_1 + m_2) \ddot x_1 + (m_1 - m_2) g = 0,
+\end{eqn}
+or
+\begin{eqn}
+\ddot x_1 = - \frac{m_1 - m_2}{m_1 + m_2} g.
+\end{eqn}
+What about $\lambda$? Plugging back in our expression for $\ddot x_1$ we have
+\begin{align}
+\lambda &= m_1 \ddot x_1 + m_1 g \\
+	&= - m_1 \frac{m_1 - m_2}{m_1 + m_2} g + m_1 g \\
+	&= \frac{2 m_1 m_2}{m_1 + m_2} g,
+\end{align}
+which is just the string tension!
+
+Next we can approach it directly using our second strategy of choosing new coordinates. Choosing 
+\begin{eqn}
+\widetilde{x} = x_1 = L - x_2,
+\end{eqn}
+we have the Lagrangian in the single coordinate,
+\begin{eqn}
+L = \frac{1}{2} m_1 \dot x_1^2 + \frac{1}{2} m_2 \dot x_1^2 - m_1 g x_1 - m_2 g (L - x_1).
+\end{eqn}
+Then the EL equation gives us
+\begin{eqn}
+(m_1 + m_2) \ddot x_1 + (m_1 - m_2) g = 0
+\end{eqn}
+or, as before,
+\begin{eqn}
+\ddot x_1 = - \frac{m_1 - m_2}{m_1 + m_2} g.
+\end{eqn}
+So now we don't have to worry about $\lambda$, but we also don't get a direct way to calculate the string tension. 
+
+
+\subsection{Second example: Double pendulum}
+
+Suppose we have a double pendulum with point mass $m_1$ a distance $\ell_1$ from a fixed point making angle $\varphi_1$ from the vertical, and another point mass $m_2$ a distance $\ell_2$ from $m_1$ making angle $\varphi_2$ from the vertical. We will use the angles $\varphi_1, \varphi_2$ as our generalized coordinates, making Cartesian coordinates
+\begin{eqn}
+x_1 = + \ell_1 \sin \varphi_1, \qquad
+z_1 = - \ell_2 \cos \varphi_1
+\end{eqn}
+and 
+\begin{eqn}
+x_2 = x_1 + \ell_2 \sin \varphi_2, \qquad
+z_2 = z_1 - \ell_2 \cos \varphi_2.
+\end{eqn}
+
+The Lagrangian is then written
+\begin{align}
+L &= \frac{1}{2} m_1 (\dot x_1^2 + \dot z_1^2) + \frac{1}{2} m_2 (\dot x_2^2 + \dot z_2^2) - m_1 g z_1 - m_2 g z_2 \\
+	&= \frac{1}{2} (m_1 + m_2) \ell_1^2 \dot \varphi_1^2 + \frac{1}{2} m_2 \ell_2^2 \dot \varphi_2^2 + \frac{1}{2} m_2 \ell_1 \ell_2 \dot \varphi_1 \dot \varphi_2 \cos (\varphi_1 - \varphi_2) \\
+	&\qquad + (m_1 + m_2) g \ell_1 \cos \varphi_1 + m_2 \ell_2 g \cos \varphi_2,
+\end{align}
+which we can describe as almost being two distinct pendulums $(m_1+m_2,\varphi_1)$ and $(m_2, \varphi_2)$ but with an extra coupling between $\dot \varphi_1$ and $\dot \varphi_2$. We will not attempt to solve this now, but we will come back to it in our study of small oscillations. 
+
+
+\subsection{Third example: Bead on rotating rod}
+
+Suppose we have a bead with mass $m$ constrained to move along a rod rotating with angular frequency $\omega$. Then the bead's Cartesian coordinates can be written
+\begin{eqn}
+x = d \sin \omega t, \qquad
+y = d \cos \omega t
+\end{eqn}
+where $d$ is the radius from the axis of rotation. So the Lagrangian is given by
+\begin{align}
+L &= \frac{1}{2} m (\dot x^2 + \dot y^2) \\
+	&= \frac{1}{2} m \left[ (\dot d \sin \omega t + \omega d \cos \omega t)^2 + (\dot d \cos \omega t - \omega d \sin \omega t)^2 \right] \\
+	&= \frac{1}{2} m (\dot d^2 + \omega^2 d^2).
+\end{align}
+The EL equations give us a differential equation
+\begin{eqn}
+0 = \ddot d - \omega^2 d,
+\end{eqn}
+with solution
+\begin{eqn}
+d = d_0 \cosh \omega t.
+\end{eqn}
+
+
+\subsection{Holonomic vs non-holonomic constraints}
+
+We know that the force $\v F_\phi$ a holonomic constraint $\phi$ imposes, i.e. the normal force, is orthogonal to the constraint surface. So for displacement $\delta \v x$ along the constraint surface, we have
+\begin{eqn}
+\v F_\phi \cdot \delta \v x = 0.
+\end{eqn}
+This is called \emph{D'Alambert's principle} and can be used as the starting point to ``derive'' the constrained Lagrangian formalism. 
+
+
+\subsection{Nonholonomic example: Rolling without slipping}
+
+Sometimes nonholonomic constraints can be reduced to holonomic constraints. For example, consider a wheel with radius $R$ rolling without slipping. Denote the distance it rolls to the right by $x$ and the angle it rotates counterclockwise in the same distance by $\varphi$. Then we have
+\begin{eqn}
+\dot x = -R \dot \varphi. 
+\end{eqn}
+This is a nonholonomic constraint, but it is also a total time differential
+\begin{eqn}
+\od{}{t} \left( x + R \varphi \right) = 0,
+\end{eqn}
+so that we can integrate the constraint to obtain a holonomic constraint
+\begin{eqn}
+x + R \varphi = x_0. 
+\end{eqn}
+
+It is \emph{generally} not possible to integrate a nonholonomic constraint into a holonomic one. Consider the same wheel but now constrained to move along a circle in the $xy$-plane. Then the constraint becomes
+\begin{eqn}
+\dot x = R \dot \varphi \sin \theta, \qquad
+\dot y = -R \dot \varphi \cos \theta.
+\end{eqn}
+If $\theta$ is constant, i.e. the wheel is not moving, then we could integrate but in general these constraints are not integrable. However, this case can still be treated since the constraints are linear in the velocities,
+\begin{eqn}
+\phi_k (q_i, \dot q_i, t) = \sum_j \psi_j^{(k)} (q_i) \, \dot q_j.
+\end{eqn}
+If the $\v \psi^{(k)}$s are gradients in $q_i$, i.e.
+\begin{eqn}
+\psi_j^{(k)} = \pd{\Omega^{(k)}}{q_j}
+\end{eqn}
+for some functions $\Omega^{(k)} (q_i)$, then we have
+\begin{eqn}
+\phi_k = \od{}{t} \Omega^{(k)}.
+\end{eqn}
+Thus we can define another Lagrangian
+\begin{eqn}
+L \to L' = L - \sum_k \lambda_k \Omega^{(k)},
+\end{eqn}
+which has EL equations similar to the holonomic case,
+\begin{eqn}
+0 = \od{}{t} \pd{L}{\dot q_i} - \pd{L}{q_i} - \sum_k \lambda_k \underbrace{\pd{\Omega^{(k)}}{q_i}}_{\psi_i^{(k)}}. 
+\end{eqn}
+This is still valid even if $\psi$ is not itself a total differential! 
+
+
+
+
+
+
+
+\end{document}

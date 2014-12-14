@@ -1,0 +1,109 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec14}
+\author{UCLA, Fall 2014}
+\date{\formatdate{25}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{More on rigid bodies}
+
+For an angular momentum $\v \omega$ we have kinetic energy 
+\begin{eqn}
+T = \frac{1}{2} \sum_{ij} \omega_i I_{ij} \omega_j
+\end{eqn}
+and angular momentum
+\begin{eqn}
+L_i = \sum_j I_{ij} \omega_j.
+\end{eqn}
+[One or both of these are independent of frame?] Recall the Euler equations
+\begin{eqn}
+I \vd \omega = \v \omega \times (I \v \omega),
+\end{eqn}
+or in the frame of the principal axes
+\begin{align}
+I_1 \od{\omega_1}{t} &= (I_2 - I_3) \omega_2 \omega_3, \\
+I_2 \od{\omega_2}{t} &= (I_3 - I_1) \omega_3 \omega_1, \\
+I_3 \od{\omega_3}{t} &= (I_1 - I_2) \omega_1 \omega_2.
+\end{align}
+
+
+\subsection{Stability of solutions}
+
+Suppose without loss of generality that $I_1 < I_2 < I_3$. Then we can write our solutions as
+\begin{align}
+\omega_1 &= \omega + \eta_1, \\
+\omega_2 &= 0 + \eta_2, \\
+\omega_3 &= 0 + \eta_3.
+\end{align}
+For some reason we have a 0th order case
+\begin{eqn}
+\od{\omega}{t} = 0 
+\qquad \implies \qquad
+\omega = \text{const}
+\end{eqn}
+and a 1st order case
+\begin{eqn}
+\od{\eta_1}{t} = 0 
+\end{eqn}
+in which case we can set $\eta_1 = 0$ (can be absorbed into $\omega$ [what?]) Then we can write ODEs for $\eta_2, \eta_3$,
+\begin{eqn}
+\od{\eta_2}{t} = J_2 \eta_3, \qquad
+\od{\eta_3}{t} = J_3 \eta_2
+\end{eqn}
+where
+\begin{eqn}
+J_2 = \frac{I_3 - I_1}{I_2} \, \omega, \qquad
+J_3 = \frac{I_1 - I_2}{I_3} \, \omega.
+\end{eqn}
+So in general we can write
+\begin{eqn}
+\pmat{\dot \eta_2 \\ \dot \eta_3} = \pmat{0 & J_2 \\ J_3 & 0} \pmat{\eta_2 \\ \eta_3},
+\end{eqn}
+which has solutions
+\begin{eqn}
+\eta_i(t) = e^{\lambda t} \eta_i(0), \quad i = 2,3
+\end{eqn}
+where $\lambda$ is determined by
+\begin{eqn}
+0 = \det \pmat{\lambda & -J_2 \\ -J_3 & \lambda} = \lambda^2 - J_2 J_3 \qquad
+\implies \qquad
+\lambda = \pm \sqrt{J_2 J_3}.
+\end{eqn}
+So we have
+\begin{eqn}
+\lambda = 
+\begin{cases}
+\pm i \sqrt{\abs{J_2 J_3}}, & J_2 J_3 < 0 \\
+\pm \sqrt{\abs{J_2 J_3}}, & J_2 J_3 > 0
+\end{cases}
+\end{eqn}
+which is stable in the first case and unstable in the second case. In our case $I_1 < I_2 < I_3$ so $J_2 > 0$ and $J_3 < 0$ so it's stable. In other cases it can be unstable. 
+
+
+\subsection{Geometrical (Poinsot) Picture of Conserved Quantities}
+
+[stuff about intersections of ellipsoids and spheres]
+
+[something about why choice of Euler angles is nice]
+
+
+\subsection{Example: Heavy symmetric top}
+
+[missed last hour]
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,171 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec16}
+\author{UCLA, Fall 2014}
+\date{\formatdate{26}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Rotations and Angular Momentum in Quantum Mechanics}
+
+\subsection{Group theory}
+
+Orthogonal transformations are Euclidean transformations which do not change distances, i.e. rotations and reflections. Suppose we have a transformation $R$ taking
+\begin{eqn}
+\v x \mapsto \v x' = R \cdot \v x.
+\end{eqn}
+For the transformation to be orthogonal, we must have
+\begin{eqn}
+\norm{\v x} = \sqrt{x_i x_i} = \norm{\v x'} = \sqrt{R_{ij} x_j R_{ij'} x_{j'}},
+\end{eqn}
+which implies that
+\begin{eqn}
+R_{ij} R_{ij'} = \delta_{jj'}.
+\end{eqn}
+In other words, we have
+\begin{eqn}
+R^\top R = 1 \qquad
+\implies \qquad
+R^\top = R\inv,
+\end{eqn}
+so $R$ is an orthogonal matrix. Thus rotations and reflections are parametrized by orthogonal matrices. The set of all orthogonal matrices in 3 dimensions is a \textit{group} called $O(3)$. 
+
+\begin{definition}
+A \textit{group} is a set $G = \set{g_\alpha}$ with an operation $*$ with the following properties. 
+\begin{itemize}
+\item (Identity) There is an identity $1 \in G$ such that for all $g_\alpha \in G$ we have $g_\alpha * 1 = 1 * g_\alpha = g_\alpha$. 
+\item (Closure) For each $g_\alpha, g_\beta \in G$, we have $g_\alpha * g_\beta \in G$.
+\item (Invertibility) For each $g_\alpha \in G$ we have an inverse $g_\alpha\inv \in G$ such that $g_\alpha * g_\alpha\inv = g_\alpha\inv * g_\alpha = 1$.
+\item (Associativity) For $g_\alpha, g_\beta, g_\gamma \in G$, we have $(g_\alpha * g_\beta) * g_\gamma = g_\alpha * (g_\beta * g_\gamma)$.
+\end{itemize}
+In general, $g_\alpha * g_\beta \neq g_\beta * g_\alpha$, i.e. group elements must not necessarily commute. If all elements commute, the group is called \textit{Abelian}. A subset of a group $G$ that is itself a group is called a \textit{subgroup} of $G$. 
+\end{definition}
+
+Notice that for an orthogonal matrix $R$, we have $\det R = \pm 1$. The subgroup of $O(3)$ with determinant 1 is the group of proper rotations $SO(3)$. If $R \in O(3)$ and $\det R = -1$ then we call $R$ an improper rotation. If furthermore $R^2 = 1$, then $R$ is a reflection. Note that in three dimensions, parity is an improper rotation, but in two dimensions, parity is a proper rotation---it's just a rotation by $\pi$. In general, parity is a proper rotation in even dimensions and improper in odd dimensions. 
+
+For now we will consider rotations in three dimensions. A rotation $R_z (\phi)$ about the $z$-axis can be written
+\begin{eqn}
+R_z (\phi) = 
+\begin{pmatrix}
+\cos\phi & -\sin\phi & 0 \\
+\sin\phi & \cos\phi & 0 \\
+0 & 0 & 1
+\end{pmatrix}.
+\end{eqn}
+For an infinitesimal angle $\epsilon$ we have
+\begin{eqn}
+R_z (\epsilon) = 
+\begin{pmatrix}
+1 - \epsilon^2 / 2 & -\epsilon & 0 \\
+\epsilon & 1 - \epsilon^2 / 2 & 0 \\
+0 & 0 & 1
+\end{pmatrix}
++ \bigO(\epsilon^2).
+\end{eqn}
+Similarly for the other axes the infinitesimal rotations are (to quadratic order)
+\begin{eqn}
+R_x (\epsilon) = 
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 - \epsilon^2 / 2 & -\epsilon \\
+0 & \epsilon & 1 - \epsilon^2 / 2 \\
+\end{pmatrix}, \qquad
+R_y (\epsilon) =
+\begin{pmatrix}
+1 - \epsilon^2 / 2 & 0 & \epsilon \\
+0 & 1 & 0 \\
+-\epsilon & 0 & 1 - \epsilon^2 / 2 \\
+\end{pmatrix}.
+\end{eqn}
+If we look at the commutators of the rotations about the axes, we find
+\begin{eqn}
+[R_x(\epsilon), R_y(\epsilon)] = R_z(\epsilon^2) - 1 = 
+\begin{pmatrix}
+0 & -\epsilon^2 & 0 \\
+\epsilon^2 & 0 & 0 \\
+0 & 0 & 0
+\end{pmatrix}.
+\end{eqn}
+One can generalize to other permutations of the elementary rotations by cyclic permutation of $(xyz)$. These commutator relations will be useful in our applications to quantum mechanics. 
+
+
+\subsection{Angular momentum in QM}
+
+Recall that the infinitesimal evolution operator can be written
+\begin{eqn}
+U(\epsilon) = 1 - \frac{i}{\hbar} \epsilon H + \bigO(\epsilon^2),
+\end{eqn}
+so we call $H$ the \textit{generator of time evolution}. From now on we will assume that $H$ is time-independent. We can recover the full time evolution by repeatedly composing infinitesimal time evolutions
+\begin{eqn}
+U(t) = \lim_{n \rightarrow \infty} \left[ U(t/n) \right]^n.
+\end{eqn}
+Now, recall the identity
+\begin{eqn}
+e^\phi = \lim_{n \rightarrow \infty} \left( 1 + \frac{\phi}{n} \right)^n,
+\end{eqn}
+which also works for operators so that we have
+\begin{eqn}
+U(t) = \lim_{n \rightarrow \infty} \left( 1 - \frac{i}{\hbar} \, \frac{t}{n} H \right)^n = e^{i t H / \hbar}.
+\end{eqn}
+Thus we have
+\begin{eqn}
+H = i \hbar \partial_t U(t).
+\end{eqn}
+
+Similarly, momentum is the generator of translations,
+\begin{eqn}
+T (\v \epsilon) = 1 - \frac{i}{\hbar} \v \epsilon \cdot \v p = 1 - \v \epsilon \cdot \v \nabla,
+\end{eqn}
+since $\v p = - i \hbar \v \nabla$. Thus similarly we have
+\begin{eqn}
+\v p = i \hbar \v \nabla_{\v x} T(\v x).
+\end{eqn}
+We can now define the angular momentum operator $\v J$ in quantum mechanics in a similar way, as the generator of rotations
+\begin{eqn}
+\v J = i \hbar \v \nabla_{\v \phi} R(\v \phi)
+\end{eqn}
+where $R(\v \phi)$ is a rotation about $\uv \phi$ by angle $\abs{\v \phi}$. 
+
+Quantum mechanically, the general state of a particle in some rotation state is described by a ket
+\begin{eqn}
+\ket{\alpha} = \ket{\sigma} \otimes \ket{\psi},
+\end{eqn}
+where $\ket{\psi}$ is the usual $L_2$ Euclidean wavefunction giving dynamics in real space, while $\ket{\sigma}$ is a spin ket, or spinor, giving us dynamics in ``spin space''. In the absence of the spinor component we just have the Euclidean wavefunction. Furthermore, since $\v L = \v r \times \v p$ and $\v p = -i\hbar \v \nabla$, an infinitesimal rotation can be written
+\begin{eqn}
+R(\v \epsilon) = 1 - \frac{i}{\hbar} \v \epsilon \cdot \v L = 1 - \v \epsilon \cdot (\v r \times \v \nabla).
+\end{eqn}
+In general, when we include the spin structure the angular momentum $\v J$ is decomposed
+\begin{eqn}
+\v J = \v L + \v S,
+\end{eqn}
+where $\v L$ is the ``orbital'' angular momentum and $\v S$ is the ``spin'' angular momentum. 
+
+The only remaining task is to construct the (irreducible) representations of $SO(3)$. We define a \textit{representation} $D(g)$ of a group element $g \in G$ if $D$ is a homomorphism, i.e. given $g, h \in G$ we have
+\begin{eqn}
+D(g*h) = D(g) * D(h).
+\end{eqn}
+In the case of spin rotations, given a spin ket $\ket{\sigma}$ we have under rotations
+\begin{eqn}
+\ket{\sigma} \rightarrow D(R) \ket{\sigma}
+\end{eqn}
+It turns out that the irreducible representations of $D(R)$ are $N \times N$ matrices with $N = 2s + 1$ where $s = 0, \frac{1}{2}, 1, \frac{3}{2}, \dots$ is the spin of the particle. In terms of elementary particles, bosons have integer-valued spin while fermions have half-integer-valued spin. 
+
+
+
+
+
+
+
+
+\end{document}

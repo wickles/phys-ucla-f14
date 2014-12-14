@@ -1,0 +1,130 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec19}
+\author{UCLA, Fall 2014}
+\date{\formatdate{8}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+         % format: formatdate{dd}{mm}{yyyy}
+
+\begin{document}
+\maketitle
+
+
+\section{More angular momentum}
+
+Recall from last time that we have a complete set of commuting operators in $J_z, \v J^2$. This set has ``non-rotational'' degrees of freedom. Furthermore we have
+\begin{gather}
+\v J^2 = J_z^2 + \frac{1}{2} (J_+ J_- + J_- J_+), \\
+[\v J^2, J_z] = 0.
+\end{gather}
+So we have a set of simultaneous eigenstates $\ket{a,b}$ with eigenvalues
+\begin{eqn}
+\v J^2 \ket{a,b} = a \ket{a,b}, \qquad
+J_z \ket{a,b} = b \ket{a,b}.
+\end{eqn}
+Since our operators $\v J^2, J_z$ are Hermitian we know of course that $a,b \in \R$. 
+
+Now, how can we determine the eigenvalues? We can use the commutation relations
+\begin{eqn}
+[J_z, J_\pm] = \pm \hbar J_\pm, \qquad
+[\v J^2, J_\pm] = 0
+\end{eqn}
+where we know that
+\begin{eqn}
+J_\pm \ket{a,b} \propto \ket{a, b \pm \hbar}.
+\end{eqn}
+So we find that
+\begin{gather}
+J_z (J_\pm \ket{a,b}) = (b \pm \hbar) J_\pm \ket{a,b} \\
+\v J^2 (J_\pm \ket{a,b}) = a (J_\pm \ket{a,b}).
+\end{gather}
+Furthermore we know that
+\begin{align}
+a &= \matrixel[0]{a,b}{\v J^2}{a,b} \\
+	&= b^2 + \matrixel[0]{a,b}{J_x^2 + J_y^2}{a,b} \\
+	&\geq b^2
+\end{align}
+so there must be exist a maximum and minimum $b_\mathrm{max}, b_\mathrm{min}$ value of $b$. Then since
+\begin{eqn}
+0 = \matrixel[0]{a,b_\mathrm{max}}{J_\pm J_\mp}{a, b_\mathrm{max}} 
+\end{eqn}
+we have
+\begin{eqn}
+0 = a - b_\mathrm{max}^2 - \hbar b_\mathrm{max} = a - b_\mathrm{min}^2 - \hbar b_\mathrm{min}.
+\end{eqn}
+so that we must have $b_\mathrm{min} = -b_\mathrm{max}$. Then due to the ladder operator nature of $J_\pm$ we have
+\begin{eqn}
+b_\mathrm{max} = b_\mathrm{min} + n \hbar = \frac{n\hbar}{2}, \qquad
+n \in \Z
+\end{eqn}
+So, defining $j = b_\mathrm{max} / \hbar = n/2$ and $m = b / \hbar$, we have
+\begin{gather}
+a = b_\mathrm{max} (b_\mathrm{max} + \hbar) = \hbar^2 j (j+1) = 0, \frac{1}{2}, 1, \frac{3}{2}, \dots, \\
+b = \hbar m = -j, -j+1, \dots, j-1, j.
+\end{gather}
+
+It is convenient and standard to denote the eigenstates by $\ket{j,m}$ instead of $\ket{a,b}$. So for each value of $j = 0, \frac{1}{2}, 1, \frac{3}{2}, \dots$ we have a ladder of $2j+1$ states
+\begin{eqn}
+\ket{j,j}, \ket{j,j-1}, \dots, \ket{j,-j+1}, \ket{j,-j}
+\end{eqn}
+each of which can be obtained from its neighbors by acting upon it with $J_\pm$, up to a multiplying factor
+\begin{eqn}
+J_\pm \ket{j,m} = c^\pm_{jm} \ket{j, m \pm 1}.
+\end{eqn}
+We can determine these factor sy working out the matrix element
+\begin{align}
+\abs[0]{c^\pm_{jm}}^2 
+	&= \matrixel[0]{j,m}{J^\dagger_\pm J_\pm}{j,m} \\
+	&= \matrixel[0]{j,m}{\v J^2 - J_z^2 \mp \hbar J_z}{j,m} \\
+	&= \hbar^2 (j \mp m) (j \pm m + 1),
+\end{align}
+thus up to an arbitrary phase we have
+\begin{eqn}
+c^\pm_{jm} = \hbar \sqrt{(j \mp m) (j \pm m + 1)}.
+\end{eqn}
+Finally, for the general matrix element of $J_\pm$ we have
+\begin{eqn}
+\matrixel[0]{j,m}{J_\pm}{j',m'} = c^\pm_{jm} \delta_{j'j} \delta_{m',m\pm1}.
+\end{eqn}
+
+Now, recall that for $j=1/2$ we have the usual spinor representation
+\begin{eqn}
+J_z = \frac{\hbar}{2} \pmat{ 1 & 0 \\ 0 & -1}. 
+\end{eqn}
+More generally, for arbitrary $j$ we have
+\begin{eqn}
+J_z = \hbar 
+\begin{pmatrix}
+j & & & & \\
+& j-1 & & & \\
+& & \ddots & & \\
+& & & -j+1 & \\
+& & & & -j
+\end{pmatrix}.
+\end{eqn}
+To find the eigenstates for the full Hilbert space, we can follow this procedure:
+\begin{enumerate}
+\item ``Diagonalize'' $\v J^2$, collecting eigenkets with the largest possible $J_z$, i.e. find all $\v J^2$ eigenstates. This gives us all possible $\ket{j,j}$s. 
+\item Next, orthonormalize them (e.g. using Gram-Schmidt) to generate other quantum numbers $n$ unrelated to $\v J^2$, giving us kets $\ket{n,j,j}$. 
+\item Finally, we can obtain the full kets via
+\begin{eqn}
+\ket{n,j,m} = \frac{(J_-)^{j-m} \ket{n,j,j}}{c^-_{1m} c^-_{2m} \cdots c^-_{j-m,m}}.
+\end{eqn}
+[This looks wrong, should be $c^-_{j,j} c^-_{j,j-1} \cdots c^-_{j,j-m}$ ?]
+\end{enumerate}
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,229 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec16}
+\author{UCLA, Fall 2014}
+\date{\formatdate{4}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{More relativity}
+
+\subsection{More on Maxwell's equations}
+
+Let's go through the stuff on Maxwell's equations from last time again, more carefully this time. Recall that we defined the 4-potential
+\begin{eqn}
+A^\mu = (\phi / c, \v A).
+\end{eqn}
+We define the electromagnetic tensor
+\begin{eqn}
+F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu,
+\end{eqn}
+where we have lowered all the indices since the coordinate derivatives naturally have lower indices
+\begin{eqn}
+\partial_\mu = \pd{}{{x^\mu}}.
+\end{eqn}
+This in fact gives us a $4 \times 4$ matrix of components of the $\v E$ and $\v B$ fields,
+\begin{eqn}
+F_{\mu\nu} = 
+\begin{pmatrix}
+0 & -E_1 / c & -E_2 / c & -E_3 / c \\
+E_1 / c & 0 & B_3 & -B_2 \\
+E_2 / c & -B_3 & 0 & B_1 \\
+E_3 / c & B_2 & -B_1 & 0
+\end{pmatrix}.
+\end{eqn}
+
+It turns out that using this tensor we can rewrite the sourced half of Maxwell's equations as
+\begin{eqn}
+\partial_\mu F^{\mu \nu} = - J^\nu
+\end{eqn}
+where $J^\mu = (\rho_e / c, \v J)$. Working it out explicitly, we find that this set of equations is equivalent to 
+\begin{eqn}
+\v \nabla \cdot \v E = \rho_e
+\end{eqn}
+for $\nu = 0$ and
+\begin{eqn}
+\frac{1}{c^2} \partial_0 E_i - (\v \nabla \times \v B)_i = J_i
+\end{eqn}
+for $\nu = i = 1,2,3$. Furthermore, we can rewrite the other half of Maxwell's equations as
+\begin{eqn}
+\epsilon^{\mu\nu\rho\lambda} \partial_\nu F_{\rho\lambda} = 0
+\end{eqn}
+where $\epsilon^{\mu\nu\rho\lambda}$ is the 4-dimensional antisymmetric tensor with 
+\begin{eqn}
+\epsilon^{0123} = -\epsilon_{0123} = +1
+\end{eqn}
+by convention. This tensor equation is equivalent to 
+\begin{eqn}
+\v \nabla \cdot \v B = 0
+\end{eqn}
+for $\mu = 0$ and 
+\begin{eqn}
+\partial_0 \v B + \v \nabla \times \v E = 0
+\end{eqn}
+for $\mu = i = 1,2,3$. 
+
+
+\subsection{Classical field theory}
+
+Where before we thought of electromagnetism and electrodynamics in terms of the individual fields $\v E$ and $\v B$ and Maxwell's equations, we now have a set of \emph{field equations} in terms of the field $F_{\mu\nu}$ as determined by the potential $A^\mu$. This leads us to a nice segue into field theory. 
+
+In particulate classical mechanics we have dynamical variables $q_i(t)$; on the other hand, in field theory our dynamical variables will instead be \emph{fields} $\phi(x^\nu)$ which are functions over all of spacetime, for example the 4-potential $A_\mu (x^\nu)$. We would then use the Euler-Lagrange equations in terms of a \emph{Lagrangian density} depending on the fields at each point $x^\mu$,
+\begin{eqn}
+L(q, \dot q, t) \rightarrow \Lag(\phi(x), \partial_\mu \phi(x), t) 
+\end{eqn}
+while the action becomes an integral over spacetime
+\begin{eqn}
+S = \int \dif{t} \, L(q, \dot q, t) \rightarrow 
+	\int \underbrace{\dif t \, \dif^3 x}_{\dif^4 x} \, \Lag(\phi, \partial_\mu \phi, t)
+\end{eqn}
+
+But why don't we have terms in the Lagrangian depending on multiple points? Suppose we have another term in the Lagrangian depending on two points
+\begin{eqn}
+\Lag' (\phi(x_1), \phi(x_2), \dots).
+\end{eqn}
+Then the action would involve a term
+\begin{eqn}
+\int \dif t \int \dif^3 x_1 \int \dif^3 x_2 \Lag' (\phi(x_1), \phi(x_2), \dots)
+\end{eqn}
+but we could then define
+\begin{eqn}
+\Lag''(x_1) = \int \dif^3 x_2 \Lag' (\phi(x_1), \phi(x_2), \dots)
+\end{eqn}
+which is now a nonlocal Lagrangian. Since physics should generally be determined locally at small scales, we just won't have nonlocal terms like this. The Lagrangian density is purely a \emph{local} function on spacetime. 
+
+So now we define the action by
+\begin{eqn}
+S[\phi] = \int \dif^4 x \, \Lag(\phi, \partial_\mu \phi, t).
+\end{eqn}
+From Hamilton's principle, we have
+\begin{align}
+0 = \delta S &= \int \dif^4{x} \cbr{ \pd{\Lag}{\phi} \delta \phi + \pd{\Lag}{(\partial_\mu \phi)} \partial_\mu \delta \phi } \\
+	&= \int \dif^4{x} \cbr{ \pd{\Lag}{\phi} \delta \phi - \partial_\mu \pd{\Lag}{(\partial_\mu \phi)} } \delta \phi \\
+		&\quad + \eval{ \int \dif^3 x \, \pd{\Lag}{(\partial_t \phi)} \delta \phi }_{t=ti}^{t=t_f}
+		+ \eval{ \int \dif x^2 \, \dif x^3 \, \pd{\Lag}{(\partial_{x_1} \phi)} \delta \phi }_{x_1 = x_1^\mathrm{min}}^{x_1 = x_1^\mathrm{max}}
+		+ \dots
+\end{align}
+where we include all the boundary terms. Assuming the boundary conditions are satisfied, this gives us the Euler-Lagrange equations for fields,
+\begin{eqn}
+0 = \pd{\Lag}{\phi} - \partial_\mu \pd{\Lag}{(\partial_\mu \phi)}.
+\end{eqn}
+The boundary conditions of course impose the requirement that the variations in the field must vanish on the spacetime boundaries $\partial t$ and $\partial \v x$,
+\begin{eqn}
+\eval{\delta \phi}_{\partial t} = \eval{\delta \phi}_{\partial \v x} = 0.
+\end{eqn}
+What about momentum? We define the momentum $\Pi$ conjugate to the field $\phi$ as
+\begin{eqn}
+\Pi_\mu = \pd{\Lag}{\dot \phi},
+\end{eqn}
+as usual.
+
+\begin{example}[Klein-Gordon equation]
+One primary example of a relativistically-invariant action is that defined by the Lagrangian
+\begin{eqn}
+\Lag = -\frac{1}{2} \partial_\mu \phi \partial^\mu \phi - \frac{1}{2} m^2 c^2 \phi^2. 
+\end{eqn}
+In this example the Lagrangian density is now a Lorentz \emph{scalar}---it is invariant under boosts. This action gives us field equations (from the EL equations)
+\begin{eqn}
+0 = \partial_\mu \partial^\mu \phi - m^2 c^2 \phi.
+\end{eqn}
+\end{example}
+
+\begin{example}[Maxwell's equations]
+How could we apply this approach to the Maxwell field $F_{\mu\nu}$? Consider the action
+\begin{eqn}
+S = \int \dif^4 x \left( - \frac{1}{4} F_{\mu\nu} F^{\mu\nu} + A_\mu j^\mu \right),
+\end{eqn}
+for which we find that the variation becomes
+\begin{align}
+\delta S &= \int \dif^4 x \left( -\frac{1}{2} F^{\mu\nu} \delta F_{\mu\nu} + \delta A_\mu j^\mu \right) \\
+	&= \int \dif^4 x \left( -F^{\mu\nu} \partial_\mu \delta A_\nu + \delta A_\nu J^\nu \right) \\
+	&= \int \dif^4 x \left( \partial_\mu F^{\mu\nu} + J^\nu \right) \delta A_\nu + (\text{bdry. terms}).
+\end{align}
+So we have derived the sourced Maxwell's equations from this field action! 
+
+But this only gives us the two sourced equations. What about the other two equations? Actually if we write the other two equations in the form from before we find that
+\begin{eqn}
+0 = \epsilon^{\mu\nu\rho\lambda} \partial_\nu F_{\rho\lambda} = \epsilon^{\mu\nu\rho\lambda} \partial_\nu (\partial_\rho A_\lambda - \partial_\lambda A_\rho) 
+\end{eqn}
+is automatically satisfied by antisymmetry of the terms $F_{\rho\lambda}$ being summed over the permutation tensor. This is of course completely trivial in flat space; in curved spaces it is slightly less obvious but it still holds naturally without adding terms to the Lagrangian. 
+\end{example}
+
+
+\subsection{Lorentz-invariant quantities, momentum, and energy}
+
+Suppose we have a particle traveling through spacetime with trajectory $\v x(t)$ in some inertial frame. We define the \emph{proper time} of the particle as the Lorentz-invariant quantity
+\begin{eqn}
+\dif \tau^2 = - \eta_{\mu\nu} \dif x^\mu \dif x^\nu = -\dif x^\mu \dif x_\mu.
+\end{eqn}
+It's called the proper time of course because it's Lorentz-invariant but also because if the particle is at rest we have $\dif \tau^2 = \dif t^2$. 
+
+This suggests a definition for a Lorentz-invariant \emph{4-velocity} 
+\begin{eqn}
+u^\mu = \od{x^\mu}{\tau}, \qquad
+u^\mu u_\mu = - \eta_{\mu\nu} \od{x^\mu}{\tau} \od{x^\nu}{\tau} = -c^2.
+\end{eqn}
+Furthermore, we find that
+\begin{eqn}
+\dif \tau^2 = \dif t^2 (1 - \v v^2 / c^2) 
+\end{eqn}
+so that we have
+\begin{eqn}
+u^\mu = (\gamma c, \gamma \v v), \qquad
+\gamma = (1 - \v v^2 / c^2)^{1/2}.
+\end{eqn}
+Furthermore, we can define the \emph{4-momentum} as
+\begin{eqn}
+p^\mu = m u^\mu
+\end{eqn}
+for which we find
+\begin{align}
+p^0 = \gamma m c &= mc \left( 1 + \frac{1}{2} v^2 / c^2 + \bigO((v^2 / c^2)^2) \right) \\
+	&= mc + (1/c) T_\mathrm{Newton} + \bigO((v^2 / c^2)^2).
+\end{align}
+and similarly for $\v p$. Thus we identify the 0th component of the 4-momentum as the energy $E/c$ so that we have the famous equation
+\begin{eqn}
+E^2 = (mc^2)^2 + (c \v p)^2.
+\end{eqn}
+And of course we can generalize all this to quantum mechanics, which leads us to quantum field theory. But this generalization is highly nontrivial and we don't go into it here, because this is classical mechanics. 
+
+
+\subsection{Final remarks}
+
+What is the action in special relativity? We have a readily available Lorentz scalar available, so we suppose
+\begin{eqn}
+S = -mc^2 \int \dif \tau = -mc^2 \dif t \sqrt{1 - \vd x^2 / c^2}
+\end{eqn}
+which gives us the Lagrangian
+\begin{eqn}
+L = -mc^2 \sqrt{1 - \vd x^2 / c^2}
+\end{eqn}
+and conjugate momentum $\v p = \gamma m \v v$ as expected. 
+
+What about Newton's equations? For a free particle we have
+\begin{eqn}
+\od{p^\mu}{t} = 0,
+\end{eqn}
+while in general we have
+\begin{eqn}
+\od{p^\mu}{t} = f^\mu
+\end{eqn}
+for some \emph{4-force} $f^\mu$. In Newtonian mechanics we have forces acting instantaneously at a distance. Of course, this cannot happen relativistically, so we don't have a direct analogy for Newtonian gravity in terms of forces (hence GR). On the other hand, Maxwell's equations are \emph{naturally} relativistic, so that the equations of motion indeed give us a 4-force equivalent to the Lorentz force. 
+
+Furthermore, momentum is still conserved so that for an isolated system of particle we have
+\begin{eqn}
+\sum_i \dot p_i^\mu = 0.
+\end{eqn}
+
+
+
+
+\end{document}

@@ -1,0 +1,129 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec18}
+\author{UCLA, Fall 2014}
+\date{\formatdate{3}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+         % format: formatdate{dd}{mm}{yyyy}
+
+\begin{document}
+\maketitle
+
+
+\section{Spin-1/2 and Total Angular Momentum}
+
+The total angular momentum $\v J = \v L + \v S$ is the generator of rotation in the total/global Hilbert space $L_2 \otimes (\text{spin space})$, i.e. the total rotation
+\begin{eqn}
+R_J (\phi \uv n) = e^{-i \phi \uv n \cdot \v J / \hbar}
+\end{eqn}
+maps to rotated states
+\begin{eqn}
+\ket{\psi} \otimes \ket{\sigma} \mapsto 
+	R_J \left( \ket{\psi} \otimes \ket{\sigma} \right) 
+	= R_L \ket{\psi} \otimes R_S \ket{\sigma}
+	= \ket{\psi'} \otimes \ket{\sigma'} 
+\end{eqn}
+The components $J_i$ of total angular momentum are dynamical, observables variables which obey the usual angular momentum commutation relations
+\begin{eqn}
+[J_i, J_j] = i \hbar \epsilon_{ijk} J_k.
+\end{eqn}
+
+For a spin-$\frac{1}{2}$ particle, localized in real space so that $\v L = 0$, the Hilbert space is just the two-dimensional spin space. We can write the spin angular momentum vector as $\v S = \hbar \v \sigma / 2$ where $\v \sigma$ are the Pauli matrices
+\begin{eqn}
+\v{\sigma} = \set{ \pmat{0 & 1 \\ 1 & 0}, \pmat{0 & -i \\ i & 0}, \pmat{1 & 0 \\ 0 & -1} }
+\end{eqn}
+which span $SU(2)$. 
+
+Writing out the spin-space rotation matrix we have
+\begin{align}
+R(\phi \uv n) &= e^{-i \phi \uv n \cdot \v S / \hbar} = e^{-i \phi \uv n \cdot \v \sigma / 2} \\ &= 
+\begin{pmatrix}
+\cos(\phi/2) - i n_z \sin(\phi/2) & -i n_- \sin(\phi/2) \\
+-i n_+ \sin(\phi/2) & \cos(\phi/2) + i n_z \sin(\phi/2)
+\end{pmatrix}
+\end{align}
+where $n_\pm = n_x \pm i n_y$. We can derive this matrix expression from the Taylor expansion
+\begin{eqn}
+e^{-\frac{i}{2}\phi \uv n \cdot \v \sigma} = \sum_n \frac{(-i \phi \uv n \cdot \v \sigma / 2)^n}{n!}
+\end{eqn}
+which, from the identity\footnote{More generally, $(\v a \cdot \v \sigma)(\v b \cdot \v \sigma = \v a \cdot \v b + i (\v a \times \v b) \cdot \v \sigma$} $(\uv n \cdot \v \sigma)^2 = 1$, we find
+\begin{eqn}
+R(\phi \uv n) = \cos(\phi/2) - i \uv n \cdot \v \sigma \sin(\phi/2),
+\end{eqn}
+which is equivalent to the matrix written above. 
+
+
+\subsection{Something funny---rotations by $2\pi$}
+
+From our expression for the spin rotation we find that something funny happens when we rotate by $2\pi$---notice that $R(2\pi \uv n) = -1$. So $R$ is a ``projective'' representation of $SO(3)$; it's a 2--1 homomorphism, i.e. a double covering. This turns out to be true for all half-integer spins (fermions). 
+
+[Missing: something about Zeemann something or other and Larmor frequencies. He erased the board right after he wrote it..]
+
+\begin{example}[Boson vs fermion interference experiment]
+Suppose we set up an interference experiment where a particle can go around one side of a loop entering a black box with a magnetic field $\v B$ passing through it, or the other side of the loop with no field. From the Larmor effect we get a spin rotation of $\delta \phi = \omega_L t$ from the black box, where $t$ is the time spent in the box. If we set up the experiment so that $\delta \phi = 2\pi$, we get constructive interference for bosons and destructive interference for fermions. 
+\end{example}
+
+[Explained other interesting effects: weak localization and weak anti-localization]
+
+
+\subsection{Basis spinors}
+
+It is customary to write spin states as column vectors in the basis of normalized eigenstates of $\sigma_z$,
+\begin{eqn}
+\ket{\uparrow} = \ket{+} = \pmat{1 \\ 0}, \qquad 
+\ket{\downarrow} = \ket{-} = \pmat{0 \\ 1},
+\end{eqn}
+with eigenvalues $+1$ and $-1$ respectively. These are thus also eigenstates of $S_z$ with eigenvalues $\pm \hbar / 2$. We can write the closure relation in this space as 
+\begin{eqn}
+1 = \ket{\uparrow} \bra{\uparrow} + \ket{\downarrow} \bra{\downarrow}. 
+\end{eqn}
+Then we have another complete set of eigenstates for $S_x$
+\begin{eqn}
+\ket{\rightarrow} = \frac{1}{\sqrt 2} \pmat{1 \\ 1}, \qquad
+\ket{\leftarrow} = \frac{1}{\sqrt 2} \pmat{1 \\ -1}
+\end{eqn}
+with eigenvalues of $S_x$ given by $+\hbar / 2$ and $-\hbar / 2$ respectively. So we have another closure relation
+\begin{eqn}
+1 = \ket{\rightarrow} \bra{\rightarrow} + \ket{\leftarrow} \bra{\leftarrow}. 
+\end{eqn}
+
+Now, we can write the square angular momentum
+\begin{eqn}
+\v J^2 = \frac{1}{2} (J_+ J_- + J_- J_+) + J_z^2 
+\end{eqn}
+where $J_\pm = J_x \pm i J_y$ are so-called ladder operators. Notice the ladder operators are non-Hermitian, in fact they are the adjoint of either is the other. We have a new set of commutation relations for the ladder operators
+\begin{eqn}
+[J_+, J_-] = 2 \hbar J_z, \quad
+[J_z, J_\pm] = \pm \hbar J_\pm, \quad
+[\v J^2, J_\pm] = [\v J^2, J_z] = 0. 
+\end{eqn}
+So we have two compatible operators $\v J^2$ and $J_z$ with quantum numbers $j$ and $m$ respectively. Furthermore, denoting 
+\begin{eqn}
+\ket{\psi_\pm} = J_\pm \ket{j,m},
+\end{eqn}
+we find
+\begin{eqn}
+J_z \ket{\psi_\pm} = \left( [J_z, J_\pm] + J_\pm J_z \right) \ket{j,m} = (j \pm \hbar) \ket{\psi_\pm}
+\end{eqn}
+Furthermore
+\begin{eqn}
+\v J^2 \quad \text{something [missed this]}
+\end{eqn}
+
+
+
+
+
+
+
+
+
+\end{document}

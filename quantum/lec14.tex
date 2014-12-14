@@ -1,0 +1,125 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[english]{babel} % for hyphenation dictionary
+%\setdefaultlanguage{english} % polyglossia command for use with XeTeX / LuaTeX
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+% title information
+\title{Phys 221A -- Quantum Mechanics -- Lec14}
+\author{UCLA, Fall 2014}
+\date{\formatdate{19}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+\section{Aharonov-Bohm effect}
+
+The Aharonov-Bohm (AB) effect has no classical analogy. We can generalize the AB effect to look at physical properties of materials as follows. Suppose we have some material with some number of holes in it, say $N$ holes, and imagine we route solenoids through each hole, producing magnetic fluxes $\phi_1, \dots, \phi_N$ through the holes. It turns out, from the AB effect, that the physical properties (which could manifest in transport or thermodynamic measurements) are functions of $\phi_k \bmod \phi_0$, where $\phi_0 = hc / e$ is the quantum of magnetic flux from last time. Notice that in the classical limit $\hbar \rightarrow 0$, the quantum of flux $\phi_0 \rightarrow 0$---so that any flux $\phi_k$ is completely inconsequential. 
+
+Quantum mechanically, we find that a physical property $G(\phi)$ dependent on the flux $\phi$ is periodic with period $\phi_0$,
+\begin{eqn}
+G(\phi + n \phi_0) = G(\phi), \qquad n \in \Z.
+\end{eqn}
+Furthermore, the physical property has time-reversal symmetry, $G(-\phi) = G(\phi)$. 
+
+[blah blah, lots of rambling about some Aronov-Spivak effect, sadness about Sakurai's death, etc]
+
+
+\section{Gauge transformations in QM; Quantum ``Hydrodynamics''}
+
+The Hamiltonian for a general electromagnetic field is written
+\begin{eqn}
+H = \frac{1}{2m} (\v p - \frac{e \v A(\v r,t)}{c})^2 + e\phi(\v r,t).
+\end{eqn}
+This carries over into quantum mechanics, except now we must consider $\v r, \v p$ as operators and be careful about the square term. Of course we have $\v p = -i\hbar \v \nabla$, but we can also rewrite this using the kinematical momentum
+\begin{eqn}
+\v \Pi = \v p - \frac{e \v A}{c}
+\end{eqn}
+so that the Hamiltonian is just
+\begin{eqn}
+H = \frac{\v \Pi^2}{2m} + e\phi.
+\end{eqn}
+
+Under a general gauge transformation we will have potentials $\phi_1, \phi_2$ and $\v A_1, \v A_2$. Then
+\begin{align}
+\v E &= - \v \nabla \phi_1 - \frac{1}{c} \pd{\v A_1}{t}, \\
+	&= - \v \nabla \phi_2 - \frac{1}{c} \pd{\v A_2}{t}
+\end{align}
+and
+\begin{eqn}
+\v B = \v \nabla \times \v A_1 = \v \nabla \times \v A_2.
+\end{eqn}
+Then we find that 
+\begin{eqn}
+\v \nabla \times (\v A_1 - \v A_2) = 0
+\end{eqn}
+and
+\begin{eqn}
+\v \nabla (\phi_1 - \phi_2) + \frac{1}{c} \pd{}{t} (\v A_1 - \v A_2) = 0
+\end{eqn}
+so that we can write
+\begin{eqn}
+\v A_2 = \v A_1 + c\v \nabla f
+\end{eqn}
+for an arbitrary function $f(\v r, t)$, so of course we also have
+\begin{eqn}
+\phi_2 = \phi_1 - \pd{f}{t}.
+\end{eqn}
+
+Now if we solve the Schroedinger equation for the wavefunctions $\psi_1, \psi_2$ in the two gauges, we find that
+\begin{eqn}
+\psi_2 = \psi_1 e^{ie f(\v r,t) / \hbar}.
+\end{eqn}
+It's straightforward to see that this solution obeys
+\begin{eqn}
+i \hbar \pd{\psi_2}{t} = H_2 \psi_2.
+\end{eqn}
+All physical properties must be invariant under this gauge transformation, since gauge transformations are unphysical. 
+
+
+\subsection{Particle motion subject to EM field in Heisenberg picture}
+
+From the commutation relations we find
+\begin{eqn}
+\od{\v x}{t} = \frac{1}{i\hbar} [\v x, H] = \partial_{\v p} H = (\v p - e \v A / c) / m = \v \Pi / m,
+\end{eqn}
+so that $\v \Pi = m \tod{\v x}{t}$. Furthermore, we can obtain (done in homework)
+\begin{eqn}
+[\Pi_i, \Pi_j] = \frac{i\hbar e}{c} \epsilon_{ijk} B_k.
+\end{eqn}
+Furthermore, working through the commutation relations we find the quantum mechanical Lorentz force,
+\begin{eqn}
+m \od[2]{\v x}{t} = \frac{1}{i\hbar} [\v \Pi, H] = e \left[ \v E + \frac{1}{2c} \left( \od{\v x}{t} \times \v B - \v B \times \od{\v x}{t} \right) \right].
+\end{eqn}
+Now if we write a probability density $\rho = \abs{\psi(\v r,t)}^2$, we find a continuity equation
+\begin{eqn}
+\pd{\rho}{t} + \v \nabla \cdot \v j = 0,
+\end{eqn}
+where the probability current is
+\begin{eqn}
+\v j = \frac{\hbar}{m} \Im(\psi^* \v \nabla \psi) - \frac{e}{mc} \v A \abs{\psi}^2.
+\end{eqn}
+This expression is doesn't look nice [might not be gauge invariant?] but we can put it in another form if we write
+\begin{eqn}
+\psi = \sqrt{\rho} e^{i \varphi / \hbar},
+\end{eqn}
+in which case the current becomes
+\begin{eqn}
+\v j = \frac{\rho}{m} (\v \nabla \varphi - e \v A / c).
+\end{eqn}
+This expression is in fact gauge-invariant. Finally, we can obtain a new continuity equation
+\begin{eqn}
+\int \dif^3 r \v j (\v r,t) = \frac{\avg{\v \Pi}_t}{m}.
+\end{eqn}
+
+
+
+
+
+
+\end{document}
