@@ -14,14 +14,98 @@
 \maketitle
 
 
-\section{Lagrange points}
-
+%\section{Lagrange points}
+%Placed in Lec06 material
 
 
 
 \section{Parametric resonance}
+Question: If a swing has a stable equilibrium how can you make it swing higher and higher?
 
+Let's look at a simple example where we set the mass equal to 1
+\begin{equation}
+L = \frac{1}{2} \dot{q}^2 - \frac{1}{2} \omega(t)^2 q^2
+\end{equation}
+where $\omega(t + T) = \omega(t)$, i.e. is a periodic function. The simplest example of this is
+\begin{equation}
+\omega(t)^2 = \omega_0^2 \left( 1 + \epsilon \cos\left(\frac{2\pi t}{T}\right)\right)
+\end{equation}
+where $\epsilon$ is small. Let's now assume that $T = 2\pi$
 
+Our equation of motion is thus
+\begin{equation}
+\ddot{q} + \omega^2(t) q = 0
+\end{equation}
+We can rewrite this as a first order system
+\begin{equation}
+x_1 = q
+\end{equation}
+\begin{equation}
+x_2 = \dot{q}
+\end{equation}
+and
+\begin{equation}
+\dot{x_1} = x_2
+\end{equation}
+\begin{equation}
+\dot{x_2} = -\omega^2(t) x_1
+\end{equation}
+with 
+\begin{equation}
+\v{x} = \left( \begin{array}{c} x_1 \\ x_2\end{array}\right)
+\end{equation}
+Then our equation becomes
+\begin{equation}
+\dot{\v{x}} = M(t) \v{x}
+\end{equation}
+where $M(t)$ is also a periodic function. The solution is a matrix integral
+\begin{equation}
+\v{x(t)} = P \int_0^z dt M(t) \v{x}(0)
+\end{equation}
+But we know that the solution is periodic
+\begin{equation}
+x(t + 2\pi) = A\v{x}(t)
+\end{equation}
+The long time development goes as
+\begin{equation}
+x(t + 2\pi n) = A^n\v{x}(t)
+\end{equation}
+This is a generalized 2 by 2 matrix
+\begin{equation}
+\lambda^2 - Tr(A) \lambda + Det(A) = 0
+\end{equation}
+Can show that 
+\begin{equation}
+\lambda_\pm = \frac{\hbar}{2} \pm \sqrt{ \frac{(\hbar A)^2}{4}  - 1}
+\end{equation}
+This gives us a stability condition of 
+\begin{equation}
+\hbar A < 2
+\end{equation}
+For a general $\omega$ the analysis is difficult, but we can consider a small perturbation and look at the unperturbed case
+\begin{equation}
+\omega^2(t) = \omega_0^2
+\end{equation}
+\begin{equation}
+\dot{x_1} = x_2
+\end{equation}
+\begin{equation}
+\dot{x_2} = -\omega^2 x_1
+\begin{equation}
+\begin{equation}
+M = \left( \begin{array}{cc} 0 & 1 \\ \omega_0^2 & 0  \end{array} \right)
+\end{equation}
+\begin{equation}
+A(t) = exp(Mt) = \left( \begin{array}{cc} \cos\omega_0 & \frac{\sin\omega t}{\omega_0} \\ -\omega_0^2\sin\omega_0 t & \cos\omega_0t  \end{array} \right)
+\end{equation}
+\begin{equation}
+A(t=2\pi) = \left( \begin{array}{cc} \cos2\pi\omega_0 & \frac{\sin2\pi\omega}{\omega_0} \\ -\omega_0^2\sin2\pi\omega_0  & \cos2\pi  \end{array} \right)
+\end{equation}
+We get
+\begin{equation}
+\omega_0 = 0, \frac{1}{2}, 1, \frac{3}{2}
+\end{equation}
+When one is away from the $\omega_0$ then the motion is stable even for small $\epsilon$. The $\omega_0$ are the frequencies of parametric resonance. 
 
 \section{Legendre transform (for Hamiltonian mechanics)}
 
