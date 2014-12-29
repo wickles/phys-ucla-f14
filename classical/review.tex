@@ -1,0 +1,236 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Review}
+\author{UCLA, Fall 2014}
+\date{\formatdate{10}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Topics}
+
+The main topics to know well for the final are the following:
+\begin{itemize}
+\item Newtonian mechanics
+\item Lagrangian (+ small oscillations)
+\item Hamiltonian
+\item Rigid bodies
+\item Relativity
+\end{itemize}
+
+
+\section{Newtonian mechanics}
+
+Key points and subjects:
+
+\begin{itemize}
+\item Free particle
+\item Particle in 1 dimension in a potential
+\item Harmonic oscillator (various dimensions)
+\item Central potential / Kepler problem
+\item Charged particle in EM field
+\end{itemize}
+
+
+\section{Lagrangian mechanics}
+
+\begin{itemize}
+\item Action: $S = \int \dif t \, L(q, \dot q, t)$
+\item Hamilton's principle $\delta S = 0$ with boundary conditions $\delta q_1 = \delta q_2 = 0$ give Euler-Lagrange equations
+\begin{eqn}
+0 = \pd{L}{q_i} - \od{}{t} \pd{L}{\dot q_i}.
+\end{eqn}
+\item Also for fields, have Lagrangian density $\Lag(\phi, \dot \phi, \partial_x \phi)$, action $S = \int \dif t \, \dif x \, \Lag$ and EL equations
+\begin{eqn}
+0 = \pd{\Lag}{\phi} - \pd{}{t} \pd{\Lag}{\dot \phi} - \pd{}{x} \pd{\Lag}{(\partial_x \phi)}.
+\end{eqn}
+\end{itemize}
+
+Advantages of the Lagrangian formalism:
+\begin{itemize}
+\item The equations take the same form under coordinate changes in the Lagrangian
+\item Enables us to solve systems with constraints $\Phi_I(q, \dot q, t) = 0$. 
+\begin{itemize}
+	\item Holonomic constraints (no $\dot q$ dependence) make it easier: $\phi(q,t) = 0$
+	\item Sometimes non-holonomic constraints are integrable, i.e. $\tod{\phi}{t} = 0$ which means we can integrate to find new constraint $\widetilde{\phi}(q,t) = \text{const}$ which is holonomic.
+	\item Lagrange multipliers:
+	\begin{eqn}
+	L \to L + \sum_I \lambda_I \Phi_I (q,t)
+	\end{eqn}
+	this gives us new EL equations
+	\begin{eqn}
+	0 = \od{}{t} \pd{L}{\dot q_i} - \pd{L}{q_i} - \sum_I \lambda_I \pd{\Phi_I}{q}
+	\end{eqn}
+	which enforce the constraint. The new term in the EL equations are basically a force term (gradient of contstraint surface) which enforce the constraint. 
+	\item Sometimes can find new generalized coordinates $\widetilde{q}_j$, $j = 1,\dots, N-s$ wihich solve the constraint, e.g.
+	\begin{eqn}
+	0 = \od{}{t} \pd{L}{\dot{\widetilde{q}}_j} - \pd{L}{\widetilde{q}_j}.
+	\end{eqn}
+\end{itemize}
+\end{itemize}
+
+Noether's theorem and symmetries
+
+\begin{itemize}
+\item Under a variation $q_i \to q_i' = q_i + \epsilon \delta q_i$, Lagrangian is invariant up to a total time derivative
+\begin{eqn}
+blah
+\end{eqn}
+\item Conserved charge and simple example and stuff, but argh he erased the board after writing it
+\end{itemize}
+
+
+\section{Small oscillations}
+
+Generally have a Lagrangian of the form
+\begin{eqn}
+L = \frac{1}{2} \sum_{ij} M_{ij} (q) \dot q_i \dot q_j + \sum_i N_i (q) \dot q_i - V(q).
+\end{eqn}
+Next we find the equilibrium points $\bar q_i$ where $\dot{\bar q}_i = \pd{V}{\bar q_i} = 0$, take the difference from equilibrium $\delta q_i = q_i - \bar q_i$, to find a linearized equation of motion
+\begin{eqn}
+0 = \sum_j \left[ \widetilde{M}_{ij} (\bar q) \delta \ddot q_j + \widetilde{N}_{ij} (\bar q) \delta \dot q_j + \widetilde{V}_{ij} (\bar q) \delta q_j \right].
+\end{eqn}
+Next find the normal modes
+\begin{eqn}
+\delta q_i = v_i e^{i \omega t}
+\end{eqn}
+satisfying
+\begin{eqn}
+0 = (-\omega^2 \widetilde{M} + i \omega \widetilde{N} + \widetilde{V}) \cdot v.
+\end{eqn}
+Frequencies are determined by
+\begin{eqn}
+0 = \det(-\omega^2 \widetilde{M} + i \omega \widetilde{N} + \widetilde{V}),
+\end{eqn}
+and once we've found frequencies we can find the normal modes $v$. 
+
+
+\section{Hamiltonian mechanics}
+
+We take the conjugate momentum $p_i = \pd{L}{\dot q_i}$ and form the Hamiltonian via Legendre transform of the Lagrangian,
+\begin{eqn}
+H = p_i \dot q_i - L(d, \dot q).
+\end{eqn}
+Then we have Hamilton's equations in terms of $q$ and $p$,
+\begin{eqn}
+\dot p_i = - \pd{H}{q_i}, \qquad
+\dot q_i = \pd{H}{p_i}.
+\end{eqn}
+Similarly for fields $\phi(x,t)$, we have the canonically conjugate momentum $\Pi_\phi = \pd{\Lag}{\dot \phi}$ and Hamiltonian density
+\begin{eqn}
+\Ham = \dot \phi \Pi_\phi - \Lag, \qquad
+H = \int \dif x \, \Ham.
+\end{eqn}
+
+In classical mechanics, and especially Hamiltonian mechanics, we generally want to use Poisson brackets
+\begin{eqn}
+\cbr{A,B} = \sum_i \left[ \pd{A}{q_i} \pd{B}{p_i} - \pd{A}{p_i} \pd{B}{q_i} \right].
+\end{eqn}
+The Poisson brackets package the time derivative in a nice form,
+\begin{eqn}
+\od{A}{t} = \pd{A}{t} + \cbr{A,H}.
+\end{eqn}
+Note that the conserved charge $Q(p,q)$ from Noether's theorem is conserved so $\cbr{Q,H} = 0$. If we have conserved quantities $Q_1, Q_2$, then the bracket $\cbr{Q_1,Q_2}$ is also conserved. 
+
+A \emph{canonical transformation} 
+\begin{eqn}
+Q = Q(q,p), \qquad
+P = P(q,p)
+\end{eqn}
+is a coordinate transformation is one which obeys Hamilton's equations in terms of $Q, P$ as canonical coordinates. Simplest characterization is that the Poisson brackets are conserved,
+\begin{eqn}
+\cbr{Q_i, Q_j}_{qp} = 0, \quad
+\cbr{P_i, P_j}_{qp} = 0, \quad
+\cbr{Q_i, P_j}_{qp} = \delta_{ij}.
+\end{eqn}
+
+\emph{Generating functions} give us a way of constructing canonical transformations. There are four types,
+\begin{eqn}
+F_1 (q,Q), \quad
+F_2 (q,P), \quad
+F_3 (p,Q), \quad
+F_4 (p,P),
+\end{eqn}
+and can also depend explicitly on time. Most important are types one (Hamilton-Jacobi) and two (infinitesimal canonical transformations). For type 1, we have
+\begin{eqn}
+p_i = \pd{F_1}{q_i}, \qquad
+P_i = - \pd{F_1}{Q_i}, \qquad
+K(Q,P) = H(q,p) + \pd{F_1}{t}.
+\end{eqn}
+Similarly for type 2 we have
+\begin{eqn}
+p_i = \pd{F_2}{q_i}, \qquad
+Q_i = \pd{F_2}{P_i}, \qquad
+K = H + \pd{F_2}{t}.
+\end{eqn}
+
+\emph{Action-angle variables} are nice because the motion is basically a circle in phase space. These are coordinates obtained by canonical transformation
+\begin{eqn}
+(q_i, p_i) \to (\theta_i, I_i)
+\end{eqn}
+where the momenta $I_i$ are conserved, $\dot I_i = 0$, and the coordiantes $\theta_i$ are linear in time,
+\begin{eqn}
+\dot \theta_i = \pd{H}{I_i} = \text{const} 
+\qquad \implies \qquad
+\theta_i = \omega_i t + \theta_0. 
+\end{eqn}
+
+Hamilton-Jacobi formalism gives us PDE for a generating function that makes the transformed Hamitlonian trivial, $K = 0$. From above, the expression for the new Hamiltonian and the old momentum give us the HJE
+\begin{eqn}
+0 = H(\tpd{F_1}{q_i}, q_i) + \pd{F_1}{t},
+\end{eqn}
+where the new coordinates and momenta are all constants of motion, $\dot Q_i = \dot P_i = 0$ so $Q_i = \alpha_i$, $P_i = \beta_i$. The HJE is not always readily soluble, but if $H$ is not time-dependent then we can make a separation ansatz, 
+\begin{eqn}
+F = \widetilde{F}(q,Q) - \alpha t. 
+\end{eqn}
+Sometimes we can further separate $\widetilde{F}$ out into sums of functions of subsets of the coordinates, which simplifies the problem. 
+
+
+\section{Rigid bodies}
+
+Generally in a rigid body problem we can decompose points in the lab frame as
+\begin{eqn}
+\v x_\mathrm{lab} = \v x_\mathrm{CM} + R \cdot \v x_\mathrm{body}
+\end{eqn}
+where $\v x_\mathrm{body}$ is a constant vector in the body frame. In terms of the angular velocity $\v \omega$ we find the lab velocity
+\begin{eqn}
+\vd x_\mathrm{lab} = \vd x_\mathrm{CM} + R \cdot (\v \omega\times \v x_\mathrm{body}).
+\end{eqn}
+Note that all quantities here are dependent on time (except $\v x_\mathrm{body}$). So we find for the whole rigid body, the kinetic energy
+\begin{eqn}
+T = \frac{1}{2} M_\mathrm{tot} \vd x_\mathrm{CM}^2 + \frac{1}{2} \v \omega^\top \cdot I \cdot \v \omega
+\end{eqn}
+and angular momentum
+\begin{eqn}
+\v L_\mathrm{lab} = R (I \cdot \v \omega),
+\end{eqn}
+where $I$ is the moment of inertia tensor
+\begin{eqn}
+I_{ij} = \sum_{(k)} m_{(k)} \left[ \delta_{ij} \v x_{(k)}^2 - x_{(k)i} x_{(k)j} \right].
+\end{eqn}
+Generally we can diagonalize the tensor into a form
+\begin{eqn}
+I = \pmat{I_1 & & \\ & I_2 & \\ & & I_3},
+\end{eqn}
+so that we find Euler'es equations from $\od{}{t} \v L_\mathrm{lab} = 0$,
+\begin{eqn}
+0 = I \cdot \vd \omega + \omega \times (I \cdot \v \omega).
+\end{eqn}
+Also Euler angles and stuff.
+
+
+\section{Relativity}
+
+Know about boosts and Lorentz transformations. Useful to go to CM frame in collisions. Charged particle in EM field. Kinematics with $p^\mu$, conservation of momentum and energy. 
+
+
+
+
+\end{document}

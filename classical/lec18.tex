@@ -1,0 +1,122 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec18}
+\author{UCLA, Fall 2014}
+\date{\formatdate{11}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+% Note on missing lectures: No lecture Nov. 11 (Veteran's day), anomalous missing day on Nov. 4 (election day?)
+% Plus extra day from Thurs-Fri first week, minus one day from Thanksgiving 
+% --> matches up with number of quantum lectures (just not sure about anomalous missing day)
+
+\section{More on fluids}
+
+\textbf{Note:} Office hours will be held during finals week on Monday/Tuesday from 1--2 PM.
+
+\subsection{Ideal fluids}
+
+In ideal fluids, our equations of motion are generally encompassed by the continuity equation
+\begin{eqn}
+\pd{\rho}{t} + \v \nabla \cdot (\rho \v v) = 0
+\end{eqn}
+and Euler's equation 
+\begin{eqn}
+\rho \od{\v v}{t} + \rho (\v v \cdot \v \nabla) \v v = - \v \nabla p.
+\end{eqn}
+One simplifying assumption (though generally not a very good approximation) is that the fluid is incompressible, $\rho = \text{const}$, so that $\v \nabla \cdot \v v = 0$ from the continuity equation. Another simplifying assumption is that the fluid is isentropic, 
+\begin{eqn}
+\frac{\v \nabla p}{\rho} = \v \nabla h.
+\end{eqn}
+In both cases taking the curl of Euler's equation gives an equation for $\v v$,
+\begin{eqn}
+\pd{}{t} (\v \nabla \times \v v) = \v \nabla \times \left( \v v \times (\v \nabla \times \v v) \right)
+\end{eqn}
+It is useful to define the \emph{vorticity} $\v \Omega = \v \nabla \times \v v$, then another simplifying assumption is that the fluid is \emph{non-rotational}, i.e. $\v \Omega = 0$. If the fluid is incompressible and non-rotational, we have
+\begin{eqn}
+\v \nabla \times \v v = 0, \qquad
+\v \nabla \cdot \v v = 0
+\end{eqn}
+so that we can find a potential for $\v v$ so that $\v v = \v \nabla \phi$ which satisfies $\nabla^2 \phi = 0$. This is not a very realistic approximation but it does allow very simple solutions, e.g. electrostatic vacuum solutions. 
+
+\begin{theorem}[Kelvin's theorem: Conservation of circulation]
+Define the \emph{circulation} $\Gamma_C$ of a closed loop $C$ as
+\begin{eqn}
+\Gamma_C = \oint_C \v v \cdot \dif{\v x}.
+\end{eqn}
+For an isentropic fluid, the circulation is conserved, $\tod{\Gamma}{t} = 0$. 
+\end{theorem}
+
+\begin{proof}
+The rate of change in circulation is 
+\begin{align}
+\od{\Gamma_C}{t} &= \oint_C \od{\v v}{t} \cdot \dif{\v x} + \oint_C \v v \cdot \dif{\vd x} \\
+	&= -\oint_C \Big[ (\v v \cdot \v \nabla) \v v + \underbrace{\v \nabla h}_{\int \to 0} \Big] + \frac{1}{2} \underbrace{\oint_C \dif(\v v^2)}_{=0} \\
+	&= - \int_\Sigma \v \nabla \times \left( (\v v \cdot \v \nabla) \v v \right) \cdot \dif{\v \Sigma}
+\end{align}
+We should be able to show that this is then
+\begin{eqn}
+\od{\Gamma_C}{t} = \int_\Sigma \v \nabla \times \left( \v v \times (\v \nabla \times \v v) \right) \cdot \dif{\v \Sigma} = 0,
+\end{eqn}
+but we can't seem to show this directly in class. 
+\end{proof}
+
+
+\subsection{Viscosity, non-ideal fluids}
+
+How do we work with viscous fluids? Suppose we have a fluid in a container with a fixed bottom a distance $d$ from top of the fluid, and suppose we move a plate slowly across the top. In a viscous fluid, the top layer will move along with the plate with speed $u$, while the bottom layer will be stationary, inducing a force per area
+\begin{eqn}
+\frac{F}{A} = \eta \, \frac{u}{d}.
+\end{eqn}
+The coefficient $\eta$ is the \emph{dynamic viscosity} or \emph{viscosity coefficient}. How do we incorporate the viscosity into the equations of motion? It's not entirely clear. It turns out that it is most useful rewrite the equations in components
+\begin{eqn}
+\pd{}{t} (\rho v_i) = - \pd{}{x_j} \Pi_{ij},
+\end{eqn}
+where 
+\begin{eqn}
+\Pi_{ij} = \delta_{ij} p + \rho v_i v_j - \sigma'_{ij} = -\sigma_{ij} + \rho v_i v_j
+\end{eqn}
+and $\sigma'_{ij}$ is called the \emph{viscous stress tensor} (and $\sigma_{ij} = \sigma'_{ij} - p \delta_{ij}$).
+
+We can write an ansatz for the stress tensor
+\begin{eqn}
+\sigma'_{ij} = \alpha_1 \pd{v_i}{x_j} + \alpha_2 \pd{v_j}{x_i} + \alpha_3 \delta_{ij} \sum_k \partial_k v_k. 
+\end{eqn}
+This can be seen as sort of a spin-0 tensor plus a spin-2 tensor for some reason. Furthermore we can rewrite as
+\begin{eqn}
+\sigma'_{ij} = \eta \left( \pd{v_i}{x_j} + \pd{v_j}{x_i} - \frac{2}{3} \delta_{ij} \sum_k \partial_k v_k \right) + \rho \delta_{ij} \sum_k \partial_k v_k
+\end{eqn}
+where $n$ turns out to be the ordinary viscosity coefficient. For an incompressible fluid $\v \nabla \cdot \v v = 0$ so that the $\rho$ term goes away. Finally we can plug into the tensor equation for the general equation, where we simplify assuming $n, \rho$ are constant and uniform so that
+\begin{eqn}
+\rho \left( \pd{\v v}{t} + (\v v \cdot \v \nabla) \v v \right) = - \v \nabla p + n \nabla^2 \v v + (\rho + \frac{\eta}{3}) \v \nabla (\v \nabla \cdot \v v),
+\end{eqn}
+which is the famous \emph{Navier-Stokes equation}. Notice that the last term drops out for incompressible fluids. Now, taking the curl we obtain an equation in terms of the vorticity $\v \Omega$,
+\begin{eqn}
+\pd{\v \Omega}{t} = \v \nabla \times (\v v \times \v \Omega) + \frac{\eta}{\rho} \, \nabla^2 \v \Omega.
+\end{eqn}
+
+Now, suppose we rescale $\v v \to \alpha \v v$ and $\v x \to \beta \v x$, so that $\v \Omega \to (\alpha / \beta) \v \Omega$ and $t \to (\beta / \alpha) t$. Then we obtain a new equation
+\begin{eqn}
+(\alpha / \beta)^2 \pd{\v \Omega}{t} = (\alpha / \beta)^2 \v \nabla \times (\v v \times \v \omega) - \frac{\eta}{\rho \beta^2} \nabla^2 \v \Omega (\alpha / \beta),
+\end{eqn}
+which we can rewrite 
+\begin{eqn}
+\pd{\v \Omega}{t} = \v \nabla \times (\v v \times \v \Omega) - \frac{\eta}{\rho \alpha \beta} \nabla^2 \v \Omega.
+\end{eqn}
+Then we define the Reynolds number by
+\begin{eqn}
+R = \frac{\eta D v}{\rho}.
+\end{eqn}
+
+
+
+
+\end{document}

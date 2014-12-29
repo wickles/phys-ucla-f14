@@ -1,0 +1,137 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+\input{../header2.tex}
+
+\title{Phys 220A -- Classical Mechanics -- Lec17}
+\author{UCLA, Fall 2014}
+\date{\formatdate{9}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+
+\section{Continuum mechanics}
+
+Fluid mechanics (or continuum mechanics) is very useful in applications to real-world settings. In a real system with number of particles on the order of a mole, we have around $10^{26}$ degrees of freedom, so it would be completely intractable to treat every particle individually. Hence the use of fluid mechanics, which gives the system an effective description with only a few degrees of freedom. 
+
+Some examples where we treat the system with an effective model include thermodynamics; lattices, where we have a field $\phi(x,t)$; kinetic theory; fluid mechanics; and field theory (classical or quantum). In the fundamental description of nature, quantum field theory, we have quantum fields for each particle type like gluons, quarks, etc. Quantum chromodynamics, for example, gives us a field theory of the interaction of the quark and gluon fields at the quantum level. 
+
+
+\subsection{Fluid mechanics}
+
+We know that for ordinary free fluids, there is no resistance to change of shape. This also applies to gases---one can generally treat a gas as as a fluid for the purposes of mechanics. Thus, fluid mechanics describes liquids or gases as long as we can use local thermal equilibrium. This is analogous to particle physics where the Fermi description of the weak interaction is an effective theory that works fine up to some energy level set by the masses of the $W$ and $Z$ bosons. Above this energy we must use a more general theory, e.g. the standard model. 
+
+How can we generally decide whether fluid mechanics is applicable in some system? Define the \emph{mean free path} $\ell$ as the average distance a particle travels before a collision. We will generally have local thermal equilibrium when the volume of the space is large compared with the mean free path, $V \gg \ell^3$, in which case we can use fluid mechanics. For example, in air at room temperature we have $\ell \sim \unit{10^{-7}}{m}$, so in typical real-world processes we can generally use fluid mechanics. Another way to check is in terms of the \emph{relaxation time} $t_\mathrm{rel}$ for a process, defined as the time it takes to go back to equilibrium. For processes occurring on time scales $T > t_\mathrm{rel}$, we can generally apply fluid mechanics.
+
+So what are our degrees of freedom in fluid mechanics? They're our usual fields: mass density $\rho(\v x,t)$, velocity $\v v(\v x, t)$, temperature $T(\v x,t)$, pressure $p(\v x, t)$, entropy $S(\v x,t)$, etc. How do we describe the system? There are two different approaches, the Euler description and the Lagrange description. In the Euler description, we consider the behavior of the fluid at a fixed point $\v x$ as the fluid flows through. In the Lagrange description, we consider the behavior of the fluid \emph{along} the flow, i.e. we follow an infinitesimal fluid element along the flow. The Lagrange description makes sense from the classical mechanics perspective, but it's generally easier to work with the Euler description. 
+
+How can we visualize the flow? It depends on our description. In the Euler description, we can imagine \emph{streamlines} in the fluid through a point $\v x_0$ at a fixed time $t$, which is the curve through $\v x_0$ tangent to the velocity field $\v v(\v x,t)$ at all points $\v x$ on the curve. In the Lagrange description, we instead imagine \emph{pathlines} from a point $\v x_0$ starting at time $t_0$. In this case we will not consider the path at a fixed time, instead we visualize the actual flow through the fluid as time evolves and the velocity field $\v v(\v x,t)$ changes. 
+
+
+\subsection{Continuity \& Mechanics}
+
+Consider a volume $V$ with some amount of mass flowing in/out of its surface. Intuitively, we know that the mass flowing out of the surface should equal minus the rate of change of mass in the volume. Mathematically, this is expressed as
+\begin{eqn}
+\oint_{\partial V} (\rho \v v) \cdot \dif{\v \Sigma} = - \pd{}{t} \int_V \rho \, \dif V,
+\end{eqn}
+which we can rewrite using Stokes' theorem
+\begin{eqn}
+0 = \pd{\rho}{t} + \v \nabla \cdot (\rho \v v) = \pd{\rho}{t} + \v \nabla \rho \cdot \v v + \rho \v \nabla \cdot \v v,
+\end{eqn}
+which is the \emph{continuity equation}. This equation can be simplified for \emph{incompressible fluids} in which $\rho$ is constant and uniform so that it reduces to
+\begin{eqn}
+\v \nabla \cdot \v v = 0
+\end{eqn}
+which can be solved by finding a potential $\v v = \v \nabla \phi$ satisfying $\nabla^2 \phi = 0$. 
+
+The next step is to apply Newton's equations. For an ideal fluid with no dissipative processes, zero viscosity, and no heat exchange, the force on a fluid element is given in terms of the pressure,
+\begin{eqn}
+\v F = - \oint_{\partial V} p \, \dif{\v \Sigma} = - \int_V \v \nabla p \, \dif V.
+\end{eqn}
+Of course, the force is also given by
+\begin{eqn}
+\v F = \int m \, \dif{\v a} = \int \rho \od{\v v}{t} \dif V,
+\end{eqn}
+which leads us to the \emph{Euler equation}
+\begin{eqn}
+\rho \od{\v v}{t} = - \v \nabla p.
+\end{eqn}
+But what do we mean by $\tod{v}{t}$? This term makes more sense in the Lagrangian description, but in the Euler description we can write
+\begin{eqn}
+\dif \v v = \pd{\v v}{t} \dif t + (\dif \v r \cdot \v \nabla) \v v
+\end{eqn}
+so that
+\begin{eqn}
+\od{\v v}{t} = \pd{\v v}{t} + (\v v \cdot \v \nabla) \v v.
+\end{eqn}
+Thus the general Euler equation can be written
+\begin{eqn}
+\pd{\v v}{t} + (\v v \cdot \v \nabla) \v v = -\frac{\v \nabla p}{\rho} + \frac{\v F_\mathrm{ext}}{\rho}
+\end{eqn}
+where $\v F_\mathrm{ext}$ is some external force, for example the gravitational field $\v F / \rho = \v g$. 
+
+When $\v = 0$ we can find \emph{hydrostatic} solutions. For example, if $\rho$ is constant, Euler's equation gives 
+\begin{eqn}
+-\frac{\v v p}{\rho} + \v g = 0.
+\end{eqn}
+Since $\v g = - g \v \nabla z$ we find
+\begin{eqn}
+0 = \v \nabla (p + \rho g z) 
+\end{eqn}
+which gives us the familiar
+\begin{eqn}
+p + \rho g z = \text{const}.
+\end{eqn}
+It is common in ordinary examples to assume the fluid is incompressible but this is really not such a good approximation. Consider instead the enthalpy
+\begin{eqn}
+\dif H = T \, \dif S + V \, \dif p,
+\end{eqn}
+where we can make the approximation that $\dif S = 0$ since we are at local thermal equilibrium. Then we have an enthalpy density
+\begin{eqn}
+\dif h = \frac{\dif p}{\rho}
+\end{eqn}
+for \emph{isentropic} flow (equal entropy). Then we have
+\begin{eqn}
+\frac{\v \nabla p}{\rho} = \v \nabla h
+\end{eqn}
+which gives us the Euler equation for the isentropic case
+\begin{eqn}
+\cancelto{0}{\pd{\v v}{t}} + (\v v \cdot \v \nabla) \v v = - \v \nabla h
+\end{eqn}
+where the first term goes away because we are assuming a steady state. If we take the curl on both sides we obtain an equation purely for $\v v$,
+\begin{eqn}
+\pd{}{t} (\v \nabla \times \v v) = \v \nabla \times \left( \v v \times (\v \nabla \times \v v) \right).
+\end{eqn}
+
+Next we can use the identity
+\begin{eqn}
+(\v v \cdot \v \nabla) \v v = \frac{1}{2} \v \nabla v^2 - \v v \times (\v \nabla \times \v v)
+\end{eqn}
+and plug into the Euler equation to find
+\begin{eqn}
+- \v \nabla h = \frac{1}{2} \v \nabla v^2 - \v v \times (\v \nabla \times \v v).
+\end{eqn}
+Dotting through by $\dif \v \ell$, we have 
+\begin{eqn}
+\dif \v \ell \cdot \v v \times (\v \nabla \times \v v) = 0
+\end{eqn}
+for an [incompressible?] fluid, so that
+\begin{eqn}
+0 = \dif \v \ell \cdot \v \nabla ( \frac{1}{2} v^2 + h),
+\end{eqn}
+which tells us that the quantity in parentheses does not change along a streamline. For an incompressible fluid, we recover the familiar
+\begin{eqn}
+\frac{1}{2} \rho v^2 + [p + \rho g z]?  = \text{const}.
+\end{eqn}
+
+
+
+
+
+
+
+\end{document}
