@@ -1,6 +1,4 @@
-This repository contains notes for graduate physics courses at UCLA for the 2014-2015 school year. Please contribute if possible!
-
-Compiled PDFs are currently available [here](https://www.dropbox.com/sh/11gf7mmsdxn5jif/AABT-ZVXXqxfHl0UbPE3JDP8a?dl=0). Please let me know if you think there is a better place to host these.
+This repository contains notes for graduate physics courses at UCLA for the fall 2014 quarter. Compiled PDFs are currently available [here](https://www.dropbox.com/sh/11gf7mmsdxn5jif/AABT-ZVXXqxfHl0UbPE3JDP8a?dl=0). Please let me know if you have a better place to host these.
 
 # What's missing
 
@@ -33,3 +31,7 @@ Geometry
 QFT
 
 - lec03 and later all missing
+
+Math Methods
+
+- lec02 and later all missing

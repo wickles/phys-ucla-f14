@@ -1,0 +1,81 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+\title{Phys 221A -- Quantum Mechanics -- HW06}
+\author{UCLA, Fall 2014}
+\date{\formatdate{26}{11}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+
+\textit{
+Problems 3.1 (p. 255), 3.2 (p. 255), 3.4 [p. 256; consult Eqs. (3.2.26)], and 3.16 (p. 258) from the textbook (Sakurai and Napolitano, Modern Quantum Mechanics, 2nd edition).
+}
+
+
+
+\section*{Problem 3.1}
+\textit{
+Find the eigenvalyes and eigenvectors of $\sigma_y = \pmat{0 & -i \\ i & 0}$. Suppose an electron is in the spin state $\pmat{\alpha \\ \beta}$. If $s_y$ is measured, what is the probability of the result $\hbar / 2$?
+}
+
+
+
+\section*{Problem 3.2}
+\textit{
+Find, by explicit construction using Pauli matrices, the eigenvalues for the Hamiltonian
+\begin{eqn}
+H = -\frac{2\mu}{\hbar} \v S \cdot \v B
+\end{eqn}
+for a spin-$\frac{1}{2}$ particle in the presence of a magnetic field $\v B = B_x \uv x + B_y \uv y + B_z \uv z$.
+}
+
+
+
+\section*{Problem 3.4}
+\textit{
+The spin-dependent Hamiltonian of an electron-positron system in the presence of a uniform magnetic field in the $z$-direction can be written as
+\begin{eqn}
+H = A \, \v S^{(e^-)} \cdot \v S^{(e^+)} + \left( \frac{eB}{mc} \right) \left( S_z^{(e^-)} - S_z^{(e^+)} \right).
+\end{eqn}
+Suppose the spin function of the system is given by $\chi_+^{(e^-)} \chi_-^{(e^+)}$.
+}
+
+\begin{enumproblem}
+
+% part A
+\item \textit{
+Is this an eigenfunction of $H$ in the limit $A \rightarrow 0$, $eB / mc \neq 0$? If it is, what is the energy eigenvalue? If it is not, what is the expectation value of $H$?
+}
+
+
+% part B
+\item \textit{
+Solve the same problem when $eB / mc \rightarrow 0$, $A \neq 0$.
+}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 3.16}
+\textit{
+Show that the orbital angular-momentum operator $\v L$ commutes with both the operators $\v p^2$ and $\v x^2$; that is, prove (3.7.2),
+\begin{eqn}
+[\v L, \v p^2] = [\v L, \v x^2] = 0.
+\end{eqn}
+}
+
+
+
+
+
+\end{document}

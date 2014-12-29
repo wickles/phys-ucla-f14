@@ -1,0 +1,98 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 220A -- Classical Mechanics -- HW08}
+\author{UCLA, Fall 2014}
+\date{\formatdate{2}{12}{2014}} % Activate to display a given date or no date (if empty),
+	% otherwise the current date is printed 
+	% format: formatdate{dd}{mm}{yyyy}
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1 (15 pts)}
+\begin{em}
+Find the small oscillation frequencies of a real pendulum suspended at a fixed point, in the presence of a constant uniform gravitational field with acceleration $g$. The mass of the pendulum is denoted by $m$, its center of mass is a distance $\ell$ away from the point of suspension, and its three moments of inertia $I_x$, $I_y$, and $I_z$. 
+\end{em}
+
+
+\section*{Problem 2 (15 pts)}
+\begin{em}
+The Lagrangian for a heavy symmetric top is given by
+\begin{eqn}
+L = \frac{1}{2} I_1 (\dot \theta^2 + \dot \phi^2 \sin^2 \theta) + \frac{1}{2} I_3 (\dot \psi + \dot \phi \cos \theta)^2 - mgl \cos \theta.
+\end{eqn}
+\end{em}
+
+\begin{enumproblem}
+
+% part A
+\item \begin{em}
+Obtain the momenta $p_\theta, p_\phi, p_\psi$.
+\end{em}
+
+
+% part B
+\item \begin{em}
+Calculate the Hamiltonian
+\end{em}
+
+
+% part C
+\item \begin{em}
+Calculate Hamilton's equations.
+\end{em}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 3 (15 pts)}
+\begin{em}
+A rigid body has inertia tensor $\Theta_{ij}$ for a body coordinate system which goes through the center of mass of the body. Calculate the inertia tensor for a coordinate system which is translated by a vector $\v a$. (This result is sometimes called the Huygens-Steiner parallel axis theorem).
+\end{em}
+
+
+
+\section*{Problem 4 (15 pts)}
+\begin{em}
+A torsion pendulum consists of a vertical wire attached to a mass which may rotate about the vertical direction. Consider three torsion pendulums which consist of identical wires from which identical homogeneous solid cubes are suspended. One cube is suspended from a vertex, one from the center of an edge, and one from the center of a face (see figure 1). What are the ratios of the periods of the three pendulums ?
+\end{em}
+
+
+
+\section*{Problem 5 (20 pts)}
+\begin{em}
+Consider a heavy symmetric top with mass $m$ which is anchored at a point which has a distance $l$ from the center of mass. The moments of inertia (around the anchor point) are $I_1$, $I_2$ and $I_3$ (See figure 2 for coordinates)
+\end{em}
+
+\begin{enumproblem}
+
+% part A
+\item \begin{em}
+For the motion with initial conditions $\theta = \theta_0$ and $\dot \phi = 0$. Derive the equation of motion for the coordinate $\theta$ alone.
+\end{em}
+
+
+% part B
+\item \begin{em}
+For a very fast spinning top which satisfies $I_3 \omega_3 \gg \sqrt{mgl I_1}$ show that the motion of the top is nutation with frequency 
+\begin{eqn}
+\Omega \sim \frac{\omega_3 I_3}{I_1}.
+\end{eqn}
+\end{em}
+
+
+\end{enumproblem}
+
+
+
+
+\end{document}

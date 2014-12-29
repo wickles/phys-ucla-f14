@@ -1,0 +1,149 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+
+\title{Phys 220A -- Classical Mechanics -- HW09}
+\author{UCLA, Fall 2014}
+\date{\formatdate{11}{12}{2014}} % Activate to display a given date or no date (if empty),
+	% otherwise the current date is printed 
+	% format: formatdate{dd}{mm}{yyyy}
+
+\begin{document}
+\maketitle
+
+
+\section*{Problem 1 (10 pts)}
+\begin{em}
+A Poincaré transformation, denoted $g = (\Lambda, a)$, acts on the space-time coordinate 4-vector by $x^\mu \to x'^\mu = \Lambda\indices{^\mu_\nu} x^\nu + a^\mu$, where $\Lambda$ is the Lorentz part, and $a$ is the translation part. 
+\end{em}
+
+\begin{enumproblem}
+
+% part A
+\item \begin{em}
+Derive the composition law for two transformations $g_1, g_2$ and show that the result is again a Poincare transformation; identify the unit and the inverse: they form a group!
+\end{em}
+
+
+% part B
+\item \begin{em}
+Do translations or Lorentz transformations form invariant subgroups? Justify.
+
+\textbf{Note:} An invariant (or normal) subgroup $H$ of the group $G$ is a subgroup which satisfies
+\begin{eqn}
+g H g^{-1} = H
+\end{eqn}
+for every element $g \in G$. 
+\end{em}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 2 (15 pts)}
+\begin{em}
+Two relativistic particles with rest masses $m_1$ and $m_2$ are observed to move along the observer's $z$-axis towards each other with velocities $v_1$ and $v_2$ respectively. Upon collision they are observed to coalesce into one particle of rest mass $m$, moving with velocity $v$ relative to the observer.
+\end{em}
+
+\begin{enumproblem}
+
+% part A
+\item \begin{em}
+Find $m$ and $v$ in terms of $m_1, m_2, v_1, v_2$.
+\end{em}
+
+
+% part B
+\item \begin{em}
+Would it be possible for the resultant particle to be a photon with mass $m = 0$ assuming that $m_1,m_2 > 0$?
+\end{em}
+
+
+% part C
+\item \begin{em}
+Same question as in (b) but when one or both of the masses vanish
+\end{em}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 3 (10 pts)}
+\begin{em}
+A $\pi^+$ meson (rest mass $m_\pi = \unit{139}{MeV}$) collides with a neutron (rest mass $m_n = \unit{939}{MeV}$), which is at rest in the laboratory, to produce a $K^+$ meson (rest mass $M_K = \unit{494}{MeV}$) and a $\Lambda$ baryon (rest mass $m_\Lambda = \unit{1115}{MeV}$). What is the threshold total energy (in the laboratory frame) of the $\pi^+$ for this reaction to proceed?
+\end{em}
+
+
+
+\section*{Problem 4 (10 pts)}
+\begin{em}
+Consider the motion of a relativistic rocket, on which no external forces act. The rocket is propelled by expelling gasses at a constant velocity $u$ \emph{with respect to the rocket}. As a result of this propulsion, the mass $m$ of the rocket, and its velocity $v$, will change over time.
+\end{em}
+
+\begin{enumproblem}
+
+% part A
+\item \begin{em}
+Obtain the differential equation for the change in the rocket velocity $v$ as a function of the change in its mass $m$, as a function of $m$, $v$ and $u$.
+\end{em}
+
+
+% part B
+\item \begin{em}
+Solve this equation for $v$ as a function of $m$
+\end{em}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 5 (15 pts)}
+\begin{em}
+Consider the classical field theory in one space dimension, parametrized by the coordinate $x$, with a single real scalar field $\phi(t,x)$, governed by the following action,
+\begin{eqn}
+S[\phi] = S_0 \int \dif t \, \dif x \left( \frac{1}{2} (\partial_t \phi)^2 - \frac{c^2}{2} (\partial_x \phi)^2 - \omega^2 (1-\cos\phi) \right).
+\end{eqn}
+Here, $\omega$ and $c$ are real constants, respectively with dimensions of frequency and velocity. The overall constant $S_0$ has dimensions of angular momentum divided by velocity.
+
+\textbf{Note:} A similar problem appeared on the 2014 comprehensive exam.
+\end{em}
+
+\begin{enumproblem}
+
+% part A
+\item \begin{em}
+Use the variational principle to obtain the Euler-Lagrange equation for $\phi(t, x)$, and give the expression for the total energy $E$ of a general field configuration.
+\end{em}
+
+
+% part B
+\item \begin{em}
+Consider solutions to the Euler-Lagrange equation of (a) of the form,
+\begin{eqn}
+\phi(t,x) = f(y), \qquad
+y = \gamma(v) (x-vt)
+\end{eqn}
+for arbitrary constant velocity $v$. Show that it is possible to choose $\gamma(v)$ such that $f$ (as a function) is governed by an equation which independent of $v$; determine this $\gamma(v)$, and the corresponding solution(s) $f$ such that $\cos(f(\pm\infty)) = 1$, and $f(+\infty) \neq f(-\infty)$.
+\end{em}
+
+
+% part C
+\item \begin{em}
+Derive the relation between the total energy $E$ of the solution and its velocity $v$, and show that this relation is the relativistic one. Derive the mass of the soliton. 
+\end{em}
+
+
+\end{enumproblem}
+
+
+
+
+
+\end{document}

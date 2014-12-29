@@ -1,0 +1,109 @@
+% declare document class and geometry
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+% import packages and commands
+\input{../header2.tex}
+
+\title{Phys 221A -- Quantum Mechanics -- HW07}
+\author{UCLA, Fall 2014}
+\date{\formatdate{07}{12}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+
+\begin{em}
+Problems 3.3 (p. 256), 3.9 (p. 256), 3.15 (p. 257), and 3.18 (p. 258) from the textbook (Sakurai and Napolitano, Modern Quantum Mechanics, 2nd edition).
+\end{em}
+
+
+
+\section*{Problem 3.3}
+\begin{em}
+Consider the $2 \times 2$ matrix defined by
+\begin{eqn}
+U = \frac{a_0 + i \v \sigma \cdot \v a}{a_0 - i \v \sigma \cdot \v a},
+\end{eqn}
+where $a_0$ is a real number and $\v a$ is a three-dimensional vector with real components.
+\end{em}
+
+
+\begin{enumproblem}
+
+% part A
+\item \begin{em}
+Prove that $U$ is unitary and unimodular.
+\end{em}
+
+
+% part B
+\item \begin{em}
+In general, a $2 \times 2$ unitary unimodular matrix represents a rotation in three dimensions. Find the axis and angle of rotation appropriate for $U$ in terms of $a_0$, $a_1$, $a_2$, and $a_3$. 
+\end{em}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 3.9}
+\begin{em}
+Consider a sequence of Euler rotations represented by
+\begin{align}
+\mathcal{D}^{(1/2)} (\alpha, \beta, \gamma) 
+	&= \exp \left( \frac{-i \sigma_3 \alpha}{2} \right) \exp \left( \frac{-i \sigma_2 \beta}{2} \right) \exp \left( \frac{-i \sigma_3 \gamma}{2} \right) \\
+	&= 
+	\begin{pmatrix}
+	e^{-i(\alpha + \gamma) / 2} \cos \frac{\beta}{2} & -e^{-i(\alpha - \gamma) / 2} \sin \frac{\beta}{2} \\
+	e^{i(\alpha + \gamma) / 2} \sin \frac{\beta}{2} & e^{i(\alpha - \gamma) / 2} \cos \frac{\beta}{2}
+	\end{pmatrix}.
+\end{align}
+Because of the group properties of rotations, we expect that this sequence of operations is equivalent to a \emph{single} rotation about some axis by an angle $\theta$. Find $\theta$.
+\end{em}
+
+
+
+\section*{Problem 3.15}
+
+\begin{enumproblem}
+
+% part A
+\item \begin{em}
+Let $J$ be angular momentum. (It may stand for orbital $\v L$, spin $\v S$, or $\v J_\mathrm{total}$.) Using the fact that $J_x, J_y, J_z (J_\pm \equiv J_x \pm i J_y)$ satisfy the usual angular-momentum commutation relations, prove
+\begin{eqn}
+\v J^2 = J_z^2 + J_+ J_- - \hbar J_z.
+\end{eqn}
+\end{em}
+
+
+% part B
+\item \begin{em}
+Using (a) (or otherwise), derive the ``famous'' expression for the coefficient $c_-$ that appears in 
+\begin{eqn}
+J_- \psi_{jm} = c_- \psi_{j,m-1}.
+\end{eqn}
+\end{em}
+
+
+\end{enumproblem}
+
+
+
+\section*{Problem 3.18}
+\begin{em}
+A particle in a spherically symmetrical potential is known to be in an eigenstate of $\v L^2$ and $L_z$ with eigenvalues $\hbar^2 l (l+1)$ and $m \hbar$, respectively. Prove that the expectation values between $\ket{lm}$ states satisfy
+\begin{eqn}
+\avg{L_x} = \avg{L_y} = 0, \quad
+\avg{L_x^2} = \avg{L_y^2} = \frac{1}{2} \left[ l (l+1) \hbar^2 - m^2 \hbar^2 \right].
+\end{eqn}
+Interpret this result semiclassicaly.
+\end{em}
+
+
+
+
+
+\end{document}
