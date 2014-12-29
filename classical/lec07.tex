@@ -14,13 +14,97 @@
 \maketitle
 
 
-\section{Lagrange points}
+%\section{Lagrange points}
 
+%Placed in Lec06 material
 
 
 
 \section{Parametric resonance}
 
+Question: If a swing has a stable equilibrium how can you make it swing higher and higher?
+
+Let's look at a simple example where we set the mass equal to 1
+\begin{eqn}
+L = \frac{1}{2} \dot{q}^2 - \frac{1}{2} \omega(t)^2 q^2
+\end{eqn}
+where $\omega(t + T) = \omega(t)$, i.e. is a periodic function. The simplest example of this is
+\begin{eqn}
+\omega(t)^2 = \omega_0^2 \left[ 1 + \epsilon \cos\left(\frac{2\pi t}{T}\right) \right]
+\end{eqn}
+where $\epsilon$ is small. We will simplify by making the choice $T = 2\pi$.
+
+Our equation of motion is thus
+\begin{eqn}
+\ddot{q} + \omega(t)^2 q = 0
+\end{eqn}
+We can rewrite this as a first order system
+\begin{eqn}
+x_1 = q, \qquad 
+x_2 = \dot{q}
+\end{eqn}
+with dynamics given by
+\begin{eqn}
+\dot{x_1} = x_2, \qquad 
+\dot{x_2} = -\omega(t)^2 x_1.
+\end{eqn}
+Denoting
+\begin{eqn}
+\v x = \pmat{ x_1 \\ x_2 },
+\end{eqn}
+our equation becomes
+\begin{eqn}
+\dot{\v x} = M(t) \v x
+\end{eqn}
+where $M(t)$ is also a periodic function. The solution is a matrix integral
+\begin{eqn}
+\v x(t) = P e^{\int_0^t \dif{t'} \, M(t')} \v x(0)
+\end{eqn}
+But we know that the solution is periodic so that
+\begin{eqn}
+x(t + 2\pi) = A\v x(t)
+\end{eqn}
+for some matrix $A$. More generally we have
+\begin{eqn}
+x(t + 2\pi n) = A^n\v x(t).
+\end{eqn}
+Now, for a general $2 \times 2$ matrix the characteristic equation is given by
+\begin{eqn}
+\lambda^2 - \tr(A) \lambda + \det(A) = 0.
+\end{eqn}
+Thus we have
+\begin{eqn}
+\lambda_\pm = \frac{\tr A}{2} \pm \sqrt{ \frac{(\tr A)^2}{4}  - 1},
+\end{eqn}
+where we can see that the determinant should be $1$ from the Hamiltonian. Thus for real eigenvalues our solutions will be stable for $\abs{\tr A} < 2$ and unstable for $\abs{\tr A} > 2$. 
+
+For a general $\omega(t)$ the analysis is difficult, but it's simple if we consider a small perturbation. First consider the unperturbed case $\omega^2(t) = \omega_0^2$ so that the dynamical system is given by
+\begin{eqn}
+\dot{x_1} = x_2, \qquad
+\dot{x_2} = -\omega_0^2 x_1
+\end{eqn}
+or represented by
+\begin{eqn}
+M = \left( \begin{array}{cc} 0 & 1 \\ -\omega_0^2 & 0  \end{array} \right).
+\end{eqn}
+Then we have
+\begin{gather}
+A(t) = \exp(Mt) = 
+\begin{pmatrix}
+\cos \omega_0 t & \frac{1}{\omega_0} \sin \omega_0 t \\
+-\omega_0 \sin \omega_0 t & \cos \omega_0 t 
+\end{pmatrix}, \\
+A(t = 2\pi) = 
+\begin{pmatrix}
+\cos 2\pi \omega_0 & \frac{1}{\omega_0} \sin 2\pi \omega_0 \\
+-\omega_0 \sin 2\pi \omega_0 & \cos 2\pi \omega_0
+\end{pmatrix}
+\end{gather}
+and thus we have $\det A = 1$ as expected and $\tr A = 2 \cos 2\pi \omega_0$. Therefore, we have marginal stability when $\abs{\tr A} = 2$ so that $\abs{\cos 2\pi \omega_0} = 1$, thus
+\begin{eqn}
+\omega_0 = 0, \frac{1}{2}, 1, \frac{3}{2}, \dots.
+\end{eqn}
+So, away from $\omega_0$ the motion is stable even for small $\epsilon$. But for perturbations at or very near these \emph{parametric resonance frequencies}, we have instability. 
 
 
 \section{Legendre transform (for Hamiltonian mechanics)}

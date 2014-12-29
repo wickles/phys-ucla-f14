@@ -20,13 +20,13 @@ Generally, in classical mechanics, the dynamics may often by too complicated to 
 \begin{eqn}
 L = \frac{1}{2} \sum_{ij} M_{ij}(q) \dot{q}_i \dot{q}_j + \sum_i N_i (q) \dot{q}_i - V(q),
 \end{eqn}
-or we will be able to approximate it in this form to order $\bigo(\dot{q}^2)$, assuming no time dependence. This gives us stability around equilibrium, which is of course important physically. An example where $N_i$ comes into play would be the potential for a particle coupled to the EM field. For driven systems we will have different stability properties. In condensed matter, small energy excitations around equilibrium are called phonons. 
+or we will be able to approximate it in this form to order $\dot{q}^2$, assuming no time dependence. This gives us stability around equilibrium, which is of course important physically. An example where $N_i$ comes into play would be the potential for a particle coupled to the EM field. For driven systems we will have different stability properties. In condensed matter, small energy excitations around equilibrium are called phonons. 
 
-Equilibrium points occur at the extrema of the potential, that is at solutions $q_i^{(0)}$ to $\pd{V}{q_i} = 0$. The Euler-Lagrange equations are then solved by $q_i(t) = q_i^{(0)}$ for all $t$, i.e. $\dot{q}_i = 0$. Under small oscillations we will have
+Equilibrium points occur at the extrema of the potential, that is at solutions $q_i^{(0)}$ to $\tpd{V}{q_i} = 0$. The Euler-Lagrange equations are then solved by $q_i(t) = q_i^{(0)}$ for all $t$, i.e. $\dot{q}_i = 0$. Under small oscillations we will have
 \begin{eqn}
 q_i = q_i^{(0)} + \eta_i(t) + \bigo(\eta^2)
 \end{eqn}
-and we must expand the Lagrangian to quadratic order (i.e. linearize),
+so we can expand the Lagrangian to quadratic order (thus linearizing the EL equations),
 \begin{align}
 L &= \frac{1}{2} \sum_{ij} M_{ij} (q^{0}) \dot{\eta}_i \dot{\eta}_j + \sum_i N_i (q^{0}) \dot{\eta}_i + \sum_{ij} \eval{\pd{N_i}{q_j}}_{q=q^0} \eta_j \dot{\eta}_i - V(q^0) \\
 	& \qquad - \sum_i \eval{\pd{V}{q_i}}_{q = q^0} \eta_i - \frac{1}{2} \eval{\md{V}{2}{q_i}{}{q_j}{}}_{q = q^0} \eta_i \eta_j + \bigo(n^3). \\
@@ -34,11 +34,11 @@ L &= \frac{1}{2} \sum_{ij} M_{ij} (q^{0}) \dot{\eta}_i \dot{\eta}_j + \sum_i N_i
 \end{align}
 where in the second expression we've thrown out the $\sum_i N_i (q^0) \dot{\eta}_i$ and $V(q^0)$ terms since they are just a total derivative and an overall constant, and 
 \begin{eqn}
-m_{ij} = M_{ij}(q^0), \qquad p_{ij} = \eval{\pd{N_i}{q_j}}_{q = q^0}, \text{and} \qquad v_{ij} = \eval{\md{V}{2}{q_i}{}{q_j}{}}_{q = q^0}
+m_{ij} = M_{ij}(q^0), \qquad p_{ij} = \eval{\pd{N_i}{q_j}}_{q = q^0}, \text{and} \qquad v_{ij} = \eval{\dmd{V}{2}{q_i}{}{q_j}{}}_{q = q^0}
 \end{eqn}
-are constant matrices. Now, if $p_{ij}$ has a symmetric part $p_{(ij)}$ we can throw it out and just consider it antisymmetric since
+are constant matrices. Now, if $p_{ij}$ has a symmetric part $p_{(ij)}$ we can throw it out and just work with the antisymmetric part, since
 \begin{eqn}
-p_{(ij)} \eta_i \dot{\eta}_j = \frac{1}{2} (p_{ij} + p_{ji}) \eta_i \dot{\eta}_j = p_{ij} (\eta_i \dot{\eta}_j + \eta_j \dot{\eta}_i) = \od{}{t} (\frac{1}{2} p_{ij} \eta_i \eta_j)
+p_{(ij)} \eta_i \dot{\eta}_j = \frac{1}{2} (p_{ij} + p_{ji}) \eta_i \dot{\eta}_j = \frac{1}{2} p_{ij} (\eta_i \dot{\eta}_j + \eta_j \dot{\eta}_i) = \od{}{t} (\frac{1}{2} p_{ij} \eta_i \eta_j)
 \end{eqn}
 is just a total derivative. 
 
@@ -46,57 +46,361 @@ is just a total derivative.
 
 As a first analysis, let's set $p_{ij} = 0$. Then we can write
 \begin{eqn}
-L = \frac{1}{2} \dot{\eta}^\top m \dot{\eta} - \frac{1}{2} \eta^\top v \eta + \bigo(\eta^3),
+L = \frac{1}{2} \dot{\eta}^\top m \dot{\eta} - \frac{1}{2} \eta^\top v \eta + \bigO(\eta^3),
 \end{eqn}
-for which we can write the equation of motion in terms of the vector $\bar{\eta} = (\eta_1, \dots, \eta_n)$,
+for which we can write the equation of motion in terms of the vector $\v \eta = (\eta_1, \dots, \eta_n)^\top$,
 \begin{eqn}
-m \ddot{\bar{\eta}} + v \bar{\eta} = 0.
+m \ddot{\v \eta} + v \v \eta = 0.
 \end{eqn}
-This has ansatz $\bar{\eta} = \bar{\gamma} e^{i \omega t}$ which, plugging back in to the equation of motion, we have
+This has ansatz $\v \eta = \v \gamma e^{i \omega t}$ which, plugging back in to the equation of motion, we have
 \begin{eqn}
-(-\omega^2 m + v) \bar{\gamma} = 0.
+(-\omega^2 m + v) \v \gamma = 0.
 \end{eqn}
-Thus $\omega$ is determined by the vanishing of the determinant
+Thus the characteristic frequencies $\omega$ are determined by the vanishing of the determinant
 \begin{eqn}
 \det (-\omega^2 m + v) = 0.
 \end{eqn}
 
-[blah blah, incomplete here]
-
-
-Thus our equatons of motion are given by
+Now, we are interested in determining whether all directions are stable, and what the normal modes $\v \gamma$ look like. Recall some facts about linear algebra. Both matrices $m_{ij}$ and $v_{ij}$ are symmetric and can hence be diagonalized by orthogonal transformations we have 
 \begin{eqn}
-\ddot{\bbar{\eta}}_i + \lambda_i \bbar{\eta}_i = 0, \qquad i = 1, \dots, N.
+\bigo^\top m \bigo = 
+\begin{pmatrix}
+m_1 & & & \\ 
+& m_2 & & \\ 
+& & \ddots & \\
+& & & m_n
+\end{pmatrix}
+\equiv \bar{m}.
 \end{eqn}
-where in the stable case we have $\lambda_i = \omega_i^2$, the characteristic frequencies. So the normal modes are decoupled 1-dimensional oscillators along $\bbar{\eta}_i$ with coordinate relationship
+We'll assume that the eigenvalues $m_i$ are positive (i.e. all masses are in general positive). Then we have a well defined square root $\mu$ of $\bar m$,
 \begin{eqn}
-\eta = O \bar{m}^{-1/2} \bar{O} \bar{\bar{\eta}}. 
+\mu = 
+\begin{pmatrix}
+\sqrt{m_1} & & & \\ 
+& \sqrt{m_2} & & \\ 
+& & \ddots & \\
+& & & \sqrt{m_n}
+\end{pmatrix}
+\end{eqn}
+so that we have
+\begin{eqn}
+(\mu\inv)^\top \bigo^\top m \bigo \mu\inv = 1.
+\end{eqn}
+Defining $\bar \eta$ by
+\begin{eqn}
+\v \eta = \bigo \mu\inv \v{\bar \eta}
+\end{eqn}
+we have 
+\begin{eqn}
+L = \frac{1}{2} \v{\dot{\bar \eta}}^\top \v{\dot{\bar \eta}} - \frac{1}{2} \v{\bar \eta}^\top \bar{v} \v{\bar \eta}
+\end{eqn}
+where 
+\begin{eqn}
+\bar{v} \equiv \mu\inv \bigo^T v \bigo \mu
+\end{eqn}
+is still a symmetric matrix
+
+Now, our equation of motion becomes
+\begin{eqn}
+\v{\ddot{\bar \eta}} + \bar{v} \v{\bar \eta} = 0,
+\end{eqn}
+which with the same ansatz $\v{\bar \eta} = e^{i\omega t} \v \gamma$ gives us
+\begin{eqn}
+(-\omega^2 + \bar{v}) \v \gamma = 0,
+\end{eqn}
+which is just an eigenvalue equation for $\bar v$. Thus, if the eigenvalues of $\bar{v}$ are all real and nonzero then the oscillations are stable. 
+
+More generally, certain directions can be stable depending on the sign of the eigenvalues. %Given the eigenvalues $\lambda_i$ the equations of motion are oscillatory with frequencies $\omega_i =  \sqrt{\lambda_i}$.
+Diagonalizing $\bar v$ we have
+\begin{eqn}
+\bar \bigO^\top \bar v \bar \bigO = 
+\begin{pmatrix}
+\lambda_1 & & & \\ 
+& \lambda_2 & & \\ 
+& & \ddots & \\
+& & & \lambda_n
+\end{pmatrix},
+\end{eqn}
+so the directions corresponding to the eigenvalues are stable, marginal, or unstable depending on if the sign of the eigenvalue is positive, zero, or negative respectively. Defining new variables $\v{\bbar \eta}$ defined by
+\begin{eqn}
+\v{\bar \eta} = \bar \bigO \v{\bbar \eta},
+\end{eqn}
+our equations of motion become
+\begin{eqn}
+\ddot{\bbar \eta}_i + \lambda_i \bbar{\eta}_i = 0, \qquad i = 1, \dots, N.
+\end{eqn}
+In the stable case we have $\lambda_i = \omega_i^2$, the characteristic frequencies. So the normal modes are decoupled 1-dimensional oscillators with characteristic frequencies $\omega_i$. Of course we can go back to the original coordinates by
+\begin{eqn}
+\v \eta = \bigO \mu\inv \bar{\bigO} \v{\bbar\eta}. 
 \end{eqn}
 
-In the more general case with $\eta_{ij} \neq 0$, we have
+In the more general case with $p_{ij} \neq 0$, the Lagrangian in terms of $\v{\bar \eta}$ becomes
 \begin{eqn}
-L = \frac{1}{2} \dot{\bar{\eta}}^\top \bar{\eta} + \bar{\eta}^\top \bar{p} \dot{\bar{\eta}} - \frac{1}{2} \bar{\eta}^\top \bar{v} \bar{\eta}
+L = \frac{1}{2} \v{\dot{\bar \eta}}^\top \v{\dot{\bar \eta}} + \v{\bar \eta}^\top \bar{p} \v{\dot{\bar \eta}} - \frac{1}{2} \v{\bar \eta}^\top \bar{v} \v{\bar \eta}
 \end{eqn}
 where
 \begin{eqn}
-\bar{p} = \bar{m}^{-1/2} O^\top p O \bar{m}^{-1/2}.
+\bar{p} = (\mu\inv)^\top \bigO^\top p \bigO \mu\inv.
 \end{eqn}
 So the Euler-Lagrange equations are
 \begin{eqn}
-\ddot{\bar{\eta}} + \bar{v} \bar{\eta} - 2 \bar{p} \dot{\bar{\eta}} = 0
+\v{\ddot{\bar \eta}} + \bar{v} \v{\bar \eta} - 2 \bar{p} \v{\dot{\bar \eta}} = 0
 \end{eqn}
-which has a new characteristic equation for the ansatz $\bar{\eta} = \gamma e^{i\omega t}$,
+which has a new characteristic equation for the ansatz $\v{\bar \eta} = \v \gamma e^{i\omega t}$, given by
 \begin{eqn}
 \det (-\omega^2 + \bar{v} - 2i \omega \bar{p}) = 0
 \end{eqn}
-which determines $\omega$ and $\gamma$ in general. These cases are important for a particle in an EM field and motion in non-inertial frames. 
+which determines $\omega$ and $\v \gamma$ in general. These cases are important for a particle in an EM field and motion in non-inertial frames. 
 
 
-\subsection{Double pendulum}
+\subsection{Example: Double pendulum}
 
-[unfinished]
+Let's take the simple case that
+\begin{eqn}
+m_1 = m_2 = m
+\end{eqn}
+\begin{eqn}
+l_1 = l_2 = l
+\end{eqn}
+Our Lagrangian in this case is
+\begin{eqn}
+L = ml^2 \dot{\theta_1}^2 + \frac{1}{2}ml^2 \dot{\theta_2}^2 + ml^2 \dot{\theta_1}\dot{\theta_2} \cos(\theta_1 - \theta_2) + 2mgl \cos \theta_1 + mgl\cos\theta_2
+\end{eqn}
+In equilibrium
+\begin{eqn}
+\theta_1 = \theta_2 = 0
+\end{eqn}
+Expanding around equilibrium and dropping the small terms and constants, we have
+\begin{eqn}
+L = ml^2 \dot{\theta_1}^2 + \frac{1}{2} ml^2 \dot{\theta_2}^2  + ml^2 \dot{\theta_1} \dot{\theta_2} - mgl \theta_1^2 - \frac{1}{2} mgl\theta_2^2,
+\end{eqn}
+for which we have matrices
+\begin{eqn}
+m_{ij} = 
+\begin{pmatrix}
+2ml^2 & ml^2 \\ 
+ml^2 & ml^2 
+\end{pmatrix}, \qquad
+v_{ij} = 
+\begin{pmatrix}
+2mgl & 0 \\
+0 & mgl 
+\end{pmatrix}.
+\end{eqn}
+Our Euler-Lagrange equations are then
+\begin{eqn}
+\begin{pmatrix}
+2ml^2 & ml^2 \\ 
+ml^2 & ml^2 
+\end{pmatrix} 
+\pmat{ \ddot \theta_1 \\ \ddot \theta_2 } + 
+\begin{pmatrix} 
+2mgl & 0 \\ 
+0 & mgl 
+\end{pmatrix}
+\pmat{ \theta_1 \\ \theta_2} = 0
+\end{eqn}
+or, dividing by $ml^2$,
+\begin{eqn}
+\pmat{2 & 1 \\ 1 & 1} \pmat{\ddot \theta_1 \\ \ddot \theta_2} + \pmat{2g/l & 0 \\ 0 & g/l} \pmat{\theta_1 \\ \theta_2} = 0.
+\end{eqn}
+Multiplying on both sides by the inverse of the first term, we have
+\begin{eqn}
+\pmat{\ddot \theta_1 \\ \ddot \theta_2} + \frac{g}{l} \pmat{2 & -1 \\ -2 & 2} \pmat{\theta_1 \\ \theta_2} = 0.
+\end{eqn}
+We then obtain the frequencies from the eigenvalue equation
+\begin{eqn}
+\det \left[ -\omega^2 + \frac{g}{l} \left( \begin{array}{cc} 2 & -1 \\ -2 & 2\end{array} \right) \right] = 0.
+\end{eqn}
+This results in the quartic equation
+\begin{eqn}
+\omega^4 - \frac{4g}{l} \omega^2 + \frac{2g^2}{l^2} = 0
+\end{eqn}
+with roots
+\begin{eqn}
+\omega^2_\pm = \frac{2g}{l} \left( 1 \pm \frac{1}{\sqrt{2}}\right).
+\end{eqn}
+The eigenvector for the positive frequency is
+\begin{eqn}
+v_+ = \pmat{ -1 / \sqrt{2} \\ 1 },
+\end{eqn}
+corresponding to the segments oscillating in opposite directions. For the negative frequencies we have
+\begin{eqn}
+v_- = \pmat{ 1 / \sqrt{2} \\ 1 }
+\end{eqn}
+corresponding to the segments oscillating in the same direction.
 
 
+\subsection{Example: Lagrange Points}
+Consider a two-body planet system. The two masses move in circular orbits about their common center of mass, with equal velocities. We can transform into this frame by rotating our frame by the angular velocity. The Lagrange points are points where you can put a small test mass $m$ and it will be stationary \emph{in the rotating frame}. In the rest frame, it has the same angular velocity as the other masses. From the inertial frame the masses have positions
+\begin{eqn}
+\v x_1 = \pmat{ r_1 \cos\omega_t \\ r_1 \sin \omega_t \\ 0 }, \qquad
+\v x_2 = \pmat{ -r_2 \cos\omega_t \\ -r_2 \sin \omega_t \\ 0 }
+\end{eqn}
+where $r_1$ and $r_2$ are the distances from the center of mass. Then defining
+\begin{eqn}
+d = r_1 + r_2, \qquad
+M = m_1 + m_2
+\end{eqn}
+and noting that
+\begin{eqn}
+m_1 r_1 = m_2 r_2,
+\end{eqn}
+we find new expressions for the coordinates,
+\begin{eqn}
+r_1 = \frac{m_2 d}{m_1 + m_2}, \qquad
+r_2 = \frac{m_1 d}{m_1 + m_2}.
+\end{eqn}
+This frame rotates with a frequency determined by Kepler's law and is unaffected by the test mass $m \ll m_1, m_2$, 
+\begin{eqn}
+G (m_1 + m_2) = d^3 \omega^2.
+\end{eqn}
+In the inertial frame we thus have the Lagrangian
+\begin{eqn}
+L = \frac{1}{2} m \vd x^2 + \frac{G m m_1}{\abs{\v x - \v x_1}} + \frac{G m m_2}{\abs{\v x - \v x_2}}.
+\end{eqn}
+In general this is difficult since everything depends on $t$. Let's transform into a rotating frame with angular velocity $\omega$ such that
+\begin{eqn}
+\v{x} = 
+\begin{pmatrix}
+x \cos\omega t - y \sin \omega t \\
+x \sin \omega t + y \cos \omega t \\
+z
+\end{pmatrix}
+\end{eqn}
+and so
+\begin{eqn}
+\v x - \v x_1 = 
+\begin{pmatrix}
+x \cos\omega t - y \sin \omega t - r_1 \cos\omega t \\
+x \sin \omega t + y \cos \omega t - r_1 \sin\omega t \\
+z
+\end{pmatrix}.
+\end{eqn}
+So working through the algebra we find
+\begin{eqn}
+\abs{\v x - \v x_1} = \sqrt{(x - r_1)^2 + y^2},
+\end{eqn}
+and similarly,
+\begin{eqn}
+\abs{\v x - \v x_2} = \sqrt{(x + r_2)^2 + y^2}.
+\end{eqn}
+
+Now, when we take all of this into our Lagrangian, we can get the kinetic energy from our normal motion in a rotational frame. We have a centripetal term (the first) and a centrifugal term (the second)
+\begin{align}
+L &= \frac{1}{2} m \left[ \dot x^2 + \dot y^2 + \dot z^2 + \omega^2 (x^2 + y^2) + 2 \omega (x \dot y - y \dot x) \right] \\
+	&\qquad + G m \left[ \frac{m_1}{\sqrt{(x - r_1)^2 + y^2 + z^2}} + \frac{m_2}{\sqrt{(x + r_2)^2 + y^2 + z^2)}} \right].
+\end{align}
+Okay, so from common sense, we know that the stability points cannot be anywhere except for the z plane, there are no forces to stabilize them in any other plane. The name of the game now is to have a balance of these forces while minimizing the effective potential. Our first Lagrange point is simply a balance between the gravitational forces. This point is stationary in both the inertial frame and the non-inertial frame so we don't have to consider Coriolis forces or centripetal. 
+
+Now let's consider the other two forces. We have two points that move in circular orbits in the inertial frame. These points only experience centripetal forces which balance the gravitational forces. From the math, these points form equilateral triangles with the two masses. 
+
+The third point is behind each of the masses. These points only have inward pointing forces from the gravitational forces, but if we combine the centripetal and centrifugal forces (which point in the same direction) they cancel the gravitational forces. 
+
+Let's consider the stability of the non-colinear points. The effective potential\footnote{This section's derivation and notation differs from the actual lecture notes. Blame Pauline.} is given by
+\begin{eqn}
+%\phi_\mathrm{eff} = -\frac{1}{2} m (x^2 + y^2) - \frac{G m m_1}{\sqrt{(x - r_1)^2 + y^2}} + \frac{G m m_2}{\sqrt{(x + r_2)^2 + y^2}}.
+\phi_\mathrm{eff} = \frac{G\mu}{2R^3}(x^2 + y^2) - \frac{Gm_1}{\sqrt{(r_1 + x)^2 + y^2}} + \frac{Gm_2}{\sqrt{(r_2 - x)^2 + y^2}}
+\end{eqn}
+Now we take the first derivative. For our Lagrange points this derivative is equal to zero
+\begin{align}
+\pd{\phi_\mathrm{eff}}{x} &= \frac{G\mu}{R^3}x - \frac{Gm_1 (r_1-x)}{((r_1 - x)^2 + y^2)^{3/2}} + \frac{Gm_2(r_2 + x)}{((r_2 + x)^2 + y^2)^{3/2}}
+\end{align}
+Since $r_1 - x = r_2 + x$
+\begin{align}
+\pd{\phi_\mathrm{eff}}{x} &= \frac{G\mu}{R^3}x - G\frac{m_1  r_1- m_1x - m_2 r_2 - m_2 x}{((r_1 - x)^2 + y^2)^{3/2}} \\ 
+&= \frac{G\mu}{R^3}x + G\frac{ x(m_1 + m_2)}{((r_1 - x)^2 + y^2)^{3/2}} &= 0 \\ 
+\end{align}
+For $y$ we have
+\begin{align}
+\pd{\phi_\mathrm{eff}}{y} &= \frac{G\mu}{R^3} y - \frac{Gm_1y}{((r_1 -x)^2 + y^2)^{3/2}} + \frac{Gm_2 y }{((r_2 + x)^2 + y^2)^{3/2}}\\
+&= \frac{G\mu}{R^3} y + \frac{G(m_1 + m_2)y}{((r_1 -x)^2 + y^2)^{3/2}} 
+\end{align}
+
+Okay, now to do the stability analysis, let's perturb the Lagrangian by 
+\begin{eqn}
+x = x_L + \epsilon_x
+\end{eqn}
+and
+\begin{eqn}
+y = y_L + \epsilon_y
+\end{eqn}
+\begin{eqn}
+\d{}{t} \pd{L}{\dot{\epsilon}} = \pd{L}{\epsilon}
+\end{eqn}
+\begin{eqn}
+\d{}{t} ( m \dot \epsilon_x - 2 \omega \epsilon_y) = m \ddot \epsilon_x - 2 \omega \dot \epsilon_y =  \epsilon_x \pd{\phi_\mathrm{eff}}{x} + \epsilon_y \frac{\partial^2 \phi_\mathrm{eff}}{\partial x \partial y}
+\end{eqn}
+Where the partial derivatives are all evaluated at the Lagrange points
+\begin{eqn}
+\ddot \epsilon_y + 2\omega \dot \epsilon_x = \epsilon_y \pd{\phi_\mathrm{eff}}{y} + \epsilon_x \frac{\partial^2 \phi_\mathrm{eff}}{\partial x\partial y} 
+\end{eqn}
+Let's take these partial derivatives
+\begin{eqn}
+\pd{\phi_\mathrm{eff}}{x} = \frac{G\mu}{R^2} + \frac{G(m_1 + m_2)}{((r_1 - x)^2 + y^2)^{3/2}} + \frac{G(m_1 + m_2)x}{((r_1 - x)^2 + y^2)^{3/2}}
+\end{eqn}
+The first and second term are zero due to the first derivative. 
+\begin{eqn}
+\pd{\phi_\mathrm{eff}}{x} = \frac{\frac{3}{2}G(m_1 + m_2)x(r_1 - x)}{((r_1 - x)^2 + y^2)^{5/2}}
+\end{eqn}
+We found above that
+\begin{eqn}
+x = \frac{1}{2}(r_1 - r_2)
+\end{eqn}
+\begin{eqn}
+y = \frac{\sqrt{3}}{2} (r_1 + r_2)
+\end{eqn}
+and 
+\begin{eqn}
+(r_1 - x)^2 + y^2 = d^2
+\end{eqn}
+\begin{eqn}
+\pd{\phi_\mathrm{eff}}{x} = \frac{\frac{3}{2}G(m_1 + m_2)x((\frac{1}{2}r_1 + \frac{1}{2}r_2)}{d^5}
+\end{eqn}
+\begin{eqn}
+\pd{\phi_\mathrm{eff}}{x} = \frac{3}{4} x_l\frac{G(m_1 + m_2)}{R^3}= -\frac{3}{4} \frac{G(m_1 + m_2)}{d^3} = -\frac{3}{4} \omega^2
+\end{eqn}
+You get the idea. The rest are derived in the textbook so I'll skip to the punchline
+\begin{eqn}
+\ddot \epsilon_x - 2 \omega \dot \epsilon_y - \frac{3}{4} \omega^2 \epsilon_x + \frac{3\sqrt{3}}{4} \frac{m_1 - m_2}{m_1 + m_2} \omega^2 \epsilon_y = 0
+\end{eqn}
+\begin{eqn}
+\ddot \epsilon_x +2\omega \dot \epsilon_y - \frac{9}{4} \omega^2 \epsilon_x + \frac{3\sqrt{4}}{4}\frac{m_1 - m_2}{m_1 + m_2}\omega^2 \epsilon_y = 0
+\end{eqn}
+We make the ansatz
+\begin{eqn}
+\epsilon_x = c_1 e^{i\omega_s t}
+\end{eqn}
+\begin{eqn}
+\epsilon_y = c_2 e^{i\omega_s t}
+\end{eqn}
+Which gives us two equations
+\begin{gather}
+-\omega_s^2 c_1 - 2i\omega \omega_s c_2 - \frac{3}{4} \omega^2 c_1 + \alpha \omega^2 c_2 = 0, \\
+-c_2 \omega_s^2 + 2i\omega \omega_sc_1 - \frac{9}{4} \omega^2 c_2 + \alpha \omega^2 c_1 = 0,
+\end{gather}
+where we have defined
+\begin{eqn}
+\alpha = \frac{3\sqrt{4}}{4} \frac{m_1 - m_2}{m_1 + m_2}.
+\end{eqn}
+Eliminating the constants we get
+\begin{eqn}
+- 16 \omega_s^4 + 16 \omega^2 \omega_s^2 + (-27+16 \alpha^2) \omega^4  = 0
+\end{eqn}
+so using quadratic formula we have
+\begin{align}
+\omega_s^2 &= \frac{1}{32} \left[ 16\omega^2 \pm \sqrt{16^2 \omega^4 + 64 (-27 + 16 \alpha^2) \omega^4} \right] \\
+	&= \omega^2 \left[ \frac{1}{2} \pm \sqrt{\frac{1}{4}  - \frac{1}{16} \left( -27 + 27 \left( \frac{m_1 - m_2}{m_1 + m_2} \right)^2 \right)} \right] \\
+	&= \omega^2 \left[ \frac{1}{2} \pm \sqrt{-\frac{23}{16} + \frac{27}{16} \left( \frac{m_1 - m_2}{m_1 + m_2} \right)^2} \right].
+\end{align}
+Our stability condition is thus
+\begin{eqn}
+\frac{1}{2} > \sqrt{-\frac{23}{16} + \frac{26}{16} \left[ \left( \frac{m_1}{m_1 + m_2} \right)^2 + \frac{m_1}{m_1 + m_2} \right]}
+\end{eqn}
+Solving we get
+\begin{eqn}
+\mu < \frac{27 - \sqrt{621}}{54} \approx .038.
+\end{eqn}
 
 
 

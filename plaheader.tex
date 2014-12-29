@@ -3,6 +3,13 @@
 % ***********************************************************
 % Version 2
 \documentclass[12pt]{article} 
+
+
+
+
+
+\usepackage{datetime} % allows easy formatting of dates, e.g. \formatdate{dd}{mm}{yyyy}
+
 \usepackage{amsmath} % AMS Math Package
 \usepackage{amsthm} % Theorem Formatting
 \usepackage{amssymb}	% Math symbols such as \mathbb
@@ -23,6 +30,19 @@
 \renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
 \newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}} 
 % for vectors of Greek letters
+\newcommand{\vx}{\ensuremath{\v{x}}} 
+% for vectors of Greek letters
+\newcommand{\vy}{\ensuremath{\v{y}}} 
+% for vectors of Greek letters
+\newcommand{\xdot}{\ensuremath{\dot{x}}} 
+% for vectors of Greek letters
+
+\newcommand{\ydot}{\ensuremath{\dot{y}}} 
+% for vectors of Greek letters
+\usepackage{commath} % for some nice standardized syntax stuff. 
+	% \dif, \Dif, \od, \pd, \md, \(abs | envert), \(norm | enVert), \(set | cbr), \sbr, \eval, \int(o | c)(o | c), etc
+\newcommand{\bbar}[1]{\bar{\bar{#1}}} % for barring things twice -- use \cbar or \zbar instead of original \bbar
+
 \newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
 \newcommand{\abs}[1]{\left| #1 \right|} % for absolute value
 \newcommand{\avg}[1]{\left< #1 \right>} % for average
@@ -57,6 +77,8 @@
 \newtheorem{dfn}{Definition}
 \theoremstyle{remark}
 \newtheorem*{rmk}{Remark}
+\newcommand{\bigO}{\mathcal{O}} % big O notation
+\let \bigo = \bigO % deprecated version. keeping for now because need to update instances in older files
 
 
 
