@@ -6,8 +6,7 @@ Compiled PDFs are currently available [here](https://www.dropbox.com/sh/11gf7mms
 
 Classical
 
-- lec06 - most of it
-- lec07 - most of it
+- lec07 - short Legendre transform examples
 - lec09 - very end missing, continued in next lecture?
 - lec14 - last 2/3 or so
 
