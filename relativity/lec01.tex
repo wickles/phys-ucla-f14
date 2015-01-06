@@ -1,0 +1,200 @@
+% declare document class and geometry
+%\documentclass[12pt]{article} % use larger type; default would be 10pt
+\input{../plaheader.tex}
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+
+
+
+
+\title{Phys 220A -- Relativity -- Lec01}
+\author{UCLA, Fall 2014}
+\date{\formatdate{6}{1}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+\section{Introduction}
+Gravity is the most familiar force but mysterious. We can compare it to the electric force
+\begin{equation}
+\frac{1}{\alpha} \frac{m_p^2}{M_p^2} = .8 \times 10^{-36}
+\end{equation}
+Where $M_p$ is the Planck mass
+\begin{equation}
+M_p = \left(\frac{\hbar c}{G_N}\right)^{1/2} = 1/2 \times 10^19 GeV/c^2  \approx 10^{-5} g
+\end{equation}
+and the mass of the proton is
+\begin{equation}
+m_p \approx 1 GeV/c^2 \approx 10^{24} g
+\end{equation}
+So gravitational corrections to atomic physics are suppressed by a factor of
+\begin{equation}
+\alpha^x \left(\frac{m}{M_p}\right)^x
+\end{equation}
+which is small for any values of m and x. 
+
+The minimum distance at which gravity has been tested is to the order
+of $10^{-2} cm$. What does it mean to test? We can't observe the
+exchange of gravitons like we can observe photons. All we can do is
+measure the interactions between huge numbers of particles. There's
+also another interaction typical of gravity: dark energy. 
+\begin{equation}
+\rho \approx M_{vac}^4
+\end{equation}
+where
+\begin{equation}
+M_{vac} \approx 10^{-3} eV
+\end{equation}
+If we translate this energy scale to the length scale, it's on the
+order of magnitude of $10^{-2}cm$. Because of the enormous
+discrepancy between these mass scales, extrapolating what we know about
+gravity experimentally down to Planck mass scales may be incorrect. It
+may be different at particle energy scales. 
+
+\section{Pre-relativity Physics}
+
+Forces given by Newton's laws. Coordinates given by the Cartesian
+coordinate vector. This law is invariant under transformations between frames of a
+  given type: changing to a coordinate system in which 
+\begin{equation}
+x' = R * \v{x} + \v{v} t + \v{d}
+\end{equation}
+\begin{equation}
+t' = t + \tau
+\end{equation}
+Where R is a 3 dimensional rotation matrix, v is a velocity between
+frames, d is an arbitrary displacement of the origin and t is a time
+shift.  These transformations are called the Galilean group of
+transformation. This is a ten-parameter group. These frames are
+inertial frames.
+
+What distinguishes inertial from non-inertial frames? We have inertial
+frames because there is absolute space and absolute time. The laws
+have a simple distinguished form if you're either at rest in absolute
+space or moving uniformly in absolute time. Then Maxwell theory came
+along and Maxwell theory has a velocity in it, the velocity of light
+which is part of the equations. The constancy of the speed of light in
+all frames was inconsistent with the
+framework of Galilean boosts. Lorentz and Poincare found the set of
+transformations leaving Maxwell theory invariant.
+
+Einstein then postulated that all inertial frames are equivalent
+(relativity principle) and that the velocity of light is constant in
+all frames. If you take these two postulates then by very simple
+algebra we can deduce that the set of transformations that satisfy
+these two are the Lorentz transformations which replaces the Galilean
+transformations. However the Lorentz
+transformations mix space and time nontrivially. In special relativity
+the inert ail frames are special and if you go to a non inertial frame
+your laws of physics will change. Now what characterizes an inertial
+frame? Unlike the Newtonian formalism where we have absolute space and
+absolute time, we have absolute spacetime
+
+
+
+
+
+\section{Lorentz Transformations}
+We now take the Cartesian coordinates plus time and put it into a
+four-vector $x^\alpha = (x^1, x^2, x^3, t)$ where 
+$\alpha = 1, 2, 3, 0$. In this classes c is 1 and $\hbar=1$. We will
+also use the summation convention. Let's define Lorentz
+transformations in the way we want to use them. What is a Lorentz
+transformation? It can be generalized as follows
+\begin{equation}
+x^\beta \rightarrow x'^\alpha = \Lambda^\alpha _\beta x^\beta
+\end{equation}
+Where $\Lambda^\alpha_\beta$ satisfies
+\begin{equation}\label{blah}
+\Lambda^\alpha_\gamma \Lambda^\beta_\delta \eta_{\alpha \beta} =
+\eta_{\gamma \delta}
+\end{equation}
+where
+\begin{equation}
+\eta_{\alpha \beta} = diag(1, 1, 1, -1)
+\end{equation}
+only $\Lambda$ satisfying this are Lorentz transformations. The
+\textbf{Minkowski metric} is one where $\eta$ is defined by $diag(1,
+1, 1, -1)$.
+
+The fundamental property of the Minkowski metric is that it leaves the
+proper time interval invariant
+\begin{equation}
+d\tau^2 = -\eta_{\alpha\beta} dx^\alpha dx^\beta
+\end{equation}
+We prove this in the homework. For light propagation
+\begin{equation}
+d\tau = 0
+\end{equation}
+
+The homogeneous Lorentz group (in contrast to the Poincare group) is
+characterize simply by a Lorentz boost. The Poincare group is
+characterized by 10 parameters, like the Gallilean
+group. From~\ref{blah} one can prove that (homework)
+\begin{equation}
+det \Lambda = \pm 1
+\end{equation}
+and that $\Lambda_0^0$ is either greater than or equal to 1 or less
+than or equal to -1. The basic subset of the Galilean group is where
+\begin{equation}
+\det \Lambda = 1
+\end{equation}
+\begin{equation}
+\Lambda^0_0 \le 1
+\end{equation}
+Then this defines the proper orthochronous (preserving the direction
+of time) Lorentz subgroup.
+
+The other icase is to get the matrices with
+\begin{equation}
+\det \Lambda = -1
+\end{equation}
+\begin{equation}
+\Lambda^0_0 \le 1
+\end{equation}
+by multiplying a member of the first group by the matrix $\Lambda = diag (-1, -1 ,-1, 1)$. This
+is a space inversion matrix. We have the subgroup where
+\begin{equation}
+\det \Lambda = -1
+\end{equation}
+\begin{equation}
+\Lambda^0_0 \ge -1
+\end{equation}
+multiply by $\Lambda = 1, 1, 1, -1$ which is a time inversion. Final
+case is where
+\begin{equation}
+\det \Lambda = 1
+\end{equation}
+\begin{equation}
+\Lambda^0_0 > -1
+\end{equation}
+multiply by $\Lambda = (-1, -1, -1, -1)$ which is an inversion of
+space and time. 
+
+Let's concertrate on the proper orthochronous Lorentz group. Ordinary
+three dimensional rotations are contained in the POLG. Suppose we take
+a matrix in which the space component 
+\begin{equation}
+\Lambda^i_j = R^i_j, \Lambda^0_0 = 1, \Lambda^0_i = 0
+\end{equation}
+in other words is simply a rotation matrix. So R satisfies $det R = 1$
+and the rotation is an orthogonal matrixwhich means that if we take $R
+R^T = 1$. In addition to these rotations, the group will also contain
+the Lorentz boosts. Rotations can in general be written in terms of 3
+angles
+\begin{equation}
+R(\v{\theta}) = e^{\theta_i J_i}
+\end{equation}
+where J are the generators of the rotation, or in a quantum mechanical
+setting are the angular momentum operators. These rotations are
+physically represented if they satisfy the commutation relations i.e.
+\begin{equation}
+[J_i, J_j] = \epsilon_{ijk} J_k
+\end{equation}
+This defines the SO(3)
+
+
+
+\end{document}
