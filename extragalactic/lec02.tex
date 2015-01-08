@@ -1,0 +1,127 @@
+% declare document class and geometry
+%\documentclass[12pt]{article} % use larger type; default would be 10pt
+\input{../plaheader.tex}
+\usepackage[margin=1in]{geometry} % handle page geometry
+
+
+
+
+
+\title{Phys 220A -- Extragalactic Astronomy -- Lec02}
+\author{UCLA, Winter 2014}
+\date{\formatdate{7}{1}{2014}} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\setlength{\unitlength}{1mm}
+\maketitle
+
+\section{Correction from last time}
+Elmegreen Chapter 8. Looking in quadrants
+towards the solar center, we have the radial velocity increasing until
+we get to the subsolar point and then decreasing until it goes
+negative outside of the solar circle. 
+\begin{figure}
+\centering
+\includegraphics[width=.5\textwidth]{figures/radial.pdf}
+\end{figure}
+
+Another note: our estimations of the Oort constants will never be
+perfect because we live in non-axisymmetric galaxy, have spiral arms
+and a bar. 
+
+
+\section{Rotation laws}
+\subsection{Kepler}
+Let's look at the orbit around a point mass M
+\begin{equation}
+v(R) = \left(\frac{GM}{R}\right)^{1/2}
+\end{equation}
+\begin{equation}
+\omega = \frac{v}{r} = \sqrt{GM} R^{-3/2}
+\end{equation}
+\begin{equation}
+\d{\omega}{R} = -\frac{3}{2} \sqrt{GM} R^{-5/2}
+\end{equation}
+\begin{equation}
+A = - \frac{R}{2} \d{\omega}{R} = \frac{3}{4} \sqrt{GM} R^{-3/2}
+\end{equation}
+\begin{equation}
+A = \frac{3}{4} \omega
+\end{equation}
+\begin{equation}
+B = -\frac{1}{4}\omega
+\end{equation}
+This is not what we see around the Milky way, where A and B are roughly comparable. 
+
+\subsection{Solid Body}
+The dynamical timescale 
+\begin{equation}
+t_{dyn} \approx \frac{1}{\sqrt{G\rho}}
+\end{equation}
+\begin{equation}
+\omega = const
+\end{equation}
+\begin{equation}
+A = 0
+\end{equation} 
+\begin{equation}
+B = -\omega
+\end{equation}
+
+
+\subsection{Flat Rotation}
+\begin{equation}
+V = constant
+\end{equation}
+\begin{equation}
+\rho \propto r^{-2}
+\end{equation}
+\begin{equation}
+A = \frac{R}{2} \frac{V_c}{R^2} = \frac{V_c}{2R} = \frac{\omega}{2}
+\end{equation}
+\begin{equation}
+B = -\frac{\omega}{2}
+\end{equation}
+
+\section{Epicycles}
+Describes orbits that are almost circles. The idea is that we have a guiding center and completes simple harmonic motion around it. We call the radial oscillation frequency $\kappa$. See Binney and Tremaine
+\begin{equation}
+\kappa = -4B(A-B)
+\end{equation}
+in our local neighborhood this is
+\begin{equation}
+\kappa = 37 km/s/Kpc
+\end{equation}
+Let's look at some real world cases. For Kepler
+\begin{equation}
+\kappa = \sqrt{4\frac{\omega}{4} \omega} = \omega
+\end{equation}
+Which is a way of saying that this is an ellipse. What about solid body rotation?
+\begin{equation}
+\kappa = \sqrt{4\omega^2} = 2\omega
+\end{equation}
+This is an ellipse that is centered around the center of the galaxy
+
+For a flat rotation curve we have
+\begin{equation}
+\kappa = \sqrt{2} \omega
+\end{equation}
+So it will not close on itself. 
+
+
+\section{Differential Rotation}
+We get differential rotation because the angular frequency changes as a function of radius. We have a special case where
+\begin{equation}
+\omega - \omega_p = n\kappa
+\end{equation}
+Where n is an integer. If n is 1 then we have an ellipse like in the Keplerian orbit. In other words they come back to the same part as they start in an integer number of orbits. If we have something satisfying this conditions then we could have a kinematic density wave
+
+
+\section{Toomre Parameter}
+Disk stability parameter
+\begin{equation}
+Q =\frac{\sigma_R \kappa}{3.36 G\Sigma} > 1
+\end{equation}
+For stability
+\end{document}
